@@ -49,14 +49,14 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    desktop = "${config.home.homeDirectory}/Desktop";
-    documents = "${config.home.homeDirectory}/Documents";
-    download = "${config.home.homeDirectory}/Downloads";
-    music = "${config.home.homeDirectory}/Music";
-    publicShare = "${config.home.homeDirectory}/Public";
-    pictures = "${config.home.homeDirectory}/Pictures";
-    templates = "${config.home.homeDirectory}/Templates";
-    videos = "${config.home.homeDirectory}/Videos";
+    desktop = "${config.home.homeDirectory}/desktop";
+    documents = "${config.home.homeDirectory}/documents";
+    download = "${config.home.homeDirectory}/downloads";
+    music = "${config.home.homeDirectory}/music";
+    publicShare = "${config.home.homeDirectory}/public";
+    pictures = "${config.home.homeDirectory}/pictures";
+    templates = "${config.home.homeDirectory}/templates";
+    videos = "${config.home.homeDirectory}/videos";
   };
 
   # Let Home Manager install and manage itself.
@@ -65,5 +65,5 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 }

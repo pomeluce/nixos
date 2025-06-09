@@ -15,7 +15,7 @@ in
     enable = true;
     autosuggestion.enable = false;
     initContent = ''
-      source /wsp/akir-zimfw/init.zsh
+      source $DEVROOT/wsp/akir-zimfw/init.zsh
     '';
   };
 

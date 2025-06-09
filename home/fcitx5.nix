@@ -21,6 +21,6 @@
   };
 
   home.activation.rimeIce = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    ln -snf "/wsp/dotfiles/fcitx5/themes" "$HOME/.local/share/fcitx5/themes"
+    ln -snf "$DEVROOT/wsp/dotfiles/fcitx5/themes" "$HOME/.local/share/fcitx5/themes"
   '';
 }

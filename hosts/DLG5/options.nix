@@ -2,15 +2,17 @@
   opts = rec {
     username = "Tso";
 
+    devroot = "/home/${username}/devroot";
+
     # packages for this machine
     packages = with pkgs; [ jetbrains.jdk ];
 
     # git config
-    gitname = "Tso";
-    gitmail = "62343478+pomeluce@users.noreply.github.com";
-    gitbranch = "main";
-
-    devroot = "~/devroot";
+    git = {
+      name = "Tso";
+      email = "62343478+pomeluce@users.noreply.github.com";
+      branch = "main";
+    };
 
     wm = { sddm = true; };
 

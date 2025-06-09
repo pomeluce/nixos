@@ -39,7 +39,7 @@ in
     displayManager.sddm = {
       enable = opts.wm.sddm;
       package = pkgs.kdePackages.sddm;
-      # TODO: theme = "sddm-astronaut-theme";
+      theme = "sddm-astronaut-theme";
       extraPackages = [ sddm-astronaut ];
       wayland.enable = true;
     };

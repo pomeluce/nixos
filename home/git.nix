@@ -1,11 +1,10 @@
-{ lib, opts, ... }:
-{
+{ lib, opts, ... }: {
   programs.git = {
     enable = true;
-    userName = "${opts.gitname}";
-    userEmail = "${opts.gitmail}";
+    userName = "${opts.git.name}";
+    userEmail = "${opts.git.email}";
     extraConfig = lib.mkMerge [
-      ({ init.defaultBranch = "${opts.gitbranch}"; })
+      ({ init.defaultBranch = "${opts.git.branch}"; })
       (lib.mkIf (opts.use-proxy == true) {
         http.proxy = "${opts.http-proxy}";
         https.proxy = "${opts.https-proxy}";

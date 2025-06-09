@@ -293,7 +293,7 @@ in
 
   home.activation.link-ashell-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     rm -rf ~/.config/akir-shell
-    ln -sfn $DEVROOT/wsp/dotfiles/akir-shell ~/.config/akir-shell
+    ln -snf $DEVROOT/wsp/dotfiles/akir-shell ~/.config/akir-shell
   '';
 
   home.packages = hyprDeps;

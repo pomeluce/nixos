@@ -40,7 +40,7 @@ in
 {
   home.activation.link-nvim-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     rm -rf ~/.config/nvim
-    ln -sfn $DEVROOT/wsp/nvim ~/.config/nvim
+    ln -snf $DEVROOT/wsp/nvim ~/.config/nvim
   '';
   xdg = {
 

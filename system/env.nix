@@ -3,7 +3,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
 
-    DEVROOT = "${opts.devroot}";
+    DEVROOT = opts.devroot;
 
     JAVA_HOME8 = "${pkgs.zulu8}/lib/openjdk";
     JAVA_HOME21 = "${pkgs.zulu}/lib/openjdk";

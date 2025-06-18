@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  opts,
+  ...
+}:
 let
   hyprDeps = with pkgs; [
     xorg.xrdb
@@ -14,7 +19,7 @@ let
   ];
 
   cursorName = "Bibata-Modern-Ice";
-  cursorSize = 36;
+  cursorSize = opts.system.cursor.size;
 in
 {
   xdg.desktopEntries."org.gnome.Settings" = {

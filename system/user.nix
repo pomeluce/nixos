@@ -6,12 +6,13 @@ in
   # Define a user group
   users.groups = {
     "${name}" = {
-      gid = 1000;
+      gid = opts.gid;
     };
   };
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${name} = {
     isNormalUser = true;
+    uid = opts.uid;
     extraGroups = [
       name
       "networkmanager"
@@ -22,4 +23,8 @@ in
     ]; # Enable 'sudo' for the user.
     shell = pkgs.zsh;
   };
+
+  system.activationScripts.userAvatar = ''
+    install -Dm644 /home/${name}/pictures/avatar/avatar.png /var/lib/AccountsService/icons/${name}
+  '';
 }

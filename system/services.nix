@@ -11,6 +11,12 @@ let
   };
 in
 {
+  hardware = {
+    bluetooth = {
+      enable = true;
+    };
+  };
+
   services = {
     # Dbus
     dbus.enable = true;
@@ -37,15 +43,15 @@ in
 
     # sddm
     displayManager.sddm = {
-      enable = opts.wm.sddm;
-      package = pkgs.kdePackages.sddm;
-      theme = "sddm-astronaut-theme";
-      extraPackages = [ sddm-astronaut ];
+      enable = opts.system.wm.sddm;
       wayland.enable = true;
+      package = pkgs.kdePackages.sddm;
+      # theme = "sddm-astronaut-theme";
+      extraPackages = [ sddm-astronaut ];
     };
 
     # Enable the X11 windowing system.
-    xserver.displayManager.startx.enable = true;
+    # xserver.displayManager.startx.enable = true;
 
     # Configure keymap in X11
     xserver.xkb.layout = "us";

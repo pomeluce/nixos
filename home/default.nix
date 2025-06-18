@@ -35,13 +35,13 @@ in
     packages = homePkgs;
 
     sessionVariables = {
-    } // opts.sessionVariables;
+    } // opts.system.sessionVariables;
 
     sessionPath = [
       "/home/${opts.username}/.local/bin"
       "$GOBIN"
       "$PNPM_HOME"
-    ] ++ opts.sessionPath;
+    ] ++ opts.system.sessionPath;
 
     enableNixpkgsReleaseCheck = false;
   };

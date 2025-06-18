@@ -1,15 +1,15 @@
-{ lib, ... }:
+{ lib, opts, ... }:
 with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      cursor-size = 36;
+      cursor-size = opts.system.cursor.size;
       cursor-theme = "Bibata-Modern-Ice";
       font-name = "PingFang SC 11";
       gtk-theme = "WhiteSur-Dark";
       icon-theme = "MoreWaita";
       monospace-font-name = "CaskaydiaMono Nerd Font Mono 10";
-      text-scaling-factor = 1.5;
+      text-scaling-factor = opts.system.gtk.scale.text;
     };
 
     "org/gnome/desktop/wm/preferences" = {

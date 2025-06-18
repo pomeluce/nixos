@@ -40,9 +40,9 @@
 
   # Proxy
   systemd.services.nix-daemon.environment = lib.mkMerge [
-    (lib.mkIf (opts.use-proxy == true) {
-      http_proxy = "${opts.http-proxy}";
-      https_proxy = "${opts.https-proxy}";
+    (lib.mkIf (opts.system.proxy.enabled == true) {
+      http_proxy = "${opts.system.proxy.http}";
+      https_proxy = "${opts.system.proxy.https}";
     })
   ];
 

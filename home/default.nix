@@ -24,7 +24,7 @@ in
     ./hypr.nix
     ./nvim.nix
     ./swaylock.nix
-    ./wezterm.nix
+    ./wezterm
     ./xsettingsd.nix
     ./zsh.nix
   ];

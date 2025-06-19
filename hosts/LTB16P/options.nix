@@ -8,6 +8,10 @@
     devroot = "/home/${username}/devroot";
 
     system = {
+      font = {
+        size = 20;
+      };
+
       cursor = {
         size = 36;
       };
@@ -46,7 +50,14 @@
     };
 
     # packages for this machine
-    packages = with pkgs; [ jetbrains.jdk ];
+    packages = with pkgs; [
+      jetbrains.jdk
+      jetbrains.idea-ultimate
+      vscode
+      firefox
+      telegram-desktop
+      spotify
+    ];
 
   };
 }

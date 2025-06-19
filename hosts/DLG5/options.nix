@@ -8,12 +8,13 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      font = {
-        size = 14;
+      fontSize = {
+        wezterm = 14;
+        swaylock = 18;
       };
 
       cursor = {
-        size = 36;
+        size = 24;
       };
 
       gtk = {

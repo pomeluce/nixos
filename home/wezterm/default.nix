@@ -25,9 +25,8 @@
   };
 
   home.file.".config/wezterm/utils/nix.lua".text = ''
-    local platform = require('utils.platform')()
     return {
-      font_size = platform.is_linux and ${opts.system.font.size} or 12,
+      font_size = ${toString opts.system.fontSize.wezterm},
     }
   '';
 

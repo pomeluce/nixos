@@ -8,8 +8,9 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      font = {
-        size = 20;
+      fontSize = {
+        wezterm = 20;
+        swaylock = 32;
       };
 
       cursor = {

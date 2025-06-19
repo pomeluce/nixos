@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, opts, ... }:
 {
   home.file.".config/swaylock/config".text = ''
     screenshots
@@ -11,7 +11,7 @@
     indicator-radius=130
 
     font=PingFang SC
-    font-size=32
+    font-size=${toString opts.system.fontSize.swaylock}
 
     color=eff1f5
 

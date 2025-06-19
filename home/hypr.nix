@@ -44,7 +44,7 @@ in
         "akir-shell"
 
         # 设置 xwayland 应用 dpi
-        "echo 'Xft.dpi: 144' | xrdb -merge"
+        "echo 'Xft.dpi: ${toString (96 * opts.system.gtk.scale.text)}' | xrdb -merge"
         "xsettingsd"
 
         # core components

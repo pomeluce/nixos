@@ -1,6 +1,7 @@
 { pkgs, opts, ... }:
 let
   name = opts.username;
+  avatarSrc = ../assets/avatar.png;
 in
 {
   # Define a user group
@@ -25,6 +26,6 @@ in
   };
 
   system.activationScripts.userAvatar = ''
-    install -Dm644 /home/${name}/pictures/avatar/avatar.png /var/lib/AccountsService/icons/${name}
+    install -Dm644 ${avatarSrc} /var/lib/AccountsService/icons/${name}
   '';
 }

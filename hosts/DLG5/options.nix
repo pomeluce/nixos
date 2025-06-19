@@ -23,6 +23,7 @@
 
       wm = {
         sddm = true;
+        hyprland = true;
       };
 
       # user env

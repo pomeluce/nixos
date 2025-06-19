@@ -6,9 +6,17 @@
   lib,
   opts,
   hostname,
+  allowed-unfree-packages,
+  allowed-insecure-packages,
   ...
 }:
 {
+  # Unfree Packages
+  nixpkgs.config = {
+    allowUnfreePredicate = allowed-unfree-packages;
+    permittedInsecurePackages = allowed-insecure-packages;
+  };
+
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
   boot.loader = {

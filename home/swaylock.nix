@@ -8,10 +8,10 @@
     datestr=%y-%m-%d %A
 
     indicator
-    indicator-radius=130
+    indicator-radius=${toString (96 * opts.system.gtk.scale)}
 
     font=PingFang SC
-    font-size=${toString opts.system.fontSize.swaylock}
+    font-size=${toString opts.system.font-size.swaylock}
 
     color=eff1f5
 

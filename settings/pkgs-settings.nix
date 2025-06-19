@@ -10,6 +10,9 @@ rec {
   allowed-unfree-packages =
     pkg:
     builtins.elem (nixpkgs.lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-persistenced"
       "pingfang"
       "pingfang-relaxed"
       "pingfang-ui"

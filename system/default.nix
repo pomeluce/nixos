@@ -11,6 +11,8 @@
     ../hosts/${hostname}/hardware-configuration.nix
     ./configuration.nix
     ./locale.nix
+    ./nvidia.nix
+    ./opengl.nix
     ./packages.nix
     ./user.nix
     ./env.nix

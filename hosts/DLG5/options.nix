@@ -8,9 +8,9 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      fontSize = {
+      font-size = {
         wezterm = 14;
-        swaylock = 18;
+        swaylock = 22;
       };
 
       cursor = {
@@ -18,9 +18,7 @@
       };
 
       gtk = {
-        scale = {
-          text = 1;
-        };
+        scale = 1;
       };
 
       wm = {
@@ -28,16 +26,25 @@
       };
 
       # user env
-      sessionVariables = {
+      session-variables = {
         IDEA_JDK = "${pkgs.jetbrains.jdk}/lib/openjdk";
       };
-      sessionPath = [ ];
+      session-path = [ ];
 
       # proxy
       proxy = {
         enabled = false;
         http = "";
         https = "";
+      };
+
+      diver = {
+        prime-enable = true;
+        # intel, amd, nvidia, intel-nvidia, amd-nvidia
+        gpu-type = [ "intel-nvidia" ];
+        intel-bus-id = "PCI:0:2:0";
+        amd-bus-id = "";
+        nvidia-bus-id = "PCI:1:0:0";
       };
     };
 

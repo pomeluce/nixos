@@ -9,7 +9,7 @@ with lib.hm.gvariant;
       gtk-theme = "WhiteSur-Dark";
       icon-theme = "MoreWaita";
       monospace-font-name = "CaskaydiaMono Nerd Font Mono 10";
-      text-scaling-factor = opts.system.gtk.scale.text;
+      text-scaling-factor = opts.system.gtk.scale;
     };
 
     "org/gnome/desktop/wm/preferences" = {

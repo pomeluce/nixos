@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, opts, ... }:
 let
   zshDeps = with pkgs; [
     bat
@@ -15,7 +15,7 @@ in
     enable = true;
     autosuggestion.enable = false;
     initContent = ''
-      source $DEVROOT/wsp/akir-zimfw/init.zsh
+      source ${opts.devroot}/wsp/akir-zimfw/init.zsh
     '';
   };
 

@@ -18,10 +18,13 @@ in
 
   imports = [
     ./dconf.nix
+    ./fastfetch.nix
     ./fcitx5.nix
     ./fonts.nix
     ./git.nix
     ./hypr.nix
+    ./ideavim.nix
+    ./node.nix
     ./nvim.nix
     ./swaylock.nix
     ./wezterm

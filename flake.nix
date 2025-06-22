@@ -4,22 +4,27 @@
   # Inputs
   # https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html#flake-inputs
   inputs = {
-    # Official NixOS package source, using nixos's unstable branch by default
+    # official nixos package source, using nixos's unstable branch by default
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Stable
+    # stable
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    # Unstable
+    # unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # HomeManager
+    # home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # NUR
+    # nur
     nur.url = "github:nix-community/NUR";
     # ashell
     ashell = {
       url = "github:pomeluce/akir-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # sops
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -33,11 +38,12 @@
       home-manager,
       nur,
       ashell,
+      sops-nix,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      # Packages Setting
+      # packages setting
       pkg-settings = import ./settings/pkgs-settings.nix {
         inherit nixpkgs;
         inherit system;
@@ -45,9 +51,9 @@
         inherit nixpkgs-unstable;
         inherit nur;
       };
-      # Host Config
+      # host config
       hosts-conf = import ./settings/hosts-conf.nix { inherit pkg-settings; };
-      # Generate Function
+      # generate function
       system-gen =
         { host-conf }:
         with pkg-settings;
@@ -62,9 +68,9 @@
             hostname = host-conf.name;
           };
           modules = [
-            # Add NUR
+            # add nur
             { nixpkgs.overlays = [ nur.overlays.default ]; }
-            # Add Stable Nixpkgs
+            # add stable nixpkgs
             ({
               nixpkgs.overlays = [
                 (final: prev: {
@@ -73,9 +79,13 @@
                 })
               ];
             })
-            # System Configuration
+            # system configuration
             ./system
-            # HomeManager
+            # user's services
+            ./user/services
+            # sops-nix
+            sops-nix.nixosModules.sops
+            # home manager
             home-manager.nixosModules.home-manager
             {
               home-manager = {

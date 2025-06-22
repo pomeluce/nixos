@@ -46,6 +46,17 @@ in
     enableNixpkgsReleaseCheck = false;
   };
 
+  xdg.configFile."gtk-3.0/bookmarks".text =
+    let
+      home = opts.devroot;
+    in
+    ''
+      file:/// root
+      file://${home}/wsp wsp
+      file://${home}/code code
+      file://${home}/wsp/wallpapers wallpapers
+    '';
+
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

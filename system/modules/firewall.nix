@@ -1,0 +1,16 @@
+{ config, ... }:
+{
+  networking.nftables.enable = true;
+  networking.firewall = {
+    enable = true;
+    checkReversePath = "loose";
+    trustedInterfaces = [
+      "tun*"
+      "Meta"
+    ];
+    # allowedUDPPorts = [];
+
+    # allowedTCPPorts = [];
+    # allowedUDPPortRanges = [];
+  };
+}

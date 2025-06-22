@@ -14,7 +14,7 @@
       gtk.scale = 1;
 
       bluetooth = true;
-      clash = true;
+      use-mihomo = true;
       wm.sddm = true;
       wm.greetd = false;
       wm.hyprland = true;

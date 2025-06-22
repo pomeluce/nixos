@@ -28,6 +28,8 @@
       ./modules/opengl.nix
       ./modules/xdg.nix
       ./modules/gc.nix
+      ./modules/sops.nix
+      ./modules/firewall.nix
       ./services/xserver.nix
       ./services/pipewire.nix
       ./services/others.nix
@@ -50,12 +52,7 @@
     ]
     ++ lib.optionals (opts.system.wm.hyprland == true) [
       ./modules/hyprland.nix
-    ]
-    ++ lib.optionals (opts.system.clash == true) [
-      ./modules/clash.nix
-    ]
-
-  ;
+    ];
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;

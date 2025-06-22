@@ -11,55 +11,60 @@ let
   };
 in
 {
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings.General = {
-        Experimental = true;
-        Enable = "Source,Sink,Media,Socket";
-      };
-    };
-  };
+  # hardware = {
+  #   bluetooth = {
+  #     enable = true;
+  #     powerOnBoot = true;
+  #     settings.General = {
+  #       Experimental = true;
+  #       Enable = "Source,Sink,Media,Socket";
+  #     };
+  #   };
+  # };
 
   services = {
     # Dbus
-    dbus.enable = true;
+    # dbus.enable = true;
 
     # Enable touchpad support(enabled default in most desktopManager).
-    libinput.enable = true;
+    # libinput.enable = true;
 
     # Enable the X11 windowing system.
-    xserver.enable = true;
+    # xserver = {
+    #   enable = true;
+    #   excludePackages = with pkgs; [
+    #     xterm
+    #   ];
+    # };
 
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
+    # openssh.enable = true;
 
     # Enable sound.
     # hardware.pulseaudio.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-      wireplumber.enable = true;
-    };
+    # pipewire = {
+    #   enable = true;
+    #   alsa.enable = true;
+    #   alsa.support32Bit = true;
+    #   pulse.enable = true;
+    #   jack.enable = true;
+    #   wireplumber.enable = true;
+    # };
 
     # sddm
-    displayManager.sddm = {
-      enable = opts.system.wm.sddm;
-      wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
-      # theme = "sddm-astronaut-theme";
-      extraPackages = [ sddm-astronaut ];
-    };
+    # displayManager.sddm = {
+    #   enable = opts.system.wm.sddm;
+    #   wayland.enable = true;
+    #   package = pkgs.kdePackages.sddm;
+    #   # theme = "sddm-astronaut-theme";
+    #   extraPackages = [ sddm-astronaut ];
+    # };
 
     # Enable the X11 windowing system.
     # xserver.displayManager.startx.enable = true;
 
     # Configure keymap in X11
-    xserver.xkb.layout = "us";
+    # xserver.xkb.layout = "us";
     # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
     # Enable CUPS to print documents.

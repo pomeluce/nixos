@@ -5,35 +5,14 @@
   ...
 }:
 let
-  hyprDeps = with pkgs; [
-    xorg.xrdb
-    cliphist
-    fprintd
-    morewaita-icon-theme
-    adwaita-icon-theme
-    whitesur-gtk-theme
-    bibata-cursors
-    ashell.akir-shell
-    ashell.screenrecord
-    ashell.screenshot
-  ];
-
   cursorName = "Bibata-Modern-Ice";
   cursorSize = opts.system.cursor.size;
 in
 {
-  xdg.desktopEntries."org.gnome.Settings" = {
-    name = "Settings";
-    comment = "Gnome Control Center";
-    icon = "org.gnome.Settings";
-    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-    categories = [ "X-Preferences" ];
-    terminal = false;
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
+    portalPackage = null;
 
     settings = {
       # 显示器配置
@@ -88,7 +67,7 @@ in
       bind = [
         # Actions
         "SUPER, B, exec, firefox"
-        "SUPER, E, exec, nautilus"
+        "SUPER, E, exec, pkill nautilus; env GTK_THEME=\"$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \"'\")\" nautilus"
         "SUPER, R, exec, akir-shell eval \"launcher('app')\""
         "SUPER, Return, exec, wezterm-gui"
         "SUPER ALT, L, exec, swaylock -eF"
@@ -299,7 +278,6 @@ in
   home.activation.link-ashell-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     rm -rf ~/.config/akir-shell
     ln -snf $DEVROOT/wsp/dotfiles/akir-shell ~/.config/akir-shell
+    ln -snf $DEVROOT/wsp/wallpapers ~/.config/wallpapers
   '';
-
-  home.packages = hyprDeps;
 }

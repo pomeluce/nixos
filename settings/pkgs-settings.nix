@@ -41,9 +41,12 @@ rec {
       "pingfang"
       "pingfang-relaxed"
       "pingfang-ui"
+      "reqable"
       "idea-ultimate"
       "vscode"
       "spotify"
+      "steam"
+      "steam-unwrapped"
     ];
   # Superset of the default insecure packages
   allowed-insecure-packages = [

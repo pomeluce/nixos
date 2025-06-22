@@ -8,23 +8,17 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      font-size = {
-        wezterm = 14;
-        swaylock = 22;
-      };
+      font-size.wezterm = 14;
+      font-size.swaylock = 22;
+      cursor.size = 24;
+      gtk.scale = 1;
 
-      cursor = {
-        size = 24;
-      };
-
-      gtk = {
-        scale = 1;
-      };
-
-      wm = {
-        sddm = true;
-        hyprland = true;
-      };
+      bluetooth = true;
+      clash = true;
+      wm.sddm = true;
+      wm.greetd = false;
+      wm.hyprland = true;
+      wm.gnome = true;
 
       # user env
       session-variables = {
@@ -33,29 +27,22 @@
       session-path = [ ];
 
       # proxy
-      proxy = {
-        enabled = false;
-        http = "";
-        https = "";
-      };
+      proxy.enabled = false;
+      proxy.http = "";
+      proxy.https = "";
 
-      diver = {
-        prime-enable = true;
-        # intel, amd, nvidia, intel-nvidia, amd-nvidia
-        gpu-type = [ "intel-nvidia" ];
-        intel-bus-id = "PCI:0:2:0";
-        amd-bus-id = "";
-        nvidia-bus-id = "PCI:1:0:0";
-      };
+      # intel, amd, nvidia, intel-nvidia, amd-nvidia
+      drive.gpu-type = [ "intel-nvidia" ];
+      drive.intel-bus-id = "PCI:0:2:0";
+      drive.amd-bus-id = "";
+      drive.nvidia-bus-id = "PCI:1:0:0";
     };
 
     programs = {
       # git config
-      git = {
-        name = "Tso";
-        email = "62343478+pomeluce@users.noreply.github.com";
-        branch = "main";
-      };
+      git.name = "Tso";
+      git.email = "62343478+pomeluce@users.noreply.github.com";
+      git.branch = "main";
     };
 
     # packages for this machine
@@ -66,7 +53,8 @@
       firefox
       telegram-desktop
       spotify
+      steam
+      reqable
     ];
-
   };
 }

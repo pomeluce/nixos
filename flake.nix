@@ -77,6 +77,19 @@
             ./system
             # HomeManager
             home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                backupFileExtension = "backup";
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${host-conf.config.username} = import ./user/home;
+                extraSpecialArgs = {
+                  inherit inputs;
+                  inherit npkgs;
+                  opts = host-conf.config;
+                };
+              };
+            }
           ];
         };
     in

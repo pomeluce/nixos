@@ -30,6 +30,7 @@
     usbmuxd
     libimobiledevice
     htop
+    cliphist
 
     gcc
     gnumake

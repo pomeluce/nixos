@@ -3,6 +3,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
       cursor-size = opts.system.cursor.size;
       cursor-theme = "Bibata-Modern-Ice";
       font-name = "PingFang SC 11";

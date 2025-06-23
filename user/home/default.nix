@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   opts,
@@ -16,21 +17,25 @@ let
 in
 {
 
-  imports = [
-    ./dconf.nix
-    ./fastfetch.nix
-    ./fcitx5.nix
-    ./fonts.nix
-    ./git.nix
-    ./hypr.nix
-    ./ideavim.nix
-    ./node.nix
-    ./nvim.nix
-    ./swaylock.nix
-    ./wezterm
-    ./xsettingsd.nix
-    ./zsh.nix
-  ];
+  imports =
+    [
+      ./fastfetch.nix
+      ./git.nix
+      ./ideavim.nix
+      ./node.nix
+      ./nvim.nix
+      ./zsh.nix
+    ]
+    ++ lib.optionals (opts.system.desktop.enable == true) [
+      ./dconf.nix
+      ./fcitx5.nix
+      ./firefox.nix
+      ./fonts.nix
+      ./hypr.nix
+      ./swaylock.nix
+      ./wezterm
+      ./xsettingsd.nix
+    ];
 
   home = {
     username = "${opts.username}";

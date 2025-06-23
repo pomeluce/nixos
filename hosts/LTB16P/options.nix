@@ -15,10 +15,13 @@
 
       bluetooth = true;
       use-mihomo = true;
+
+      desktop.enable = true;
       wm.sddm = true;
       wm.greetd = false;
       wm.hyprland = true;
       wm.gnome = true;
+      wm.wsl = false;
 
       # user env
       session-variables = {
@@ -43,6 +46,8 @@
       git.name = "Tso";
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
+
+      firefox.enable = true;
     };
 
     # packages for this machine
@@ -55,6 +60,9 @@
       spotify
       steam
       reqable
+      nur.repos.novel2430.wpsoffice-365
+      nur.repos.novel2430.wechat-universal-bwrap
+      nur.repos.xddxdd.qq
     ];
   };
 }

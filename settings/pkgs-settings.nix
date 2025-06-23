@@ -47,6 +47,9 @@ rec {
       "spotify"
       "steam"
       "steam-unwrapped"
+      "wpsoffice-365"
+      "wechat-universal-bwrap"
+      "qq"
     ];
   # Superset of the default insecure packages
   allowed-insecure-packages = [

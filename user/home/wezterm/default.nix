@@ -14,6 +14,24 @@
     source = ./config;
   };
 
+  home.file.".config/wezterm/config/domains.lua".text = ''
+    local platform = require('utils.platform')()
+
+    return {
+      default_domain = platform.is_windows and 'WSL:NixOS' or 'local',
+      ssh_domains = {},
+      wsl_domains = {
+        {
+          name = 'WSL:NixOS',
+          distribution = 'NixOS',
+          username = '${opts.username}',
+          default_cwd = '/home/${opts.username}',
+          default_prog = { '/etc/profiles/per-user/${opts.username}/bin/zsh', '--login' },
+        },
+      },
+    }
+  '';
+
   home.file.".config/wezterm/events" = {
     recursive = true;
     source = ./events;

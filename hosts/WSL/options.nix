@@ -44,6 +44,8 @@
       git.name = "Tso";
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
+
+      firefox.enable = false;
     };
 
     # packages for this machine

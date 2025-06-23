@@ -17,10 +17,15 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # ashell
+    # akir-shell
     ashell = {
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # akir-zimfw
+    azimfw = {
+      url = "github:pomeluce/akir-zimfw";
+      flake = false;
     };
     # sops
     sops-nix = {
@@ -43,6 +48,7 @@
       nur,
       home-manager,
       ashell,
+      azimfw,
       sops-nix,
       nixos-wsl,
       ...

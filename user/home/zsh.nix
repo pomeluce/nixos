@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   zshDeps = with pkgs; [
     bat
@@ -15,8 +20,13 @@ in
     enable = true;
     autosuggestion.enable = false;
     initContent = ''
-      source $DEVROOT/wsp/akir-zimfw/init.zsh
+      source $HOME/.config/akir-zimfw/init.zsh
     '';
+  };
+
+  home.file."akir-zimfw" = {
+    target = "${config.home.homeDirectory}/.config/akir-zimfw";
+    source = inputs.azimfw;
   };
 
   home.packages = zshDeps;

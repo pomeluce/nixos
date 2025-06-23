@@ -65,6 +65,22 @@
         "type": "github"
       }
     },
+    "azimfw": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750672228,
+        "narHash": "sha256-i5LuJPYCutkl6Ez9YsOkaN30M80EJV8wG6VFg/tkF2w=",
+        "owner": "pomeluce",
+        "repo": "akir-zimfw",
+        "rev": "707c92c236c6c0435fc30d118620f523fee06579",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pomeluce",
+        "repo": "akir-zimfw",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -215,11 +231,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1750665422,
-        "narHash": "sha256-pptJX5o5bjF6om+//7ckXPyo6XD7m26FSsdG877aZAE=",
+        "lastModified": 1750669062,
+        "narHash": "sha256-TLhn1YXD/0oo+v9V40p4i1Kp/78ckUAeEMdMebAK2TI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3e5dbbef677b069341c1483a25842e0bb7bf69e9",
+        "rev": "4eac403a407210b974dc3d2cb9d3126adb45be59",
         "type": "github"
       },
       "original": {
@@ -231,6 +247,7 @@
     "root": {
       "inputs": {
         "ashell": "ashell",
+        "azimfw": "azimfw",
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",

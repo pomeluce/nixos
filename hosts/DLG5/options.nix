@@ -15,10 +15,13 @@
 
       bluetooth = true;
       use-mihomo = true;
+
+      desktop.enable = true;
       wm.sddm = true;
       wm.greetd = false;
       wm.hyprland = true;
       wm.gnome = true;
+      wm.wsl = false;
 
       # user env
       session-variables = {

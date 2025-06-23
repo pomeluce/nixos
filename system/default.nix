@@ -4,6 +4,7 @@
 
 {
   lib,
+  inputs,
   opts,
   hostname,
   allowed-unfree-packages,
@@ -18,9 +19,11 @@
   };
 
   imports =
-    [
+    lib.optionals (opts.system.desktop.enable == true) [
       # Include the results of the hardware scan.
       ../hosts/${hostname}/hardware-configuration.nix
+    ]
+    ++ [
       ./user.nix
       ./packages.nix
       ./env.nix
@@ -29,7 +32,6 @@
       ./modules/xdg.nix
       ./modules/gc.nix
       ./modules/sops.nix
-      ./modules/firewall.nix
       ./services/xserver.nix
       ./services/pipewire.nix
       ./services/others.nix
@@ -52,6 +54,10 @@
     ]
     ++ lib.optionals (opts.system.wm.hyprland == true) [
       ./modules/hyprland.nix
+    ]
+    ++ lib.optionals (opts.system.wm.wsl == true) [
+      "${inputs.nixos-wsl}/modules"
+      ./modules/wsl.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

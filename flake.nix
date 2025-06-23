@@ -10,13 +10,13 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     # unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nur
+    nur.url = "github:nix-community/NUR";
     # home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nur
-    nur.url = "github:nix-community/NUR";
     # ashell
     ashell = {
       url = "github:pomeluce/akir-shell";
@@ -27,6 +27,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # wsl module
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,10 +40,11 @@
       nixpkgs,
       nixpkgs-stable,
       nixpkgs-unstable,
-      home-manager,
       nur,
+      home-manager,
       ashell,
       sops-nix,
+      nixos-wsl,
       ...
     }@inputs:
     let
@@ -107,6 +113,7 @@
       nixosConfigurations = with hosts-conf; {
         "${LTB16P.name}" = system-gen { host-conf = LTB15P; };
         "${DLG5.name}" = system-gen { host-conf = DLG5; };
+        "${WSL.name}" = system-gen { host-conf = WSL; };
       };
     };
 }

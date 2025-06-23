@@ -13,20 +13,18 @@
       cursor.size = 36;
       gtk.scale = 1;
 
-      bluetooth = true;
-      use-mihomo = true;
+      bluetooth = false;
+      use-mihomo = false;
 
-      desktop.enable = true;
-      wm.sddm = true;
+      desktop.enable = false;
+      wm.sddm = false;
       wm.greetd = false;
-      wm.hyprland = true;
-      wm.gnome = true;
-      wm.wsl = false;
+      wm.hyprland = false;
+      wm.gnome = false;
+      wm.wsl = true;
 
       # user env
-      session-variables = {
-        IDEA_JDK = "${pkgs.jetbrains.jdk}/lib/openjdk";
-      };
+      session-variables = { };
       session-path = [ ];
 
       # proxy
@@ -35,10 +33,10 @@
       proxy.https = "";
 
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
-      drive.gpu-type = [ "intel-nvidia" ];
-      drive.intel-bus-id = "PCI:0:2:0";
+      drive.gpu-type = [ ];
+      drive.intel-bus-id = "";
       drive.amd-bus-id = "";
-      drive.nvidia-bus-id = "PCI:1:0:0";
+      drive.nvidia-bus-id = "";
     };
 
     programs = {
@@ -49,15 +47,6 @@
     };
 
     # packages for this machine
-    packages = with pkgs; [
-      jetbrains.jdk
-      jetbrains.idea-ultimate
-      vscode
-      firefox
-      telegram-desktop
-      spotify
-      steam
-      reqable
-    ];
+    packages = with pkgs; [ ];
   };
 }

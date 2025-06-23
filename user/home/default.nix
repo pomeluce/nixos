@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   opts,
@@ -16,18 +17,21 @@ let
 in
 {
 
-  imports = [
-    ./dconf.nix
-    ./fcitx5.nix
-    ./fonts.nix
-    ./git.nix
-    ./hypr.nix
-    ./nvim.nix
-    ./swaylock.nix
-    ./wezterm
-    ./xsettingsd.nix
-    ./zsh.nix
-  ];
+  imports =
+    [
+      ./git.nix
+      ./nvim.nix
+      ./zsh.nix
+    ]
+    ++ lib.optionals (opts.system.desktop.enable == true) [
+      ./dconf.nix
+      ./fcitx5.nix
+      ./fonts.nix
+      ./hypr.nix
+      ./swaylock.nix
+      ./wezterm
+      ./xsettingsd.nix
+    ];
 
   home = {
     username = "${opts.username}";

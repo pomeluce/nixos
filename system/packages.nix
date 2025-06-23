@@ -31,6 +31,7 @@
     libimobiledevice
     htop
     cliphist
+    microcode-intel
 
     gcc
     gnumake

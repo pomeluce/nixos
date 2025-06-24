@@ -68,11 +68,11 @@
     "azimfw": {
       "flake": false,
       "locked": {
-        "lastModified": 1750730437,
-        "narHash": "sha256-1vh9fEMc6elFBvMXh9v3/HqnQGW+PIv05EyqpBm176k=",
+        "lastModified": 1750766788,
+        "narHash": "sha256-UB85+Kd0YZBx41PC3zvDu43HI450W+urwn0R+gbWDkU=",
         "owner": "pomeluce",
         "repo": "akir-zimfw",
-        "rev": "c75b4db5b2e7e9b8e72ae73193d3c03b70f54382",
+        "rev": "a7a48353406fe9116df4bc30860fa5403543a3c6",
         "type": "github"
       },
       "original": {
@@ -231,11 +231,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1750729939,
-        "narHash": "sha256-ZalU7QisKbOXs0dpFY94qE41l3BeaG8KN0lCt22ajsw=",
+        "lastModified": 1750764079,
+        "narHash": "sha256-vJYaO317q0MTZgtw3SDDaEkU26DfFj9O7hGjOtm66Dk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "bb15bd58ac6ccb0f12e19645c961b7c9f589d9ec",
+        "rev": "6ca9ce10cce2b8242b06533ba1885811879e0f59",
         "type": "github"
       },
       "original": {

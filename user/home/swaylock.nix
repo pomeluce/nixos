@@ -11,7 +11,7 @@
     indicator-radius=${toString (96 * opts.system.gtk.scale)}
 
     font=PingFang SC
-    font-size=${toString opts.system.font-size.swaylock}
+    font-size=${toString opts.programs.swaylock.font-size}
 
     color=eff1f5
 

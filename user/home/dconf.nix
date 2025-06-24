@@ -5,10 +5,10 @@ with lib.hm.gvariant;
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       cursor-size = opts.system.cursor.size;
-      cursor-theme = "Bibata-Modern-Ice";
+      cursor-theme = "${opts.system.cursor.theme}";
       font-name = "PingFang SC 11";
       gtk-theme = "WhiteSur-Dark";
-      icon-theme = "MoreWaita";
+      icon-theme = "${opts.system.icon.theme}";
       monospace-font-name = "CaskaydiaMono Nerd Font Mono 10";
       text-scaling-factor = opts.system.gtk.scale;
     };

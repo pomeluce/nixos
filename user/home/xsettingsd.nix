@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, opts, ... }:
 {
   home.file.".config/xsettingsd/xsettingsd.conf".text = ''
-    Gtk/CursorThemeName "Bibata-Modern-Ice"
+    Gtk/CursorThemeName "${opts.system.cursor.theme}"
     Gtk/DecorationLayout "close,minimize,maximize,appmenu:"
-    Net/IconThemeName "MoreWaita"
+    Net/IconThemeName "${opts.system.icon.theme}"
   '';
 
   home.packages = with pkgs; [

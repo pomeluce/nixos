@@ -8,9 +8,6 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      font-size.wezterm = 20;
-      font-size.swaylock = 32;
-      cursor.size = 36;
       gtk.scale = 1;
 
       bluetooth = false;
@@ -22,6 +19,10 @@
       wm.hyprland = false;
       wm.gnome = false;
       wm.wsl = true;
+
+      cursor.size = 24;
+      cursor.theme = "Bibata-Modern-Ice";
+      icon.theme = "MoreWaita";
 
       # user env
       session-variables = { };
@@ -46,6 +47,9 @@
       git.branch = "main";
 
       firefox.enable = false;
+
+      wezterm.font-size = 14;
+      swaylock.font-size = 22;
     };
 
     # packages for this machine

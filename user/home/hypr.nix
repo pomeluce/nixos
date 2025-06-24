@@ -1,11 +1,6 @@
-{
-  lib,
-  pkgs,
-  opts,
-  ...
-}:
+{ lib, opts, ... }:
 let
-  cursorName = "Bibata-Modern-Ice";
+  cursorName = opts.system.cursor.theme;
   cursorSize = opts.system.cursor.size;
 in
 {
@@ -40,9 +35,7 @@ in
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
 
-        # QT 配置程序,(change to qt6ct if you have that)
-        "QT_QPA_PLATFORMTHEME,qt6ct"
-        # 禁用 QR 应用程序上的窗口装饰
+        # 禁用 QT 应用程序上的窗口装饰
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
         # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
@@ -267,17 +260,7 @@ in
     };
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = cursorName;
-    size = cursorSize;
-    package = pkgs.bibata-cursors;
-  };
-
-  home.activation.link-ashell-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    rm -rf ~/.config/akir-shell
-    ln -snf $DEVROOT/wsp/dotfiles/akir-shell ~/.config/akir-shell
+  home.activation.hyprConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     ln -snf $DEVROOT/wsp/wallpapers ~/.config/wallpapers
   '';
 }

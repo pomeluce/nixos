@@ -44,7 +44,7 @@
 
   home.file.".config/wezterm/utils/nix.lua".text = ''
     return {
-      font_size = ${toString opts.system.font-size.wezterm},
+      font_size = ${toString opts.programs.wezterm.font-size},
     }
   '';
 

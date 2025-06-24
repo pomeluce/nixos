@@ -27,12 +27,14 @@ in
       ./zsh.nix
     ]
     ++ lib.optionals (opts.system.desktop.enable == true) [
+      ./ashell
       ./dconf.nix
-      ./fcitx5.nix
+      ./fcitx5
       ./firefox.nix
       ./fonts.nix
       ./hypr.nix
       ./swaylock.nix
+      ./theme.nix
       ./wezterm
       ./xsettingsd.nix
     ];

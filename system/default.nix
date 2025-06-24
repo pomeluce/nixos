@@ -19,7 +19,7 @@
   };
 
   imports =
-    lib.optionals (opts.system.desktop.enable == true) [
+    lib.optionals (opts.system.wm.wsl != true) [
       # Include the results of the hardware scan.
       ../hosts/${hostname}/hardware-configuration.nix
     ]

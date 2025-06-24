@@ -8,8 +8,8 @@
     name = "DLG5";
     config = (import ../hosts/${name}/options.nix { pkgs = main-pkgs; }).opts;
   };
-  WSL = with pkg-settings; rec {
-    name = "WSL";
+  WSN = with pkg-settings; rec {
+    name = "WSN";
     config = (import ../hosts/${name}/options.nix { pkgs = main-pkgs; }).opts;
   };
 }

@@ -119,7 +119,7 @@
       nixosConfigurations = with hosts-conf; {
         "${LTB16P.name}" = system-gen { host-conf = LTB15P; };
         "${DLG5.name}" = system-gen { host-conf = DLG5; };
-        "${WSL.name}" = system-gen { host-conf = WSL; };
+        "${WSN.name}" = system-gen { host-conf = WSN; };
       };
     };
 }

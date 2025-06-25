@@ -12,6 +12,7 @@
 
       bluetooth = true;
       mihomo = true;
+      postgres = true;
       docker = false;
 
       wsl = false;
@@ -48,6 +49,9 @@
       git.name = "Tso";
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
+
+      postgres.port = 5432;
+      postgres.data-dir = "${devroot}/env/postgres";
 
       docker.data-root = "${devroot}/env/docker/";
       docker.exec-opts = [ "native.cgroupdriver=systemd" ];

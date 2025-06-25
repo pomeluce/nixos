@@ -61,6 +61,9 @@
     ++ lib.optionals (opts.system.wsl == true) [
       "${inputs.nixos-wsl}/modules"
       ./modules/wsl.nix
+    ]
+    ++ lib.optionals (opts.system.postgres == true) [
+      ./services/postgres.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

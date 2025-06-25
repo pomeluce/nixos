@@ -22,11 +22,6 @@
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # akir-zimfw
-    azimfw = {
-      url = "github:pomeluce/akir-zimfw";
-      flake = false;
-    };
     # sops
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -35,6 +30,11 @@
     # wsl module
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # sddm theme
+    silent-sddm = {
+      url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -48,9 +48,9 @@
       nur,
       home-manager,
       ashell,
-      azimfw,
       sops-nix,
       nixos-wsl,
+      silent-sddm,
       ...
     }@inputs:
     let
@@ -88,6 +88,7 @@
                 (final: prev: {
                   stable = stable-pkgs;
                   ashell = ashell.packages.${system};
+                  silent = silent-sddm.packages.${system}.default;
                 })
               ];
             })

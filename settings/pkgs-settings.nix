@@ -44,6 +44,7 @@ rec {
       "reqable"
       "idea-ultimate"
       "vscode"
+      "typora"
       "spotify"
       "steam"
       "steam-unwrapped"

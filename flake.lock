@@ -65,22 +65,6 @@
         "type": "github"
       }
     },
-    "azimfw": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1750766788,
-        "narHash": "sha256-UB85+Kd0YZBx41PC3zvDu43HI450W+urwn0R+gbWDkU=",
-        "owner": "pomeluce",
-        "repo": "akir-zimfw",
-        "rev": "a7a48353406fe9116df4bc30860fa5403543a3c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pomeluce",
-        "repo": "akir-zimfw",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -247,14 +231,34 @@
     "root": {
       "inputs": {
         "ashell": "ashell",
-        "azimfw": "azimfw",
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
+        "silent-sddm": "silent-sddm",
         "sops-nix": "sops-nix"
+      }
+    },
+    "silent-sddm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1750863442,
+        "narHash": "sha256-72scKM057xWHCKTjVg8Qk/8+eNZO98P9ORml4XYLzgo=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "e2567b268855e8132794c14d993843eceaa3453a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "type": "github"
       }
     },
     "sops-nix": {

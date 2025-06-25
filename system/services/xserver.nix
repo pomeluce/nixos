@@ -1,14 +1,6 @@
 { pkgs, opts, ... }:
 let
-  sddm-astronaut = pkgs.sddm-astronaut.override {
-    themeConfig = {
-      Font = "Inter";
-      HourFormat = "HH:mm";
-      DateFormat = "dddd d MMMM";
-      BlurMax = "36";
-    };
-    # embeddedTheme = "japanese_aesthetic";
-  };
+  silent = pkgs.silent.override { theme = "catppuccin-frappe"; };
 in
 {
   # Enable the X11 windowing system.
@@ -23,14 +15,24 @@ in
       xkb.layout = "us";
     };
 
-    displayManager.sddm = {
-      enable = opts.system.sddm.enable;
-      wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
-      # theme = "sddm-astronaut-theme";
-      extraPackages = [ sddm-astronaut ];
+    displayManager = {
+      sddm = {
+        enable = opts.system.sddm.enable;
+        wayland.enable = true;
+        package = pkgs.kdePackages.sddm;
+        theme = silent.pname;
+        extraPackages = silent.propagatedBuildInputs;
+        settings = {
+          # required for styling the virtual keyboard
+          General = {
+            GreeterEnvironment = "QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+            InputMethod = "qtvirtualkeyboard";
+          };
+        };
+      };
+      defaultSession = "hyprland-uwsm";
     };
   };
 
-  environment.systemPackages = [ sddm-astronaut ];
+  environment.systemPackages = [ silent ];
 }

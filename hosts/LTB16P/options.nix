@@ -69,6 +69,7 @@
       jetbrains.idea-ultimate
       vscode
       telegram-desktop
+      typora
       spotify
       steam
       reqable

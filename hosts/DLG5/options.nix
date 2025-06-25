@@ -12,7 +12,7 @@
 
       bluetooth = true;
       mihomo = true;
-      postgres = true;
+      postgres = false;
       docker = false;
 
       wsl = false;

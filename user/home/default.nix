@@ -29,7 +29,7 @@ in
     ++ lib.optionals (opts.system.desktop.enable == true) [
       ./ashell
       ./dconf.nix
-      ./fcitx5
+      ./fcitx5.nix
       ./firefox.nix
       ./fonts.nix
       ./hypr.nix

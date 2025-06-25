@@ -19,7 +19,7 @@
   };
 
   imports =
-    lib.optionals (opts.system.wm.wsl != true) [
+    lib.optionals (opts.system.wsl != true) [
       # Include the results of the hardware scan.
       ../hosts/${hostname}/hardware-configuration.nix
     ]
@@ -40,6 +40,9 @@
     ++ lib.optionals (opts.system.bluetooth == true) [
       ./modules/bluetooth.nix
     ]
+    ++ lib.optionals (opts.system.docker == true) [
+      ./modules/docker.nix
+    ]
     ++ lib.optionals (builtins.elem "nvidia" opts.system.drive.gpu-type) [
       ./modules/nvidia.nix
     ]
@@ -49,13 +52,13 @@
     ++ lib.optionals (builtins.elem "amd-nvidia" opts.system.drive.gpu-type) [
       ./modules/nvidia.nix
     ]
-    ++ lib.optionals (opts.system.wm.gnome == true) [
+    ++ lib.optionals (opts.system.gnome.enable == true) [
       ./modules/gnome.nix
     ]
-    ++ lib.optionals (opts.system.wm.hyprland == true) [
+    ++ lib.optionals (opts.system.hyprland.enable == true) [
       ./modules/hyprland.nix
     ]
-    ++ lib.optionals (opts.system.wm.wsl == true) [
+    ++ lib.optionals (opts.system.wsl == true) [
       "${inputs.nixos-wsl}/modules"
       ./modules/wsl.nix
     ];

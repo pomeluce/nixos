@@ -2,7 +2,7 @@
 {
   imports =
     [ ]
-    ++ lib.optionals (opts.system.use-mihomo == true) [
+    ++ lib.optionals (opts.system.mihomo == true) [
       ./firewall.nix
       ./mihomo.nix
     ];

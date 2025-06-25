@@ -1,8 +1,4 @@
-{
-  pkgs,
-  opts,
-  ...
-}:
+{ pkgs, ... }:
 {
   programs.hyprland.withUWSM = true;
   programs.hyprland.enable = true;
@@ -72,20 +68,4 @@
   };
 
   environment.variables.NIXOS_OZONE_WL = "1";
-
-  services.greetd = {
-    enable = opts.system.wm.greetd;
-    settings = {
-      default_session = {
-        command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet \
-          --time \
-          --remember \
-          --remember-session \
-          --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red';
-        '';
-        user = opts.username;
-      };
-    };
-  };
 }

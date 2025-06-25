@@ -11,14 +11,15 @@
       gtk.scale = 1;
 
       bluetooth = false;
-      use-mihomo = false;
+      mihomo = false;
+      docker = true;
+
+      wsl = true;
 
       desktop.enable = false;
-      wm.sddm = false;
-      wm.greetd = false;
-      wm.hyprland = false;
-      wm.gnome = false;
-      wm.wsl = true;
+      sddm.enable = false;
+      hyprland.enable = false;
+      gnome.enable = false;
 
       cursor.size = 24;
       cursor.theme = "Bibata-Modern-Ice";
@@ -45,6 +46,18 @@
       git.name = "Tso";
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
+
+      docker.data-root = "${devroot}/env/docker/";
+      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
+      docker.insecure-registries = [
+        "10.9.161.161:1121"
+        "10.9.161.171:1121"
+        "10.9.47.206:1121"
+        "10.9.47.201:1121"
+        "10.9.47.202:1121"
+        "harbor1.yx-m.paas.sh-sit-jssdn-70-253.cmit.cloud:1121"
+        "harbor2.yx-m.paas.sh-sit-jssdn-70-253.cmit.cloud:1121"
+      ];
 
       firefox.enable = false;
 

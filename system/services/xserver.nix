@@ -24,7 +24,7 @@ in
     };
 
     displayManager.sddm = {
-      enable = opts.system.wm.sddm;
+      enable = opts.system.sddm.enable;
       wayland.enable = true;
       package = pkgs.kdePackages.sddm;
       # theme = "sddm-astronaut-theme";

@@ -50,10 +50,9 @@
 
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;
-      postgres.upgrade = {
-        enable = false;
-        new-pkg = pkgs.postgresql;
-      };
+      postgres.jit = "off";
+      postgres.listen_addresses = "*";
+      postgres.upgrade.pkg = pkgs.postgresql;
 
       docker.data-root = "${devroot}/env/docker/";
       docker.exec-opts = [ "native.cgroupdriver=systemd" ];

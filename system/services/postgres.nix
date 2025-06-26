@@ -11,18 +11,19 @@
     package = opts.programs.postgres.pkg;
     ensureDatabases = [ "dev" ];
     enableTCPIP = true;
+    enableJIT = true;
     settings = {
       port = opts.programs.postgres.port;
+      jit = opts.programs.postgres.jit;
+      listen_addresses = opts.programs.postgres.listen_addresses;
     };
+    initialScript = config.sops.secrets.PG_INITIAL.path;
     initdbArgs = [
       "--locale=zh_CN.UTF-8"
       "-E"
       "UTF8"
     ];
-    # initialScript = ''
-    #
-    # '';
-    authentication = lib.mkForce ''
+    authentication = lib.mkOverride 10 ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
       local   all             postgres                                peer
       local   all             all                                     scram-sha-256
@@ -31,13 +32,23 @@
     '';
   };
 
-  environment.systemPackages = (lib.mkIf opts.programs.postgres.upgrade.enable) [
+  environment.systemPackages = [
     (
       let
-        newPostgres = opts.programs.postgres.upgrade.new-pkg;
+        newPostgres = opts.programs.postgres.upgrade.pkg;
         cfg = config.services.postgresql;
       in
       pkgs.writeScriptBin "pg_cluster_upgrade" ''
+        # Compare old and new schema versions
+        OLD_SCHEMA="${cfg.finalPackage.psqlSchema}"
+        NEW_SCHEMA="${newPostgres.psqlSchema}"
+
+        if [ "$NEW_SCHEMA" = "$OLD_SCHEMA" ]; then
+          echo "PostgreSQL schema version unchanged ($OLD_SCHEMA); skipping upgrade."
+          # Optionally, you can perform any lightweight adjustments here
+          exit 0
+        fi
+
         set -eux
         systemctl stop postgresql
 

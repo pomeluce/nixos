@@ -1,4 +1,4 @@
-{ opts, ... }:
+{ config, opts, ... }:
 {
   sops = {
     defaultSopsFile = ../../secrets.yaml;
@@ -8,5 +8,9 @@
       keyFile = "/etc/ssh/age/keys.txt";
     };
     secrets.MIHOMO_PROVIDER = { };
+    secrets.PG_INITIAL = {
+      mode = "0400";
+      owner = config.users.users.postgres.name;
+    };
   };
 }

@@ -4,10 +4,6 @@
   ...
 }:
 {
-  imports = [
-    ../../system/modules/sops.nix
-  ];
-
   services.mihomo = {
     enable = true;
     tunMode = true;

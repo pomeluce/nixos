@@ -1,4 +1,5 @@
-{ pkgs, opts, ... }: {
+{ pkgs, opts, ... }:
+{
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";

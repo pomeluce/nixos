@@ -14,6 +14,11 @@
     settings = {
       port = opts.programs.postgres.port;
     };
+    initdbArgs = [
+      "--locale=zh_CN.UTF-8"
+      "-E"
+      "UTF8"
+    ];
     # initialScript = ''
     #
     # '';

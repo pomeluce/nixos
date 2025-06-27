@@ -26,6 +26,11 @@
       cursor.theme = "Bibata-Modern-Ice";
       icon.theme = "MoreWaita";
 
+      wallpaper.enable = true;
+      wallpaper.dir = "/home/${username}/.config/wallpapers/";
+      wallpaper.interval = 300;
+      wallpaper.fps = 165;
+
       # user env
       session-variables = {
         IDEA_JDK = "${pkgs.jetbrains.jdk}/lib/openjdk";

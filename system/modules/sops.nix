@@ -1,4 +1,9 @@
-{ config, opts, ... }:
+{
+  config,
+  lib,
+  opts,
+  ...
+}:
 {
   sops = {
     defaultSopsFile = ../../secrets.yaml;
@@ -8,7 +13,7 @@
       keyFile = "/etc/ssh/age/keys.txt";
     };
     secrets.MIHOMO_PROVIDER = { };
-    secrets.PG_INITIAL = {
+    secrets.PG_INITIAL = lib.mkIf (opts.system.postgres == true) {
       mode = "0400";
       owner = config.users.users.postgres.name;
     };

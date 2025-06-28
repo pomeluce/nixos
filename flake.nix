@@ -118,7 +118,7 @@
     in
     {
       nixosConfigurations = with hosts-conf; {
-        "${LTB16P.name}" = system-gen { host-conf = LTB15P; };
+        "${LTB16P.name}" = system-gen { host-conf = LTB16P; };
         "${DLG5.name}" = system-gen { host-conf = DLG5; };
         "${WSN.name}" = system-gen { host-conf = WSN; };
       };

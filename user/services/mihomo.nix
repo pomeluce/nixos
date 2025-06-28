@@ -141,13 +141,13 @@
 
     proxy-groups:
       # 使用 WARP 的用户需要手动在下方的 proxies 字段内添加 WARP
-      # 例如 [WARP, all, Proxies, hongkong, taiwan, japan, singapore, USA, other-region, DIRECT],
+      # 例如 [WARP, all, Proxies, hongkong, taiwan, japan, singapore, USA, OtherRegion, DIRECT],
       - name: Proxies
         type: select
         use:
         - fc
         tolerance: 2
-      - name: manual
+      - name: Manual
         type: select
         proxies:
         - all
@@ -157,19 +157,19 @@
         - japan
         - singapore
         - USA
-        - other-region
+        - OtherRegion
         - DIRECT
-      - name: dns
+      - name: DNS
         type: select
         proxies:
         - Proxies
-        - manual
+        - Manual
         - hongkong
         - taiwan
         - japan
         - singapore
         - USA
-        - other-region
+        - OtherRegion
         - all
         - DIRECT
       # WARP 配置链式出站
@@ -183,20 +183,20 @@
         # - japan
         # - singapore
         # - USA
-        # - other-region
+        # - OtherRegion
         # - all
         # - DIRECT
         # exclude-type: "wireguard"
 
-      - name: ad-block
+      - name: ADBlock
         type: select
         proxies:
         - REJECT
         - DIRECT
-        - manual
+        - Manual
 
       - name: AI
-        type: url-test
+        type: select
         proxies:
         - taiwan
         - singapore
@@ -213,12 +213,12 @@
         use:
         - fc
         filter: "S1|S2"
-      - name: steam
+      - name: Steam
         type: url-test
         use:
         - fc
         filter: "D1"
-      - name: netflix
+      - name: Netflix
         type: url-test
         proxies:
         - taiwan
@@ -227,11 +227,11 @@
         - USA
         use:
         - fc
-      - name: video
+      - name: Video
         type: url-test
         proxies:
         - hongkong
-        - netflix
+        - Netflix
         - taiwan
         - singapore
         - japan
@@ -239,24 +239,24 @@
         use:
         - fc
         filter: "US|TW|SG|JA|HK|D1"
-      - name: universal
+      - name: Universal
         type: select
         proxies:
         - Proxies
-        - manual
+        - Manual
         - hongkong
         - taiwan
         - japan
         - singapore
         - USA
-        - other-region
+        - OtherRegion
         - all
         - DIRECT
       - name: local
         type: select
         proxies:
         - DIRECT
-        - manual
+        - Manual
         - hongkong
         - taiwan
         - japan
@@ -270,7 +270,7 @@
         - SA
         - netherlands
         - france
-        - other-region
+        - OtherRegion
         - all
         - Proxies
 
@@ -352,7 +352,7 @@
         use:
         - fc
         filter: "(?i)(新|sg|singapore)"
-      - name: other-region
+      - name: OtherRegion
         type: url-test
         use:
         - fc
@@ -369,9 +369,9 @@
       # 若需禁用 QUIC 请取消注释 QUIC 两条规则
       # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
     # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # quic
-      - AND,((RULE-SET,anti-AD),(NOT,((RULE-SET,anti-AD-white)))),ad-block # 感谢 Telegram @nextyahooquery 提供的建议
-    # - GEOSITE,biliintl,video
-    # - GEOSITE,bilibili,video
+      - AND,((RULE-SET,anti-AD),(NOT,((RULE-SET,anti-AD-white)))),ADBlock # 感谢 Telegram @nextyahooquery 提供的建议
+    # - GEOSITE,biliintl,Video
+    # - GEOSITE,bilibili,Video
 
       - GEOSITE,openai,AI
       - GEOSITE,anthropic,AI
@@ -380,31 +380,31 @@
       - DOMAIN-SUFFIX,claude.ai,AI
       - DOMAIN-SUFFIX,claudeusercontent.com,AI
       - DOMAIN-SUFFIX,reddit.com,hongkong
-      - GEOSITE,apple,universal
-      - GEOSITE,apple-cn,universal
-      - GEOSITE,ehentai,universal
-      - GEOSITE,github,universal
-      - GEOSITE,twitter,universal
-      - GEOSITE,youtube,universal
-      - GEOSITE,google,universal
-      - GEOSITE,google-cn,universal # Google CN 不走代理会导致hongkong等地区节点 Play Store 异常
-      - GEOSITE,telegram,universal
-      - GEOSITE,netflix,netflix
-      - GEOSITE,bahamut,universal
-      - GEOSITE,spotify,universal
-      - GEOSITE,pixiv,universal
+      - GEOSITE,apple,Universal
+      - GEOSITE,apple-cn,Universal
+      - GEOSITE,ehentai,Universal
+      - GEOSITE,github,Universal
+      - GEOSITE,twitter,Universal
+      - GEOSITE,youtube,Universal
+      - GEOSITE,google,Universal
+      - GEOSITE,google-cn,Universal # Google CN 不走代理会导致hongkong等地区节点 Play Store 异常
+      - GEOSITE,telegram,Universal
+      - GEOSITE,netflix,Netflix
+      - GEOSITE,bahamut,Universal
+      - GEOSITE,spotify,Universal
+      - GEOSITE,pixiv,Universal
       - GEOSITE,steam@cn,DIRECT
-      - GEOSITE,steam,steam
-      - GEOSITE,onedrive,universal
-      - GEOSITE,microsoft,universal
-      - GEOSITE,geolocation-!cn,universal
+      - GEOSITE,steam,Steam
+      - GEOSITE,onedrive,Universal
+      - GEOSITE,microsoft,Universal
+      - GEOSITE,geolocation-!cn,Universal
     # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # quic
-      - GEOIP,google,universal
-      - GEOIP,netflix,netflix
-      - GEOIP,telegram,universal
-      - GEOIP,twitter,universal
+      - GEOIP,google,Universal
+      - GEOIP,netflix,Netflix
+      - GEOIP,telegram,Universal
+      - GEOIP,twitter,Universal
       - GEOSITE,CN,local
       - GEOIP,CN,local
-      - MATCH,universal
+      - MATCH,Universal
   '';
 }

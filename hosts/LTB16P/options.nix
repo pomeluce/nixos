@@ -72,7 +72,6 @@
 
     # packages for this machine
     packages = with pkgs; [
-      jetbrains.jdk
       jetbrains.idea-ultimate
       vscode
       telegram-desktop

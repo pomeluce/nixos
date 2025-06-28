@@ -77,6 +77,6 @@
     };
 
     # packages for this machine
-    packages = with pkgs; [ ];
+    packages = [ ];
   };
 }

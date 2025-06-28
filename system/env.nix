@@ -6,9 +6,6 @@
 
     DEVROOT = opts.devroot;
 
-    JAVA_HOME8 = "${pkgs.zulu8}/lib/openjdk";
-    JAVA_HOME21 = "${pkgs.zulu}/lib/openjdk";
-    JAVA_HOME = "${pkgs.zulu}/lib/openjdk";
     GRADLE_USER_HOME = "${opts.devroot}/env/gradle";
 
     PNPM_HOME = "${opts.devroot}/env/node/pnpm/bin";

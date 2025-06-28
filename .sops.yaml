@@ -1,7 +1,9 @@
 keys:
+  - &LTB16P age1z7rdc65jec4erm5jq2w9tu7udnym3yrvpwmsdmep6pgcd8qjpeps96ax9x
   - &DLG5 age1ywk7nfxzxz0avqne6wxem982lrac3r5w77ppycggjjjsz63c49uqqmnxf8
 creation_rules:
   - path_regex: ^secrets.yaml$
     key_groups:
       - age:
+          - *LTB16P
           - *DLG5

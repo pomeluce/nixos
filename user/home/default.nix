@@ -22,6 +22,7 @@ in
       ./fastfetch.nix
       ./git.nix
       ./ideavim.nix
+      ./maven
       ./node.nix
       ./nvim.nix
       ./zsh.nix

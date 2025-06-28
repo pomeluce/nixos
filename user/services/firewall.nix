@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   networking.nftables.enable = true;
   networking.firewall = {

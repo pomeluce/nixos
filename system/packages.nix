@@ -47,9 +47,12 @@
     typescript
     go
     lua
-    zulu
-    zulu8
     maven
     gradle
   ];
+
+  programs.java = {
+    enable = true;
+    package = pkgs.zulu;
+  };
 }

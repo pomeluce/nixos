@@ -105,7 +105,6 @@
         - "+.lan"
         - "+.local"
         - "+.market.xiaomi.com"
-        - "+.api-huacloud.net"
       nameserver:
         - 'tls://8.8.4.4#dns'
         - 'tls://1.0.0.1#dns'
@@ -363,6 +362,7 @@
 
 
     rules:
+      - DOMAIN-SUFFIX,api-huacloud.net,DIRECT
       - GEOSITE,private,DIRECT,no-resolve
       - GEOIP,private,DIRECT,no-resolve
       # 若需禁用 QUIC 请取消注释 QUIC 两条规则

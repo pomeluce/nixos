@@ -9,7 +9,11 @@
     ];
     # allowedUDPPorts = [];
 
-    allowedTCPPorts = [ 7890 ];
+    allowedTCPPorts = [
+      80
+      443
+      7890
+    ];
     # allowedUDPPortRanges = [];
   };
 }

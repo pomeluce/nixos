@@ -105,8 +105,7 @@
         - "+.lan"
         - "+.local"
         - "+.market.xiaomi.com"
-        - "+.hewenjin.org"
-        - "+.wenjin.me"
+        - "+.api-huacloud.net"
       nameserver:
         - 'tls://8.8.4.4#dns'
         - 'tls://1.0.0.1#dns'

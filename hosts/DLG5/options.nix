@@ -14,7 +14,6 @@
       mihomo = true;
       postgres = true;
       docker = false;
-
       wsl = false;
 
       desktop.enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, ... }:
 let
   nvimDeps = with pkgs; [
     bat
@@ -36,42 +36,19 @@ let
     sqlfluff
     stylua
   ];
+
+  akirNvim = pkgs.fetchFromGitHub {
+    owner = "pomeluce";
+    repo = "nvim";
+    rev = "9242698831cc414f68591aee77391205d5964669";
+    sha256 = "193axv0sljd56d3nimzncczlpnxx602qw4413rvl63g2xfa4g51l";
+
+  };
 in
 {
-  home.activation.link-nvim-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    rm -rf ~/.config/nvim
-    ln -snf $DEVROOT/wsp/nvim ~/.config/nvim
-  '';
-  xdg = {
-
-    desktopEntries."nvim" = {
-      name = "NeoVim";
-      comment = "Text Editor";
-      icon = "nvim";
-      exec = "${pkgs.neovim}/bin/nvim %F";
-      categories = [
-        "Utility"
-        "TextEditor"
-      ];
-      terminal = true;
-      mimeType = [
-        "text/plain"
-        "text/english"
-        "text/x-makefile"
-        "text/x-c++hdr"
-        "text/x-c++src"
-        "text/x-chdr"
-        "text/x-csrc"
-        "text/x-java"
-        "text/x-moc"
-        "text/x-pascal"
-        "text/x-tcl"
-        "text/x-tex"
-        "application/x-shellscript"
-        "text/x-c"
-        "text/x-c++"
-      ];
-    };
+  home.file."nvim" = {
+    target = "${config.home.homeDirectory}/.config/nvim";
+    source = akirNvim;
   };
 
   home.sessionVariables = {

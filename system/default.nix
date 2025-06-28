@@ -29,13 +29,15 @@
       ./env.nix
       ./locale.nix
       ./modules/opengl.nix
-      ./modules/xdg.nix
       ./modules/gc.nix
       ./modules/sops.nix
       ./services/xserver.nix
       ./services/pipewire.nix
       ./services/others.nix
       ./services/upower.nix
+    ]
+    ++ lib.optionals (opts.system.desktop.enable == true) [
+      ./modules/xdg.nix
     ]
     ++ lib.optionals (opts.system.bluetooth == true) [
       ./modules/bluetooth.nix

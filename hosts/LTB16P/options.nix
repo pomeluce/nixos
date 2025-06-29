@@ -8,7 +8,7 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      gtk.scale = 1;
+      gtk.scale = 1.5;
 
       bluetooth = true;
       mihomo = true;

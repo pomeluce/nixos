@@ -139,7 +139,7 @@
 
     proxy-groups:
       # 使用 WARP 的用户需要手动在下方的 proxies 字段内添加 WARP
-      # 例如 [WARP, all, Proxies, hongkong, taiwan, japan, singapore, USA, OtherRegion, DIRECT],
+      # 例如 [WARP, all, Proxies, hongkong, taiwan, japan, singapore, USA, Region, DIRECT],
       - name: Proxies
         type: select
         use:
@@ -155,7 +155,7 @@
         - japan
         - singapore
         - USA
-        - OtherRegion
+        - Region
         - DIRECT
       - name: DNS
         type: select
@@ -167,7 +167,7 @@
         - japan
         - singapore
         - USA
-        - OtherRegion
+        - Region
         - all
         - DIRECT
       # WARP 配置链式出站
@@ -181,7 +181,7 @@
         # - japan
         # - singapore
         # - USA
-        # - OtherRegion
+        # - Region
         # - all
         # - DIRECT
         # exclude-type: "wireguard"
@@ -247,7 +247,7 @@
         - japan
         - singapore
         - USA
-        - OtherRegion
+        - Region
         - all
         - DIRECT
       - name: local
@@ -268,7 +268,7 @@
         - SA
         - netherlands
         - france
-        - OtherRegion
+        - Region
         - all
         - Proxies
 
@@ -350,7 +350,7 @@
         use:
         - fc
         filter: "(?i)(新|sg|singapore)"
-      - name: OtherRegion
+      - name: Region
         type: url-test
         use:
         - fc
@@ -362,7 +362,6 @@
 
 
     rules:
-      - DOMAIN-SUFFIX,api-huacloud.net,DIRECT
       - GEOSITE,private,DIRECT,no-resolve
       - GEOIP,private,DIRECT,no-resolve
       # 若需禁用 QUIC 请取消注释 QUIC 两条规则

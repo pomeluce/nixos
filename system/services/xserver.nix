@@ -19,6 +19,7 @@ in
       sddm = {
         enable = opts.system.sddm.enable;
         wayland.enable = true;
+        enableHidpi = true;
         package = pkgs.kdePackages.sddm;
         theme = silent.pname;
         extraPackages = silent.propagatedBuildInputs;

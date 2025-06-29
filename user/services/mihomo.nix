@@ -213,6 +213,8 @@
         filter: "S1|S2"
       - name: Steam
         type: url-test
+        proxies:
+        - Proxies
         use:
         - fc
         filter: "D1"
@@ -377,7 +379,7 @@
       - GEOSITE,xai,AI
       - DOMAIN-SUFFIX,claude.ai,AI
       - DOMAIN-SUFFIX,claudeusercontent.com,AI
-      - DOMAIN-SUFFIX,reddit.com,hongkong
+      - DOMAIN-SUFFIX,reddit.com,singapore
       - GEOSITE,apple,Universal
       - GEOSITE,apple-cn,Universal
       - GEOSITE,ehentai,Universal

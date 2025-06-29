@@ -16,7 +16,7 @@ in
       exec-once =
         [
           "akir-shell" # 状态栏
-          "echo 'Xft.dpi: ${toString (96 * opts.system.gtk.scale)}' | xrdb -merge" # 设置 xwayland 应用 dpi
+          "echo 'Xft.dpi: ${toString (builtins.floor (96 * opts.system.gtk.scale))}' | xrdb -merge" # 设置 xwayland 应用 dpi
           "xsettingsd"
           "wl-paste --watch cliphist store" # 剪切板
         ]
@@ -36,7 +36,7 @@ in
 
         # 禁用 QT 应用程序上的窗口装饰
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_SCALE_FACTOR,${toString opts.system.qt.scale}"
+        "QT_FONT_DPI,${toString (builtins.floor (96 * opts.system.qt.scale))}"
 
         # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
         "QT_QPA_PLATFORM,wayland;xcb"

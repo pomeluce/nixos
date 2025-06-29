@@ -4,7 +4,6 @@
   fontconfig,
   lib,
 }:
-
 let
   version = "3.0.1";
   sha256sums = [
@@ -13,10 +12,11 @@ let
     "1246b6a54ef7a0ddf1ce02da76d9ec9fcc03d948b7c6258dbeae93815e427f80"
   ];
   baseUrl = "https://github.com/witt-bit/applePingFangFonts/releases/download/${version}";
+  emojiVersion = "18.4";
 in
 rec {
-  PingFang = stdenv.mkDerivation {
-    pname = "pingfang";
+  ttf-pingfang = stdenv.mkDerivation {
+    pname = "ttf-pingfang";
     inherit version;
     src = fetchurl {
       url = "${baseUrl}/pingFang-20.0d4e1.tar.gz";
@@ -35,8 +35,8 @@ rec {
     };
   };
 
-  PingFangRelaxed = stdenv.mkDerivation {
-    pname = "pingfang-relaxed";
+  ttf-pingfang-relaxed = stdenv.mkDerivation {
+    pname = "ttf-pingfang-relaxed";
     inherit version;
     src = fetchurl {
       url = "${baseUrl}/pingFangRelaxed-19.0d5e3.tar.gz";
@@ -55,8 +55,8 @@ rec {
     };
   };
 
-  PingFangUI = stdenv.mkDerivation {
-    pname = "pingfang-ui";
+  ttf-pingfang-ui = stdenv.mkDerivation {
+    pname = "ttf-pingfang-ui";
     inherit version;
     src = fetchurl {
       url = "${baseUrl}/pingFangUI-20.0d15e3.tar.gz";
@@ -68,10 +68,36 @@ rec {
       cp -r * $out/share/fonts/pingFangUI/
     '';
     meta = with lib; {
-      description = "苹方 UI 字体（PingFang UI）";
+      description = "苹方 UI 字体(PingFang UI)";
       homepage = "https://developer.apple.com/fonts/";
       license = licenses.unfree;
       maintainers = with maintainers; [ pomeluce ];
     };
   };
+
+  ttf-pingfang-emoji = stdenv.mkDerivation {
+    pname = "ttf-pingfang-emoji";
+    version = emojiVersion;
+    src = fetchurl {
+      url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v${emojiVersion}/AppleColorEmoji.ttf";
+      sha256 = "1ggahpw54rjpxirjbyarwd5gvvg1hi08zw4c1nab8dqls5xhgzd4";
+    };
+    nativeBuildInputs = [ fontconfig ];
+    unpackPhase = "true";
+    installPhase = ''
+      mkdir -p $out/share/fonts/apple-color-emoji
+      cp -r $src $out/share/fonts/apple-color-emoji/AppleColorEmoji.ttf
+
+      # Install the fontconfig configuration
+      mkdir -p $out/etc/fonts/conf.d
+      cp -r ${./75-apple-color-emoji.conf} $out/etc/fonts/conf.d/
+    '';
+    meta = with lib; {
+      description = "Apple Color Emoji is a color typeface used by iOS and macOS to display emoji";
+      homepage = "https://github.com/samuelngs/apple-emoji-linux";
+      license = licenses.unfree;
+      maintainers = with maintainers; [ pomeluce ];
+    };
+  };
+
 }

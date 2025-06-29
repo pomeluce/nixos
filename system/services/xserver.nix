@@ -26,7 +26,9 @@ in
         settings = {
           # required for styling the virtual keyboard
           General = {
-            GreeterEnvironment = "QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+            GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${toString (builtins.floor (opts.system.qt.scale))},QT_FONT_DPI=${
+              toString (builtins.floor (96 * opts.system.qt.scale))
+            },QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
             InputMethod = "qtvirtualkeyboard";
           };
         };

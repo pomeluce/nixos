@@ -5,6 +5,7 @@
 {
   lib,
   inputs,
+  config,
   opts,
   hostname,
   allowed-unfree-packages,
@@ -88,10 +89,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    access-tokens = config.sops.secrets.ACCESS_TOKEN.path;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # List programs that you want to enable:
   programs.dconf.enable = true;

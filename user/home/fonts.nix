@@ -9,11 +9,13 @@
     # Maple Mono NF CN (Ligature unhinted)
     maple-mono.NF-CN-unhinted
     noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-emoji
     nerd-fonts.caskaydia-mono
-    npkgs.ttf-pingfang.PingFang
-    npkgs.ttf-pingfang.PingFangRelaxed
-    npkgs.ttf-pingfang.PingFangUI
+    npkgs.apple-font.ttf-pingfang
+    npkgs.apple-font.ttf-pingfang-relaxed
+    npkgs.apple-font.ttf-pingfang-ui
+    npkgs.apple-font.ttf-pingfang-emoji
     wqy_zenhei
   ];
 

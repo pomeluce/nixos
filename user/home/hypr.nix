@@ -36,6 +36,7 @@ in
 
         # 禁用 QT 应用程序上的窗口装饰
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_SCALE_FACTOR,${toString opts.system.qt.scale}"
 
         # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
         "QT_QPA_PLATFORM,wayland;xcb"

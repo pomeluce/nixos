@@ -11,6 +11,7 @@ let
     wl-clipboard
     luajitPackages.luarocks-nix
     python313Packages.pynvim
+
     # lsp
     bash-language-server
     clang-tools
@@ -26,7 +27,7 @@ let
     taplo
     typescript-language-server
     vue-language-server
-    nodePackages.vscode-json-languageserver
+
     # fmt
     beautysh
     nixfmt-rfc-style
@@ -42,7 +43,6 @@ let
     repo = "nvim";
     rev = "9242698831cc414f68591aee77391205d5964669";
     sha256 = "193axv0sljd56d3nimzncczlpnxx602qw4413rvl63g2xfa4g51l";
-
   };
 in
 {

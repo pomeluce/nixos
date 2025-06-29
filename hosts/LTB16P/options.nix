@@ -9,6 +9,7 @@
 
     system = {
       gtk.scale = 1.5;
+      qt.scale = 1.5;
 
       bluetooth = true;
       mihomo = true;

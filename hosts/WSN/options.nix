@@ -16,6 +16,7 @@
       postgres = true;
       docker = true;
       wsl = true;
+      virtualisation = false;
 
       desktop.enable = false;
       sddm.enable = false;
@@ -48,17 +49,6 @@
     };
 
     programs = {
-      # git config
-      git.name = "Tso";
-      git.email = "62343478+pomeluce@users.noreply.github.com";
-      git.branch = "main";
-
-      postgres.port = 5432;
-      postgres.pkg = pkgs.postgresql_17;
-      postgres.jit = "off";
-      postgres.listen_addresses = "*";
-      postgres.upgrade.pkg = pkgs.postgresql;
-
       docker.data-root = "${devroot}/env/docker/";
       docker.exec-opts = [ "native.cgroupdriver=systemd" ];
       docker.insecure-registries = [
@@ -73,8 +63,19 @@
 
       firefox.enable = false;
 
-      wezterm.font-size = 14;
+      git.name = "Tso";
+      git.email = "62343478+pomeluce@users.noreply.github.com";
+      git.branch = "main";
+
+      postgres.port = 5432;
+      postgres.pkg = pkgs.postgresql_17;
+      postgres.jit = "off";
+      postgres.listen_addresses = "*";
+      postgres.upgrade.pkg = pkgs.postgresql;
+
       swaylock.font-size = 22;
+
+      wezterm.font-size = 14;
     };
 
     # packages for this machine

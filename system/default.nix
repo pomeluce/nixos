@@ -43,9 +43,6 @@
     ++ lib.optionals (opts.system.bluetooth == true) [
       ./modules/bluetooth.nix
     ]
-    ++ lib.optionals (opts.system.docker == true) [
-      ./modules/docker.nix
-    ]
     ++ lib.optionals (builtins.elem "nvidia" opts.system.drive.gpu-type) [
       ./modules/nvidia.nix
     ]
@@ -61,12 +58,18 @@
     ++ lib.optionals (opts.system.hyprland.enable == true) [
       ./modules/hyprland.nix
     ]
+    ++ lib.optionals (opts.system.postgres == true) [
+      ./services/postgres.nix
+    ]
+    ++ lib.optionals (opts.system.docker == true) [
+      ./modules/docker.nix
+    ]
+    ++ lib.optionals (opts.system.virtualisation == true) [
+      ./modules/virtualisation.nix
+    ]
     ++ lib.optionals (opts.system.wsl == true) [
       "${inputs.nixos-wsl}/modules"
       ./modules/wsl.nix
-    ]
-    ++ lib.optionals (opts.system.postgres == true) [
-      ./services/postgres.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

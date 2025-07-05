@@ -16,6 +16,7 @@
       postgres = true;
       docker = false;
       wsl = false;
+      virtualisation = false;
 
       desktop.enable = true;
       sddm.enable = true;
@@ -50,7 +51,12 @@
     };
 
     programs = {
-      # git config
+      docker.data-root = "${devroot}/env/docker/";
+      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
+      docker.insecure-registries = [ ];
+
+      firefox.enable = true;
+
       git.name = "Tso";
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
@@ -61,14 +67,9 @@
       postgres.listen_addresses = "*";
       postgres.upgrade.pkg = pkgs.postgresql;
 
-      docker.data-root = "${devroot}/env/docker/";
-      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
-      docker.insecure-registries = [ ];
-
-      firefox.enable = true;
+      swaylock.font-size = 22;
 
       wezterm.font-size = 14;
-      swaylock.font-size = 22;
     };
 
     # packages for this machine

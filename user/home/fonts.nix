@@ -6,6 +6,8 @@
     maple-mono.truetype
     # Maple Mono NF (Ligature unhinted)
     maple-mono.NF-unhinted
+    # Maple Mono Normal NF (Ligature unhinted)
+    maple-mono.Normal-NF-unhinted
     # Maple Mono NF CN (Ligature unhinted)
     maple-mono.NF-CN-unhinted
     noto-fonts-cjk-sans

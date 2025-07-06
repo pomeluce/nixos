@@ -17,8 +17,8 @@ let
   azimfw = pkgs.fetchFromGitHub {
     owner = "pomeluce";
     repo = "akir-zimfw";
-    rev = "a7a48353406fe9116df4bc30860fa5403543a3c6";
-    sha256 = "0i8fsq3gl4bxqamynnvliqiwg3dvqcxxzhjkwdqr0qbllzw3j7sh";
+    rev = "ad6801b957ad4f325abf017089884755e804681a";
+    sha256 = "0j7srd1119lzgcxr3g07q4vbss9x8s7hasgrvakjwr2nhnlgvb0i";
 
   };
 in

@@ -8,14 +8,14 @@
 let
   rime-ice = {
     pname = "rime-ice";
-    version = "904aedb7c2097309e4f5a9be29baf6ce5cc64415";
+    version = "7acdee60d09602383b6299d1bdaaba03f0a57869";
     src = fetchgit {
       url = "https://github.com/iDvel/rime-ice.git";
-      rev = "904aedb7c2097309e4f5a9be29baf6ce5cc64415";
+      rev = "7acdee60d09602383b6299d1bdaaba03f0a57869";
       fetchSubmodules = true;
-      sha256 = "sha256-a0b6k0dOwrdxCf+ZcX/fiF4K1LLGuEw5eBriRFkY2AI=";
+      sha256 = "sha256-yCVcTc8qitar5JJfVTH4xNJMTPgx/NsRMoTxVm5PVrY=";
     };
-    date = "2025-05-25";
+    date = "2025-07-06";
   };
 in
 stdenv.mkDerivation {

@@ -47,9 +47,6 @@ in
         # 光标主题
         "HYPRCURSOR_THEME,${cursorName}"
         "HYPRCURSOR_SIZE,${toString cursorSize}"
-        "XCURSOR_PATH,\${XCURSOR_PATH}:~/.icons"
-        "XCURSOR_THEME,${cursorName}"
-        "XCURSOR_SIZE,'${toString cursorSize}'"
 
         # 语言环境
         "LANG,zh_CN.UTF-8"

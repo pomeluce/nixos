@@ -35,6 +35,7 @@
       # user env
       session-variables = {
         IDEA_JDK = "${pkgs.jetbrains.jdk}/lib/openjdk";
+        FILE_MANAGER = "nautilus";
       };
       session-path = [ ];
 

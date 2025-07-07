@@ -1,4 +1,19 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  npkgs,
+  ...
+}:
+let
+  nautEnv = pkgs.buildEnv {
+    name = "nautilus";
+    paths = with pkgs; [
+      nautilus
+      nautilus-python
+      nautilus-open-any-terminal
+    ];
+  };
+in
 {
   programs.hyprland.withUWSM = true;
   programs.hyprland.enable = true;
@@ -21,7 +36,7 @@
     whitesur-gtk-theme
     bibata-cursors
     loupe
-    nautilus
+    nautEnv
     gnome-control-center
     gnome-calendar
     gnome-system-monitor
@@ -29,10 +44,17 @@
     wl-clipboard
     ashell.akir-shell
     ashell.screenrecord
-    ashell.screenshot
+    npkgs.scripts.screenshot
     xorg.xrdb
     fprintd
   ];
+  environment.pathsToLink = [
+    "/share/nautilus-python/extensions"
+  ];
+  environment.sessionVariables = {
+    FILE_MANAGER = "nautilus";
+    NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
+  };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

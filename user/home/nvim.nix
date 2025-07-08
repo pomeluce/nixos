@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  opts,
+  ...
+}:
 let
   nvimDeps = with pkgs; [
     bat
@@ -38,18 +43,11 @@ let
     stylua
   ];
 
-  akirNvim = pkgs.fetchFromGitHub {
-    owner = "pomeluce";
-    repo = "nvim";
-    rev = "9242698831cc414f68591aee77391205d5964669";
-    sha256 = "193axv0sljd56d3nimzncczlpnxx602qw4413rvl63g2xfa4g51l";
-  };
+  nvimPath = "${opts.devroot}/wsp/nvim";
 in
 {
-  home.file."nvim" = {
-    target = "${config.home.homeDirectory}/.config/nvim";
-    source = akirNvim;
-  };
+
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink nvimPath;
 
   home.sessionVariables = {
     EDITOR = "nvim";

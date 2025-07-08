@@ -29,6 +29,7 @@
       ./packages.nix
       ./env.nix
       ./locale.nix
+      ./modules/boot.nix
       ./modules/opengl.nix
       ./modules/gc.nix
       ./modules/sops.nix
@@ -71,19 +72,6 @@
       "${inputs.nixos-wsl}/modules"
       ./modules/wsl.nix
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-    };
-  };
 
   networking.hostName = "${hostname}"; # Define your hostname.
   # Pick only one of the below networking options.

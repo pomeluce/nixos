@@ -9,7 +9,7 @@ with lib.hm.gvariant;
       font-name = "PingFang SC 11";
       gtk-theme = "WhiteSur-Dark";
       icon-theme = "${opts.system.icon.theme}";
-      monospace-font-name = "Maple Mono Normal NF 10";
+      monospace-font-name = "Maple Mono Normal NL NF 10";
       text-scaling-factor = opts.system.gtk.scale;
     };
 

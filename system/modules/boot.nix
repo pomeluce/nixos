@@ -1,0 +1,21 @@
+{ pkgs, npkgs, ... }:
+{
+  # Use the systemd-boot EFI boot loader.
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      efiSupport = true;
+      useOSProber = true;
+      device = "nodev";
+      gfxmodeEfi = "1920x1080";
+      theme = "${npkgs.elegant-theme}/grub/themes/Elegant-mojave-window-left-dark";
+      font = "${pkgs.maple-mono.NormalNL-NF-unhinted}/share/fonts/truetype/MapleMonoNormalNL-NF-Bold.ttf";
+    };
+  };
+
+  environment.systemPackages = [ npkgs.elegant-theme ];
+}

@@ -2,14 +2,12 @@
 {
   home.packages = with pkgs; [
     inter
-    # Maple Mono (No-Ligature TTF unhinted)
-    maple-mono.NL-TTF
-    # Maple Mono NF (No-Ligature unhinted)
-    maple-mono.NL-NF-unhinted
+    # Maple Mono Normal (No-Ligature TTF unhinted)
+    maple-mono.NormalNL-TTF
     # Maple Mono Normal NF (No-Ligature unhinted)
     maple-mono.NormalNL-NF-unhinted
-    # Maple Mono NF CN (No-Ligature unhinted)
-    maple-mono.NL-NF-CN-unhinted
+    # Maple Mono Normal NF CN (No-Ligature unhinted)
+    maple-mono.NormalNL-NF-CN-unhinted
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-emoji
@@ -56,8 +54,8 @@
        <string>monospace</string>
       </test>
       <edit binding="strong" mode="prepend" name="family">
-       <string>Maple Mono NL NF</string>
-       <string>Maple Mono NL NF CN</string>
+       <string>Maple Mono Normal NL NF</string>
+       <string>Maple Mono Normal NL NF CN</string>
        <string>Apple Color Emoji</string>
       </edit>
      </match>
@@ -71,7 +69,7 @@
        <string>Inter</string>
        <string>PingFang SC</string>
        <string>Apple Color Emoji</string>
-       <string>Maple Mono NL NF</string>
+       <string>Maple Mono Normal NL NF</string>
       </edit>
      </match>
 

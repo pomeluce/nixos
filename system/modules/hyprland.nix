@@ -88,6 +88,8 @@ in
       tinysparql.enable = true;
     };
   };
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
-  environment.variables.NIXOS_OZONE_WL = "1";
+  # Electron 应用启用 Wayland 特性, 由于缩放原因暂时禁用
+  # environment.variables.NIXOS_OZONE_WL = "1";
 }

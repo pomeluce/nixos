@@ -37,6 +37,11 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # akir-zimfw
+    azimfw = {
+      url = "github:pomeluce/akir-zimfw";
+      flake = false;
+    };
   };
 
   outputs =
@@ -51,6 +56,7 @@
       sops-nix,
       nixos-wsl,
       silent-sddm,
+      azimfw,
       ...
     }@inputs:
     let

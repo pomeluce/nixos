@@ -84,7 +84,7 @@
       reqable
       nur.repos.novel2430.wpsoffice-365
       nur.repos.novel2430.wechat-universal-bwrap
-      nur.repos.xddxdd.qq
+      qq
     ];
   };
 }

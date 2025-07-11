@@ -4,7 +4,7 @@
   fetchFromGitHub,
   theme ? "mojave", # [forest|mojave|mountain|wave]
   screens ? "1080p", # [1080p|2k|4k]
-  type ? "window", # [window|float|sharp|blur]
+  type ? "blur", # [window|float|sharp|blur]
   color ? "dark", # [dark|light]
   side ? "left", # [left|right]
   ...

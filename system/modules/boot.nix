@@ -12,7 +12,7 @@
       useOSProber = true;
       device = "nodev";
       gfxmodeEfi = "1920x1080";
-      theme = "${npkgs.elegant-theme}/grub/themes/Elegant-mojave-window-left-dark";
+      theme = "${npkgs.elegant-theme}/grub/themes/Elegant-mojave-blur-left-dark";
       font = "${pkgs.maple-mono.NormalNL-NF-unhinted}/share/fonts/truetype/MapleMonoNormalNL-NF-Bold.ttf";
     };
   };

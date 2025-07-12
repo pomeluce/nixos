@@ -70,7 +70,7 @@
 
       swaylock.font-size = 22;
 
-      wezterm.font-size = 14;
+      wezterm.font-size = 12;
     };
 
     # packages for this machine

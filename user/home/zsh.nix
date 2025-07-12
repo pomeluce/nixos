@@ -13,6 +13,7 @@ let
     lsd
     git
     lua
+    jq
   ];
 in
 {

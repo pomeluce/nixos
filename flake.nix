@@ -14,11 +14,11 @@
     nur.url = "github:nix-community/NUR";
     # home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # akir-shell
-    ashell = {
+    akirshell = {
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -52,7 +52,7 @@
       nixpkgs-unstable,
       nur,
       home-manager,
-      ashell,
+      akirshell,
       sops-nix,
       nixos-wsl,
       silent-sddm,
@@ -93,7 +93,7 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   stable = stable-pkgs;
-                  ashell = ashell.packages.${system};
+                  akirshell = akirshell.packages.${system};
                   silent = silent-sddm.packages.${system}.default;
                 })
               ];

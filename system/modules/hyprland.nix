@@ -42,8 +42,8 @@ in
     gnome-system-monitor
     gnome-calculator
     wl-clipboard
-    ashell.akir-shell
-    ashell.screenrecord
+    akirshell.akir-shell
+    akirshell.screenrecord
     npkgs.scripts.screenshot
     xorg.xrdb
     fprintd

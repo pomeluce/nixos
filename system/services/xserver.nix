@@ -1,6 +1,21 @@
 { pkgs, opts, ... }:
 let
-  silent = pkgs.silent.override { theme = "catppuccin-frappe"; };
+  bg = pkgs.fetchurl {
+    url = "https://www.desktophut.com/files/ymkspRzeH0-wallpaper.mp4";
+    hash = "sha256-WG8UI10NA4EAx63SU4Wb8x0r2TX7bOT5qLB1jKaSTKg=";
+  };
+  silent = pkgs.silent.override {
+    theme = "default";
+    extraBackgrounds = [ bg ];
+    theme-overrides = {
+      "LoginScreen" = {
+        background = "${bg.name}";
+      };
+      "LockScreen" = {
+        background = "${bg.name}";
+      };
+    };
+  };
 in
 {
   # Enable the X11 windowing system.

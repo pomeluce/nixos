@@ -16,7 +16,7 @@
       postgres = true;
       docker = false;
       wsl = false;
-      virtualisation = false;
+      virt = false;
 
       desktop.enable = true;
       sddm.enable = true;
@@ -68,6 +68,7 @@
       postgres.listen_addresses = "*";
       postgres.upgrade.pkg = pkgs.postgresql;
 
+      steam.enable = true;
       swaylock.font-size = 22;
 
       wezterm.font-size = 12;
@@ -80,7 +81,6 @@
       telegram-desktop
       typora
       spotify
-      steam
       reqable
       nur.repos.novel2430.wpsoffice-365
       nur.repos.novel2430.wechat-universal-bwrap

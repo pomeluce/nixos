@@ -62,11 +62,14 @@
     ++ lib.optionals (opts.system.postgres == true) [
       ./services/postgres.nix
     ]
+    ++ lib.optionals (opts.programs.steam.enable == true) [
+      ./modules/steam.nix
+    ]
     ++ lib.optionals (opts.system.docker == true) [
       ./modules/docker.nix
     ]
-    ++ lib.optionals (opts.system.virtualisation == true) [
-      ./modules/virtualisation.nix
+    ++ lib.optionals (opts.system.virt == true) [
+      ./modules/virt.nix
     ]
     ++ lib.optionals (opts.system.wsl == true) [
       "${inputs.nixos-wsl}/modules"

@@ -28,7 +28,7 @@ in
       ./zsh.nix
     ]
     ++ lib.optionals (opts.system.desktop.enable == true) [
-      ./ashell
+      ./akirshell
       ./dconf.nix
       ./fcitx5.nix
       ./firefox.nix

@@ -9,14 +9,14 @@
 
     system = {
       gtk.scale = 1.5;
-      qt.scale = 1.5;
+      qt.scale = 1.4;
 
       bluetooth = true;
       mihomo = true;
       postgres = true;
       docker = false;
       wsl = false;
-      virtualisation = false;
+      virt = false;
 
       desktop.enable = true;
       sddm.enable = true;
@@ -68,6 +68,7 @@
       postgres.listen_addresses = "*";
       postgres.upgrade.pkg = pkgs.postgresql;
 
+      steam.enable = true;
       swaylock.font-size = 32;
 
       wezterm.font-size = 20;
@@ -80,8 +81,9 @@
       telegram-desktop
       typora
       spotify
-      steam
       reqable
+      obsidian
+      vlc
       nur.repos.novel2430.wpsoffice-365
       nur.repos.novel2430.wechat-universal-bwrap
       qq

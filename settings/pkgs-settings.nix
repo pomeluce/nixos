@@ -49,6 +49,8 @@ rec {
       "spotify"
       "steam"
       "steam-unwrapped"
+      "xow_dongle-firmware"
+      "obsidian"
       "wpsoffice-365"
       "wechat-universal-bwrap"
       "qq"

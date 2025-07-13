@@ -16,7 +16,7 @@
       postgres = true;
       docker = true;
       wsl = true;
-      virtualisation = false;
+      virt = false;
 
       desktop.enable = false;
       sddm.enable = false;

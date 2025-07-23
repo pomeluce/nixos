@@ -55,4 +55,6 @@
     enable = true;
     package = pkgs.zulu;
   };
+
+  environment.etc."jdk/zulu21".source = "${pkgs.zulu}";
 }

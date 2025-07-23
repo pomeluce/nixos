@@ -1,5 +1,5 @@
 local monokai = {
-  background = '#273136',
+  background = '#222222',
   foreground = '#fdf9f3',
   dark = '#363537',
   text = '#ffffff',

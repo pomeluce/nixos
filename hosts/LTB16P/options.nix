@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, spkgs, ... }:
 {
   opts = rec {
     username = "Tso";
@@ -14,7 +14,7 @@
       bluetooth = true;
       mihomo = true;
       postgres = true;
-      docker = false;
+      docker = true;
       wsl = false;
       virt = false;
 
@@ -34,7 +34,6 @@
 
       # user env
       session-variables = {
-        IDEA_JDK = "${pkgs.jetbrains.jdk}/lib/openjdk";
         FILE_MANAGER = "nautilus";
       };
       session-path = [ ];
@@ -76,7 +75,9 @@
 
     # packages for this machine
     packages = with pkgs; [
-      jetbrains.idea-ultimate
+      (jetbrains.idea-ultimate.override {
+        jdk = spkgs.jetbrains.jdk;
+      })
       vscode
       telegram-desktop
       typora

@@ -1,4 +1,7 @@
-{ opts, ... }:
+{
+  opts,
+  ...
+}:
 {
   virtualisation.docker = {
     enable = true;

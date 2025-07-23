@@ -124,9 +124,12 @@
     vnoremap <leader>ef :action IntroduceField<cr>
     vnoremap <leader>ev :action IntroduceVariable<cr>
 
+    " 项目显示
+    nnoremap <leader>sh :action RecentProjectListGroup<cr>
+
     " 其他配置
     inoremap <C-Space> :action CodeCompletion<cr>
-    nnoremap <C-T> :action Terminal.OpenInTerminal<cr>
+    nnoremap <C-T> :action Terminal.OpenInReworkedTerminal<cr>
     nnoremap T :action SelectInProjectView<cr>
     nnoremap <leader>nh :nohlsearch<cr>
     nnoremap <leader>ss :action FileStructurePopup<cr>
@@ -138,9 +141,7 @@
     nnoremap <leader>gc :action Generate<cr>
     vnoremap <leader>gc :action Generate<cr>
     nnoremap <F5> :action RunClass<cr>
-    nnoremap <leader>sh :action Rainbow.ScopeHighlightingAction<cr>
-    nnoremap <leader>sr :action Rainbow.ScopeOutsideHighlightingRestrainAction<cr>
-    nnoremap <leader>tr :action $EditorTranslateAction<cr>
-    vnoremap <leader>tr :action $EditorTranslateAction<cr>
+    nnoremap <leader>tr :action Translation.EditorTranslateAction<cr>
+    vnoremap <leader>tr :action Translation.EditorTranslateAction<cr>
   '';
 }

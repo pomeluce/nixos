@@ -65,7 +65,8 @@ in
       file:/// root
       file://${home}/wsp wsp
       file://${home}/code code
-      file://${home}/wsp/wallpapers wallpapers
+      file://${home}/env env 
+      file://${home}/wsp/wallpapers swp
     '';
 
   xdg.userDirs = {

@@ -1,4 +1,4 @@
-{ opts, ... }:
+{ pkgs, opts, ... }:
 let
   buildSettings = import ./settings.xml.nix;
 in
@@ -8,4 +8,6 @@ in
       opts = opts;
     };
   };
+
+  home.file.".m2/maven".source = "${pkgs.maven}/maven";
 }

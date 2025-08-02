@@ -88,7 +88,7 @@
     "flakes"
   ];
   nix.extraOptions = ''
-    access-tokens = ${config.sops.secrets.ACCESS_TOKEN.path}
+    !include ${config.sops.secrets.ACCESS_TOKEN.path}
   '';
 
   # List programs that you want to enable:

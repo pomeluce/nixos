@@ -16,5 +16,7 @@
 
     GOPATH = "${opts.devroot}/env/golib";
     GOBIN = "/home/${opts.username}/.cache/go-bin";
+
+    SOPS_AGE_KEY_FILE = "/etc/ssh/age/keys.txt";
   };
 }

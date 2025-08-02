@@ -6,7 +6,7 @@
   ...
 }:
 let
-  homePkgs =
+  deps =
     with pkgs;
     [
       fd
@@ -14,45 +14,51 @@ let
       ripgrep
     ]
     ++ opts.packages;
+  sops_secrets = "${opts.devroot}/wsp/nixos/secrets.yaml";
 in
 {
 
-  imports =
-    [
-      ./fastfetch.nix
-      ./git.nix
-      ./ideavim.nix
-      ./maven
-      ./node.nix
-      ./nvim.nix
-      ./zsh.nix
-    ]
-    ++ lib.optionals (opts.system.desktop.enable == true) [
-      ./akirshell
-      ./dconf.nix
-      ./fcitx5.nix
-      ./firefox.nix
-      ./fonts.nix
-      ./hypr.nix
-      ./swaylock.nix
-      ./theme.nix
-      ./wezterm
-      ./xsettingsd.nix
-    ];
+  imports = [
+    ./fastfetch.nix
+    ./git.nix
+    ./ideavim.nix
+    ./maven
+    ./node.nix
+    ./nvim.nix
+    ./zsh.nix
+  ]
+  ++ lib.optionals (opts.system.desktop.enable == true) [
+    ./akirshell
+    ./dconf.nix
+    ./fcitx5.nix
+    ./firefox.nix
+    ./fonts.nix
+    ./hypr.nix
+    ./jetbrains.nix
+    ./swaylock.nix
+    ./theme.nix
+    ./wezterm
+    ./xsettingsd.nix
+  ];
 
   home = {
     username = "${opts.username}";
     homeDirectory = "/home/${opts.username}";
-    packages = homePkgs;
+    packages = deps;
 
     sessionVariables = {
-    } // opts.system.session-variables;
+      DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
+      DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
+      DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
+    }
+    // opts.system.session-variables;
 
     sessionPath = [
       "/home/${opts.username}/.local/bin"
       "$GOBIN"
       "$PNPM_HOME"
-    ] ++ opts.system.session-path;
+    ]
+    ++ opts.system.session-path;
 
     enableNixpkgsReleaseCheck = false;
   };

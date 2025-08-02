@@ -75,7 +75,6 @@
 
     # packages for this machine
     packages = with pkgs; [
-      jetbrains.idea-ultimate
       vscode
       telegram-desktop
       typora

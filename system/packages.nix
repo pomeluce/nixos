@@ -32,6 +32,7 @@
     htop
     cliphist
     microcode-intel
+    sops
 
     gcc
     gnumake
@@ -47,6 +48,7 @@
     typescript
     go
     lua
+    zulu8
     maven
     gradle
   ];
@@ -57,4 +59,5 @@
   };
 
   environment.etc."jdk/zulu21".source = "${pkgs.zulu}";
+  environment.etc."jdk/zulu8".source = "${pkgs.zulu8}";
 }

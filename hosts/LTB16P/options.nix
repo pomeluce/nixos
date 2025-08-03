@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, spkgs, ... }:
 {
   opts = rec {
     username = "Tso";
@@ -75,6 +75,9 @@
 
     # packages for this machine
     packages = with pkgs; [
+      (jetbrains.idea-ultimate.override {
+        jdk = spkgs.jetbrains.jdk;
+      })
       vscode
       telegram-desktop
       typora

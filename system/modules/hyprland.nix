@@ -19,11 +19,11 @@ in
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=ignore
-  '';
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "ignore";
+  };
 
   security = {
     polkit.enable = true;

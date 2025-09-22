@@ -13,16 +13,15 @@ in
       # 显示器配置
       monitor = [ "eDP-1,3200x2000@165,0x0,1" ];
       # 自动启动配置
-      exec-once =
-        [
-          "akir-shell" # 状态栏
-          "echo 'Xft.dpi: ${toString (builtins.floor (96 * opts.system.gtk.scale))}' | xrdb -merge" # 设置 xwayland 应用 dpi
-          "xsettingsd"
-          "wl-paste --watch cliphist store" # 剪切板
-        ]
-        ++ lib.optionals (opts.system.wallpaper.enable == true) [
-          "wallpaper-daemon" # 壁纸
-        ];
+      exec-once = [
+        "akir-shell" # 状态栏
+        "echo 'Xft.dpi: ${toString (builtins.floor (96 * opts.system.gtk.scale))}' | xrdb -merge" # 设置 xwayland 应用 dpi
+        "xsettingsd"
+        "wl-paste --watch cliphist store" # 剪切板
+      ]
+      ++ lib.optionals (opts.system.wallpaper.enable == true) [
+        "wallpaper-daemon" # 壁纸
+      ];
 
       env = [
         "XMODIFIERS,@im=fcitx"
@@ -240,9 +239,9 @@ in
         new_status = false;
       };
 
-      gestures = {
-        workspace_swipe = "off";
-      };
+      gesture = [
+        "3, horizontal, workspace, next"
+      ];
 
       misc = {
         force_default_wallpaper = -1;
@@ -254,6 +253,10 @@ in
           sensitivity = -0.5;
         }
       ];
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
     };
   };
 

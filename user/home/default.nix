@@ -34,6 +34,7 @@ in
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
+    ./jetbrains.nix
     ./swaylock.nix
     ./theme.nix
     ./wezterm

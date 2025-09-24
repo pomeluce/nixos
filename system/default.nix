@@ -68,7 +68,7 @@
     ++ lib.optionals (opts.system.docker == true) [
       ./modules/docker.nix
     ]
-    ++ lib.optionals (opts.system.virt == true) [
+    ++ lib.optionals (opts.system.virt.enable == true) [
       ./modules/virt.nix
     ]
     ++ lib.optionals (opts.system.wsl == true) [
@@ -97,7 +97,7 @@
 
   # Proxy
   systemd.services.nix-daemon.environment = lib.mkMerge [
-    (lib.mkIf (opts.system.proxy.enabled == true) {
+    (lib.mkIf (opts.system.proxy.enable == true) {
       http_proxy = "${opts.system.proxy.http}";
       https_proxy = "${opts.system.proxy.https}";
     })

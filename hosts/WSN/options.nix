@@ -37,7 +37,7 @@
       session-path = [ ];
 
       # proxy
-      proxy.enabled = false;
+      proxy.enable = false;
       proxy.http = "";
       proxy.https = "";
 

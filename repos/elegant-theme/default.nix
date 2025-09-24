@@ -10,7 +10,7 @@
   ...
 }:
 let
-  version = "8f36b5dde2361c902656bc82890f2902baa3c6c4";
+  version = "92cdac334cf7bc5c1d68c2fbb266164653b4b502";
 in
 stdenv.mkDerivation {
   pname = "elegant-theme";
@@ -20,7 +20,7 @@ stdenv.mkDerivation {
     owner = "vinceliuice";
     repo = "Elegant-grub2-themes";
     rev = "${version}";
-    hash = "sha256-M9k6R/rUvEpBTSnZ2PMv5piV50rGTBrcmPU4gsS7Byg=";
+    hash = "sha256-fbZLWHxnLBrqBrS2MnM2G08HgEM2dmZvitiCERie0Cc=";
   };
   installPhase = ''
     mkdir -p $out/grub/themes

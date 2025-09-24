@@ -16,7 +16,6 @@
       postgres = true;
       docker = true;
       wsl = false;
-      virt = false;
 
       desktop.enable = true;
       sddm.enable = true;
@@ -39,7 +38,7 @@
       session-path = [ ];
 
       # proxy
-      proxy.enabled = false;
+      proxy.enable = false;
       proxy.http = "";
       proxy.https = "";
 
@@ -48,6 +47,14 @@
       drive.intel-bus-id = "PCI:0:2:0";
       drive.amd-bus-id = "";
       drive.nvidia-bus-id = "PCI:1:0:0";
+
+      # virtualisation
+      virt.enable = false;
+      virt.kvm-cpu-type = "intel"; # "intel" or "amd"
+      virt.kvm-gpu-ids = [
+        "10de:28e0" # Graphics
+        "10de:22be" # Audio
+      ];
     };
 
     programs = {
@@ -82,6 +89,7 @@
       reqable
       obsidian
       vlc
+      qbittorrent-enhanced
       nur.repos.novel2430.wpsoffice-365
       nur.repos.novel2430.wechat-universal-bwrap
       qq

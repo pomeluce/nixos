@@ -9,4 +9,6 @@
   security.rtkit.enable = true;
   # usbmuxd
   services.usbmuxd.enable = true;
+  # fwupd
+  services.fwupd.enable = true;
 }

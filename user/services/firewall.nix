@@ -6,6 +6,8 @@
     trustedInterfaces = [
       "tun*"
       "Meta"
+      "virbr0"
+      "vnet0"
     ];
     # allowedUDPPorts = [];
 

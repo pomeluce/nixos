@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, npkgs, ... }:
 {
   opts = rec {
     username = "Tso";
@@ -68,6 +68,17 @@
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
 
+      keyd.enable = true;
+      keyd.settings = {
+        main = {
+          # Maps capslock to escape when pressed and meta when held.
+          capslock = "overload(meta, esc)";
+
+          # Remaps the escape key to capslock
+          esc = "capslock";
+        };
+      };
+
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;
       postgres.jit = "off";
@@ -90,8 +101,7 @@
       obsidian
       vlc
       qbittorrent-enhanced
-      nur.repos.novel2430.wpsoffice-365
-      nur.repos.novel2430.wechat-universal-bwrap
+      npkgs.wpsoffice
       qq
     ];
   };

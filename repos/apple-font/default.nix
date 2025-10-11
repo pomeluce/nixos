@@ -14,7 +14,7 @@ let
   baseUrl = "https://github.com/witt-bit/applePingFangFonts/releases/download/${version}";
   emojiVersion = "18.4";
 in
-rec {
+{
   ttf-pingfang = stdenv.mkDerivation {
     pname = "ttf-pingfang";
     inherit version;

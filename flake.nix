@@ -19,7 +19,7 @@
     };
     # akir-shell
     akirshell = {
-      url = "github:pomeluce/akir-shell";
+      url = "github:pomeluce/akir-shell/v2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # sops

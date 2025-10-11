@@ -51,8 +51,7 @@ rec {
       "steam-unwrapped"
       "xow_dongle-firmware"
       "obsidian"
-      "wpsoffice-365"
-      "wechat-universal-bwrap"
+      "wpsoffice"
       "qq"
     ];
   # Superset of the default insecure packages

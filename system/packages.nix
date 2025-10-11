@@ -48,7 +48,6 @@
     typescript
     go
     lua
-    zulu8
     maven
     gradle
   ];
@@ -58,6 +57,7 @@
     package = pkgs.zulu;
   };
 
+  environment.etc."jdk/zulu25".source = "${pkgs.zulu25}";
   environment.etc."jdk/zulu21".source = "${pkgs.zulu}";
   environment.etc."jdk/zulu8".source = "${pkgs.zulu8}";
 }

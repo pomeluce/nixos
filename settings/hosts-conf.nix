@@ -6,6 +6,7 @@
       (import ../hosts/${name}/options.nix {
         pkgs = main-pkgs;
         spkgs = stable-pkgs;
+        npkgs = npkgs;
       }).opts;
   };
   DLG5 = with pkg-settings; rec {
@@ -14,6 +15,7 @@
       (import ../hosts/${name}/options.nix {
         pkgs = main-pkgs;
         spkgs = stable-pkgs;
+        npkgs = npkgs;
       }).opts;
   };
   WSN = with pkg-settings; rec {
@@ -22,6 +24,7 @@
       (import ../hosts/${name}/options.nix {
         pkgs = main-pkgs;
         spkgs = stable-pkgs;
+        npkgs = npkgs;
       }).opts;
   };
 }

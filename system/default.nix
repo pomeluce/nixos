@@ -35,8 +35,9 @@
       ./modules/sops.nix
       ./services/xserver.nix
       ./services/pipewire.nix
-      ./services/others.nix
+      ./services/keyd.nix
       ./services/upower.nix
+      ./services/others.nix
     ]
     ++ lib.optionals (opts.system.desktop.enable == true) [
       ./modules/xdg.nix

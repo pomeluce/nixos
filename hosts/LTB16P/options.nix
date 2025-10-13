@@ -9,7 +9,7 @@
 
     system = {
       gtk.scale = 1.5;
-      qt.scale = 1.4;
+      qt.scale = 1.5;
 
       bluetooth = true;
       mihomo = true;
@@ -95,10 +95,8 @@
     packages = with pkgs; [
       vscode
       telegram-desktop
-      typora
       spotify
       reqable
-      obsidian
       vlc
       qbittorrent-enhanced
       npkgs.wpsoffice

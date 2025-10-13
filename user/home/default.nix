@@ -21,7 +21,6 @@ in
   imports = [
     ./fastfetch.nix
     ./git.nix
-    ./ideavim.nix
     ./maven
     ./node.nix
     ./nvim.nix
@@ -37,6 +36,7 @@ in
     ./jetbrains.nix
     ./swaylock.nix
     ./theme.nix
+    ./typora
     ./wezterm
     ./xsettingsd.nix
   ];

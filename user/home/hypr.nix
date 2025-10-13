@@ -1,4 +1,9 @@
-{ lib, opts, ... }:
+{
+  lib,
+  opts,
+  nul,
+  ...
+}:
 let
   cursorName = opts.system.cursor.theme;
   cursorSize = opts.system.cursor.size;
@@ -35,7 +40,12 @@ in
 
         # 禁用 QT 应用程序上的窗口装饰
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "QT_FONT_DPI,${toString (builtins.floor (96 * opts.system.qt.scale))}"
+
+        # 自动缩放 QT 程序
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_ENABLE_HIGHDPI_SCALING,1"
+        # 按照屏幕缩放比例设置 QT 程序的 DPI
+        "QT_SCREEN_SCALE_FACTORS,${nul.floatToString opts.system.qt.scale}"
 
         # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
         "QT_QPA_PLATFORM,wayland;xcb"

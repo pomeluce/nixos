@@ -71,6 +71,8 @@
       };
       # host config
       hosts-conf = import ./settings/hosts-conf.nix { inherit pkg-settings; };
+      # nixos utils library
+      nul = import ./lib/utils.nix { };
       # generate function
       system-gen =
         { host-conf }:
@@ -82,6 +84,7 @@
             inherit allowed-unfree-packages;
             inherit allowed-insecure-packages;
             inherit npkgs;
+            inherit nul;
             opts = host-conf.config;
             hostname = host-conf.name;
           };
@@ -115,6 +118,7 @@
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit npkgs;
+                  inherit nul;
                   opts = host-conf.config;
                 };
               };

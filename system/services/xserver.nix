@@ -28,6 +28,9 @@ in
     xserver = {
       enable = true;
       excludePackages = with pkgs; [ xterm ];
+      desktopManager = {
+        xterm.enable = false;
+      };
       displayManager = {
         startx.enable = true;
       };

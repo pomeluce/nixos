@@ -33,6 +33,7 @@
     cliphist
     microcode-intel
     sops
+    android-tools
 
     gcc
     gnumake

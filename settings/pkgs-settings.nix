@@ -38,10 +38,15 @@ rec {
       "libcusparse"
       "libnpp"
 
+      # fonts
+      "corefonts"
+      "vista-fonts"
+      "vista-fonts-chs"
       "ttf-pingfang"
       "ttf-pingfang-relaxed"
       "ttf-pingfang-ui"
       "ttf-pingfang-emoji"
+
       "reqable"
       "idea-ultimate"
       "vscode"

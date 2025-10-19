@@ -47,6 +47,9 @@ in
     packages = deps;
 
     sessionVariables = {
+      BROWSER = "firefox";
+      TERMINAL = "wezterm";
+
       DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
       DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
       DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";

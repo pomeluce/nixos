@@ -67,26 +67,25 @@ in
         # Actions
         "SUPER, B, exec, firefox"
         "SUPER, E, exec, pkill nautilus; env GTK_THEME=\"$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \"'\")\" nautilus"
-        "SUPER, R, exec, akir-shell eval \"launcher('app')\""
         "SUPER, Return, exec, wezterm-gui"
         "SUPER ALT, L, exec, swaylock -eF"
 
         "SUPER, F12, exit,"
         "SUPER, P, pseudo,"
-        "CONTROL SUPER, Q, killactive,"
-        "CONTROL SUPER, Space, togglefloating,"
-        "CONTROL SUPER, Space, centerwindow,"
+        "CTRL SUPER, Q, killactive,"
+        "CTRL SUPER, Space, togglefloating,"
+        "CTRL SUPER, Space, centerwindow,"
 
         # Akir
-        ",Print, exec, screenshot"
-        "SHIFT, Print, exec, screenshot --full"
+        "SUPER, R, exec, akir-shell eval \"launcher('app')\""
         "SUPER, V, exec, akir-shell eval \"launcher('clipboard')\""
         "SUPER, C, exec, akir-shell eval \"launcher('cmd')\""
-        # "SUPER, Tab, exec, ags -t overview"
-        "SUPER, Print, exec, screenrecord"
-        "SUPER SHIFT, Print, exec, screenrecord --full"
         "SUPER, F11, exec, akir-shell -t powermenu"
         "SUPER SHIFT, R, exec, akir-shell -q; akir-shell"
+        ",Print, exec, screenshot"
+        "SHIFT, Print, exec, screenshot --full"
+        "SUPER, Print, exec, screenrecord"
+        "SUPER SHIFT, Print, exec, screenrecord --full"
 
         # Audio control
         ",XF86AudioPlay, exec, playerctl play-pause"
@@ -158,7 +157,6 @@ in
 
       windowrulev2 = [
         "center,floating:true"
-        "float,class:^(.*polkit-kde.*)$"
         "float,class:^(.*fcitx5-config-qt.*)$"
         "float,class:firefox,title:我的足迹"
         "opacity 0.85 override 0.85 override,class:^(.*jetbrains.*)$"

@@ -1,5 +1,4 @@
-{ lib, opts, ... }:
-with lib.hm.gvariant;
+{ opts, ... }:
 {
   dconf.settings = {
     "org/gnome/desktop/interface" = {

@@ -1,6 +1,13 @@
 { pkgs, npkgs, ... }:
 {
   home.packages = with pkgs; [
+    # windows fonts
+    corefonts
+    vista-fonts
+    vista-fonts-chs
+    open-sans
+
+    # system display required fonts
     inter
     # Maple Mono Normal (No-Ligature TTF unhinted)
     maple-mono.NormalNL-TTF

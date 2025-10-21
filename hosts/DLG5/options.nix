@@ -19,9 +19,8 @@
       virt = false;
 
       desktop.enable = true;
+      desktop.wm = "hyprland";
       sddm.enable = true;
-      hyprland.enable = true;
-      gnome.enable = true;
 
       cursor.size = 24;
       cursor.theme = "Bibata-Modern-Ice";

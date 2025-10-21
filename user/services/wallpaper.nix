@@ -53,11 +53,8 @@
         img="''${IMAGES[idx]}"
         name="''${img##*/}"
 
-        # 光标位置
-        pos=$(hyprctl cursorpos | awk '{print $1,$2}' | tr -d ' ')
-
         # 切换壁纸
-        swww img --transition-type grow --transition-fps ${toString opts.system.wallpaper.fps} --transition-pos "$pos" "$img"
+        swww img --transition-type grow --transition-fps ${toString opts.system.wallpaper.fps} "$img"
 
         # 记录当前文件名
         echo "$name" > "$STATE_FILE"

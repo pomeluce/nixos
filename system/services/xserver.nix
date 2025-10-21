@@ -54,7 +54,6 @@ in
           };
         };
       };
-      defaultSession = "hyprland-uwsm";
     };
   };
 

@@ -1,23 +1,6 @@
+{ pkgs, ... }:
 {
-  lib,
-  pkgs,
-  npkgs,
-  ...
-}:
-let
-  nautEnv = pkgs.buildEnv {
-    name = "nautilus";
-    paths = with pkgs; [
-      nautilus
-      nautilus-python
-      nautilus-open-any-terminal
-    ];
-  };
-in
-{
-  programs.hyprland.withUWSM = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  programs.kdeconnect.enable = true;
 
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
@@ -28,32 +11,6 @@ in
   security = {
     polkit.enable = true;
     pam.services.swaylock = { };
-  };
-
-  environment.systemPackages = with pkgs; [
-    morewaita-icon-theme
-    adwaita-icon-theme
-    whitesur-gtk-theme
-    bibata-cursors
-    loupe
-    nautEnv
-    gnome-control-center
-    gnome-calendar
-    gnome-system-monitor
-    gnome-calculator
-    wl-clipboard
-    akirshell.akir-shell
-    akirshell.screenrecord
-    npkgs.scripts.screenshot
-    xorg.xrdb
-    fprintd
-  ];
-  environment.pathsToLink = [
-    "/share/nautilus-python/extensions"
-  ];
-  environment.sessionVariables = {
-    FILE_MANAGER = "nautilus";
-    NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
   };
 
   systemd = {

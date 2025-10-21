@@ -20,8 +20,6 @@
 
       desktop.enable = false;
       sddm.enable = false;
-      hyprland.enable = false;
-      gnome.enable = false;
 
       cursor.size = 24;
       cursor.theme = "Bibata-Modern-Ice";

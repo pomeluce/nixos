@@ -33,14 +33,15 @@
       ./modules/opengl.nix
       ./modules/gc.nix
       ./modules/sops.nix
-      ./services/xserver.nix
       ./services/pipewire.nix
-      ./services/keyd.nix
       ./services/upower.nix
       ./services/others.nix
     ]
     ++ lib.optionals (opts.system.desktop.enable == true) [
+      ./modules/desktop
       ./modules/xdg.nix
+      ./services/keyd.nix
+      ./services/xserver.nix
     ]
     ++ lib.optionals (opts.system.bluetooth == true) [
       ./modules/bluetooth.nix
@@ -53,12 +54,6 @@
     ]
     ++ lib.optionals (builtins.elem "amd-nvidia" opts.system.drive.gpu-type) [
       ./modules/nvidia.nix
-    ]
-    ++ lib.optionals (opts.system.gnome.enable == true) [
-      ./modules/gnome.nix
-    ]
-    ++ lib.optionals (opts.system.hyprland.enable == true) [
-      ./modules/hyprland.nix
     ]
     ++ lib.optionals (opts.system.postgres == true) [
       ./services/postgres.nix

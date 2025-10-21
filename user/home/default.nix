@@ -34,6 +34,7 @@ in
     ./fonts.nix
     ./hypr.nix
     ./jetbrains.nix
+    ./niri.nix
     ./swaylock.nix
     ./theme.nix
     ./typora
@@ -54,6 +55,15 @@ in
       DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
       DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
     }
+    //
+      lib.mkIf
+        (
+          opts.system.desktop.enable
+          && (opts.system.desktop.wm == "hyprland" || opts.system.desktop.wm == "niri")
+        )
+        {
+          XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:$XDG_DATA_DIRS";
+        }
     // opts.system.session-variables;
 
     sessionPath = [

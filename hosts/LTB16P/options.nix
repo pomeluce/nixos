@@ -18,9 +18,9 @@
       wsl = false;
 
       desktop.enable = true;
+      # niri, hyprland
+      desktop.wm = "niri";
       sddm.enable = true;
-      hyprland.enable = true;
-      gnome.enable = true;
 
       cursor.size = 36;
       cursor.theme = "Bibata-Modern-Ice";
@@ -78,6 +78,23 @@
           esc = "capslock";
         };
       };
+
+      niri.output = ''
+        output "eDP-1" {
+          // 默认聚焦在这个显示器
+          focus-at-startup
+          mode "3200x2000@165.001"
+          // 缩放
+          scale 1
+          // transform 允许逆时针旋转显示, 有效值为:
+          // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+          transform "normal"
+          // 输出在所有显示器坐标空间中的位置, 未明确配置位置的显示器将放置在所有已放置的显示器右侧
+          // position x=0 y=0
+        }
+      '';
+      niri.opacity.active = 1.0;
+      niri.opacity.inactive = 1.0;
 
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;

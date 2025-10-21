@@ -66,7 +66,7 @@ in
       bind = [
         # Actions
         "SUPER, B, exec, firefox"
-        "SUPER, E, exec, pkill nautilus; env GTK_THEME=\"$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \"'\")\" nautilus"
+        "SUPER, E, exec, pkill nautilus; nautilus"
         "SUPER, Return, exec, wezterm-gui"
         "SUPER ALT, L, exec, swaylock -eF"
 

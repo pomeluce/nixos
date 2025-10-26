@@ -7,7 +7,7 @@
     # official nixos package source, using nixos's unstable branch by default
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # stable
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     # unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nur
@@ -15,6 +15,11 @@
     # home manager
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # ignis
+    ignis = {
+      url = "github:ignis-sh/ignis";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # akir-shell
@@ -52,6 +57,7 @@
       nixpkgs-unstable,
       nur,
       home-manager,
+      ignis,
       akirshell,
       sops-nix,
       nixos-wsl,
@@ -72,7 +78,7 @@
       # host config
       hosts-conf = import ./settings/hosts-conf.nix { inherit pkg-settings; };
       # nixos utils library
-      nul = import ./lib/utils.nix { };
+      nlib = import ./lib { };
       # generate function
       system-gen =
         { host-conf }:
@@ -84,7 +90,7 @@
             inherit allowed-unfree-packages;
             inherit allowed-insecure-packages;
             inherit npkgs;
-            inherit nul;
+            inherit nlib;
             opts = host-conf.config;
             hostname = host-conf.name;
           };
@@ -118,7 +124,7 @@
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit npkgs;
-                  inherit nul;
+                  inherit nlib;
                   opts = host-conf.config;
                 };
               };

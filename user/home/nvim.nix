@@ -18,6 +18,7 @@ let
     python313Packages.pynvim
 
     # lsp
+    basedpyright
     bash-language-server
     clang-tools
     cmake-language-server
@@ -37,6 +38,7 @@ let
     beautysh
     nixfmt-rfc-style
     nodePackages.prettier
+    ruff
     rustfmt
     shfmt
     sqlfluff

@@ -18,8 +18,10 @@
       wsl = false;
 
       desktop.enable = true;
-      # niri, hyprland
-      desktop.wm = "niri";
+      wm.niri = true;
+      wm.hyprland = true;
+      # niri, hyprland-uwsm
+      dm.defaultSession = "niri";
       sddm.enable = true;
 
       cursor.size = 36;
@@ -34,6 +36,7 @@
       # user env
       session-variables = {
         FILE_MANAGER = "nautilus";
+        GSK_RENDERER = "ngl";
       };
       session-path = [ ];
 
@@ -93,8 +96,8 @@
           // position x=0 y=0
         }
       '';
-      niri.opacity.active = 1.0;
-      niri.opacity.inactive = 1.0;
+      niri.opacity.active = "1.0";
+      niri.opacity.inactive = "1.0";
 
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;

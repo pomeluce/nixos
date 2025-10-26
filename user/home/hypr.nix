@@ -1,7 +1,7 @@
 {
   lib,
   opts,
-  nul,
+  nlib,
   ...
 }:
 let
@@ -45,7 +45,7 @@ in
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_ENABLE_HIGHDPI_SCALING,1"
         # 按照屏幕缩放比例设置 QT 程序的 DPI
-        "QT_SCREEN_SCALE_FACTORS,${nul.floatToString opts.system.qt.scale}"
+        "QT_SCREEN_SCALE_FACTORS,${nlib.utils.floatToString opts.system.qt.scale}"
 
         # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
         "QT_QPA_PLATFORM,wayland;xcb"

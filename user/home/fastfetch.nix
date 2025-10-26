@@ -7,47 +7,49 @@
         "type": "small",
         "color": {
           "1": "cyan",
-          "2": "default",
+          "2": "green",
         },
+      },
+      "display": {
+        "separator": " "
       },
       "modules": [
         {
-          "key": " OS ",
+          "key": "╭─󰌢 ",
+          "type": "host",
+          "keyColor": "magenta"
+        },
+        {
+          "key": "├─ ",
           "type": "os",
-          "keyColor": "red",
+          "keyColor": "magenta",
         },
         {
-          "key": " VER",
+          "key": "├─ ",
           "type": "kernel",
-          "format": "{2}",
-          "keyColor": "green",
+          "keyColor": "magenta",
         },
         {
-          "key": " UP ",
-          "type": "uptime",
-          "keyColor": "yellow",
-        },
-        {
-          "key": " PKG",
+          "key": "├─󰮯 ",
           "type": "packages",
-          "keyColor": "blue",
+          "keyColor": "magenta",
         },
         {
-          "key": "󰻠 CPU",
+          "key": "├─󱑍 ",
+          "type": "uptime",
+          "keyColor": "magenta",
+        },
+        {
+          "key": "├─󰻠 ",
           "type": "cpu",
           "keyColor": "magenta",
         },
         {
-          "key": " GPU",
+          "key": "╰─󱤏 ",
           "type": "gpu",
           "format": "{1} {2}",
           "hideType": "integrated",
-          "keyColor": "cyan",
-        },
-        {
-          "key": "󰍛 MEM",
-          "type": "memory",
-          "keyColor": "white",
+          "keyColor": "magenta",
         },
       ],
     }

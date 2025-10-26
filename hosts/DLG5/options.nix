@@ -19,7 +19,10 @@
       virt = false;
 
       desktop.enable = true;
-      desktop.wm = "hyprland";
+      wm.niri = true;
+      wm.hyprland = true;
+      # niri, hyprland-uwsm
+      dm.defaultSession = "hyprland-uwsm";
       sddm.enable = true;
 
       cursor.size = 24;

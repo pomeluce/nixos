@@ -29,10 +29,11 @@ in
   ++ lib.optionals (opts.system.desktop.enable == true) [
     ./akirshell
     ./dconf.nix
-    ./fcitx5.nix
+    ./fcitx5
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
+    ./ignis.nix
     ./jetbrains.nix
     ./niri.nix
     ./swaylock.nix
@@ -47,24 +48,20 @@ in
     homeDirectory = "/home/${opts.username}";
     packages = deps;
 
-    sessionVariables = {
-      BROWSER = "firefox";
-      TERMINAL = "wezterm";
+    sessionVariables = lib.mkMerge [
+      ({
+        BROWSER = "firefox";
+        TERMINAL = "wezterm";
 
-      DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
-      DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
-      DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
-    }
-    //
-      lib.mkIf
-        (
-          opts.system.desktop.enable
-          && (opts.system.desktop.wm == "hyprland" || opts.system.desktop.wm == "niri")
-        )
-        {
-          XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:$XDG_DATA_DIRS";
-        }
-    // opts.system.session-variables;
+        DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
+        DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
+        DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
+      })
+      (lib.mkIf (opts.system.desktop.enable && (opts.system.wm.hyprland || opts.system.wm.niri)) {
+        XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:$XDG_DATA_DIRS";
+      })
+      (opts.system.session-variables or { })
+    ];
 
     sessionPath = [
       "/home/${opts.username}/.local/bin"

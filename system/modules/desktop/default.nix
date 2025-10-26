@@ -1,29 +1,27 @@
 { lib, opts, ... }:
-let
-  isTargetWM = wm: opts.system.desktop.wm == wm;
-in
 {
   imports =
-    lib.optionals (isTargetWM "hyprland") [
+    lib.optionals opts.system.wm.hyprland [
       ./hyprland.nix
       ./wayland.nix
     ]
-    ++ lib.optionals (isTargetWM "niri") [
+    ++ lib.optionals opts.system.wm.niri [
       ./niri.nix
       ./wayland.nix
     ]
-    ++ lib.optionals (!(isTargetWM "hyprland") && !(isTargetWM "niri")) [ ./gnome.nix ];
+    ++ lib.optionals (!opts.system.wm.hyprland && !opts.system.wm.niri) [ ./gnome.nix ];
 
   config = lib.mkMerge [
-    (lib.mkIf (isTargetWM "hyprland") {
+    {
+      services.displayManager.defaultSession = "${opts.system.dm.defaultSession}";
+    }
+    (lib.mkIf opts.system.wm.hyprland {
       programs.hyprland.withUWSM = true;
       programs.hyprland.enable = true;
       programs.hyprland.xwayland.enable = true;
-      services.displayManager.defaultSession = "hyprland-uwsm";
     })
-    (lib.mkIf (isTargetWM "niri") {
+    (lib.mkIf opts.system.wm.niri {
       programs.niri.enable = true;
-      services.displayManager.defaultSession = "niri";
     })
   ];
 }

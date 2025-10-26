@@ -1,7 +1,7 @@
 {
   lib,
   opts,
-  nul,
+  nlib,
   ...
 }:
 {
@@ -56,7 +56,7 @@
         // fixed 1920
       }
       // 默认窗口列宽度
-      default-column-width { proportion 0.75; }
+      default-column-width { proportion 1.00; }
 
       // 聚焦框
       focus-ring {
@@ -86,7 +86,7 @@
       QT_AUTO_SCREEN_SCALE_FACTOR "1"
       QT_ENABLE_HIGHDPI_SCALING "1"
       // 按照屏幕缩放比例设置 QT 程序的 DPI
-      QT_SCREEN_SCALE_FACTORS "${nul.floatToString opts.system.qt.scale}"
+      QT_SCREEN_SCALE_FACTORS "${nlib.utils.floatToString opts.system.qt.scale}"
 
       // wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
       QT_QPA_PLATFORM "wayland;xcb"
@@ -107,7 +107,7 @@
 
 
     // startup
-    spawn-sh-at-startup "akir-shell"
+    spawn-sh-at-startup "ignis init"
     spawn-sh-at-startup "echo 'Xft.dpi: ${
       toString (builtins.floor (96 * opts.system.gtk.scale))
     }' | xrdb -merge"
@@ -132,19 +132,24 @@
     // window rules
     window-rule {
       match is-active=true
-      opacity ${nul.floatToString opts.programs.niri.opacity.active}
+      opacity ${opts.programs.niri.opacity.active}
     }
     window-rule {
       match is-active=false
-      opacity ${nul.floatToString opts.programs.niri.opacity.inactive}
+      opacity ${opts.programs.niri.opacity.inactive}
+    }
+    window-rule {
+      geometry-corner-radius 15
+      clip-to-geometry true
     }
     window-rule {
       match app-id=r#"firefox$"# title="^我的足迹$"
       open-floating true
     }
     window-rule {
-      geometry-corner-radius 15
-      clip-to-geometry true
+      match app-id="jetbrains-idea"
+      match title="Plugin Installation"
+      open-floating true
     }
 
     binds {
@@ -154,8 +159,8 @@
       Mod+V hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell eval \"launcher('clipboard')\""; }
       Mod+F11 hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell -t powermenu"; }
       Mod+Return hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm-gui"; }
-      Super+Shift+R hotkey-overlay-title="Restart Desktop Shell: akir-shell" { spawn-sh "akir-shell -q; akir-shell"; }
-      Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eF"; }
+      Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: akir-shell" { spawn-sh "ignis quit; ignis init"; }
+      Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eF"; }
 
       // 截屏和录屏
       Print { spawn "screenshot"; }

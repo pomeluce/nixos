@@ -27,5 +27,7 @@ in
   home.file = {
     "${themes}/Gruvbox-Dark".source = "${gruvbox}/Gruvbox-Dark";
     "${themes}/Gruvbox-Light".source = "${gruvbox}/Gruvbox-Light";
+    "${themes}/macos-light".source = ./themes/macos-light;
+    "${themes}/macos-dark".source = ./themes/macos-dark;
   };
 }

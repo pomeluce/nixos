@@ -1,7 +1,7 @@
 {
   pkgs,
   opts,
-  nul,
+  nlib,
   ...
 }:
 let
@@ -49,7 +49,7 @@ in
         settings = {
           # required for styling the virtual keyboard
           General = {
-            GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${nul.floatToString opts.system.qt.scale}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+            GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${nlib.utils.floatToString opts.system.qt.scale}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
             InputMethod = "qtvirtualkeyboard";
           };
         };

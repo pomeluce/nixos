@@ -17,11 +17,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # ignis
-    ignis = {
-      url = "github:ignis-sh/ignis";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # akir-shell
     akirshell = {
       url = "github:pomeluce/akir-shell/v2";
@@ -57,7 +52,6 @@
       nixpkgs-unstable,
       nur,
       home-manager,
-      ignis,
       akirshell,
       sops-nix,
       nixos-wsl,

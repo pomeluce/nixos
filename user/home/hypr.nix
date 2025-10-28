@@ -33,11 +33,6 @@ in
         "QT_IM_MODULE,fcitx"
         "SDL_IM_MODULE,fcitx"
 
-        # xdg
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-
         # 禁用 QT 应用程序上的窗口装饰
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
@@ -64,33 +59,34 @@ in
       ];
 
       bind = [
-        # Actions
         "SUPER, B, exec, firefox"
         "SUPER, E, exec, pkill nautilus; nautilus"
-        "SUPER, Return, exec, wezterm-gui"
-        "SUPER ALT, L, exec, swaylock -eF"
-
-        "SUPER, F12, exit,"
-        "SUPER, P, pseudo,"
-        "CTRL SUPER, Q, killactive,"
-        "CTRL SUPER, Space, togglefloating,"
-        "CTRL SUPER, Space, centerwindow,"
-
-        # Akir
         "SUPER, R, exec, akir-shell eval \"launcher('app')\""
         "SUPER, V, exec, akir-shell eval \"launcher('clipboard')\""
         "SUPER, C, exec, akir-shell eval \"launcher('cmd')\""
         "SUPER, F11, exec, akir-shell -t powermenu"
+        "SUPER, Return, exec, wezterm-gui"
         "SUPER SHIFT, R, exec, akir-shell -q; akir-shell"
+        "SUPER ALT, L, exec, swaylock -eF"
+
         ",Print, exec, screenshot"
         "SHIFT, Print, exec, screenshot --full"
         "SUPER, Print, exec, screenrecord"
         "SUPER SHIFT, Print, exec, screenrecord --full"
 
-        # Audio control
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioNext, exec, playerctl next"
+
+        "SUPER CTRL, Q, killactive,"
+
+        "SUPER, Space, cyclenext,"
+        # "SUPER SHIFT, Space, cyclenext, prev"
+        "SUPER SHFIT, Space, togglefloating,"
+        "SUPER SHFIT, Space, centerwindow,"
+
+        "SUPER, F12, exit,"
+        "SUPER, P, pseudo,"
 
         # Move focus
         "SUPER, left, movefocus, l"
@@ -101,8 +97,6 @@ in
         "SUPER, L, movefocus, r"
         "SUPER, K, movefocus, u"
         "SUPER, J, movefocus, d"
-        "SUPER, Space, cyclenext"
-        "SUPER SHIFT, Space, cyclenext, prev"
         # "SUPER SHIFT, J, togglesplit,"
 
         # Workspaces
@@ -203,9 +197,9 @@ in
 
       decoration = {
         rounding = 15;
-        active_opacity = 0.75;
-        fullscreen_opacity = 0.85;
-        inactive_opacity = 0.85;
+        active_opacity = 0.85;
+        fullscreen_opacity = 0.95;
+        inactive_opacity = 0.9;
         blur = {
           enabled = true;
           xray = true;

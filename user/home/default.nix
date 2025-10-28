@@ -33,7 +33,6 @@ in
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
-    ./ignis.nix
     ./jetbrains.nix
     ./niri.nix
     ./swaylock.nix

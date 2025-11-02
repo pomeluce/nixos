@@ -17,7 +17,7 @@
     maple-mono.NormalNL-NF-CN-unhinted
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.caskaydia-mono
     npkgs.apple-font.ttf-pingfang
     npkgs.apple-font.ttf-pingfang-relaxed

@@ -106,6 +106,10 @@
         - "+.local"
         - "+.market.xiaomi.com"
       nameserver:
+        # - 114.114.114.114
+        # - 8.8.8.8
+        # - https://doh.pub/dns-query
+        # - https://dns.alidns.com/dns-query
         - 'tls://114.114.114.114#dns'
         - 'tls://8.8.8.8#dns'
         - 'tls://8.8.4.4#dns'

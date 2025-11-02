@@ -16,9 +16,11 @@
       postgres = true;
       docker = true;
       wsl = true;
-      virt = false;
 
       desktop.enable = false;
+      wm.niri = false;
+      wm.hyprland = false;
+      dm.defaultSession = "niri";
       sddm.enable = false;
 
       cursor.size = 24;
@@ -44,6 +46,14 @@
       drive.intel-bus-id = "";
       drive.amd-bus-id = "";
       drive.nvidia-bus-id = "";
+
+      # virtualisation
+      virt.enable = false;
+      virt.kvm-cpu-type = "intel"; # "intel" or "amd"
+      virt.kvm-gpu-ids = [
+        "10de:28e0" # Graphics
+        "10de:22be" # Audio
+      ];
     };
 
     programs = {
@@ -65,12 +75,20 @@
       git.email = "62343478+pomeluce@users.noreply.github.com";
       git.branch = "main";
 
+      keyd.enable = false;
+      keyd.settings = { };
+
+      niri.output = '''';
+      niri.opacity.active = "";
+      niri.opacity.inactive = "";
+
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;
       postgres.jit = "off";
       postgres.listen_addresses = "*";
       postgres.upgrade.pkg = pkgs.postgresql;
 
+      steam.enable = false;
       swaylock.font-size = 22;
 
       wezterm.font-size = 14;

@@ -106,6 +106,8 @@
         - "+.local"
         - "+.market.xiaomi.com"
       nameserver:
+        - 'tls://114.114.114.114#dns'
+        - 'tls://8.8.8.8#dns'
         - 'tls://8.8.4.4#dns'
         - 'tls://1.0.0.1#dns'
         - 'tls://[2001:4860:4860::8844]#dns'
@@ -368,10 +370,10 @@
       - GEOIP,private,DIRECT,no-resolve
       # 若需禁用 QUIC 请取消注释 QUIC 两条规则
       # 防止 YouTube 等使用 QUIC 导致速度不佳, 禁用 443 端口 UDP 流量（不包括国内）
-    # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # quic
+      # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # quic
       - AND,((RULE-SET,anti-AD),(NOT,((RULE-SET,anti-AD-white)))),ADBlock # 感谢 Telegram @nextyahooquery 提供的建议
-    # - GEOSITE,biliintl,Video
-    # - GEOSITE,bilibili,Video
+      # - GEOSITE,biliintl,Video
+      # - GEOSITE,bilibili,Video
 
       - GEOSITE,openai,AI
       - GEOSITE,anthropic,AI
@@ -398,7 +400,7 @@
       - GEOSITE,onedrive,Universal
       - GEOSITE,microsoft,Universal
       - GEOSITE,geolocation-!cn,Universal
-    # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # quic
+      # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOIP,CN))),REJECT # quic
       - GEOIP,google,Universal
       - GEOIP,netflix,Netflix
       - GEOIP,telegram,Universal

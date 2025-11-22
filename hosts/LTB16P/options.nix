@@ -121,6 +121,7 @@
       qbittorrent-enhanced
       npkgs.wpsoffice
       qq
+      nur.repos.novel2430.wechat-universal-bwrap
     ];
   };
 }

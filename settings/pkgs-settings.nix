@@ -58,6 +58,7 @@ rec {
       "obsidian"
       "wpsoffice"
       "qq"
+      "wechat-universal-bwrap"
     ];
   # Superset of the default insecure packages
   allowed-insecure-packages = [

@@ -2,13 +2,13 @@
   config,
   lib,
   opts,
-  # pkgs,
+  pkgs,
   ...
 }:
 {
-  # environment.systemPackages = with pkgs; [
-  #   nvtopPackages.full
-  # ];
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.full
+  ];
 
   boot.extraModprobeConfig = ''
     blacklist nouveau

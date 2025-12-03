@@ -36,9 +36,9 @@ in
     ./jetbrains.nix
     ./niri.nix
     ./swaylock.nix
+    ./terminal
     ./theme.nix
     ./typora
-    ./wezterm
     ./xsettingsd.nix
   ];
 
@@ -50,7 +50,7 @@ in
     sessionVariables = lib.mkMerge [
       ({
         BROWSER = "firefox";
-        TERMINAL = "wezterm";
+        TERMINAL = opts.programs.terminal;
 
         DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
         DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";

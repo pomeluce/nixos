@@ -14,6 +14,7 @@
         data-root = "${opts.programs.docker.data-root}";
         exec-opts = opts.programs.docker.exec-opts;
         insecure-registries = opts.programs.docker.insecure-registries;
+        registry-mirrors = opts.programs.docker.registry-mirrors;
       };
     };
   };

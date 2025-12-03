@@ -5,20 +5,29 @@
   ...
 }:
 let
+  # NOTE: gnome 程序读取 gtk 主题时加载会异常, 暂时注释掉该脚本包装
+  # nautilus-wrapper = pkgs.buildEnv {
+  #   name = "nautilus";
+  #   paths = with pkgs; [
+  #     nautilus-python
+  #     nautilus-open-any-terminal
+  #     (pkgs.writeScriptBin "nautilus" ''
+  #       #!/usr/bin/env bash
+  #       # 读取用户会话中的主题(去掉单引号), 如果有则导出到 GTK_THEME
+  #       theme="$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")"
+  #       if [ -n "$theme" ]; then
+  #         export GTK_THEME="$theme"
+  #       fi
+  #       exec ${nautilus}/bin/nautilus "$@"
+  #     '')
+  #   ];
+  # };
   nautilus-wrapper = pkgs.buildEnv {
     name = "nautilus";
     paths = with pkgs; [
+      nautilus
       nautilus-python
       nautilus-open-any-terminal
-      (pkgs.writeScriptBin "nautilus" ''
-        #!/usr/bin/env bash
-        # 读取用户会话中的主题(去掉单引号), 如果有则导出到 GTK_THEME
-        theme="$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")"
-        if [ -n "$theme" ]; then
-          export GTK_THEME="$theme"
-        fi
-        exec ${nautilus}/bin/nautilus "$@"
-      '')
     ];
   };
 in

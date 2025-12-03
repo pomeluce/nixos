@@ -65,7 +65,7 @@ in
         "SUPER, V, exec, akir-shell eval \"launcher('clipboard')\""
         "SUPER, C, exec, akir-shell eval \"launcher('cmd')\""
         "SUPER, F11, exec, akir-shell -t powermenu"
-        "SUPER, Return, exec, wezterm-gui"
+        "SUPER, Return, exec, ghostty"
         "SUPER SHIFT, R, exec, akir-shell -q; akir-shell"
         "SUPER ALT, L, exec, swaylock -eF"
 

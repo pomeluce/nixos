@@ -64,6 +64,7 @@
       docker.data-root = "${devroot}/env/docker/";
       docker.exec-opts = [ "native.cgroupdriver=systemd" ];
       docker.insecure-registries = [ ];
+      docker.registry-mirrors = [ ];
 
       firefox.enable = true;
 
@@ -108,6 +109,8 @@
       steam.enable = true;
       swaylock.font-size = 32;
 
+      # ghostty, wezterm
+      terminal = "ghostty";
       wezterm.font-size = 20;
     };
 

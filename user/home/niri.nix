@@ -158,7 +158,7 @@
       Mod+R hotkey-overlay-title="Run an Application: akir-shell" { spawn-sh "akir-shell eval \"launcher('app')\""; }
       Mod+V hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell eval \"launcher('clipboard')\""; }
       Mod+F11 hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell -t powermenu"; }
-      Mod+Return hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm-gui"; }
+      Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
       Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: akir-shell" { spawn-sh "ignis quit; ignis init"; }
       Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eF"; }
 

@@ -59,15 +59,8 @@
     programs = {
       docker.data-root = "${devroot}/env/docker/";
       docker.exec-opts = [ "native.cgroupdriver=systemd" ];
-      docker.insecure-registries = [
-        "10.9.161.161:1121"
-        "10.9.161.171:1121"
-        "10.9.47.206:1121"
-        "10.9.47.201:1121"
-        "10.9.47.202:1121"
-        "harbor1.yx-m.paas.sh-sit-jssdn-70-253.cmit.cloud:1121"
-        "harbor2.yx-m.paas.sh-sit-jssdn-70-253.cmit.cloud:1121"
-      ];
+      docker.insecure-registries = [ ];
+      docker.registry-mirrors = [ ];
 
       firefox.enable = false;
 

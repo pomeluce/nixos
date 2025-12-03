@@ -7,7 +7,7 @@
     # official nixos package source, using nixos's unstable branch by default
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # stable
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # unstable
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nur

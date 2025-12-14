@@ -27,7 +27,7 @@ in
     ./zsh.nix
   ]
   ++ lib.optionals (opts.system.desktop.enable == true) [
-    ./akirshell
+    ./akirds
     ./dconf.nix
     ./fcitx5
     ./firefox.nix
@@ -103,5 +103,5 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 }

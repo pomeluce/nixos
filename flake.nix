@@ -18,8 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # akir-shell
-    akirshell = {
-      url = "github:pomeluce/akir-shell/v2";
+    akirds = {
+      url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # sops
@@ -52,7 +52,7 @@
       nixpkgs-unstable,
       nur,
       home-manager,
-      akirshell,
+      akirds,
       sops-nix,
       nixos-wsl,
       silent-sddm,
@@ -96,7 +96,7 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   stable = stable-pkgs;
-                  akirshell = akirshell.packages.${system};
+                  akirds = akirds.packages.${system}.akirds;
                   silent = silent-sddm.packages.${system}.default;
                 })
               ];

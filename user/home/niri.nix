@@ -155,11 +155,12 @@
     binds {
       Mod+B hotkey-overlay-title="Run a Browser: firefox" { spawn "firefox"; }
       Mod+E hotkey-overlay-title="Open a File Manager: nautilus" { spawn-sh "pkill nautilus; nautilus"; }
-      Mod+R hotkey-overlay-title="Run an Application: akir-shell" { spawn-sh "akir-shell eval \"launcher('app')\""; }
-      Mod+V hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell eval \"launcher('clipboard')\""; }
-      Mod+F11 hotkey-overlay-title="Open Clipboard History: akir-shell" { spawn-sh "akir-shell -t powermenu"; }
+      Mod+R hotkey-overlay-title="Run an Application: akirds" { spawn-sh "akirds eval launcher app"; }
+      Mod+V hotkey-overlay-title="Open Clipboard History: akirds" { spawn-sh "akirds eval launcher clipboard"; }
+      Mod+D hotkey-overlay-title="Open Desktop Dock: akirds" { spawn-sh "akirds -t dock"; }
+      Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: akirds" { spawn-sh "akirds -t powermenu"; }
       Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-      Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: akir-shell" { spawn-sh "ignis quit; ignis init"; }
+      Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: akirds" { spawn-sh "akirds -q; akirds"; }
       Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eF"; }
 
       // 截屏和录屏

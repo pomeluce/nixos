@@ -47,8 +47,7 @@ in
     wl-clipboard
     xorg.xrdb
     fprintd
-    akirshell.akir-shell
-    akirshell.screenrecord
+    akirds
     npkgs.scripts.screenshot
   ];
   environment.pathsToLink = [

@@ -1,6 +1,6 @@
 {
-  home.file.".config/akir-shell/icons".source = ./icons;
-  home.file.".config/akir-shell/substitutes.json".text = ''
+  home.file.".config/akirds/icons".source = ./icons;
+  home.file.".config/akirds/substitutes.json".text = ''
     {
       "audio-card-analog-usb-symbolic": "audio-speakers-symbolic",
       "audio-card-analog-pci-symbolic": "audio-card-symbolic",

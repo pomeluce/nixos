@@ -6,9 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    (jetbrains.idea-ultimate.override {
-      jdk = pkgs.stable.jetbrains.jdk;
-    })
+    jetbrains.idea-ultimate
   ];
 
   home.file.".jebrains/idea.vmoptions".text = ''

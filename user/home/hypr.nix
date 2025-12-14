@@ -19,7 +19,7 @@ in
       monitor = [ "eDP-1,3200x2000@165,0x0,1" ];
       # 自动启动配置
       exec-once = [
-        "akir-shell" # 状态栏
+        "akirds" # 状态栏
         "echo 'Xft.dpi: ${toString (builtins.floor (96 * opts.system.gtk.scale))}' | xrdb -merge" # 设置 xwayland 应用 dpi
         "xsettingsd"
         "wl-paste --watch cliphist store" # 剪切板
@@ -61,16 +61,16 @@ in
       bind = [
         "SUPER, B, exec, firefox"
         "SUPER, E, exec, pkill nautilus; nautilus"
-        "SUPER, R, exec, akir-shell eval \"launcher('app')\""
-        "SUPER, V, exec, akir-shell eval \"launcher('clipboard')\""
-        "SUPER, C, exec, akir-shell eval \"launcher('cmd')\""
-        "SUPER, F11, exec, akir-shell -t powermenu"
+        "SUPER, R, exec, akirds eval launcher app"
+        "SUPER, V, exec, akirds eval launcher clipboard"
+        "SUPER, D, exec, akirds -t dock"
+        "SUPER, F11, exec, akirds -t powermenu"
         "SUPER, Return, exec, ghostty"
-        "SUPER SHIFT, R, exec, akir-shell -q; akir-shell"
+        "SUPER SHIFT, R, exec, akirds -q; akirds"
         "SUPER ALT, L, exec, swaylock -eF"
 
-        ",Print, exec, screenshot"
-        "SHIFT, Print, exec, screenshot --full"
+        ",F1, exec, screenshot"
+        "SHIFT, F1, exec, screenshot --full"
         "SUPER, Print, exec, screenrecord"
         "SUPER SHIFT, Print, exec, screenrecord --full"
 

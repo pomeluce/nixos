@@ -21,7 +21,7 @@
       wm.niri = true;
       wm.hyprland = true;
       # niri, hyprland-uwsm
-      dm.defaultSession = "hyprland-uwsm";
+      dm.defaultSession = "niri";
       sddm.enable = true;
 
       cursor.size = 36;

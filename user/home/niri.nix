@@ -107,7 +107,7 @@
 
 
     // startup
-    spawn-sh-at-startup "ignis init"
+    spawn-sh-at-startup "akirds"
     spawn-sh-at-startup "echo 'Xft.dpi: ${
       toString (builtins.floor (96 * opts.system.gtk.scale))
     }' | xrdb -merge"

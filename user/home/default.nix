@@ -57,7 +57,11 @@ in
         DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
       })
       (lib.mkIf (opts.system.desktop.enable && (opts.system.wm.hyprland || opts.system.wm.niri)) {
-        XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:$XDG_DATA_DIRS";
+        XDG_DATA_DIRS = lib.concatStringsSep ":" [
+          "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+          "$XDG_DATA_DIRS"
+
+        ];
       })
       (opts.system.session-variables or { })
     ];

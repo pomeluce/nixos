@@ -147,8 +147,7 @@
       open-floating true
     }
     window-rule {
-      match app-id="jetbrains-idea"
-      match title="Plugin Installation"
+      match app-id="jetbrains-idea" title="Plugin Installation"
       open-floating true
     }
 

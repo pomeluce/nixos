@@ -19,7 +19,7 @@
 
       desktop.enable = true;
       wm.niri = true;
-      wm.hyprland = true;
+      wm.hyprland = false;
       # niri, hyprland-uwsm
       dm.defaultSession = "niri";
       sddm.enable = true;

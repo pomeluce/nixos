@@ -43,7 +43,7 @@
     rustc
     cargo
     python3
-    nodejs_24
+    nodejs_25
     pnpm
     yarn
     typescript

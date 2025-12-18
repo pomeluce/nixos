@@ -4,6 +4,7 @@
     {
       "audio-card-analog-usb-symbolic": "audio-speakers-symbolic",
       "audio-card-analog-pci-symbolic": "audio-card-symbolic",
+      "com.mitchellh.ghostty-symbolic": "terminal-symbolic",
       "code-symbolic": "visual-studio-code-symbolic",
       "reqable-symbolic": "api-symbolic",
       "fcitx_rime_deploy-symbolic": "input-keyboard-symbolic",

@@ -6,7 +6,9 @@
 }:
 {
   home.packages = with pkgs; [
-    jetbrains.idea-ultimate
+    (jetbrains.idea-ultimate.override {
+      forceWayland = true; # fixed cursor theme
+    })
   ];
 
   home.file.".jebrains/idea.vmoptions".text = ''

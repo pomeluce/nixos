@@ -34,6 +34,7 @@
     microcode-intel
     sops
     android-tools
+    translate-shell
 
     gcc
     gnumake

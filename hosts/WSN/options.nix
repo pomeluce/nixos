@@ -84,6 +84,8 @@
       steam.enable = false;
       swaylock.font-size = 22;
 
+      # ghostty, wezterm
+      terminal = "ghostty";
       wezterm.font-size = 14;
     };
 

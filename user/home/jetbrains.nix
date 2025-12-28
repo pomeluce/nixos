@@ -6,13 +6,13 @@
 }:
 {
   home.packages = with pkgs; [
-    (jetbrains.idea-ultimate.override {
+    (jetbrains.idea.override {
       forceWayland = true; # fixed cursor theme
     })
   ];
 
   home.file.".jebrains/idea.vmoptions".text = ''
-    ${builtins.readFile "${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin/idea64.vmoptions"}
+    ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
     --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
     --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
     -javaagent:${opts.devroot}/env/agent/netfilter/ja-netfilter.jar=jetbrains

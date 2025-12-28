@@ -16,6 +16,7 @@ let
     wl-clipboard
     luajitPackages.luarocks-nix
     python313Packages.pynvim
+    translate-shell
 
     # lsp
     basedpyright

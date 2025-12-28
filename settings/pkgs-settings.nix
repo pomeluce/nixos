@@ -48,7 +48,7 @@ rec {
       "ttf-pingfang-emoji"
 
       "reqable"
-      "idea-ultimate"
+      "idea"
       "vscode"
       "typora"
       "spotify"

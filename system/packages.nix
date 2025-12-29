@@ -5,7 +5,7 @@
     wget
     curl
     git
-    neovim
+    neovim-nightly
 
     which
     file

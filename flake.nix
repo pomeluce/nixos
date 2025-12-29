@@ -17,6 +17,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     # akir-shell
     akirds = {
       url = "github:pomeluce/akir-shell";
@@ -52,6 +53,7 @@
       nixpkgs-unstable,
       nur,
       home-manager,
+      neovim-nightly,
       akirds,
       sops-nix,
       nixos-wsl,
@@ -96,6 +98,7 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   stable = stable-pkgs;
+                  neovim-nightly = neovim-nightly.packages.${system}.default;
                   akirds = akirds.packages.${system}.akirds;
                   silent = silent-sddm.packages.${system}.default;
                 })

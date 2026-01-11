@@ -64,7 +64,7 @@
     let
       system = "x86_64-linux";
       # packages setting
-      pkg-settings = import ./settings/pkgs-settings.nix {
+      pkgst = import ./settings/pkgs.nix {
         inherit nixpkgs;
         inherit system;
         inherit nixpkgs-stable;
@@ -72,13 +72,13 @@
         inherit nur;
       };
       # host config
-      hosts-conf = import ./settings/hosts-conf.nix { inherit pkg-settings; };
+      hosts = import ./settings/hosts.nix { pkgst = pkgst; };
       # nixos utils library
       nlib = import ./lib { };
       # generate function
       system-gen =
-        { host-conf }:
-        with pkg-settings;
+        { host }:
+        with pkgst;
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
@@ -87,8 +87,8 @@
             inherit allowed-insecure-packages;
             inherit npkgs;
             inherit nlib;
-            opts = host-conf.config;
-            hostname = host-conf.name;
+            opts = host.config;
+            hostname = host.name;
           };
           modules = [
             # add nur
@@ -117,12 +117,12 @@
                 backupFileExtension = "backup";
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${host-conf.config.username} = import ./user/home;
+                users.${host.config.username} = import ./user/home;
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit npkgs;
                   inherit nlib;
-                  opts = host-conf.config;
+                  opts = host.config;
                 };
               };
             }
@@ -130,10 +130,10 @@
         };
     in
     {
-      nixosConfigurations = with hosts-conf; {
-        "${LTB16P.name}" = system-gen { host-conf = LTB16P; };
-        "${DLG5.name}" = system-gen { host-conf = DLG5; };
-        "${WSN.name}" = system-gen { host-conf = WSN; };
+      nixosConfigurations = with hosts; {
+        "${LTB16P.name}" = system-gen { host = LTB16P; };
+        "${DLG5.name}" = system-gen { host = DLG5; };
+        "${WSN.name}" = system-gen { host = WSN; };
       };
     };
 }

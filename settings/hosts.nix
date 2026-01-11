@@ -1,6 +1,6 @@
-{ pkg-settings }:
+{ pkgst }:
 {
-  LTB16P = with pkg-settings; rec {
+  LTB16P = with pkgst; rec {
     name = "LTB16P";
     config =
       (import ../hosts/${name}/options.nix {
@@ -9,7 +9,7 @@
         npkgs = npkgs;
       }).opts;
   };
-  DLG5 = with pkg-settings; rec {
+  DLG5 = with pkgst; rec {
     name = "DLG5";
     config =
       (import ../hosts/${name}/options.nix {
@@ -18,7 +18,7 @@
         npkgs = npkgs;
       }).opts;
   };
-  WSN = with pkg-settings; rec {
+  WSN = with pkgst; rec {
     name = "WSN";
     config =
       (import ../hosts/${name}/options.nix {

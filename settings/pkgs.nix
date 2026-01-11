@@ -47,6 +47,8 @@ rec {
       "ttf-pingfang-ui"
       "ttf-pingfang-emoji"
 
+      "copilot-language-server"
+
       "reqable"
       "idea"
       "vscode"

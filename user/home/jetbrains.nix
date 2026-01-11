@@ -13,9 +13,7 @@
 
   home.file.".jebrains/idea.vmoptions".text = ''
     ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
-    --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
-    --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
-    -javaagent:${opts.devroot}/env/agent/netfilter/ja-netfilter.jar=jetbrains
+    -javaagent:${opts.devroot}/env/agent/netfilter/ja-netfilter.jar
   '';
 
   home.sessionVariables = {

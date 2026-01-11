@@ -23,7 +23,7 @@ let
     bash-language-server
     clang-tools
     cmake-language-server
-    vscode-langservers-extracted
+    copilot-language-server
     emmet-language-server
     kotlin-language-server
     lua-language-server
@@ -33,11 +33,12 @@ let
     tailwindcss-language-server
     taplo
     typescript-language-server
+    vscode-langservers-extracted
     vue-language-server
 
     # fmt
     beautysh
-    nixfmt-rfc-style
+    nixfmt
     nodePackages.prettier
     ruff
     rustfmt

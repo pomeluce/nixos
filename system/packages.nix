@@ -35,6 +35,7 @@
     sops
     android-tools
     translate-shell
+    imagemagick
 
     gcc
     gnumake

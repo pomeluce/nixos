@@ -14,9 +14,10 @@ let
     tree-sitter
     unzip
     wl-clipboard
-    luajitPackages.luarocks-nix
-    python313Packages.pynvim
+    luajitPackages.luarocks
+    python314Packages.pynvim
     translate-shell
+    imagemagick
 
     # lsp
     basedpyright
@@ -38,8 +39,10 @@ let
 
     # fmt
     beautysh
+    cbfmt
     nixfmt
-    nodePackages.prettier
+    prettier
+    prettierd
     ruff
     rustfmt
     shfmt

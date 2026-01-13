@@ -15,6 +15,7 @@ let
     unzip
     wl-clipboard
     luajitPackages.luarocks
+    luajitPackages.jsregexp
     python314Packages.pynvim
     translate-shell
     imagemagick
@@ -36,6 +37,14 @@ let
     typescript-language-server
     vscode-langservers-extracted
     vue-language-server
+
+    # dap
+    gdb
+    vscode-extensions.ms-vscode.cpptools
+    vscode-extensions.vadimcn.vscode-lldb
+    vscode-extensions.vscjava.vscode-java-debug
+    vscode-js-debug
+    vscode-extensions.firefox-devtools.vscode-firefox-debug
 
     # fmt
     beautysh

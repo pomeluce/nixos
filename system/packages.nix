@@ -38,6 +38,7 @@
     imagemagick
 
     gcc
+    gdb
     gnumake
     cmake
     meson

@@ -10,6 +10,10 @@ rec {
   allowed-unfree-packages =
     pkg:
     builtins.elem (nixpkgs.lib.getName pkg) [
+      # lsp & dap
+      "copilot-language-server"
+      "vscode-extension-ms-vscode-cpptools"
+
       # NVIDIA
       "nvidia-x11"
       "nvidia-settings"
@@ -46,8 +50,6 @@ rec {
       "ttf-pingfang-relaxed"
       "ttf-pingfang-ui"
       "ttf-pingfang-emoji"
-
-      "copilot-language-server"
 
       "reqable"
       "idea"

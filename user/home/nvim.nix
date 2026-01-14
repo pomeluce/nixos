@@ -41,7 +41,7 @@ let
     # dap
     gdb
     vscode-extensions.ms-vscode.cpptools
-    vscode-extensions.vadimcn.vscode-lldb
+    vscode-extensions.vadimcn.vscode-lldb.adapter
     vscode-extensions.vscjava.vscode-java-debug
     vscode-js-debug
     vscode-extensions.firefox-devtools.vscode-firefox-debug
@@ -68,6 +68,9 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    VSC_CPPTOOLS_DEBUG = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools";
+    VSC_JAVA_DEBUG = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug";
+    VSC_FIREFOX_DEBUG = "${pkgs.vscode-extensions.firefox-devtools.vscode-firefox-debug}/share/vscode/extensions/firefox-devtools.vscode-firefox-debug";
   };
 
   home.packages = nvimDeps;

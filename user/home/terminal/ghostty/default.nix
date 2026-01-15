@@ -17,7 +17,7 @@
     font-family = "CaskaydiaMono Nerd Font Mono"
     font-family = "PingFang SC"
     font-family = "Noto Sans CJK SC"
-    font-size = 13
+    font-size = 14
 
     window-padding-x = 20
     window-padding-y = 12,10

@@ -49,7 +49,7 @@
 
     separator-color=00000000
 
-    text-clear=input password
+    text-clear=NoInput
     text-color=C9AD77
     text-clear-color=dc8a78
     text-caps-lock-color=fe640b

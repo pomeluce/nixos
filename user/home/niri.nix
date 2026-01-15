@@ -60,7 +60,7 @@
 
       // 聚焦框
       focus-ring {
-        width 3
+        width ${toString (builtins.floor (2 * opts.system.gtk.scale))}
         // 聚焦窗口的边框颜色
         // - CSS named colors: "red"
         // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"

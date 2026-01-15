@@ -1,4 +1,8 @@
-{ pkgs, npkgs, ... }:
+{
+  pkgs,
+  npkgs,
+  ...
+}:
 {
   opts = rec {
     username = "Tso";
@@ -8,8 +12,8 @@
     devroot = "/home/${username}/devroot";
 
     system = {
-      gtk.scale = 1.5;
-      qt.scale = 1.5;
+      gtk.scale = 1;
+      qt.scale = 1;
 
       bluetooth = true;
       mihomo = true;
@@ -24,7 +28,7 @@
       dm.defaultSession = "niri";
       sddm.enable = true;
 
-      cursor.size = 36;
+      cursor.size = 24;
       cursor.theme = "Bibata-Modern-Ice";
       icon.theme = "MoreWaita";
 
@@ -89,7 +93,7 @@
           focus-at-startup
           mode "3200x2000@165.001"
           // 缩放
-          scale 1
+          scale 1.5
           // transform 允许逆时针旋转显示, 有效值为:
           // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
           transform "normal"
@@ -107,7 +111,7 @@
       postgres.upgrade.pkg = pkgs.postgresql;
 
       steam.enable = true;
-      swaylock.font-size = 32;
+      swaylock.font-size = 42;
 
       # ghostty, wezterm
       terminal = "ghostty";

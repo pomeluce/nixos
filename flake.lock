@@ -31,11 +31,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768490168,
-        "narHash": "sha256-jHv/2PV5Ky9swPBaFmK7M5Xrx+RVW3DJ1mXbqPhRNTM=",
+        "lastModified": 1768492007,
+        "narHash": "sha256-KAp8q2Wv+hJKI4w1dnMT6Cs2UWcNgLMAIMmx2gJel3U=",
         "owner": "pomeluce",
         "repo": "akir-shell",
-        "rev": "00c15152332ecb92c9833a68153452fe9dab48ed",
+        "rev": "8c72b00ff1ee643eea62a2939bea685f6e6947da",
         "type": "github"
       },
       "original": {

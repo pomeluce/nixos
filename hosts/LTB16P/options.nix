@@ -14,6 +14,7 @@
     system = {
       gtk.scale = 1;
       qt.scale = 1;
+      xwayland.scale = 1.5;
 
       bluetooth = true;
       mihomo = true;

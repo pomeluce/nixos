@@ -109,7 +109,7 @@
     // startup
     spawn-sh-at-startup "akirds"
     spawn-sh-at-startup "echo 'Xft.dpi: ${
-      toString (builtins.floor (96 * opts.system.gtk.scale))
+      toString (builtins.floor (96 * opts.system.xwayland.scale))
     }' | xrdb -merge"
     spawn-sh-at-startup "xsettingsd"
     spawn-sh-at-startup "wl-paste --watch cliphist store"

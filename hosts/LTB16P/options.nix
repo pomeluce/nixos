@@ -115,8 +115,8 @@
           position x=0 y=0
         }
       '';
-      niri.opacity.active = "0.97";
-      niri.opacity.inactive = "0.95";
+      niri.opacity.active = "1.0";
+      niri.opacity.inactive = "1.0";
 
       postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;

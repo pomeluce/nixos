@@ -89,10 +89,10 @@
       };
 
       niri.output = ''
-        output "HDMI-A-1" {
+        output "DP-1" {
           // 默认聚焦在这个显示器
           focus-at-startup
-          mode "3840x2160@165"
+          mode "3840x2160@170"
           // 缩放
           scale 1.5
           // transform 允许逆时针旋转显示, 有效值为:

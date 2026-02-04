@@ -26,6 +26,7 @@ let
     clang-tools
     cmake-language-server
     copilot-language-server
+    docker-language-server
     emmet-language-server
     kotlin-language-server
     lua-language-server
@@ -49,6 +50,7 @@ let
     # fmt
     beautysh
     cbfmt
+    dockerfmt
     nixfmt
     prettier
     prettierd

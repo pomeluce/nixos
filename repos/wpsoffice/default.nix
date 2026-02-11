@@ -15,7 +15,16 @@
   udev,
   gtk3,
   qtbase,
-  xorg,
+  libXdamage,
+  libXtst,
+  libXv,
+  libXScrnSaver,
+  libxcb,
+  libX11,
+  libXrender,
+  libSM,
+  libICE,
+  libXcursor,
   cups,
   pango,
   freetype,
@@ -46,16 +55,16 @@ let
     udev
     gtk3
     qtbase
-    xorg.libXdamage
-    xorg.libXtst
-    xorg.libXv
-    xorg.libXScrnSaver
-    xorg.libxcb
-    xorg.libX11
-    xorg.libXrender
-    xorg.libSM
-    xorg.libICE
-    xorg.libXcursor
+    libXdamage
+    libXtst
+    libXv
+    libXScrnSaver
+    libxcb
+    libX11
+    libXrender
+    libSM
+    libICE
+    libXcursor
     cups
     pango
     libpulseaudio

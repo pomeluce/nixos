@@ -52,6 +52,7 @@
     mixed-port: 7890
     unified-delay: true
     external-controller: :9090
+    external-ui: ui
 
     geodata-mode: true
     geox-url:
@@ -94,6 +95,7 @@
       auto-redirect: true
       auto-detect-interface: true
       strict-route: true
+      mtu: 1500
 
     dns:
       enable: true
@@ -106,12 +108,11 @@
         - "+.local"
         - "+.market.xiaomi.com"
       nameserver:
-        # - 114.114.114.114
-        # - 8.8.8.8
-        # - https://doh.pub/dns-query
-        # - https://dns.alidns.com/dns-query
+        - 114.114.114.114
+        - 8.8.8.8
+        - https://doh.pub/dns-query
+        - https://dns.alidns.com/dns-query
         - 'tls://114.114.114.114#dns'
-        - 'tls://8.8.8.8#dns'
         - 'tls://8.8.4.4#dns'
         - 'tls://1.0.0.1#dns'
         - 'tls://[2001:4860:4860::8844]#dns'

@@ -58,7 +58,7 @@ rec {
       "spotify"
       "steam"
       "steam-unwrapped"
-      "xow_dongle-firmware"
+      "xone-dongle-firmware"
       "obsidian"
       "wpsoffice"
       "qq"

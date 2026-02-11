@@ -45,7 +45,7 @@ in
     gnome-calculator
     gsettings-desktop-schemas
     wl-clipboard
-    xorg.xrdb
+    xrdb
     fprintd
     akirds
     npkgs.scripts.screenshot

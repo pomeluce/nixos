@@ -46,7 +46,7 @@ in
     gsettings-desktop-schemas
     wl-clipboard
     xwayland-satellite
-    xorg.xrdb
+    xrdb
     fprintd
     akirds
     npkgs.scripts.screenshot

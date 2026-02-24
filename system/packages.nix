@@ -29,7 +29,7 @@
     iptables
     usbmuxd
     libimobiledevice
-    htop
+    btop-cuda
     cliphist
     microcode-intel
     sops

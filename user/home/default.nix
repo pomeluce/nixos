@@ -19,6 +19,7 @@ in
 {
 
   imports = [
+    ./direnv.nix
     ./fastfetch.nix
     ./git.nix
     ./maven

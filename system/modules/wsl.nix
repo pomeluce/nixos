@@ -1,7 +1,9 @@
-{ opts, ... }:
+{ config, lib, ... }:
 {
-  wsl.enable = opts.system.wsl;
-  wsl.defaultUser = "${opts.username}";
-  wsl.wslConf.interop.enabled = false;
-  wsl.wslConf.interop.appendWindowsPath = false;
+  config = lib.mkIf config.myOptions.system.wsl {
+    wsl.enable = true;
+    wsl.defaultUser = "${config.myOptions.username}";
+    wsl.wslConf.interop.enabled = false;
+    wsl.wslConf.interop.appendWindowsPath = false;
+  };
 }

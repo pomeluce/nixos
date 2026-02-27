@@ -1,4 +1,9 @@
-{ pkgs, npkgs, ... }:
+{
+  sysConfig,
+  lib,
+  pkgs,
+  ...
+}:
 let
   themes = ".local/share/fcitx5/themes";
   gruvbox = pkgs.fetchFromGitHub {
@@ -9,25 +14,27 @@ let
   };
 in
 {
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-gtk
-        qt6Packages.fcitx5-chinese-addons
-        (fcitx5-rime.override {
-          rimeDataPkgs = with npkgs; [ rime-ice ];
-        })
-      ];
+  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+          fcitx5-gtk
+          qt6Packages.fcitx5-chinese-addons
+          (fcitx5-rime.override {
+            rimeDataPkgs = [ npkgs.rime-ice ];
+          })
+        ];
+      };
     };
-  };
 
-  home.file = {
-    "${themes}/Gruvbox-Dark".source = "${gruvbox}/Gruvbox-Dark";
-    "${themes}/Gruvbox-Light".source = "${gruvbox}/Gruvbox-Light";
-    "${themes}/macos-light".source = ./themes/macos-light;
-    "${themes}/macos-dark".source = ./themes/macos-dark;
+    home.file = {
+      "${themes}/Gruvbox-Dark".source = "${gruvbox}/Gruvbox-Dark";
+      "${themes}/Gruvbox-Light".source = "${gruvbox}/Gruvbox-Light";
+      "${themes}/macos-light".source = ./themes/macos-light;
+      "${themes}/macos-dark".source = ./themes/macos-dark;
+    };
   };
 }

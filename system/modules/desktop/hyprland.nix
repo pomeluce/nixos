@@ -1,10 +1,11 @@
 {
+  config,
   lib,
   pkgs,
-  npkgs,
   ...
 }:
 let
+  cfg = config.myOptions;
   # NOTE: gnome 程序读取 gtk 主题时加载会异常, 暂时注释掉该脚本包装
   # nautilus-wrapper = pkgs.buildEnv {
   #   name = "nautilus";
@@ -32,29 +33,31 @@ let
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    morewaita-icon-theme
-    adwaita-icon-theme
-    whitesur-gtk-theme
-    bibata-cursors
-    loupe
-    nautilus-wrapper
-    gnome-control-center
-    gnome-calendar
-    gnome-system-monitor
-    gnome-calculator
-    gsettings-desktop-schemas
-    wl-clipboard
-    xrdb
-    fprintd
-    akirds
-    npkgs.scripts.screenshot
-  ];
-  environment.pathsToLink = [
-    "/share/nautilus-python/extensions"
-  ];
-  environment.sessionVariables = {
-    FILE_MANAGER = "nautilus";
-    NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-wrapper}/lib/nautilus/extensions-4";
+  config = lib.mkIf (cfg.desktop.enable && cfg.desktop.wm.hyprland) {
+    environment.systemPackages = with pkgs; [
+      morewaita-icon-theme
+      adwaita-icon-theme
+      whitesur-gtk-theme
+      bibata-cursors
+      loupe
+      nautilus-wrapper
+      gnome-control-center
+      gnome-calendar
+      gnome-system-monitor
+      gnome-calculator
+      gsettings-desktop-schemas
+      wl-clipboard
+      xrdb
+      fprintd
+      akirds
+      npkgs.scripts.screenshot
+    ];
+    environment.pathsToLink = [
+      "/share/nautilus-python/extensions"
+    ];
+    environment.sessionVariables = {
+      FILE_MANAGER = "nautilus";
+      NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-wrapper}/lib/nautilus/extensions-4";
+    };
   };
 }

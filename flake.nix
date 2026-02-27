@@ -1,44 +1,41 @@
 {
   description = "Marcus's NixOS Configuration";
 
-  # Inputs
   # https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html#flake-inputs
   inputs = {
-    # official nixos package source, using nixos's unstable branch by default
+    # --- core source: unified use of nixpkgs (unstable) ---
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # stable
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-    # unstable
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nur
-    nur.url = "github:nix-community/NUR";
-    # home manager
+
+    # --- tools and modules ---
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    # akir-shell
-    akirds = {
-      url = "github:pomeluce/akir-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # sops
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # wsl module
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # sddm theme
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # --- external packages/overlay ---
+    nur.url = "github:nix-community/NUR";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    akirds = {
+      url = "github:pomeluce/akir-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     silent-sddm = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # akir-zimfw
     azimfw = {
       url = "github:pomeluce/akir-zimfw";
       flake = false;
@@ -47,93 +44,74 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixpkgs-stable,
-      nixpkgs-unstable,
-      nur,
-      home-manager,
-      neovim-nightly,
-      akirds,
-      sops-nix,
-      nixos-wsl,
-      silent-sddm,
-      azimfw,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      # packages setting
-      pkgst = import ./settings/pkgs.nix {
-        inherit nixpkgs;
-        inherit system;
-        inherit nixpkgs-stable;
-        inherit nixpkgs-unstable;
-        inherit nur;
-      };
-      # host config
-      hosts = import ./settings/hosts.nix { pkgst = pkgst; };
-      # nixos utils library
-      nlib = import ./lib { };
-      # generate function
+
+      nlib = import ./lib { inherit (nixpkgs) lib; };
+
+      allOverlay = [
+        inputs.nur.overlays.default
+        (final: prev: {
+          npkgs = import ./pkgs { pkgs = final; }; # custom packages repository
+          stable = import nixpkgs-stable {
+            inherit system;
+            config = nlib.nixConfig.nixpkgsConfig;
+          };
+          neovim-nightly = inputs.neovim-nightly.packages.${system}.default;
+          akirds = inputs.akirds.packages.${system}.akirds;
+          silent = inputs.silent-sddm.packages.${system}.default;
+        })
+      ];
       system-gen =
-        { host }:
-        with pkgst;
+        {
+          hostname,
+          extraModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit allowed-unfree-packages;
-            inherit allowed-insecure-packages;
-            inherit npkgs;
-            inherit nlib;
-            opts = host.config;
-            hostname = host.name;
-          };
+          specialArgs = { inherit inputs hostname nlib; };
           modules = [
-            # add nur
-            { nixpkgs.overlays = [ nur.overlays.default ]; }
-            # add stable nixpkgs
-            ({
-              nixpkgs.overlays = [
-                (final: prev: {
-                  stable = stable-pkgs;
-                  neovim-nightly = neovim-nightly.packages.${system}.default;
-                  akirds = akirds.packages.${system}.akirds;
-                  silent = silent-sddm.packages.${system}.default;
-                })
-              ];
-            })
-            # system configuration
+            { nixpkgs.config = nlib.nixConfig.nixpkgsConfig; }
+            { nixpkgs.overlays = allOverlay; }
+
+            ./system/options.nix
+            ./hosts/${hostname}
             ./system
-            # user's services
+
+            inputs.stylix.nixosModules.stylix
+            inputs.sops-nix.nixosModules.sops
+
             ./user/services
-            # sops-nix
-            sops-nix.nixosModules.sops
-            # home manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                backupFileExtension = "backup";
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${host.config.username} = import ./user/home;
-                extraSpecialArgs = {
-                  inherit inputs;
-                  inherit npkgs;
-                  inherit nlib;
-                  opts = host.config;
+
+            inputs.home-manager.nixosModules.home-manager
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "backup";
+                  users.${config.myOptions.username} = import ./user/home;
+                  extraSpecialArgs = {
+                    inherit inputs nlib;
+                    sysConfig = config;
+                    secretsPath = ./secrets.yaml;
+                  };
                 };
-              };
-            }
-          ];
+              }
+            )
+          ]
+          ++ extraModules;
         };
     in
     {
-      nixosConfigurations = with hosts; {
-        "${LTB16P.name}" = system-gen { host = LTB16P; };
-        "${DLG5.name}" = system-gen { host = DLG5; };
-        "${WSN.name}" = system-gen { host = WSN; };
+      nixosConfigurations = {
+        LTB16P = system-gen { hostname = "LTB16P"; };
+        WSN = system-gen { hostname = "WSN"; };
       };
     };
 }

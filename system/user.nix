@@ -1,19 +1,20 @@
-{ pkgs, opts, ... }:
+{ config, pkgs, ... }:
 let
-  name = opts.username;
+  cfg = config.myOptions;
+  name = cfg.username;
   avatarSrc = ../assets/avatar.png;
 in
 {
   # Define a user group
   users.groups = {
     "${name}" = {
-      gid = opts.gid;
+      gid = cfg.gid;
     };
   };
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.${name} = {
     isNormalUser = true;
-    uid = opts.uid;
+    uid = cfg.uid;
     extraGroups = [
       name
       "networkmanager"

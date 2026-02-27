@@ -1,19 +1,24 @@
-{ opts, ... }:
+{ sysConfig, lib, ... }:
+let
+  cfg = sysConfig.myOptions;
+in
 {
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      cursor-size = opts.system.cursor.size;
-      cursor-theme = "${opts.system.cursor.theme}";
-      font-name = "PingFang SC 11";
-      gtk-theme = "WhiteSur-Dark";
-      icon-theme = "${opts.system.icon.theme}";
-      monospace-font-name = "Maple Mono Normal NL NF 10";
-      text-scaling-factor = opts.system.gtk.scale;
-    };
+  config = lib.mkIf cfg.desktop.enable {
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        cursor-size = cfg.desktop.cursor.size;
+        cursor-theme = "${cfg.desktop.cursor.theme}";
+        font-name = "PingFang SC 11";
+        gtk-theme = "WhiteSur-Dark";
+        icon-theme = "${cfg.desktop.icon.theme}";
+        monospace-font-name = "Maple Mono Normal NL NF 10";
+        text-scaling-factor = cfg.desktop.scaling.gtk;
+      };
 
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = "close,maximize,minimize,appmenu:";
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "close,maximize,minimize,appmenu:";
+      };
     };
   };
 }

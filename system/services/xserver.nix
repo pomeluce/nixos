@@ -1,10 +1,12 @@
 {
+  config,
+  lib,
   pkgs,
-  opts,
   nlib,
   ...
 }:
 let
+  cfg = config.myOptions;
   bg = pkgs.fetchurl {
     # url = "https://www.desktophut.com/files/ymkspRzeH0-wallpaper.mp4";
     # hash = "sha256-WG8UI10NA4EAx63SU4Wb8x0r2TX7bOT5qLB1jKaSTKg=";
@@ -25,39 +27,41 @@ let
   };
 in
 {
-  # Enable the X11 windowing system.
-  services = {
-    xserver = {
-      enable = true;
-      excludePackages = with pkgs; [ xterm ];
-      desktopManager = {
-        xterm.enable = false;
+  config = lib.mkIf cfg.desktop.enable {
+    # Enable the X11 windowing system.
+    services = {
+      xserver = {
+        enable = true;
+        excludePackages = with pkgs; [ xterm ];
+        desktopManager = {
+          xterm.enable = false;
+        };
+        displayManager = {
+          startx.enable = true;
+        };
+        # Configure keymap in X11
+        xkb.layout = "us";
       };
-      displayManager = {
-        startx.enable = true;
-      };
-      # Configure keymap in X11
-      xkb.layout = "us";
-    };
 
-    displayManager = {
-      sddm = {
-        enable = opts.system.sddm.enable;
-        wayland.enable = true;
-        enableHidpi = true;
-        package = pkgs.kdePackages.sddm;
-        theme = silent.pname;
-        extraPackages = silent.propagatedBuildInputs;
-        settings = {
-          # required for styling the virtual keyboard
-          General = {
-            GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${nlib.utils.floatToString opts.programs.sddm.scale}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
-            InputMethod = "qtvirtualkeyboard";
+      displayManager = {
+        sddm = {
+          enable = cfg.desktop.dm.sddm;
+          wayland.enable = true;
+          enableHidpi = true;
+          package = pkgs.kdePackages.sddm;
+          theme = silent.pname;
+          extraPackages = silent.propagatedBuildInputs;
+          settings = {
+            # required for styling the virtual keyboard
+            General = {
+              GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${nlib.utils.floatToString cfg.desktop.scaling.sddm}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+              InputMethod = "qtvirtualkeyboard";
+            };
           };
         };
       };
     };
-  };
 
-  environment.systemPackages = [ silent ];
+    environment.systemPackages = [ silent ];
+  };
 }

@@ -1,21 +1,24 @@
-{ pkgs, opts, ... }:
+{ config, pkgs, ... }:
+let
+  cfg = config.myOptions;
+in
 {
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
 
-    DEVROOT = opts.devroot;
+    DEVROOT = cfg.devroot;
 
-    GRADLE_USER_HOME = "${opts.devroot}/env/gradle";
+    GRADLE_USER_HOME = "${cfg.devroot}/env/gradle";
 
-    PNPM_HOME = "${opts.devroot}/env/node/pnpm/bin";
+    PNPM_HOME = "${cfg.devroot}/env/node/pnpm/bin";
 
-    CARGO_HOME = "${opts.devroot}/env/rust/cargo";
+    CARGO_HOME = "${cfg.devroot}/env/rust/cargo";
 
     PYTHON = "${pkgs.python3}/python3";
 
-    GOPATH = "${opts.devroot}/env/golib";
-    GOBIN = "/home/${opts.username}/.cache/go-bin";
+    GOPATH = "${cfg.devroot}/env/golib";
+    GOBIN = "/home/${cfg.username}/.cache/go-bin";
 
     SOPS_AGE_KEY_FILE = "/etc/ssh/age/keys.txt";
   };

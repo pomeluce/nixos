@@ -1,49 +1,19 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  npkgs,
-  ...
-}:
-{
-  opts = rec {
+  imports = [ ./hardware-configuration.nix ];
+
+  myOptions = rec {
     username = "Tso";
     uid = 1000;
     gid = 1000;
-
     devroot = "/home/${username}/devroot";
 
     system = {
-      gtk.scale = 1;
-      qt.scale = 1;
-      xwayland.scale = 1.5;
-
       bluetooth = true;
+      docker = true;
       mihomo = true;
       postgres = true;
-      docker = true;
       wsl = false;
-
-      desktop.enable = true;
-      wm.niri = true;
-      wm.hyprland = false;
-      # niri, hyprland-uwsm
-      dm.defaultSession = "niri";
-      sddm.enable = true;
-
-      cursor.size = 24;
-      cursor.theme = "Bibata-Modern-Ice";
-      icon.theme = "MoreWaita";
-
-      wallpaper.enable = true;
-      wallpaper.dir = "/home/${username}/.config/wallpapers/";
-      wallpaper.interval = 300;
-      wallpaper.fps = 165;
-
-      # user env
-      session-variables = {
-        FILE_MANAGER = "nautilus";
-        GSK_RENDERER = "ngl";
-      };
-      session-path = [ ];
 
       # proxy
       proxy.enable = false;
@@ -63,20 +33,46 @@
         "10de:28e0" # Graphics
         "10de:22be" # Audio
       ];
+
+      # user env
+      session-variables = {
+        FILE_MANAGER = "nautilus";
+        GSK_RENDERER = "ngl";
+      };
+      session-path = [ ];
+    };
+
+    desktop = {
+      enable = true;
+      scaling = {
+        gtk = 1;
+        qt = 1;
+        xwayland = 1.5;
+        sddm = 1.5;
+      };
+
+      wm.niri = true;
+      wm.hyprland = false;
+      dm.defaultSession = "niri";
+      dm.sddm = true;
+
+      cursor.size = 24;
+      cursor.theme = "Bibata-Modern-Ice";
+      icon.theme = "MoreWaita";
+
+      wallpaper.enable = true;
+      wallpaper.dir = "/home/${username}/.config/wallpapers/";
+      wallpaper.interval = 300;
+      wallpaper.fps = 165;
     };
 
     programs = {
-      docker.data-root = "${devroot}/env/docker/";
-      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
-      docker.insecure-registries = [ ];
-      docker.registry-mirrors = [ ];
+      # ghostty, wezterm
+      terminal = "ghostty";
+      wezterm.font-size = 20;
 
       firefox.enable = true;
-
-      git.name = "Tso";
-      git.email = "62343478+pomeluce@users.noreply.github.com";
-      git.branch = "main";
-
+      steam.enable = true;
       keyd.enable = true;
       keyd.settings = {
         main = {
@@ -87,6 +83,15 @@
           esc = "capslock";
         };
       };
+
+      git.name = "Tso";
+      git.email = "62343478+pomeluce@users.noreply.github.com";
+      git.branch = "main";
+
+      docker.data-root = "${devroot}/env/docker/";
+      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
+      docker.insecure-registries = [ ];
+      docker.registry-mirrors = [ ];
 
       niri.output = ''
         output "DP-1" {
@@ -118,32 +123,27 @@
       niri.opacity.active = "1.0";
       niri.opacity.inactive = "1.0";
 
-      postgres.port = 5432;
       postgres.pkg = pkgs.postgresql_17;
+      postgres.upgrade_pkg = pkgs.postgresql;
+      postgres.port = 5432;
       postgres.jit = "off";
       postgres.listen_addresses = "*";
-      postgres.upgrade.pkg = pkgs.postgresql;
 
-      sddm.scale = 1.5;
-      steam.enable = true;
       swaylock.font-size = 42;
-
-      # ghostty, wezterm
-      terminal = "ghostty";
-      wezterm.font-size = 20;
     };
 
-    # packages for this machine
-    packages = with pkgs; [
+    userPackages = with pkgs; [
       vscode
       telegram-desktop
       spotify
       reqable
-      vlc
+      # vlc
       qbittorrent-enhanced
-      npkgs.wpsoffice
+      # npkgs.wpsoffice
+      # wpsoffice-cn
       qq
       # nur.repos.novel2430.wechat-universal-bwrap
     ];
+
   };
 }

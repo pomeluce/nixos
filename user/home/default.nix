@@ -2,19 +2,18 @@
   lib,
   config,
   pkgs,
-  opts,
+  sysConfig,
+  secretsPath,
   ...
 }:
 let
-  deps =
-    with pkgs;
-    [
-      fd
-      bat
-      ripgrep
-    ]
-    ++ opts.packages;
-  sops_secrets = "${opts.devroot}/wsp/nixos/secrets.yaml";
+  cfg = sysConfig.myOptions;
+  baseDeps = with pkgs; [
+    fd
+    bat
+    ripgrep
+  ];
+  sops_secrets = toString secretsPath;
 in
 {
 
@@ -26,8 +25,8 @@ in
     ./node.nix
     ./nvim.nix
     ./zsh.nix
-  ]
-  ++ lib.optionals (opts.system.desktop.enable == true) [
+
+    # 桌面环境相关模块
     ./akirds
     ./dconf.nix
     ./fcitx5
@@ -44,49 +43,49 @@ in
   ];
 
   home = {
-    username = "${opts.username}";
-    homeDirectory = "/home/${opts.username}";
-    packages = deps;
+    username = cfg.username;
+    homeDirectory = "/home/${cfg.username}";
+    packages = baseDeps ++ cfg.userPackages;
 
     sessionVariables = lib.mkMerge [
-      ({
+      {
         BROWSER = "firefox";
-        TERMINAL = opts.programs.terminal;
+        TERMINAL = cfg.programs.terminal;
 
         DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
         DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
         DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
-      })
-      (lib.mkIf (opts.system.desktop.enable && (opts.system.wm.hyprland || opts.system.wm.niri)) {
+      }
+      (lib.mkIf (cfg.desktop.enable && (cfg.desktop.wm.hyprland || cfg.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [
           "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
           "$XDG_DATA_DIRS"
 
         ];
       })
-      (opts.system.session-variables or { })
+      (cfg.system.session-variables or { })
     ];
 
     sessionPath = [
-      "/home/${opts.username}/.local/bin"
+      "${config.home.homeDirectory}/.local/bin"
       "$GOBIN"
       "$PNPM_HOME"
     ]
-    ++ opts.system.session-path;
+    ++ cfg.system.session-path;
 
     enableNixpkgsReleaseCheck = false;
   };
 
   xdg.configFile."gtk-3.0/bookmarks".text =
     let
-      home = opts.devroot;
+      dev = cfg.devroot;
     in
     ''
       file:/// root
-      file://${home}/wsp wsp
-      file://${home}/code code
-      file://${home}/env env 
-      file://${home}/wsp/wallpapers swp
+      file://${dev}/wsp wsp
+      file://${dev}/code code
+      file://${dev}/env env 
+      file://${dev}/wsp/wallpapers swp
     '';
 
   xdg.userDirs = {

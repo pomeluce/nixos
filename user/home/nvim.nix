@@ -1,7 +1,7 @@
 {
+  sysConfig,
   pkgs,
   config,
-  opts,
   ...
 }:
 let
@@ -32,6 +32,7 @@ let
     lua-language-server
     marksman
     nil
+    nixd
     rust-analyzer
     tailwindcss-language-server
     taplo
@@ -61,7 +62,7 @@ let
     stylua
   ];
 
-  nvimPath = "${opts.devroot}/wsp/nvim";
+  nvimPath = "${sysConfig.myOptions.devroot}/wsp/nvim";
 in
 {
 

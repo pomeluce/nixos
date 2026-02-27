@@ -1,18 +1,21 @@
-{ lib, opts, ... }:
+{ sysConfig, lib, ... }:
+let
+  cfg = sysConfig.myOptions;
+in
 {
   programs.git = {
     enable = true;
     settings = lib.mkMerge [
-      ({
+      {
         user = {
-          name = "${opts.programs.git.name}";
-          email = "${opts.programs.git.email}";
+          name = "${cfg.programs.git.name}";
+          email = "${cfg.programs.git.email}";
         };
-        init.defaultBranch = "${opts.programs.git.branch}";
-      })
-      (lib.mkIf (opts.system.proxy.enable == true) {
-        http.proxy = "${opts.system.proxy.http}";
-        https.proxy = "${opts.system.proxy.https}";
+        init.defaultBranch = "${cfg.programs.git.branch}";
+      }
+      (lib.mkIf (cfg.system.proxy.enable == true) {
+        http.proxy = "${cfg.system.proxy.http}";
+        https.proxy = "${cfg.system.proxy.https}";
       })
     ];
   };

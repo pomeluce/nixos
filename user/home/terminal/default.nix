@@ -1,7 +1,9 @@
-{ lib, opts, ... }:
+{ sysConfig, lib, ... }:
+let
+  cfg = sysConfig.myOptions;
+in
 {
   imports =
-    lib.optionals ("ghostty" == opts.programs.terminal) [ ./ghostty ]
-    ++ lib.optionals ("wezterm" == opts.programs.terminal) [ ./wezterm ];
-
+    lib.optionals ("ghostty" == cfg.programs.terminal) [ ./ghostty ]
+    ++ lib.optionals ("wezterm" == cfg.programs.terminal) [ ./wezterm ];
 }

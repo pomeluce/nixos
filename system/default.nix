@@ -10,7 +10,7 @@
   ...
 }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
 in
 {
   imports = [
@@ -60,9 +60,9 @@ in
   programs.dconf.enable = true;
   programs.zsh.enable = true;
 
-  systemd.services.nix-daemon.environment = lib.mkIf cfg.system.proxy.enable {
-    http_proxy = cfg.system.proxy.http;
-    https_proxy = cfg.system.proxy.https;
+  systemd.services.nix-daemon.environment = lib.mkIf mo.system.proxy.enable {
+    http_proxy = mo.system.proxy.http;
+    https_proxy = mo.system.proxy.https;
   };
 
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .

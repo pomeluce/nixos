@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
 
   # NOTE: gnome 程序读取 gtk 主题时加载会异常, 暂时注释掉该脚本包装
   # nautilus-wrapper = pkgs.buildEnv {
@@ -34,7 +34,7 @@ let
   };
 in
 {
-  config = lib.mkIf (cfg.desktop.enable && cfg.desktop.wm.niri) {
+  config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.niri) {
     environment.systemPackages = with pkgs; [
       morewaita-icon-theme
       adwaita-icon-theme

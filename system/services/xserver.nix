@@ -2,11 +2,10 @@
   config,
   lib,
   pkgs,
-  nlib,
   ...
 }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
   bg = pkgs.fetchurl {
     # url = "https://www.desktophut.com/files/ymkspRzeH0-wallpaper.mp4";
     # hash = "sha256-WG8UI10NA4EAx63SU4Wb8x0r2TX7bOT5qLB1jKaSTKg=";
@@ -27,7 +26,7 @@ let
   };
 in
 {
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     # Enable the X11 windowing system.
     services = {
       xserver = {
@@ -45,7 +44,7 @@ in
 
       displayManager = {
         sddm = {
-          enable = cfg.desktop.dm.sddm;
+          enable = mo.desktop.dm.sddm;
           wayland.enable = true;
           enableHidpi = true;
           package = pkgs.kdePackages.sddm;
@@ -54,7 +53,7 @@ in
           settings = {
             # required for styling the virtual keyboard
             General = {
-              GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${nlib.utils.floatToString cfg.desktop.scaling.sddm}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+              GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${pkgs.lib.utils.floatToString mo.desktop.scaling.sddm}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
               InputMethod = "qtvirtualkeyboard";
             };
           };

@@ -1,15 +1,15 @@
 { config, lib, ... }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     services.keyd = {
-      enable = cfg.programs.keyd.enable;
+      enable = mo.programs.keyd.enable;
       keyboards = {
         defaults = {
           ids = [ "*" ];
-          settings = cfg.programs.keyd.settings;
+          settings = mo.programs.keyd.settings;
         };
       };
     };

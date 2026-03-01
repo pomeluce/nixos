@@ -1,9 +1,4 @@
-{
-  sysConfig,
-  pkgs,
-  config,
-  ...
-}:
+{ pkgs, config, ... }:
 let
   nvimDeps = with pkgs; [
     bat
@@ -62,7 +57,7 @@ let
     stylua
   ];
 
-  nvimPath = "${sysConfig.myOptions.devroot}/wsp/nvim";
+  nvimPath = "${config.mo.devroot}/wsp/nvim";
 in
 {
 

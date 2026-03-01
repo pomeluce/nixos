@@ -1,11 +1,11 @@
 {
   lib,
-  sysConfig,
+  config,
   pkgs,
   ...
 }:
 {
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf (config.mo.desktop.enable && "ghostty" == config.mo.programs.terminal) {
     home.packages = with pkgs; [ ghostty ];
     home.file.".config/ghostty/cursor_smear.glsl".source = ./cursor_smear.glsl;
     home.file.".config/ghostty/config".text = ''

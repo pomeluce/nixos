@@ -1,8 +1,8 @@
-{ sysConfig, lib, ... }:
+{ config, lib, ... }:
 {
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     programs.firefox = {
-      enable = sysConfig.myOptions.programs.firefox.enable;
+      enable = config.mo.programs.firefox.enable;
       profiles.default = {
         name = "Default";
         settings = {

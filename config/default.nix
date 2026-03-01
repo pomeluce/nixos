@@ -6,10 +6,10 @@
 }:
 with lib;
 let
-  cfg = config.mkOptions;
+  mo = config.mo;
 in
 {
-  options.myOptions = {
+  options.mo = {
     # --- basic user info ---
     username = mkOption {
       type = types.str;
@@ -25,7 +25,7 @@ in
     };
     devroot = mkOption {
       type = types.str;
-      default = "/home/${cfg.username}/devroot";
+      default = "/home/${mo.username}/devroot";
     };
 
     # --- system service switch ---
@@ -157,7 +157,7 @@ in
         enable = mkEnableOption "Wallpaper Engine";
         dir = mkOption {
           type = types.str;
-          default = "/home/${cfg.username}/.config/wallpapers";
+          default = "/home/${mo.username}/.config/wallpapers";
         };
         interval = mkOption {
           type = types.int;

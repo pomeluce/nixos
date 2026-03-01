@@ -1,5 +1,5 @@
 {
-  sysConfig,
+  config,
   lib,
   pkgs,
   ...
@@ -14,7 +14,7 @@ let
   };
 in
 {
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";

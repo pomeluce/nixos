@@ -2,12 +2,11 @@
   lib,
   config,
   pkgs,
-  sysConfig,
   secretsPath,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
   baseDeps = with pkgs; [
     fd
     bat
@@ -43,27 +42,27 @@ in
   ];
 
   home = {
-    username = cfg.username;
-    homeDirectory = "/home/${cfg.username}";
-    packages = baseDeps ++ cfg.userPackages;
+    username = mo.username;
+    homeDirectory = "/home/${mo.username}";
+    packages = baseDeps ++ mo.userPackages;
 
     sessionVariables = lib.mkMerge [
       {
         BROWSER = "firefox";
-        TERMINAL = cfg.programs.terminal;
+        TERMINAL = mo.programs.terminal;
 
         DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
         DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
         DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
       }
-      (lib.mkIf (cfg.desktop.enable && (cfg.desktop.wm.hyprland || cfg.desktop.wm.niri)) {
+      (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [
           "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
           "$XDG_DATA_DIRS"
 
         ];
       })
-      (cfg.system.session-variables or { })
+      (mo.system.session-variables or { })
     ];
 
     sessionPath = [
@@ -71,14 +70,14 @@ in
       "$GOBIN"
       "$PNPM_HOME"
     ]
-    ++ cfg.system.session-path;
+    ++ mo.system.session-path;
 
     enableNixpkgsReleaseCheck = false;
   };
 
   xdg.configFile."gtk-3.0/bookmarks".text =
     let
-      dev = cfg.devroot;
+      dev = mo.devroot;
     in
     ''
       file:/// root

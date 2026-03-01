@@ -2,7 +2,7 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  myOptions = rec {
+  mo = rec {
     username = "Tso";
     uid = 1000;
     gid = 1000;

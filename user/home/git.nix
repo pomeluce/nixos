@@ -1,6 +1,6 @@
-{ sysConfig, lib, ... }:
+{ config, lib, ... }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
   programs.git = {
@@ -8,14 +8,14 @@ in
     settings = lib.mkMerge [
       {
         user = {
-          name = "${cfg.programs.git.name}";
-          email = "${cfg.programs.git.email}";
+          name = "${mo.programs.git.name}";
+          email = "${mo.programs.git.email}";
         };
-        init.defaultBranch = "${cfg.programs.git.branch}";
+        init.defaultBranch = "${mo.programs.git.branch}";
       }
-      (lib.mkIf (cfg.system.proxy.enable == true) {
-        http.proxy = "${cfg.system.proxy.http}";
-        https.proxy = "${cfg.system.proxy.https}";
+      (lib.mkIf (mo.system.proxy.enable == true) {
+        http.proxy = "${mo.system.proxy.http}";
+        https.proxy = "${mo.system.proxy.https}";
       })
     ];
   };

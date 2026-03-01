@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.myOptions.desktop;
+  mo = config.mo;
 in
 {
   imports = [
@@ -10,15 +10,15 @@ in
     ./gnome.nix
   ];
 
-  config = lib.mkIf cfg.enable (
+  config = lib.mkIf mo.desktop.enable (
     lib.mkMerge [
-      { services.displayManager.defaultSession = cfg.dm.defaultSession; }
-      (lib.mkIf cfg.wm.hyprland {
+      { services.displayManager.defaultSession = mo.desktop.dm.defaultSession; }
+      (lib.mkIf mo.desktop.wm.hyprland {
         programs.hyprland.withUWSM = true;
         programs.hyprland.enable = true;
         programs.hyprland.xwayland.enable = true;
       })
-      (lib.mkIf cfg.wm.niri {
+      (lib.mkIf mo.desktop.wm.niri {
         programs.niri.enable = true;
       })
     ]

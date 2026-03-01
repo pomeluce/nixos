@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.myOptions.desktop;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf (cfg.enable && !cfg.wm.hyprland && !cfg.wm.niri) {
+  config = lib.mkIf (mo.desktop.enable && !mo.desktop.wm.hyprland && !mo.desktop.wm.niri) {
     environment = {
       systemPackages = with pkgs; [
         morewaita-icon-theme

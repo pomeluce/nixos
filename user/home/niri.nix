@@ -1,14 +1,14 @@
 {
-  sysConfig,
+  config,
   lib,
-  nlib,
+  pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     home.file.".config/niri/config.kdl".text = ''
       input {
         keyboard {
@@ -34,7 +34,7 @@ in
       }
 
       // cmd: `niri msg outputs`
-      ${cfg.programs.niri.output}
+      ${mo.programs.niri.output}
 
       layout {
         // 窗口内部间隙
@@ -64,7 +64,7 @@ in
 
         // 聚焦框
         focus-ring {
-          width ${toString (builtins.floor (2 * cfg.desktop.scaling.gtk))}
+          width ${toString (builtins.floor (2 * mo.desktop.scaling.gtk))}
           // 聚焦窗口的边框颜色
           // - CSS named colors: "red"
           // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
@@ -90,7 +90,7 @@ in
         QT_AUTO_SCREEN_SCALE_FACTOR "1"
         QT_ENABLE_HIGHDPI_SCALING "1"
         // 按照屏幕缩放比例设置 QT 程序的 DPI
-        QT_SCREEN_SCALE_FACTORS "${nlib.utils.floatToString cfg.desktop.scaling.qt}"
+        QT_SCREEN_SCALE_FACTORS "${pkgs.lib.utils.floatToString mo.desktop.scaling.qt}"
 
         // wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
         QT_QPA_PLATFORM "wayland;xcb"
@@ -105,19 +105,19 @@ in
       }
 
       cursor {
-        xcursor-theme "${cfg.desktop.cursor.theme}"
-        xcursor-size ${toString cfg.desktop.cursor.size}
+        xcursor-theme "${mo.desktop.cursor.theme}"
+        xcursor-size ${toString mo.desktop.cursor.size}
       }
 
 
       // startup
       spawn-sh-at-startup "akirds"
       spawn-sh-at-startup "echo 'Xft.dpi: ${
-        toString (builtins.floor (96 * cfg.desktop.scaling.xwayland))
+        toString (builtins.floor (96 * mo.desktop.scaling.xwayland))
       }' | xrdb -merge"
       spawn-sh-at-startup "xsettingsd"
       spawn-sh-at-startup "wl-paste --watch cliphist store"
-      ${if cfg.desktop.wallpaper.enable then "spawn-sh-at-startup \"wallpaper-daemon\"" else ""}
+      ${if mo.desktop.wallpaper.enable then "spawn-sh-at-startup \"wallpaper-daemon\"" else ""}
 
       animations {
         workspace-switch {
@@ -136,11 +136,11 @@ in
       // window rules
       window-rule {
         match is-active=true
-        opacity ${cfg.programs.niri.opacity.active}
+        opacity ${mo.programs.niri.opacity.active}
       }
       window-rule {
         match is-active=false
-        opacity ${cfg.programs.niri.opacity.inactive}
+        opacity ${mo.programs.niri.opacity.inactive}
       }
       window-rule {
         geometry-corner-radius 15

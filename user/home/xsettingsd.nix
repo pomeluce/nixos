@@ -1,15 +1,15 @@
 {
   lib,
-  sysConfig,
+  config,
   pkgs,
   ...
 }:
 {
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     home.file.".config/xsettingsd/xsettingsd.conf".text = ''
-      Gtk/CursorThemeName "${sysConfig.myOptions.desktop.cursor.theme}"
+      Gtk/CursorThemeName "${config.mo.desktop.cursor.theme}"
       Gtk/DecorationLayout "close,minimize,maximize,appmenu:"
-      Net/IconThemeName "${sysConfig.myOptions.desktop.icon.theme}"
+      Net/IconThemeName "${config.mo.desktop.icon.theme}"
     '';
 
     home.packages = with pkgs; [

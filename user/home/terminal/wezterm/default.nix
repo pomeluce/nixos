@@ -1,15 +1,15 @@
 {
   lib,
-  sysConfig,
+  config,
   pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
 
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf (mo.desktop.enable && "wezterm" == mo.programs.terminal) {
     home.file.".config/wezterm/wezterm.lua" = {
       source = ./wezterm.lua;
     };
@@ -34,9 +34,9 @@ in
           {
             name = 'WSL:NixOS',
             distribution = 'NixOS',
-            username = '${cfg.username}',
-            default_cwd = '/home/${cfg.username}',
-            default_prog = { '/etc/profiles/per-user/${cfg.username}/bin/zsh', '--login' },
+            username = '${mo.username}',
+            default_cwd = '/home/${mo.username}',
+            default_prog = { '/etc/profiles/per-user/${mo.username}/bin/zsh', '--login' },
           },
         },
       }
@@ -54,7 +54,7 @@ in
 
     home.file.".config/wezterm/utils/nix.lua".text = ''
       return {
-        font_size = ${toString cfg.programs.wezterm.font-size},
+        font_size = ${toString mo.programs.wezterm.font-size},
       }
     '';
 

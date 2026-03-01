@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.myOptions.system.mihomo {
+  config = lib.mkIf config.mo.system.mihomo {
     services.mihomo = {
       enable = true;
       tunMode = true;

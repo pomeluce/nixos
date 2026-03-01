@@ -1,17 +1,17 @@
 {
-  sysConfig,
+  config,
   lib,
-  nlib,
+  pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
-  cursorName = cfg.desktop.cursor.theme;
-  cursorSize = cfg.desktop.cursor.size;
+  mo = config.mo;
+  cursorName = mo.desktop.cursor.theme;
+  cursorSize = mo.desktop.cursor.size;
 in
 {
 
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -23,11 +23,11 @@ in
         # 自动启动配置
         exec-once = [
           "akirds" # 状态栏
-          "echo 'Xft.dpi: ${toString (builtins.floor (96 * cfg.desktop.scaling.gtk))}' | xrdb -merge" # 设置 xwayland 应用 dpi
+          "echo 'Xft.dpi: ${toString (builtins.floor (96 * mo.desktop.scaling.gtk))}' | xrdb -merge" # 设置 xwayland 应用 dpi
           "xsettingsd"
           "wl-paste --watch cliphist store" # 剪切板
         ]
-        ++ lib.optionals (cfg.desktop.wallpaper.enable == true) [
+        ++ lib.optionals (mo.desktop.wallpaper.enable == true) [
           "wallpaper-daemon" # 壁纸
         ];
 
@@ -43,7 +43,7 @@ in
           "QT_AUTO_SCREEN_SCALE_FACTOR,1"
           "QT_ENABLE_HIGHDPI_SCALING,1"
           # 按照屏幕缩放比例设置 QT 程序的 DPI
-          "QT_SCREEN_SCALE_FACTORS,${nlib.utils.floatToString cfg.desktop.scaling.qt}"
+          "QT_SCREEN_SCALE_FACTORS,${pkgs.lib.utils.floatToString mo.desktop.scaling.qt}"
 
           # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
           "QT_QPA_PLATFORM,wayland;xcb"

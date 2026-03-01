@@ -5,20 +5,20 @@
   ...
 }:
 let
-  cfg = config.myOptions.programs.postgres;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf config.myOptions.system.postgres {
+  config = lib.mkIf mo.system.postgres {
     services.postgresql = {
       enable = true;
-      package = cfg.pkg;
+      package = mo.programs.postgres.pkg;
       ensureDatabases = [ "dev" ];
       enableTCPIP = true;
       enableJIT = true;
       settings = {
-        port = cfg.port;
-        jit = cfg.jit;
-        listen_addresses = cfg.listen_addresses;
+        port = mo.programs.postgres.port;
+        jit = mo.programs.postgres.jit;
+        listen_addresses = mo.programs.postgres.listen_addresses;
       };
       initialScript = config.sops.secrets.PG_INITIAL.path;
       initdbArgs = [
@@ -38,7 +38,7 @@ in
     environment.systemPackages = [
       (
         let
-          newPostgres = cfg.upgrade_pkg;
+          newPostgres = mo.programs.postgres.upgrade_pkg;
           csp = config.services.postgresql;
         in
         pkgs.writeScriptBin "pg_cluster_upgrade" ''

@@ -29,7 +29,7 @@ in
   floatToString =
     x:
     let
-      s = builtins.toString x;
+      s = toString x;
       isSci = builtins.match ".*[eE].*" s != null;
       hasDot = builtins.match ".*\\..*" s != null;
     in

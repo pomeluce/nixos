@@ -1,16 +1,15 @@
 {
-  sysConfig,
   lib,
   config,
   pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
 
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     home.packages = with pkgs; [
       (jetbrains.idea.override {
         forceWayland = true; # fixed cursor theme
@@ -19,7 +18,7 @@ in
 
     home.file.".jebrains/idea.vmoptions".text = ''
       ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
-      -javaagent:${cfg.devroot}/env/agent/netfilter/ja-netfilter.jar
+      -javaagent:${mo.devroot}/env/agent/netfilter/ja-netfilter.jar
     '';
 
     home.sessionVariables = {

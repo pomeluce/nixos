@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.myOptions.system.virt;
+  mo = config.mo;
 in
 {
   /*
@@ -13,17 +13,17 @@ in
     https://lostattractor.net/archives/nixos-gpu-vfio-passthrough
   */
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf mo.system.virt.enable {
     # intel iommu enabled
     boot = {
-      kernelParams = [ ("vfio-pci.ids=" + lib.concatStringsSep "," cfg.kvm-gpu-ids) ];
+      kernelParams = [ ("vfio-pci.ids=" + lib.concatStringsSep "," mo.system.virt.kvm-gpu-ids) ];
       initrd.kernelModules = [
         "vfio_pci"
         "vfio"
         "vfio_iommu_type1"
       ];
       extraModprobeConfig = ''
-        options kvm_${cfg.kvm-cpu-type} nested=1
+        options kvm_${mo.system.virt.kvm-cpu-type} nested=1
       '';
     };
 

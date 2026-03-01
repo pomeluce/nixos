@@ -51,20 +51,20 @@
     let
       system = "x86_64-linux";
 
-      nlib = import ./lib { inherit (nixpkgs) lib; };
-
+      ml = import ./lib { inherit (nixpkgs) lib; };
       allOverlay = [
         inputs.nur.overlays.default
         (final: prev: {
           npkgs = import ./pkgs { pkgs = final; }; # custom packages repository
           stable = import nixpkgs-stable {
             inherit system;
-            config = nlib.nixConfig.nixpkgsConfig;
+            config = ml.nixConfig.nixpkgsConfig;
           };
           neovim-nightly = inputs.neovim-nightly.packages.${system}.default;
           akirds = inputs.akirds.packages.${system}.akirds;
           silent = inputs.silent-sddm.packages.${system}.default;
         })
+        (self: super: { lib = super.lib // ml; })
       ];
       system-gen =
         {
@@ -73,21 +73,19 @@
         }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs hostname nlib; };
+          specialArgs = { inherit inputs hostname; };
           modules = [
-            { nixpkgs.config = nlib.nixConfig.nixpkgsConfig; }
+            { nixpkgs.config = ml.nixConfig.nixpkgsConfig; }
             { nixpkgs.overlays = allOverlay; }
 
-            ./system/options.nix
+            ./config
             ./hosts/${hostname}
             ./system
-
             inputs.stylix.nixosModules.stylix
             inputs.sops-nix.nixosModules.sops
-
+            inputs.home-manager.nixosModules.home-manager
             ./user/services
 
-            inputs.home-manager.nixosModules.home-manager
             (
               { config, ... }:
               {
@@ -95,10 +93,15 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "backup";
-                  users.${config.myOptions.username} = import ./user/home;
+                  users.${config.mo.username} = {
+                    imports = [
+                      ./config
+                      ./user/home
+                    ];
+                    mo = config.mo;
+                  };
                   extraSpecialArgs = {
-                    inherit inputs nlib;
-                    sysConfig = config;
+                    inherit inputs;
                     secretsPath = ./secrets.yaml;
                   };
                 };

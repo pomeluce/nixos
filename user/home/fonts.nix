@@ -1,12 +1,11 @@
 {
   lib,
-  sysConfig,
+  config,
   pkgs,
   ...
 }:
 {
-
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     home.packages = with pkgs; [
       # windows fonts
       corefonts

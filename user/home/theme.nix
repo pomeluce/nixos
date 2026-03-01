@@ -1,19 +1,19 @@
 {
-  sysConfig,
+  config,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     home.pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      name = "${cfg.desktop.cursor.theme}";
-      size = cfg.desktop.cursor.size;
+      name = "${mo.desktop.cursor.theme}";
+      size = mo.desktop.cursor.size;
       package = pkgs.bibata-cursors;
     };
 

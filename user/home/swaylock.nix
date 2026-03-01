@@ -1,15 +1,15 @@
 {
-  sysConfig,
+  config,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
 
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     home.file.".config/swaylock/config".text = ''
       screenshots
 
@@ -18,10 +18,10 @@ in
       datestr=%y-%m-%d %A
 
       indicator
-      indicator-radius=${toString (builtins.floor (96 * cfg.desktop.scaling.gtk))}
+      indicator-radius=${toString (builtins.floor (96 * mo.desktop.scaling.gtk))}
 
       font=PingFang SC
-      font-size=${toString cfg.programs.swaylock.font-size}
+      font-size=${toString mo.programs.swaylock.font-size}
 
       color=eff1f5
 

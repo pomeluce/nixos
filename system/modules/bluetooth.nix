@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  config = lib.mkIf config.myOptions.system.bluetooth {
+  config = lib.mkIf config.mo.system.bluetooth {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

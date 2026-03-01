@@ -5,10 +5,10 @@
   ...
 }:
 let
-  isWayland = config.myOptions.desktop.wm.hyprland || config.myOptions.desktop.wm.niri;
+  isWayland = config.mo.desktop.wm.hyprland || config.mo.desktop.wm.niri;
 in
 {
-  config = lib.mkIf (config.myOptions.desktop.enable && isWayland) {
+  config = lib.mkIf (config.mo.desktop.enable && isWayland) {
     programs.kdeconnect.enable = true;
 
     services.logind.settings.Login = {

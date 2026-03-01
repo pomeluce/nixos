@@ -1,24 +1,24 @@
 { config, pkgs, ... }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
 in
 {
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
 
-    DEVROOT = cfg.devroot;
+    DEVROOT = mo.devroot;
 
-    GRADLE_USER_HOME = "${cfg.devroot}/env/gradle";
+    GRADLE_USER_HOME = "${mo.devroot}/env/gradle";
 
-    PNPM_HOME = "${cfg.devroot}/env/node/pnpm/bin";
+    PNPM_HOME = "${mo.devroot}/env/node/pnpm/bin";
 
-    CARGO_HOME = "${cfg.devroot}/env/rust/cargo";
+    CARGO_HOME = "${mo.devroot}/env/rust/cargo";
 
     PYTHON = "${pkgs.python3}/python3";
 
-    GOPATH = "${cfg.devroot}/env/golib";
-    GOBIN = "/home/${cfg.username}/.cache/go-bin";
+    GOPATH = "${mo.devroot}/env/golib";
+    GOBIN = "/home/${mo.username}/.cache/go-bin";
 
     SOPS_AGE_KEY_FILE = "/etc/ssh/age/keys.txt";
   };

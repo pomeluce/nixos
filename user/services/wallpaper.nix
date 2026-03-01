@@ -5,17 +5,17 @@
   ...
 }:
 let
-  cfg = config.myOptions;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf cfg.desktop.wallpaper.enable {
+  config = lib.mkIf mo.desktop.wallpaper.enable {
     environment.systemPackages = [
       (pkgs.writeScriptBin "wallpaper-daemon" ''
         set -euo pipefail
 
-        IMG_DIR="${cfg.desktop.wallpaper.dir}"
+        IMG_DIR="${mo.desktop.wallpaper.dir}"
         STATE_FILE="$HOME/.cache/wallpaper"
-        INTERVAL=${toString cfg.desktop.wallpaper.interval}
+        INTERVAL=${toString mo.desktop.wallpaper.interval}
 
         if [ ! -d "$IMG_DIR" ]; then
           echo "Error: IMG_DIR '$IMG_DIR' not found." >&2
@@ -63,7 +63,7 @@ in
           name="''${img##*/}"
 
           # 切换壁纸
-          swww img --transition-type grow --transition-fps ${toString cfg.desktop.wallpaper.fps} "$img"
+          swww img --transition-type grow --transition-fps ${toString mo.desktop.wallpaper.fps} "$img"
 
           # 记录当前文件名
           echo "$name" > "$STATE_FILE"

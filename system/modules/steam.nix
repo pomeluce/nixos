@@ -34,7 +34,7 @@ let
   '';
 in
 {
-  config = lib.mkIf config.myOptions.programs.steam.enable {
+  config = lib.mkIf config.mo.programs.steam.enable {
     programs = {
       gamescope = {
         enable = true;

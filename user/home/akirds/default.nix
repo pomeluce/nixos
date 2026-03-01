@@ -1,6 +1,6 @@
-{ sysConfig, lib, ... }:
+{ config, lib, ... }:
 {
-  config = lib.mkIf sysConfig.myOptions.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     home.file.".config/akirds/icons".source = ./icons;
     home.file.".config/akirds/substitutes.json".text = ''
       {

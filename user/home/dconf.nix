@@ -1,19 +1,19 @@
-{ sysConfig, lib, ... }:
+{ config, lib, ... }:
 let
-  cfg = sysConfig.myOptions;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf cfg.desktop.enable {
+  config = lib.mkIf mo.desktop.enable {
     dconf.settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
-        cursor-size = cfg.desktop.cursor.size;
-        cursor-theme = "${cfg.desktop.cursor.theme}";
+        cursor-size = mo.desktop.cursor.size;
+        cursor-theme = "${mo.desktop.cursor.theme}";
         font-name = "PingFang SC 11";
         gtk-theme = "WhiteSur-Dark";
-        icon-theme = "${cfg.desktop.icon.theme}";
+        icon-theme = "${mo.desktop.icon.theme}";
         monospace-font-name = "Maple Mono Normal NL NF 10";
-        text-scaling-factor = cfg.desktop.scaling.gtk;
+        text-scaling-factor = mo.desktop.scaling.gtk;
       };
 
       "org/gnome/desktop/wm/preferences" = {

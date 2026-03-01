@@ -1,9 +1,9 @@
 { lib, config, ... }:
 let
-  cfg = config.myOptions.programs.docker;
+  mo = config.mo;
 in
 {
-  config = lib.mkIf config.myOptions.system.docker {
+  config = lib.mkIf mo.system.docker {
     virtualisation.docker = {
       enable = true;
       rootless = {
@@ -12,10 +12,10 @@ in
         setSocketVariable = true;
         daemon.settings = {
           experimental = true;
-          data-root = "${cfg.data-root}";
-          exec-opts = cfg.exec-opts;
-          insecure-registries = cfg.insecure-registries;
-          registry-mirrors = cfg.registry-mirrors;
+          data-root = "${mo.programs.docker.data-root}";
+          exec-opts = mo.programs.docker.exec-opts;
+          insecure-registries = mo.programs.docker.insecure-registries;
+          registry-mirrors = mo.programs.docker.registry-mirrors;
         };
       };
     };

@@ -6,6 +6,7 @@
     curl
     git
     neovim-nightly
+    home-manager
 
     which
     file

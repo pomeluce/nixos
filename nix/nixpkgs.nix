@@ -1,5 +1,5 @@
-{ lib, ... }:
-rec {
+{ lib, self, ... }:
+let
   allowed-unfree-packages = [
     # lsp & dap
     "copilot-language-server"
@@ -58,9 +58,13 @@ rec {
 
   allowed-insecure-packages = [
   ];
-
-  nixpkgsConfig = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
-    permittedInsecurePackages = allowed-insecure-packages;
+in
+{
+  nixpkgs = {
+    config = {
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+      permittedInsecurePackages = allowed-insecure-packages;
+    };
+    overlays = builtins.attrValues self.overlays;
   };
 }

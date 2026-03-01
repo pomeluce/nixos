@@ -91,11 +91,11 @@
     "azimfw": {
       "flake": false,
       "locked": {
-        "lastModified": 1768828925,
-        "narHash": "sha256-o0cAZ+aF26xTgmixwG+wc4p/y4vFHDzqCj2Zk3+jnew=",
+        "lastModified": 1772382099,
+        "narHash": "sha256-U1XiQA7nzmVBygKDLlXIPY+G6QFDzYdrTxBVcz8ntvc=",
         "owner": "pomeluce",
         "repo": "akir-zimfw",
-        "rev": "a58c5137d2d24b0e74e57c1e585a17fcc3395cf3",
+        "rev": "3f4dea1121d4ea1e27c8150608358ec98959ff2c",
         "type": "github"
       },
       "original": {
@@ -206,6 +206,24 @@
     },
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1769996383,
+        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": [
           "neovim-nightly",
           "nixpkgs"
@@ -225,7 +243,7 @@
         "type": "github"
       }
     },
-    "flake-parts_2": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
           "nur",
@@ -246,7 +264,7 @@
         "type": "github"
       }
     },
-    "flake-parts_3": {
+    "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
           "stylix",
@@ -309,11 +327,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772330611,
-        "narHash": "sha256-UZjPc/d5XRxvjDbk4veAO4XFdvx6BUum2l40V688Xq8=",
+        "lastModified": 1772380461,
+        "narHash": "sha256-O3ukj3Bb3V0Tiy/4LUfLlBpWypJ9P0JeUgsKl2nmZZY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "58fd7ff0eec2cda43e705c4c0585729ec471d400",
+        "rev": "f140aa04d7d14f8a50ab27f3691b5766b17ae961",
         "type": "github"
       },
       "original": {
@@ -324,7 +342,7 @@
     },
     "neovim-nightly": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "neovim-src": "neovim-src",
         "nixpkgs": "nixpkgs"
       },
@@ -366,11 +384,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772333626,
-        "narHash": "sha256-frUkVDphK8oJNOKo3DDs3+Y4zMnA6YmOOIJ+pP5OSfM=",
+        "lastModified": 1772379915,
+        "narHash": "sha256-14z3ktmAhpHUGxSxPSuVRMrTPUTiyKbn2N1Mg/VeWxQ=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "50776c02c6fc6fd127b67aa1f010bbadd12da47c",
+        "rev": "3e7ce1d69d774a52053ed963e94953b15059bb8d",
         "type": "github"
       },
       "original": {
@@ -392,6 +410,21 @@
         "owner": "NixOS",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1769909678,
+        "narHash": "sha256-cBEymOf4/o3FD5AZnzC3J9hLbiZ+QDT/KDuyHXVJOpM=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "72716169fe93074c333e8d0173151350670b824c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
@@ -445,15 +478,15 @@
     },
     "nur": {
       "inputs": {
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1772360773,
-        "narHash": "sha256-BkcvDQ7RperL5C/KJmg1ib/YleZMGMDXmlMaD+vU6Fw=",
+        "lastModified": 1772378350,
+        "narHash": "sha256-c0Vb/Qeva2S6mlHXdId4mruxkJznDpwjevXHZRLuoI0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "fca9d8e6c0d9749c9f2fb4961e0f0a85344aff75",
+        "rev": "80aeffd47f7f856cad43c6855a6fda271c86fbd5",
         "type": "github"
       },
       "original": {
@@ -491,6 +524,7 @@
       "inputs": {
         "akirds": "akirds",
         "azimfw": "azimfw",
+        "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
         "nixos-wsl": "nixos-wsl",
@@ -549,7 +583,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "gnome-shell": "gnome-shell",
         "nixpkgs": [
           "nixpkgs"

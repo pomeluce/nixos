@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
-
   mo = rec {
     username = "Tso";
     uid = 1000;

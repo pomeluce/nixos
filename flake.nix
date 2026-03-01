@@ -6,6 +6,7 @@
     # --- core source: unified use of nixpkgs (unstable) ---
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     # --- tools and modules ---
     home-manager = {
@@ -43,78 +44,15 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      nixpkgs-stable,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-
-      ml = import ./lib { inherit (nixpkgs) lib; };
-      allOverlay = [
-        inputs.nur.overlays.default
-        (final: prev: {
-          npkgs = import ./pkgs { pkgs = final; }; # custom packages repository
-          stable = import nixpkgs-stable {
-            inherit system;
-            config = ml.nixConfig.nixpkgsConfig;
-          };
-          neovim-nightly = inputs.neovim-nightly.packages.${system}.default;
-          akirds = inputs.akirds.packages.${system}.akirds;
-          silent = inputs.silent-sddm.packages.${system}.default;
-        })
-        (self: super: { lib = super.lib // ml; })
+    { self, nixpkgs, ... }@inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [
+        ./hosts
+        { _module.args = { inherit inputs self nixpkgs; }; }
       ];
-      system-gen =
-        {
-          hostname,
-          extraModules ? [ ],
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs hostname; };
-          modules = [
-            { nixpkgs.config = ml.nixConfig.nixpkgsConfig; }
-            { nixpkgs.overlays = allOverlay; }
-
-            ./config
-            ./hosts/${hostname}
-            ./system
-            inputs.stylix.nixosModules.stylix
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            ./user/services
-
-            (
-              { config, ... }:
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  backupFileExtension = "backup";
-                  users.${config.mo.username} = {
-                    imports = [
-                      ./config
-                      ./user/home
-                    ];
-                    mo = config.mo;
-                  };
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    secretsPath = ./secrets.yaml;
-                  };
-                };
-              }
-            )
-          ]
-          ++ extraModules;
-        };
-    in
-    {
-      nixosConfigurations = {
-        LTB16P = system-gen { hostname = "LTB16P"; };
-        WSN = system-gen { hostname = "WSN"; };
+      flake = {
+        overlays = import ./overlays { inherit inputs self; };
       };
     };
 }

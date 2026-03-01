@@ -5,7 +5,7 @@
 {
   lib,
   config,
-  hostname,
+  host,
   inputs,
   ...
 }:
@@ -46,16 +46,16 @@ in
     "${inputs.nixos-wsl}/modules"
   ];
 
-  networking.hostName = "${hostname}";
+  networking.hostName = "${host}";
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.extraOptions = ''
-    !include ${config.sops.secrets.ACCESS_TOKEN.path}
-  '';
+  # nix.settings.experimental-features = [
+  #   "nix-command"
+  #   "flakes"
+  # ];
+  # nix.extraOptions = ''
+  #   !include ${config.sops.secrets.ACCESS_TOKEN.path}
+  # '';
 
   programs.dconf.enable = true;
   programs.zsh.enable = true;

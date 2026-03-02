@@ -54,6 +54,8 @@
       dm.defaultSession = "niri";
       dm.sddm = true;
 
+      colorscheme = "gruvbox-material-dark-hard";
+
       cursor.size = 24;
       cursor.theme = "Bibata-Modern-Ice";
       icon.theme = "MoreWaita";

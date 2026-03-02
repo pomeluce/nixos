@@ -59,6 +59,7 @@ let
           ./options.nix
           ./${host}
           ../user/home
+          inputs.stylix.homeModules.stylix
         ];
       };
     };

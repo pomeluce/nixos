@@ -13,7 +13,7 @@ in
       systemPackages = with pkgs; [
         morewaita-icon-theme
         adwaita-icon-theme
-        whitesur-gtk-theme
+        # whitesur-gtk-theme
         wl-clipboard
 
         gnomeExtensions.just-perfection

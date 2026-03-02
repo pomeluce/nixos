@@ -34,6 +34,7 @@ in
     ./hypr.nix
     ./jetbrains.nix
     ./niri.nix
+    ./stylix.nix
     ./swaylock.nix
     ./terminal
     ./theme.nix

@@ -37,7 +37,7 @@ in
     environment.systemPackages = with pkgs; [
       morewaita-icon-theme
       adwaita-icon-theme
-      whitesur-gtk-theme
+      # whitesur-gtk-theme
       bibata-cursors
       loupe
       nautilus-wrapper

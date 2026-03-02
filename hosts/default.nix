@@ -52,7 +52,7 @@ let
         };
         extraSpecialArgs = {
           inherit inputs self host;
-          secretsPath = ./secrets.yaml;
+          secretsPath = ../secrets.yaml;
         }
         // extraHomeArgs;
         modules = extraHomeModules ++ [

@@ -38,7 +38,7 @@
     };
 
     desktop = {
-      enable = true;
+      enable = false;
       scaling = {
         gtk = 1;
         qt = 1;

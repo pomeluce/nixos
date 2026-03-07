@@ -53,8 +53,9 @@ in
         TERMINAL = mo.programs.terminal;
 
         DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
-        DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
-        DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
+        SILICONFLOW_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $SILICONFLOW_API_KEY')";
+        ALIYUN_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUN_API_KEY')";
+        OPENROUTER_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $OPENROUTER_API_KEY')";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [

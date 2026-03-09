@@ -52,9 +52,8 @@ in
         BROWSER = "firefox";
         TERMINAL = mo.programs.terminal;
 
+        ALIYUNCS_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUN_API_KEY')";
         OPENROUTER_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $OPENROUTER_API_KEY')";
-        ALIYUN_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUN_API_KEY')";
-        DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [

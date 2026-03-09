@@ -18,10 +18,9 @@ in
       mode = "0400";
       owner = config.users.users."${mo.username}".name;
     };
-    secrets.DEEPSEEK_API_KEY = { };
-    secrets.SILICONFLOW_API_KEY = { };
-    secrets.ALIYUN_API_KEY = { };
     secrets.OPENROUTER_API_KEY = { };
+    secrets.ALIYUN_API_KEY = { };
+    secrets.DEEPSEEK_API_KEY = { };
     secrets.MIHOMO_PROVIDER = { };
     secrets.PG_INITIAL = lib.mkIf (mo.system.postgres == true) {
       mode = "0400";

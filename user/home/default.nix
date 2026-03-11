@@ -53,10 +53,9 @@ in
         BROWSER = "firefox";
         TERMINAL = mo.programs.terminal;
 
-        ALIYUNCS_OPENAI_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_OPENAI_API_KEY')";
-        ALIYUNCS_ANTHROPIC_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_ANTHROPIC_API_KEY')";
+        ALIYUNCS_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
         OPENROUTER_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $OPENROUTER_API_KEY')";
-        ANTHROPIC_AUTH_TOKEN = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_ANTHROPIC_API_KEY')";
+        ANTHROPIC_AUTH_TOKEN = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [

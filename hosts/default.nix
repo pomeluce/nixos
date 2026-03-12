@@ -36,7 +36,6 @@ let
           ../nix
           ./${host}
           ../system
-          ../user/services
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
           # inputs.home-manager.nixosModules.home-manager
@@ -52,14 +51,14 @@ let
         };
         extraSpecialArgs = {
           inherit inputs self host;
-          secretsPath = ../secrets.yaml;
         }
         // extraHomeArgs;
         modules = extraHomeModules ++ [
           ./options.nix
           ./${host}
-          ../user/home
+          ../home
           inputs.stylix.homeModules.stylix
+          inputs.sops-nix.homeManagerModules.sops
         ];
       };
     };

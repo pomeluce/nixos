@@ -4,10 +4,10 @@ let
     inherit (inputs.nixpkgs) lib;
     inherit self;
   };
-  myLib = import ../lib;
+  myLib = import ../lib { inherit (inputs.nixpkgs) lib; };
 in
 {
-  additions = final: prev: {
+  additions = final: _: {
     npkgs = import ../pkgs { pkgs = final; };
   };
 

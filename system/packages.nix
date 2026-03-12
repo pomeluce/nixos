@@ -15,7 +15,6 @@
     unzip
     xz
     p7zip
-    ripgrep
     gawk
     zstd
     lsof

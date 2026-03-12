@@ -1,11 +1,8 @@
 { pkgs, ... }:
 {
-  mo = rec {
-    username = "Tso";
-    uid = 1000;
-    gid = 1000;
-    devroot = "/home/${username}/devroot";
+  imports = [ ../common.nix ];
 
+  mo = {
     system = {
       bluetooth = true;
       docker = true;
@@ -24,20 +21,11 @@
       drive.amd-bus-id = "";
       drive.nvidia-bus-id = "PCI:1:0:0";
 
-      # virtualisation
-      virt.enable = false;
-      virt.kvm-cpu-type = "intel"; # "intel" or "amd"
-      virt.kvm-gpu-ids = [
-        "10de:28e0" # Graphics
-        "10de:22be" # Audio
-      ];
-
       # user env
       session-variables = {
         FILE_MANAGER = "nautilus";
         GSK_RENDERER = "ngl";
       };
-      session-path = [ ];
     };
 
     desktop = {
@@ -56,19 +44,10 @@
 
       colorscheme = "gruvbox-material-dark-hard";
 
-      cursor.size = 24;
-      cursor.theme = "Bibata-Modern-Ice";
-      icon.theme = "MoreWaita";
-
       wallpaper.enable = true;
-      wallpaper.dir = "/home/${username}/.config/wallpapers/";
-      wallpaper.interval = 300;
-      wallpaper.fps = 165;
     };
 
     programs = {
-      # ghostty, wezterm
-      terminal = "ghostty";
       wezterm.font-size = 20;
 
       firefox.enable = true;
@@ -83,15 +62,6 @@
           esc = "capslock";
         };
       };
-
-      git.name = "Tso";
-      git.email = "62343478+pomeluce@users.noreply.github.com";
-      git.branch = "main";
-
-      docker.data-root = "${devroot}/env/docker/";
-      docker.exec-opts = [ "native.cgroupdriver=systemd" ];
-      docker.insecure-registries = [ ];
-      docker.registry-mirrors = [ ];
 
       niri.output = ''
         output "DP-1" {
@@ -123,12 +93,6 @@
       niri.opacity.active = "1.0";
       niri.opacity.inactive = "1.0";
 
-      postgres.pkg = pkgs.postgresql_17;
-      postgres.upgrade_pkg = pkgs.postgresql;
-      postgres.port = 5432;
-      postgres.jit = "off";
-      postgres.listen_addresses = "*";
-
       swaylock.font-size = 42;
     };
 
@@ -144,6 +108,5 @@
       qq
       # nur.repos.novel2430.wechat-universal-bwrap
     ];
-
   };
 }

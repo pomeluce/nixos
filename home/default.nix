@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  secretsPath,
   ...
 }:
 let
@@ -12,7 +11,6 @@ let
     bat
     ripgrep
   ];
-  sops_secrets = toString secretsPath;
 in
 {
 
@@ -24,6 +22,7 @@ in
     ./maven
     ./node.nix
     ./nvim.nix
+    ./sops.nix
     ./zsh.nix
 
     # 桌面环境相关模块
@@ -53,10 +52,11 @@ in
         BROWSER = "firefox";
         TERMINAL = mo.programs.terminal;
 
-        ALIYUNCS_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
-        OPENROUTER_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $OPENROUTER_API_KEY')";
+        # 使用 sops-nix 解密后的 secrets 路径
+        ALIYUNCS_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
+        OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
 
-        CLAUDE_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
+        CLAUDE_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
         CLAUDE_API_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";
         CLAUDE_MODEL_NAME = "qwen3.5-plus";
       }

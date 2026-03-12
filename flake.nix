@@ -54,5 +54,18 @@
       flake = {
         overlays = import ./overlays { inherit inputs self; };
       };
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          checks = {
+            deadnix = pkgs.runCommand "deadnix-check" { } ''
+              ${pkgs.deadnix}/bin/deadnix --fail ${./.}
+              touch $out
+            '';
+          };
+
+          formatter = pkgs.nixfmt;
+        };
     };
 }

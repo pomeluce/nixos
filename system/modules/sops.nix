@@ -18,8 +18,6 @@ in
       mode = "0400";
       owner = config.users.users."${mo.username}".name;
     };
-    secrets.ALIYUNCS_API_KEY = { };
-    secrets.OPENROUTER_API_KEY = { };
     secrets.MIHOMO_PROVIDER = { };
     secrets.PG_INITIAL = lib.mkIf (mo.system.postgres == true) {
       mode = "0400";

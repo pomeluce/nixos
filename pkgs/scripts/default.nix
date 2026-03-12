@@ -12,4 +12,6 @@ pkgs: {
       }"
     ];
   } (builtins.readFile ./screenshot.nu);
+
+  ccs = pkgs.writers.writeNuBin "ccs" { makeWrapperArgs = [ ]; } (builtins.readFile ./ccs.nu);
 }

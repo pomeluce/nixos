@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     zsh
+    nushell
     wget
     curl
     git

@@ -55,7 +55,10 @@ in
 
         ALIYUNCS_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
         OPENROUTER_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $OPENROUTER_API_KEY')";
-        ANTHROPIC_AUTH_TOKEN = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
+
+        CLAUDE_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $ALIYUNCS_API_KEY')";
+        CLAUDE_API_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";
+        CLAUDE_MODEL_NAME = "qwen3.5-plus";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [

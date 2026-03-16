@@ -1,4 +1,6 @@
-{ }:
+{
+  lib ? import <nixpkgs/lib>,
+}:
 let
   stripTrailingZeros =
     str:
@@ -22,10 +24,9 @@ let
             s;
     in
     __rec__ str;
-
-  # 将任意值转成字符串并清理
 in
 {
+  # 将浮点数转成字符串并清理尾部零
   floatToString =
     x:
     let
@@ -34,4 +35,22 @@ in
       hasDot = builtins.match ".*\\..*" s != null;
     in
     if isSci || !hasDot then s else stripTrailingZeros s;
+
+  # 简化 mkMerge 使用
+  mkIfMerge = condition: configs: lib.mkIf condition (lib.mkMerge configs);
+
+  # 带默认值的 enable option
+  mkEnableOptionWithDefault =
+    default: description:
+    lib.mkOption {
+      type = lib.types.bool;
+      default = default;
+      description = description;
+    };
+
+  # 合并多个 attr set
+  mergeAttrs = lib.foldl' (acc: x: acc // x) { };
+
+  # 条件合并
+  optionalAttrs = condition: attrs: if condition then attrs else { };
 }

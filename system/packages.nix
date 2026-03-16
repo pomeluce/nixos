@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     zsh
+    nushell
     wget
     curl
     git
@@ -14,7 +15,6 @@
     unzip
     xz
     p7zip
-    ripgrep
     gawk
     zstd
     lsof

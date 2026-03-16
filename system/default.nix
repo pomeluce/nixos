@@ -41,6 +41,9 @@ in
     ./services/xserver.nix
     ./services/postgres.nix
     ./services/others.nix
+    ./services/mihomo.nix
+    ./services/wallpaper.nix
+    ./services/firewall.nix
 
     # 外部模块
     "${inputs.nixos-wsl}/modules"

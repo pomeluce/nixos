@@ -1,0 +1,24 @@
+[
+  {
+    "name": "qwen",
+    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+    "model": "qwen3.5-plus",
+    "default": true
+  },
+  {
+    "name": "kimi",
+    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+    "model": "kimi-k2.5"
+  },
+  {
+    "name": "glm",
+    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+    "model": "glm-5"
+  },
+
+  {
+    "name": "minimax",
+    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+    "model": "MiniMax-M2.5"
+  }
+]

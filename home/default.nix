@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  secretsPath,
   ...
 }:
 let
@@ -12,17 +11,18 @@ let
     bat
     ripgrep
   ];
-  sops_secrets = toString secretsPath;
 in
 {
 
   imports = [
+    ./claude
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix
     ./maven
     ./node.nix
     ./nvim.nix
+    ./sops.nix
     ./zsh.nix
 
     # 桌面环境相关模块
@@ -52,9 +52,13 @@ in
         BROWSER = "firefox";
         TERMINAL = mo.programs.terminal;
 
-        DEEPSEEK_API_KEY = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY')";
-        DEEPSEEK_API_KEY_S = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_KEY_S')";
-        DEEPSEEK_API_ALIYUN = "$(sops exec-env ${sops_secrets} 'echo -e $DEEPSEEK_API_ALIYUN')";
+        # 使用 sops-nix 解密后的 secrets 路径
+        ALIYUNCS_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
+        OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
+
+        CLAUDE_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
+        CLAUDE_API_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";
+        CLAUDE_MODEL_NAME = "qwen3.5-plus";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         XDG_DATA_DIRS = lib.concatStringsSep ":" [

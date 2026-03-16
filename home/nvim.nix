@@ -48,6 +48,7 @@ let
     cbfmt
     dockerfmt
     nixfmt
+    nufmt
     prettier
     prettierd
     ruff

@@ -42,6 +42,8 @@ let
     "ttf-pingfang-ui"
     "ttf-pingfang-emoji"
 
+    "claude-code"
+
     "reqable"
     "idea"
     "vscode"

@@ -1,0 +1,144 @@
+#!/usr/bin/env nu
+# --- 路径获取函数 ---
+def get_settings_dir [] {
+    $env.HOME | path join ".claude"
+}
+def get_settings_file [] {
+    get_settings_dir | path join "settings.json"
+}
+def get_models_path [] {
+    # 检查环境变量 CLAUDE_MODELS_PATH, 否则使用默认路径
+    if "CLAUDE_MODELS_PATH" in $env { $env.CLAUDE_MODELS_PATH } else {
+        $env.HOME | path join ".claude" "models.json"
+    }
+}
+# --- 自动补全 ---
+export def model_completions [] {
+    let path = get_models_path
+    if ($path | path exists) {
+        open $path | get name | compact
+    } else { [] }
+}
+# --- 内部逻辑 ---
+def normalize [entry: record] {
+    if ($entry | is-empty) { return {
+        name: "unnamed"
+        model: ""
+        api_url: ""
+        api_key: ""
+    } }
+    {
+        name: (try {
+            $entry | get name
+        } catch { "unnamed" })
+        model: (try {
+            $entry | get model
+        } catch { "" })
+        api_url: (try {
+            $entry | get api_url
+        } catch { "" })
+        api_key: (try {
+            $entry | get api_key
+        } catch { "" })
+    }
+}
+def save_settings [new_env: record, source_name: string] {
+    let s_dir = get_settings_dir
+    let s_file = get_settings_file
+    let existing = if ($s_file | path exists) { open $s_file } else { {
+        env: {}
+    } }
+    let updated = {
+        env: (try {
+            $existing.env | default {} | merge $new_env
+        } catch { $new_env })
+        last_switch: {
+            source: $source_name
+            at: (date now | format date "%Y-%m-%d %H:%M:%S")
+        }
+    }
+    if not ($s_dir | path exists) { mkdir $s_dir }
+    $updated | to json | save -f $s_file
+    $updated
+}
+# 安全获取字符串值, 如果 entry 中没有则 fallback 到环境变量
+def get_or_fallback [entry: record, field: string, env_var: string] {
+    let val = try {
+        $entry | get $field
+    } catch { null }
+    if ($val | is-not-empty) {
+        $val | into string
+    } else {
+        try {
+            $env | get $env_var
+        } catch { "" } | into string
+    }
+}
+# --- 导出子命令 ---
+# 初始化 settings.json
+export def --env init [model_name?: string, --force] {
+    let s_file = get_settings_file
+    if ($s_file | path exists) and (not $force) {
+        print $"(ansi yellow)settings.json 已存在. 使用 --force 强制初始化.(ansi reset)"
+        return
+    }
+    use-model $model_name
+}
+# 切换模型配置
+export def --env "use-model" [model_name?: string] {
+    let models_path = get_models_path
+    let models_data = if ($models_path | path exists) { open $models_path } else { [] }
+    # 如果 models.json 不存在或为空, fallback 到环境变量
+    if ($models_data | is-empty) {
+        let final_env = {
+            ANTHROPIC_MODEL: (try {
+                $env | get CLAUDE_MODEL_NAME
+            } catch { "" })
+            ANTHROPIC_BASE_URL: (try {
+                $env | get CLAUDE_API_URL
+            } catch { "" })
+            ANTHROPIC_AUTH_TOKEN: (try {
+                $env | get CLAUDE_API_KEY
+            } catch { "" })
+        }
+        save_settings $final_env "default env"
+        load-env $final_env
+        print $"(ansi cyan)models.json 不存在, 已使用环境变量默认值(ansi reset)"
+        return
+    }
+    let target = if ($model_name | is-not-empty) {
+        let matches = $models_data | where {|it| $it.name? == $model_name}
+        if ($matches | is-empty) { error make {
+            msg: $"未找到模型配置: ($model_name)"
+        } }
+        $matches | first
+    } else {
+        # 查找默认模型
+        let defaults = $models_data | where {|it| $it.default? == true}
+        if ($defaults | is-not-empty) {
+            $defaults | first
+        } else {
+            $models_data | first
+        }
+    }
+    let norm = normalize $target
+    # 每个字段如果 models.json 中没有, 则 fallback 到环境变量
+    let final_env = {
+        ANTHROPIC_MODEL: (get_or_fallback $norm "model" "CLAUDE_MODEL_NAME")
+        ANTHROPIC_BASE_URL: (get_or_fallback $norm "api_url" "CLAUDE_API_URL")
+        ANTHROPIC_AUTH_TOKEN: (get_or_fallback $norm "api_key" "CLAUDE_API_KEY")
+    }
+    if ($final_env.ANTHROPIC_MODEL == "" and $final_env.ANTHROPIC_BASE_URL == "") { error make {msg: "无法确定模型配置, 请检查 models.json"} }
+    save_settings $final_env $norm.name
+    load-env $final_env
+    print $"(ansi cyan)已切换至: ($norm.name)(ansi reset)"
+}
+# --- 脚本入口 ---
+def main [...args] {
+    if ($args | is-empty) { use-model "" } else if ($args.0 == "init") {
+        let rest = $args | skip 1
+        if ($rest | any {|x| $x == "--force"}) { init (
+            $rest | where {|x| $x != "--force"} | first | default ""
+        ) --force } else { init ($rest | first | default "") }
+    } else { use-model ($args | first) }
+}

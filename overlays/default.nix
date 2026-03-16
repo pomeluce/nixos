@@ -7,7 +7,7 @@ let
   myLib = import ../lib;
 in
 {
-  additions = final: prev: {
+  additions = final: _: {
     npkgs = import ../pkgs { pkgs = final; };
   };
 
@@ -19,7 +19,12 @@ in
     neovim-nightly = inputs.neovim-nightly.packages.${final.stdenv.hostPlatform.system}.default;
     akirds = inputs.akirds.packages.${final.stdenv.hostPlatform.system}.akirds;
     silent = inputs.silent-sddm.packages.${final.stdenv.hostPlatform.system}.default;
-    lib = prev.lib // (myLib { pkgs = final; });
+    lib =
+      prev.lib
+      // (myLib {
+        inherit (inputs.nixpkgs) lib;
+        pkgs = final;
+      });
   };
 
   nur = inputs.nur.overlays.default;

@@ -28,7 +28,11 @@
       };
       icons = {
         enable = true;
-        package = pkgs.morewaita-icon-theme;
+        package = pkgs.morewaita-icon-theme.overrideAttrs (oldAttrs: {
+          postInstall =
+            (pkgs.lib.colorscheme.recolor config.lib.stylix.colors.withHashtag.toList)
+            + (oldAttrs.postInstall or "");
+        });
         dark = config.mo.desktop.icon.theme;
         light = config.mo.desktop.icon.theme;
       };
@@ -40,6 +44,7 @@
         gnome.enable = true;
         gtk.enable = true;
         neovim.enable = true;
+        nixos-icons.enable = true;
         qt.enable = true;
       };
     };

@@ -19,7 +19,7 @@ in
     neovim-nightly = inputs.neovim-nightly.packages.${final.stdenv.hostPlatform.system}.default;
     akirds = inputs.akirds.packages.${final.stdenv.hostPlatform.system}.akirds;
     silent = inputs.silent-sddm.packages.${final.stdenv.hostPlatform.system}.default;
-    lib = prev.lib // myLib;
+    lib = prev.lib // (myLib { pkgs = final; });
   };
 
   nur = inputs.nur.overlays.default;

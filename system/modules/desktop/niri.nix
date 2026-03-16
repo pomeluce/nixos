@@ -36,7 +36,7 @@ in
 {
   config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.niri) {
     environment.systemPackages = with pkgs; [
-      morewaita-icon-theme
+      # morewaita-icon-theme
       adwaita-icon-theme
       # whitesur-gtk-theme
       bibata-cursors

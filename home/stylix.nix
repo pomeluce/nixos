@@ -44,6 +44,9 @@
         gnome.enable = true;
         gtk.enable = true;
         neovim.enable = true;
+        neovim.transparentBackground.main = true;
+        neovim.transparentBackground.numberLine = true;
+        neovim.transparentBackground.signColumn = true;
         nixos-icons.enable = true;
         qt.enable = true;
       };

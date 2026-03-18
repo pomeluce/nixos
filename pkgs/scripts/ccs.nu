@@ -91,7 +91,13 @@ export def --env "use-model" [model_name?: string] {
     # 如果 models.json 不存在或为空, fallback 到环境变量
     if ($models_data | is-empty) {
         let final_env = {
-            ANTHROPIC_MODEL: (try {
+            ANTHROPIC_DEFAULT_OPUS_MODEL: (try {
+                $env | get CLAUDE_MODEL_NAME
+            } catch { "" })
+            ANTHROPIC_DEFAULT_SONNET_MODEL: (try {
+                $env | get CLAUDE_MODEL_NAME
+            } catch { "" })
+            ANTHROPIC_DEFAULT_HAIKU_MODEL: (try {
                 $env | get CLAUDE_MODEL_NAME
             } catch { "" })
             ANTHROPIC_BASE_URL: (try {
@@ -124,11 +130,13 @@ export def --env "use-model" [model_name?: string] {
     let norm = normalize $target
     # 每个字段如果 models.json 中没有, 则 fallback 到环境变量
     let final_env = {
-        ANTHROPIC_MODEL: (get_or_fallback $norm "model" "CLAUDE_MODEL_NAME")
+        ANTHROPIC_DEFAULT_OPUS_MODEL: (get_or_fallback $norm "model" "CLAUDE_MODEL_NAME")
+        ANTHROPIC_DEFAULT_SONNET_MODEL: (get_or_fallback $norm "model" "CLAUDE_MODEL_NAME")
+        ANTHROPIC_DEFAULT_HAIKU_MODEL: (get_or_fallback $norm "model" "CLAUDE_MODEL_NAME")
         ANTHROPIC_BASE_URL: (get_or_fallback $norm "api_url" "CLAUDE_API_URL")
         ANTHROPIC_AUTH_TOKEN: (get_or_fallback $norm "api_key" "CLAUDE_API_KEY")
     }
-    if ($final_env.ANTHROPIC_MODEL == "" and $final_env.ANTHROPIC_BASE_URL == "") { error make {msg: "无法确定模型配置, 请检查 models.json"} }
+    if ($final_env.ANTHROPIC_DEFAULT_OPUS_MODEL == "" and $final_env.ANTHROPIC_BASE_URL == "") { error make {msg: "无法确定模型配置, 请检查 models.json"} }
     save_settings $final_env $norm.name
     load-env $final_env
     print $"(ansi cyan)已切换至: ($norm.name)(ansi reset)"

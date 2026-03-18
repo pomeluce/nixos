@@ -62,7 +62,26 @@ let
 in
 {
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink nvimPath;
+  xdg.configFile."nvim/after".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/after";
+  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/lua";
+  xdg.configFile."nvim/snippets".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/snippets";
+  xdg.configFile."nvim/tmpls".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/tmpls";
+  xdg.configFile."nvim/nvim-pack-lock.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${nvimPath}/nvim-pack-lock.json";
+
+  programs.neovim = {
+    enable = true;
+    package = pkgs.neovim-nightly;
+    extraPackages = nvimDeps;
+    initLua = ''
+      require('core.globals')
+      require('core.options')
+      require('core.autocmds')
+      require('core.mappings')
+      require('core.commands')
+      require('core.setup')
+    '';
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -71,6 +90,4 @@ in
     VSC_JAVA_DEBUG = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug";
     VSC_FIREFOX_DEBUG = "${pkgs.vscode-extensions.firefox-devtools.vscode-firefox-debug}/share/vscode/extensions/firefox-devtools.vscode-firefox-debug";
   };
-
-  home.packages = nvimDeps;
 }

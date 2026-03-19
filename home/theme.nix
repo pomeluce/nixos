@@ -48,11 +48,7 @@ in
       };
       icons = {
         enable = true;
-        package = pkgs.morewaita-icon-theme.overrideAttrs (oldAttrs: {
-          postInstall =
-            (pkgs.lib.colorscheme.recolor config.lib.stylix.colors.withHashtag.toList)
-            + (oldAttrs.postInstall or "");
-        });
+        package = pkgs.morewaita-icon-theme;
         dark = config.mo.desktop.icon.theme;
         light = config.mo.desktop.icon.theme;
       };

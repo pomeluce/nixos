@@ -38,6 +38,7 @@ in
     ./swaylock.nix
     ./terminal
     ./theme.nix
+    ./vscode.nix
     ./typora
     ./xsettingsd.nix
   ];

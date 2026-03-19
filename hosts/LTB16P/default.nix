@@ -97,7 +97,6 @@
     };
 
     userPackages = with pkgs; [
-      vscode
       telegram-desktop
       spotify
       reqable

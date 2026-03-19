@@ -48,7 +48,7 @@ def save_settings [new_env: record, source_name: string] {
     let existing = if ($s_file | path exists) { open $s_file } else { {
         env: {}
     } }
-    let updated = {
+    let updated = $existing | merge {
         env: (try {
             $existing.env | default {} | merge $new_env
         } catch { $new_env })
@@ -114,9 +114,14 @@ export def --env "use-model" [model_name?: string] {
     }
     let target = if ($model_name | is-not-empty) {
         let matches = $models_data | where {|it| $it.name? == $model_name}
-        if ($matches | is-empty) { error make {
-            msg: $"未找到模型配置: ($model_name)"
-        } }
+        if ($matches | is-empty) {
+            print $"(ansi yellow)未找到模型配置: ($model_name)(ansi reset)"
+            print $"(ansi cyan)可用模型:(ansi reset)"
+            for m in ($models_data | get name) {
+                print $"  - ($m)"
+            }
+            return
+        }
         $matches | first
     } else {
         # 查找默认模型

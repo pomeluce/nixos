@@ -36,6 +36,8 @@
       dm.defaultSession = "niri";
       dm.sddm = false;
 
+      colorscheme = "gruvbox-material-dark-hard";
+
       wallpaper.enable = false;
     };
 

@@ -83,6 +83,13 @@ in
     '';
   };
 
+  stylix.targets = {
+    neovim.enable = true;
+    neovim.transparentBackground.main = true;
+    neovim.transparentBackground.numberLine = true;
+    neovim.transparentBackground.signColumn = true;
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";

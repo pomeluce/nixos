@@ -1,24 +1,34 @@
 [
   {
-    "name": "qwen",
-    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "qwen3.5-plus",
+    "name": "GLM5",
+    "api_url": "https://api.z.ai/api/anthropic",
+    "model": { "opus": "glm-5", "sonnet": "glm-4.7", "haiku": "glm-4.5-air" },
+    "api_key": "env:Z_API_KEY",
     "default": true
   },
   {
-    "name": "kimi",
+    "name": "QWEN",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "kimi-k2.5"
+    "model": "qwen3.5-plus",
+    "api_key": "env:ALIYUNCS_API_KEY"
   },
   {
-    "name": "glm",
+    "name": "GLM",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "glm-5"
+    "model": "glm-5",
+    "api_key": "env:Z_API_KEY",
+    "default": true
   },
-
   {
-    "name": "minimax",
+    "name": "KIMI",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "MiniMax-M2.5"
+    "model": "kimi-k2.5",
+    "api_key": "env:ALIYUNCS_API_KEY"
+  },
+  {
+    "name": "MINIMAX",
+    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+    "model": "MiniMax-M2.5",
+    "api_key": "env:ALIYUNCS_API_KEY"
   }
 ]

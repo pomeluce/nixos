@@ -1,4 +1,7 @@
 { pkgs, config, ... }:
+let
+  model_path = "${config.mo.devroot}/wsp/nixos/home/claude/models.json";
+in
 {
   programs.claude-code = {
     enable = true;
@@ -11,5 +14,5 @@
   };
 
   home.packages = with pkgs; [ npkgs.scripts.ccs ];
-  home.file.".claude/models.json".source = config.lib.file.mkOutOfStoreSymlink ./models.json;
+  home.file.".claude/models.json".source = config.lib.file.mkOutOfStoreSymlink model_path;
 }

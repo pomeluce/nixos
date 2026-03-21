@@ -1,0 +1,6 @@
+{
+  "session": {
+    "projects": ["$DEVROOT/wsp/*", "$DEVROOT/code/projects/*", "$DEVROOT/code/experiments/*", "$DEVROOT/code/archived/*"],
+    "ignore_dir": ["~/downloads", "~/Downloads"]
+  }
+}

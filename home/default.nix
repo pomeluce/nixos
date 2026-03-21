@@ -21,7 +21,7 @@ in
     ./git.nix
     ./maven
     ./node.nix
-    ./nvim.nix
+    ./nvim
     ./sops.nix
     ./zsh.nix
 

@@ -66,6 +66,8 @@ in
   xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/lua";
   xdg.configFile."nvim/snippets".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/snippets";
   xdg.configFile."nvim/tmpls".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/tmpls";
+  xdg.configFile."nvim/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.mo.devroot}/wsp/nixos/home/nvim/settings.json";
   xdg.configFile."nvim/nvim-pack-lock.json".source =
     config.lib.file.mkOutOfStoreSymlink "${nvimPath}/nvim-pack-lock.json";
 

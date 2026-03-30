@@ -22,6 +22,7 @@ in
     ./maven
     ./node.nix
     ./nvim
+    ./opencode.nix
     ./sops.nix
     ./zsh.nix
 
@@ -97,6 +98,7 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
     desktop = "${config.home.homeDirectory}/desktop";
     documents = "${config.home.homeDirectory}/documents";
     download = "${config.home.homeDirectory}/downloads";
@@ -113,5 +115,5 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 }

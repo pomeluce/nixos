@@ -2,7 +2,7 @@
   {
     "name": "GLM5",
     "api_url": "https://api.z.ai/api/anthropic",
-    "model": { "opus": "glm-5", "sonnet": "glm-4.7", "haiku": "glm-4.5-air" },
+    "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5" },
     "api_key": "env:Z_API_KEY",
     "default": true
   },
@@ -16,8 +16,7 @@
     "name": "GLM",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
     "model": "glm-5",
-    "api_key": "env:Z_API_KEY",
-    "default": true
+    "api_key": "env:ALIYUNCS_API_KEY"
   },
   {
     "name": "KIMI",

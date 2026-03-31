@@ -22,7 +22,6 @@ in
     ./maven
     ./node.nix
     ./nvim
-    ./opencode.nix
     ./sops.nix
     ./zsh.nix
 

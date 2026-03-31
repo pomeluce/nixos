@@ -1,33 +1,33 @@
 [
   {
-    "name": "GLM5",
+    "name": "ZAI_GLM5",
     "api_url": "https://api.z.ai/api/anthropic",
     "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5" },
     "api_key": "env:ZAI_API_KEY",
     "default": true
   },
   {
-    "name": "QWEN",
-    "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "qwen3.5-plus",
-    "api_key": "env:ALIYUNCS_API_KEY"
+    "name": "OR_QWEN3.6",
+    "api_url": "https://openrouter.ai/api",
+    "model": "qwen/qwen3.6-plus-preview:free",
+    "api_key": "env:OPENROUTER_API_KEY"
   },
   {
-    "name": "GLM",
+    "name": "AB_GLM5",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
     "model": "glm-5",
     "api_key": "env:ALIYUNCS_API_KEY"
   },
   {
-    "name": "KIMI",
+    "name": "AB_QWEN3.5",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "kimi-k2.5",
+    "model": "qwen3.5-plus",
     "api_key": "env:ALIYUNCS_API_KEY"
   },
   {
-    "name": "MINIMAX",
+    "name": "AB_KIMI",
     "api_url": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
-    "model": "MiniMax-M2.5",
+    "model": "kimi-k2.5",
     "api_key": "env:ALIYUNCS_API_KEY"
   }
 ]

@@ -12,6 +12,6 @@ in
     };
     secrets.ALIYUNCS_API_KEY = { };
     secrets.OPENROUTER_API_KEY = { };
-    secrets.Z_API_KEY = { };
+    secrets.ZAI_API_KEY = { };
   };
 }

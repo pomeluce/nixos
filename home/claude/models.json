@@ -3,7 +3,7 @@
     "name": "GLM5",
     "api_url": "https://api.z.ai/api/anthropic",
     "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5" },
-    "api_key": "env:Z_API_KEY",
+    "api_key": "env:ZAI_API_KEY",
     "default": true
   },
   {

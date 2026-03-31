@@ -57,8 +57,9 @@ in
         # 使用 sops-nix 解密后的 secrets 路径
         ALIYUNCS_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
         OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
-        Z_API_KEY = "$(cat ${config.sops.secrets.Z_API_KEY.path})";
+        ZAI_API_KEY = "$(cat ${config.sops.secrets.ZAI_API_KEY.path})";
 
+        # provided to claude code
         CLAUDE_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
         CLAUDE_API_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";
         CLAUDE_MODEL_NAME = "qwen3.5-plus";

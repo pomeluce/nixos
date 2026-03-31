@@ -149,6 +149,15 @@
         };
       };
       plugin = [ "superpowers@git+https://github.com/obra/superpowers.git" ];
+      permission = {
+        read = "allow";
+        grep = "allow";
+        glob = "allow";
+        list = "allow";
+        webfetch = "allow";
+        edit = "ask";
+        bash = "ask";
+      };
     };
   };
 }

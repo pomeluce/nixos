@@ -1,6 +1,6 @@
 [
   {
-    "name": "z.glm5",
+    "name": "z.glm51",
     "api_url": "https://api.z.ai/api/anthropic",
     "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5" },
     "api_key": "env:ZAI_API_KEY",

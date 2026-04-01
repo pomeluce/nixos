@@ -32,7 +32,7 @@ in
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
-    ./jetbrains.nix
+    ./jetbrains
     ./niri.nix
     ./stylix.nix
     ./swaylock.nix

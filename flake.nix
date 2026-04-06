@@ -5,6 +5,7 @@
   inputs = {
     # --- core source: unified use of nixpkgs (unstable) ---
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unsmall.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -69,3 +70,4 @@
         };
     };
 }
+

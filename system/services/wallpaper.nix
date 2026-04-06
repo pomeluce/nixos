@@ -30,8 +30,8 @@ in
 
         mkdir -p "$(dirname "$STATE_FILE")"
 
-        if ! pgrep -x swww-daemon >/dev/null; then
-          swww-daemon &
+        if ! pgrep -x awww-daemon >/dev/null; then
+          awww-daemon &
           sleep 1
         fi
 
@@ -63,7 +63,7 @@ in
           name="''${img##*/}"
 
           # 切换壁纸
-          swww img --transition-type grow --transition-fps ${toString mo.desktop.wallpaper.fps} "$img"
+          awww img --transition-type grow --transition-fps ${toString mo.desktop.wallpaper.fps} "$img"
 
           # 记录当前文件名
           echo "$name" > "$STATE_FILE"
@@ -73,7 +73,7 @@ in
           sleep "$INTERVAL"
         done
       '')
-      pkgs.swww
+      pkgs.awww
     ];
   };
 }

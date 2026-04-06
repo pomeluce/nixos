@@ -5,6 +5,7 @@ in
 {
   programs.claude-code = {
     enable = true;
+    package = pkgs.unsmall.claude-code;
     # settings = {
     #   env = {
     #     ANTHROPIC_BASE_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";

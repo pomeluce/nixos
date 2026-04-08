@@ -5,13 +5,7 @@ in
 {
   programs.claude-code = {
     enable = true;
-    package = pkgs.unsmall.claude-code;
-    # settings = {
-    #   env = {
-    #     ANTHROPIC_BASE_URL = "https://coding.dashscope.aliyuncs.com/apps/anthropic";
-    #     ANTHROPIC_MODEL = "glm-5";
-    #   };
-    # };
+    # package = pkgs.unsmall.claude-code;
   };
 
   home.packages = with pkgs; [ npkgs.scripts.ccs ];

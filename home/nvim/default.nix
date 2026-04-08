@@ -23,6 +23,7 @@ let
     copilot-language-server
     docker-language-server
     emmet-language-server
+    jdt-language-server
     kotlin-language-server
     lua-language-server
     marksman

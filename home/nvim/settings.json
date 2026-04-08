@@ -2,5 +2,13 @@
   "session": {
     "projects": ["$DEVROOT/wsp/*", "$DEVROOT/code/projects/*", "$DEVROOT/code/experiments/*", "$DEVROOT/code/archived/*", "$DEVROOT/infra/*"],
     "ignore_dir": ["~/downloads", "~/Downloads"]
+  },
+  "lsp": {
+    "jtdls": {
+      "runtimes": [
+        { "name": "JavaSE-21", "path": "/etc/jdk/zulu21" },
+        { "name": "JavaSE-25", "path": "/etc/jdk/zulu25" }
+      ]
+    }
   }
 }

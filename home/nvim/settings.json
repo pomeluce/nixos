@@ -4,11 +4,15 @@
     "ignore_dir": ["~/downloads", "~/Downloads"]
   },
   "lsp": {
-    "jtdls": {
+    "jdtls": {
       "runtimes": [
-        { "name": "JavaSE-21", "path": "/etc/jdk/zulu21" },
+        { "name": "JavaSE-1.8", "path": "/etc/jdk/zulu8" },
+        { "name": "JavaSE-21", "path": "/etc/jdk/zulu21", "default": true },
         { "name": "JavaSE-25", "path": "/etc/jdk/zulu25" }
-      ]
+      ],
+      "maven": {
+        "globalSettings": "~/.m2/settings.xml"
+      }
     }
   }
 }

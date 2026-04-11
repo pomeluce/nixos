@@ -16,6 +16,7 @@ in
 
   imports = [
     ./claude
+    ./cpa
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix
@@ -55,6 +56,7 @@ in
 
         # 使用 sops-nix 解密后的 secrets 路径
         ALIYUNCS_API_KEY = "$(cat ${config.sops.secrets.ALIYUNCS_API_KEY.path})";
+        CPA_API_KEY = "$(cat ${config.sops.secrets.CPA_API_KEY.path})";
         OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
         ZAI_API_KEY = "$(cat ${config.sops.secrets.ZAI_API_KEY.path})";
 

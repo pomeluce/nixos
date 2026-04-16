@@ -74,7 +74,6 @@ in
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
     extraPackages = nvimDeps;
     initLua = ''
       require('core.globals')

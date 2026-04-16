@@ -9,7 +9,7 @@
   {
     "name": "gpt.codex",
     "api_url": "http://127.0.0.1:8317",
-    "model": { "opus": "gpt-5.4", "sonnet": "gpt-5.3-codex", "haiku": "gpt-5.1-codex-mini" },
+    "model": { "opus": "gpt-5.4", "sonnet": "gpt-5.4", "haiku": "gpt-5.3-codex" },
     "api_key": "env:CPA_API_KEY"
   },
   {

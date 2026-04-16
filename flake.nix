@@ -29,7 +29,6 @@
 
     # --- external packages/overlay ---
     nur.url = "github:nix-community/NUR";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     akirds = {
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,4 +69,3 @@
         };
     };
 }
-

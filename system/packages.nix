@@ -6,7 +6,7 @@
     wget
     curl
     git
-    neovim-nightly
+    neovim
     home-manager
 
     which

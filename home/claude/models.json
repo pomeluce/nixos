@@ -2,7 +2,7 @@
   {
     "name": "z.glm5",
     "api_url": "https://open.bigmodel.cn/api/anthropic",
-    "model": { "opus": "glm-5.1", "sonnet": "glm-5-Turbo", "haiku": "glm-5" },
+    "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5-Turbo" },
     "api_key": "env:ZAI_API_KEY",
     "default": true
   },

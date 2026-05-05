@@ -90,8 +90,8 @@
           position x=0 y=0
         }
       '';
-      niri.opacity.active = "1.0";
-      niri.opacity.inactive = "1.0";
+      niri.opacity.active = "0.9";
+      niri.opacity.inactive = "0.95";
 
       swaylock.font-size = 42;
     };

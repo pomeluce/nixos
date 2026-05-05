@@ -6,6 +6,7 @@ let
     "vscode-extension-ms-vscode-cpptools"
 
     # NVIDIA
+    "nvidia-kernel-modules"
     "nvidia-x11"
     "nvidia-settings"
 

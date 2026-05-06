@@ -3,6 +3,7 @@
     "projects": ["$DEVROOT/wsp/*", "$DEVROOT/code/projects/*", "$DEVROOT/code/experiments/*", "$DEVROOT/code/archived/*", "$DEVROOT/infra/*"],
     "ignore_dir": ["~/downloads", "~/Downloads"]
   },
+  "theme": { "enable": false },
   "lsp": {
     "jdtls": {
       "runtimes": [

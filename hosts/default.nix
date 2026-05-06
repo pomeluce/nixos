@@ -36,7 +36,7 @@ let
           ../nix
           ./${host}
           ../system
-          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
           # inputs.home-manager.nixosModules.home-manager
         ];
@@ -57,7 +57,7 @@ let
           ./options.nix
           ./${host}
           ../home
-          inputs.stylix.homeModules.stylix
+          # inputs.stylix.homeModules.stylix
           inputs.sops-nix.homeManagerModules.sops
           inputs.noctalia.homeModules.default
         ];

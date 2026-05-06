@@ -22,6 +22,7 @@ in
     };
     akirds = inputs.akirds.packages.${final.stdenv.hostPlatform.system}.akirds;
     silent = inputs.silent-sddm.packages.${final.stdenv.hostPlatform.system}.default;
+    noctalia = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
     lib =
       prev.lib
       // (myLib {

@@ -44,7 +44,7 @@
 
       colorscheme = "gruvbox-material-dark-hard";
 
-      wallpaper.enable = true;
+      wallpaper.enable = false;
     };
 
     programs = {

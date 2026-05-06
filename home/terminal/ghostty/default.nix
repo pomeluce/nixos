@@ -9,6 +9,7 @@
     programs.ghostty = {
       enable = true;
       settings = {
+        theme = "noctalia";
         cursor-style = "block";
         cursor-style-blink = false;
         custom-shader = "${./cursor_smear.glsl}";
@@ -64,9 +65,9 @@
       };
     };
 
-    stylix.targets = {
-      ghostty.enable = true;
-      ghostty.fonts.enable = false;
-    };
+    # stylix.targets = {
+    #   ghostty.enable = true;
+    #   ghostty.fonts.enable = false;
+    # };
   };
 }

@@ -27,16 +27,17 @@ in
     ./zsh.nix
 
     # 桌面环境相关模块
-    ./akirds
-    ./dconf.nix
+    # ./akirds
+    # ./dconf.nix
     ./fcitx5
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
     ./jetbrains
     ./niri.nix
+    ./noctalia.nix
     ./stylix.nix
-    ./swaylock.nix
+    # ./swaylock.nix
     ./terminal
     ./theme.nix
     # ./vscode.nix

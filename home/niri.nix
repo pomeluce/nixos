@@ -30,7 +30,7 @@ in
         }
 
         // niri 默认接管电源按钮的功能是 sleep, 禁用
-      	disable-power-key-handling
+        disable-power-key-handling
       }
 
       // cmd: `niri msg outputs`
@@ -111,7 +111,8 @@ in
 
 
       // startup
-      spawn-sh-at-startup "akirds"
+      // spawn-sh-at-startup "akirds"
+      spawn-sh-at-startup "noctalia-shell"
       spawn-sh-at-startup "echo 'Xft.dpi: ${
         toString (builtins.floor (96 * mo.desktop.scaling.xwayland))
       }' | xrdb -merge"
@@ -133,6 +134,13 @@ in
         }
       }
 
+      blur {
+        passes 5
+        offset 3.0
+        noise 0.1
+        saturation 1.5
+      }
+
       // window rules
       window-rule {
         match is-active=true
@@ -145,6 +153,9 @@ in
       window-rule {
         geometry-corner-radius 15
         clip-to-geometry true
+        background-effect {
+          blur true
+        }
       }
       window-rule {
         match app-id=r#"firefox$"# title="^我的足迹$"
@@ -154,17 +165,28 @@ in
         match app-id="jetbrains-idea" title="Plugin Installation"
         open-floating true
       }
+      layer-rule {
+        match namespace="^noctalia-overview*"
+        place-within-backdrop true
+      }
+      layer-rule {
+        match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+        background-effect {
+          xray false
+        }
+      }
 
       binds {
         Mod+B hotkey-overlay-title="Run a Browser: firefox" { spawn "firefox"; }
         Mod+E hotkey-overlay-title="Open a File Manager: nautilus" { spawn-sh "pkill nautilus; nautilus"; }
-        Mod+R hotkey-overlay-title="Run an Application: akirds" { spawn-sh "akirds eval launcher app"; }
-        Mod+V hotkey-overlay-title="Open Clipboard History: akirds" { spawn-sh "akirds eval launcher clipboard"; }
-        Mod+D hotkey-overlay-title="Open Desktop Dock: akirds" { spawn-sh "akirds -t dock"; }
-        Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: akirds" { spawn-sh "akirds -t powermenu"; }
+        Mod+R hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+        Mod+V hotkey-overlay-title="Open Clipboard History: noctalia" { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
+        // Mod+D hotkey-overlay-title="Open Desktop Dock: akirds" { spawn-sh "akirds -t dock"; }
+        Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: noctalia" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
         Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-        Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: akirds" { spawn-sh "akirds -q; akirds"; }
-        Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -eF"; }
+        Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: noctalia" { spawn-sh "pkill quickshell; noctalia-shell"; }
+        Mod+Alt+S hotkey-overlay-title="Open Noctalia Shell Settings: noctalia" { spawn-sh "noctalia-shell ipc call settings open"; }
+        Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
 
         // 截屏和录屏
         Print { spawn "screenshot"; }

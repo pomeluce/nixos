@@ -59,6 +59,7 @@ let
           ../home
           inputs.stylix.homeModules.stylix
           inputs.sops-nix.homeManagerModules.sops
+          inputs.noctalia.homeModules.default
         ];
       };
     };

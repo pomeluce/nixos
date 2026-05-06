@@ -1,8 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf config.mo.desktop.enable {
     programs.firefox = {
       enable = config.mo.programs.firefox.enable;
+      languagePacks = [ "zh-CN" ];
       profiles.default = {
         name = "Default";
         settings = {
@@ -13,5 +19,6 @@
         };
       };
     };
+    home.packages = with pkgs; [ pywalfox-native ];
   };
 }

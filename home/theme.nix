@@ -9,20 +9,45 @@ let
 in
 {
   config = lib.mkIf mo.desktop.enable {
-    # home.pointerCursor = {
-    #   gtk.enable = true;
-    #   x11.enable = true;
-    #   name = "${mo.desktop.cursor.theme}";
-    #   size = mo.desktop.cursor.size;
-    #   package = pkgs.bibata-cursors;
-    # };
+    home.packages = with pkgs; [
+      adw-gtk3
+      adwaita-icon-theme
+      morewaita-icon-theme
+      bibata-cursors
+      kdePackages.qt6ct
+    ];
 
-    # qt = {
-    #   enable = true;
-    #   platformTheme.name = "qtct";
-    #   style.name = "kvantum";
-    # };
-    #
+    home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
+      name = "${mo.desktop.cursor.theme}";
+      size = mo.desktop.cursor.size;
+      package = pkgs.bibata-cursors;
+    };
+
+    qt = {
+      enable = true;
+      platformTheme.name = "qt6ct";
+      # style.name = "noctalia";
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        cursor-size = mo.desktop.cursor.size;
+        cursor-theme = "${mo.desktop.cursor.theme}";
+        font-name = "PingFang SC 11";
+        gtk-theme = "adw-gtk3";
+        icon-theme = "${mo.desktop.icon.theme}";
+        monospace-font-name = "Maple Mono Normal NL NF 10";
+        text-scaling-factor = mo.desktop.scaling.gtk;
+      };
+
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "close,maximize,minimize,appmenu:";
+      };
+    };
+
     # xdg.configFile = {
     #   "Kvantum/kvantum.kvconfig".text = ''
     #     [General]
@@ -30,34 +55,35 @@ in
     #   '';
     #   "Kvantum/WhiteSur".source = "${pkgs.whitesur-kde}/share/Kvantum/WhiteSur";
     # };
-    stylix = {
-      cursor = {
-        package = pkgs.bibata-cursors;
-        name = config.mo.desktop.cursor.theme;
-        size = config.mo.desktop.cursor.size;
-      };
-      fonts = {
-        serif.name = "Noto Serif CJK SC";
-        serif.package = pkgs.noto-fonts-cjk-serif;
-        sansSerif.name = "PingFang SC";
-        sansSerif.package = pkgs.npkgs.apple-font.ttf-pingfang;
-        monospace.name = "Maple Mono Normal NL NF";
-        monospace.package = pkgs.maple-mono.NormalNL-NF-unhinted;
-        emoji.name = "Noto Color Emoji";
-        emoji.package = pkgs.noto-fonts-color-emoji;
-      };
-      icons = {
-        enable = true;
-        package = pkgs.morewaita-icon-theme;
-        dark = config.mo.desktop.icon.theme;
-        light = config.mo.desktop.icon.theme;
-      };
-      targets = {
-        gnome.enable = true;
-        gtk.enable = true;
-        nixos-icons.enable = true;
-        qt.enable = true;
-      };
-    };
+
+    # stylix = {
+    #   cursor = {
+    #     package = pkgs.bibata-cursors;
+    #     name = config.mo.desktop.cursor.theme;
+    #     size = config.mo.desktop.cursor.size;
+    #   };
+    #   fonts = {
+    #     serif.name = "Noto Serif CJK SC";
+    #     serif.package = pkgs.noto-fonts-cjk-serif;
+    #     sansSerif.name = "PingFang SC";
+    #     sansSerif.package = pkgs.npkgs.apple-font.ttf-pingfang;
+    #     monospace.name = "Maple Mono Normal NL NF";
+    #     monospace.package = pkgs.maple-mono.NormalNL-NF-unhinted;
+    #     emoji.name = "Noto Color Emoji";
+    #     emoji.package = pkgs.noto-fonts-color-emoji;
+    #   };
+    #   icons = {
+    #     enable = true;
+    #     package = pkgs.morewaita-icon-theme;
+    #     dark = config.mo.desktop.icon.theme;
+    #     light = config.mo.desktop.icon.theme;
+    #   };
+    #   targets = {
+    #     gnome.enable = true;
+    #     gtk.enable = true;
+    #     nixos-icons.enable = true;
+    #     qt.enable = true;
+    #   };
+    # };
   };
 }

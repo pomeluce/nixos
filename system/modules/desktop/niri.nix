@@ -37,9 +37,9 @@ in
   config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.niri) {
     environment.systemPackages = with pkgs; [
       # morewaita-icon-theme
-      adwaita-icon-theme
+      # adwaita-icon-theme
       # whitesur-gtk-theme
-      bibata-cursors
+      # bibata-cursors
       loupe
       nautilus-wrapper
       # celluloid
@@ -52,7 +52,7 @@ in
       xwayland-satellite
       xrdb
       fprintd
-      akirds
+      # akirds
       npkgs.scripts.screenshot
     ];
     environment.pathsToLink = [

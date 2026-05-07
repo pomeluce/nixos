@@ -651,13 +651,5 @@
         };
       };
     };
-
-    # stylix.targets.vscode = {
-    #   enable = true;
-    #   fonts.override = {
-    #     fontFamily = "Maple Mono Normal NL NF, CaskaydiaMono Nerd Font Mono, 'PingFang SC', monospace";
-    #     fontSize = 18;
-    #   };
-    # };
   };
 }

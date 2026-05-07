@@ -64,10 +64,5 @@
         ];
       };
     };
-
-    # stylix.targets = {
-    #   ghostty.enable = true;
-    #   ghostty.fonts.enable = false;
-    # };
   };
 }

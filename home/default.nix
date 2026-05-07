@@ -36,7 +36,6 @@ in
     ./jetbrains
     ./niri.nix
     ./noctalia.nix
-    # ./stylix.nix
     # ./swaylock.nix
     ./terminal
     ./theme.nix

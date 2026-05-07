@@ -82,16 +82,8 @@ in
       require('core.mappings')
       require('core.commands')
       require('core.setup')
-      require('matugen').setup()
     '';
   };
-
-  # stylix.targets.neovim = {
-  #   enable = true;
-  #   transparentBackground.main = true;
-  #   transparentBackground.numberLine = true;
-  #   transparentBackground.signColumn = true;
-  # };
 
   home.sessionVariables = {
     EDITOR = "nvim";

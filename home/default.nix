@@ -28,7 +28,6 @@ in
 
     # 桌面环境相关模块
     # ./akirds
-    # ./dconf.nix
     ./fcitx5
     ./firefox.nix
     ./fonts.nix

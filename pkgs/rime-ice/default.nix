@@ -6,7 +6,7 @@
 }:
 
 let
-  version = "23f0c39a0b443524e37dbff4f085236b32691291";
+  version = "5f130b4fbc9a228dea9c9ad25597d4bab284ee1d";
   rime-ice = {
     pname = "rime-ice";
     inherit version;
@@ -14,9 +14,8 @@ let
       url = "https://github.com/iDvel/rime-ice.git";
       rev = "${version}";
       fetchSubmodules = true;
-      sha256 = "sha256-Y6/tU63+JQ9HX1m/kI9VQz6tIhFVRAPSsp6Vf47gzUk=";
+      sha256 = "sha256-eKHGJ8oioBncKntA8kuDuH6qXFfMHFwXJuUBlkCLn4w=";
     };
-    date = "2026-02-10";
   };
 in
 stdenv.mkDerivation {
@@ -38,6 +37,5 @@ stdenv.mkDerivation {
     homepage = "https://github.com/iDvel/rime-ice";
     description = "A long-term maintained simplified Chinese RIME schema";
     license = licenses.gpl3;
-    maintainers = with maintainers; [ pomeluce ];
   };
 }

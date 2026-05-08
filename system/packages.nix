@@ -8,6 +8,7 @@
     git
     neovim
     home-manager
+    nix-update
 
     which
     file
@@ -55,6 +56,7 @@
     lua
     maven
     gradle
+    npkgs.perry
   ];
 
   programs.java = {

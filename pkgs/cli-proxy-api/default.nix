@@ -7,8 +7,8 @@
 }:
 
 let
-  version = "6.9.23";
-  hash = "sha256-4w+MhAN0BrL8o7ecnNMZ7pbGsY0CTewECvUtfpaDfSQ=";
+  version = "6.10.9";
+  hash = "sha256-V0cxqWTmV2mMrnNkkAXja5bzU11tG5GX1r8n7+9ES1A=";
   vendorHash = "sha256-qvQO7c/780UWxvM/Lp/KHqcd/pFqzyJx6ILaOeZId7A=";
 in
 buildGoModule.override { go = go_1_26; } {
@@ -66,7 +66,6 @@ buildGoModule.override { go = go_1_26; } {
     changelog = "https://github.com/router-for-me/CLIProxyAPI/releases";
     license = licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ fromSource ];
-    maintainers = with flake.lib.maintainers; [ pomeluce ];
     mainProgram = "cli-proxy-api";
     platforms = platforms.all;
   };

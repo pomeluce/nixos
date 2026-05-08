@@ -44,7 +44,6 @@ stdenv.mkDerivation {
     description = "Elegant grub2 themes for all linux systems";
     homepage = "https://github.com/vinceliuice/Elegant-grub2-themes";
     license = licenses.mit;
-    maintainers = with maintainers; [ pomeluce ];
     platforms = platforms.linux;
   };
 }

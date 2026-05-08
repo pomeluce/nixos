@@ -58,6 +58,7 @@
       perSystem =
         { pkgs, ... }:
         {
+          packages = import ./pkgs { inherit pkgs; };
           checks = {
             deadnix = pkgs.runCommand "deadnix-check" { } ''
               ${pkgs.deadnix}/bin/deadnix --fail ${./.}

@@ -1,6 +1,7 @@
 {
   lib,
   gcc,
+  clang,
   binutils,
   makeWrapper,
   rustPlatform,
@@ -28,10 +29,12 @@ rustPlatform.buildRustPackage {
 
   nativeBuildInputs = [ makeWrapper ];
 
-  # workspace 里有很多 crate, 明确只构建 CLI 包
+  # 同时构建 CLI 和 runtime staticlib
   cargoBuildFlags = [
     "-p"
     "perry"
+    "-p"
+    "perry-runtime"
   ];
 
   cargoTestFlags = [
@@ -41,12 +44,24 @@ rustPlatform.buildRustPackage {
 
   # Perry 在运行 perry compile 时还需要 C 工具链/链接器
   postInstall = ''
-    wrapProgram $out/bin/perry --prefix PATH:${
+    mkdir -p $out/lib
+    runtime_lib="$(find target -name libperry_runtime.a -type f | head -n 1)"
+    if [ -z "$runtime_lib" ]; then
+      echo "libperry_runtime.a not found"
+      find target -maxdepth 4 -type f | sort
+      exit 1
+    fi
+    install -Dm444 "$runtime_lib" "$out/lib/libperry_runtime.a"
+
+    wrapProgram $out/bin/perry --prefix PATH : ${
       lib.makeBinPath [
         gcc
+        clang
         binutils
       ]
-    }
+    } \
+    --set-default PERRY_LLVM_CLANG ${clang}/bin/clang \
+    --set-default PERRY_RUNTIME_DIR $out/lib
   '';
 
   doCheck = false;

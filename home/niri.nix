@@ -367,6 +367,8 @@ in
           off
         }
       }
+
+      include "./noctalia.kdl"
     '';
 
     home.activation.niri = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

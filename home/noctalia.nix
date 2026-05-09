@@ -565,7 +565,7 @@ in
               id = "pywalfox";
             }
           ];
-          enableUserTheming = true;
+          enableUserTheming = false;
         };
         ui = {
           boxBorderEnabled = false;
@@ -630,11 +630,5 @@ in
         };
       };
     };
-    home.file.".config/noctalia/user-templates.toml".text = ''
-      [templates.nvim-base16]
-      input_path = "~/.config/nvim/lua/matugen-template.lua"
-      output_path = "~/.config/nvim/lua/matugen.lua"
-      post_hook = 'pkill -SIGUSR1 nvim'
-    '';
   };
 }

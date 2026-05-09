@@ -53,7 +53,7 @@ in
           settings = {
             # required for styling the virtual keyboard
             General = {
-              GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${pkgs.lib.utils.floatToString mo.desktop.scaling.sddm}, QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
+              GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=${pkgs.lib.utils.floatToString mo.desktop.scaling.sddm},QML2_IMPORT_PATH=${silent}/share/sddm/themes/${silent.pname}/components/,QT_IM_MODULE=qtvirtualkeyboard";
               InputMethod = "qtvirtualkeyboard";
             };
           };

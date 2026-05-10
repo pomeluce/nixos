@@ -4,7 +4,6 @@ pkgs: {
       "--prefix PATH : ${
         lib.makeBinPath [
           libnotify
-          slurp
           wayshot
           swappy
           wl-clipboard

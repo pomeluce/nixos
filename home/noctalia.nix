@@ -137,7 +137,7 @@ in
                 hideUnoccupied = false;
                 iconScale = 0.8;
                 id = "Workspace";
-                labelMode = "index";
+                labelMode = "none";
                 occupiedColor = "secondary";
                 pillSize = 0.6;
                 showApplications = false;

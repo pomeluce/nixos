@@ -4,7 +4,6 @@
   cli-proxy-api = pkgs.callPackage ./cli-proxy-api { };
   elegant-theme = pkgs.callPackage ./elegant-theme { };
   perry = pkgs.callPackage ./perry { };
-  perry-bin = pkgs.callPackage ./perry-bin { };
   rime-ice = pkgs.callPackage ./rime-ice { };
   scripts = import ./scripts pkgs;
   wpsoffice = pkgs.libsForQt5.callPackage ./wpsoffice { };

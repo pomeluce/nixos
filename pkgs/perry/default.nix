@@ -1,112 +1,95 @@
 {
+  xz,
   lib,
-  clang,
   stdenv,
-  binutils,
-  pkg-config,
+  fetchurl,
+  autoPatchelfHook,
   makeWrapper,
-  rustPlatform,
-  fetchFromGitHub,
-
-  gtk4,
-  libshumate,
-  gst_all_1,
+  clang,
+  binutils,
   ...
 }:
 
 let
-  version = "0.5.585";
-  rustTarget =
-    if stdenv.hostPlatform.system == "x86_64-linux" then
-      "x86_64-unknown-linux-gnu"
-    else if stdenv.hostPlatform.system == "aarch64-linux" then
-      "aarch64-unknown-linux-gnu"
-    else
-      throw "perry: unsupported platform ${stdenv.hostPlatform.system}";
-
-  gtkBuildInputs = [
-    gtk4
-    libshumate
-    gst_all_1.gstreamer
-    gst_all_1.gst-plugins-base
-  ];
-in
-rustPlatform.buildRustPackage {
-  pname = "perry";
-  inherit version;
-
-  src = fetchFromGitHub {
-    owner = "PerryTS";
-    repo = "perry";
-    rev = "v${version}";
-    # hash = lib.fakeHash;
-    hash = "sha256-zZEL9EiOmbSr7ObBJxxHh9SGd4cyC8hZraXqmZUgUUU=";
+  version = "0.5.511";
+  sources = {
+    x86_64-linux = {
+      artifact = "perry-linux-x86_64.tar.gz";
+      hash = "sha256-Falw2ShQMngLn0OjunPEs7SO5CbXzH+F7YxzuekwcmU=";
+    };
+    aarch64-linux = {
+      artifact = "perry-linux-aarch64.tar.gz";
+      hash = "sha256-ppg2DD943F8NvpZ+6G4EFDYoXUwTxSYR+y5ydcY3fPA=";
+    };
   };
 
-  # cargoHash = lib.fakeHash;
-  cargoHash = "sha256-gqXTrgIzI38Axt4sunAE6R4bcl2OW1rRe7ljGUOaNg0=";
+  source =
+    sources.${stdenv.hostPlatform.system}
+      or (throw "perry-bin: unsupported platform ${stdenv.hostPlatform.system}");
+in
+stdenv.mkDerivation {
+  pname = "perry-bin";
+  inherit version;
+
+  src = fetchurl {
+    url = "https://github.com/PerryTS/perry/releases/download/v${version}/${source.artifact}";
+    hash = source.hash;
+  };
 
   nativeBuildInputs = [
+    autoPatchelfHook
     makeWrapper
-    pkg-config
   ];
 
-  buildInputs = gtkBuildInputs;
-
-  # 同时构建 CLI 和 runtime staticlib
-  cargoBuildFlags = [
-    "--target"
-    rustTarget
-    "-p"
-    "perry"
-    "-p"
-    "perry-runtime"
-    "-p"
-    "perry-stdlib"
-    "-p"
-    "perry-ui-gtk4"
+  buildInputs = [
+    stdenv.cc.cc.lib
+    xz
   ];
 
-  # Perry 在运行 perry compile 时还需要 C 工具链/链接器
-  postInstall = ''
-    release_dir="target/${rustTarget}/release"
-    mkdir -p "$out/lib/perry"
+  dontConfigure = true;
+  dontBuild = true;
 
-    install_static_lib() {
-      local name="$1"
-      local path="$release_dir/$name"
+  unpackPhase = ''
+    runHook preUnpack
 
-      if [ ! -f "$path" ]; then
-        echo "$name not found at $path"
-        echo "Available files:"
-        find target -maxdepth 6 -type f | sort
-        exit 1
-      fi
+    mkdir source
+    tar -xzf "$src" -C source
+    cd source
 
-      install -Dm444 "$path" "$out/lib/perry/$name"
-    }
-
-    install_static_lib libperry_runtime.a
-    install_static_lib libperry_stdlib.a
-    install_static_lib libperry_ui_gtk4.a
-
-    wrapProgram $out/bin/perry --prefix PATH : ${
-      lib.makeBinPath [
-        clang
-        binutils
-      ]
-    } \
-    --set-default PERRY_LLVM_CLANG ${clang}/bin/clang \
-    --set-default PERRY_RUNTIME_DIR $out/lib
+    runHook postUnpack
   '';
 
-  doCheck = false;
+  installPhase = ''
+    runHook preInstall
+
+    install -Dm755 perry "$out/bin/perry"
+
+    mkdir -p "$out/lib/perry"
+
+    for libfile in libperry_*.a; do
+      if [ -f "$libfile" ]; then
+        install -Dm444 "$libfile" "$out/lib/perry/$libfile"
+      fi
+    done
+
+    wrapProgram "$out/bin/perry" \
+      --prefix PATH : ${
+        lib.makeBinPath [
+          clang
+          binutils
+        ]
+      } \
+      --set-default PERRY_LLVM_CLANG "${clang}/bin/clang" \
+      --set-default PERRY_RUNTIME_DIR "$out/lib/perry"
+
+    runHook postInstall
+  '';
 
   meta = with lib; {
-    description = "Native TypeScript compiler written in Rust";
+    description = "Native TypeScript compiler written in Rust, repackaged from the official Perry release tarball";
     homepage = "https://github.com/PerryTS/perry";
     license = licenses.mit;
-    sourceProvenance = with sourceTypes; [ fromSource ];
+    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     mainProgram = "perry";
     platforms = [
       "x86_64-linux"

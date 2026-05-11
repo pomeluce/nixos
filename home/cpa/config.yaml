@@ -20,7 +20,7 @@ remote-management:
   # 管理密钥. 若填写明文, 启动时会自动哈希后生效.
   # 所有管理请求(包括本地)都需要该密钥.
   # 留空则完全禁用管理 API(所有 /v0/management 路由返回 404).
-  secret-key: '$2a$10$ldJmylllZOrcPOvBXrgUyO7saLLyfGz0VrXHo7SQcvKStFicX6LqW'
+  secret-key: '$2a$10$/DyfGpAnZ0cgglxBrYs0COupQNxSA3YSAl9civSIsAfy3ZISvWA2y'
 
   # 为 true 时禁用内置管理面板资源下载与路由.
   disable-control-panel: false

@@ -21,12 +21,14 @@ export def model_completions [] {
 }
 # --- 内部逻辑 ---
 def normalize [entry: record] {
-    if ($entry | is-empty) { return {
-        name: "unnamed"
-        model: ""
-        api_url: ""
-        api_key: ""
-    } }
+    if ($entry | is-empty) {
+        return {
+            name: "unnamed"
+            model: ""
+            api_url: ""
+            api_key: ""
+        }
+    }
     {
         name: (try {
             $entry | get name
@@ -45,9 +47,11 @@ def normalize [entry: record] {
 def save_settings [new_env: record, source_name: string] {
     let s_dir = get_settings_dir
     let s_file = get_settings_file
-    let existing = if ($s_file | path exists) { open $s_file } else { {
-        env: {}
-    } }
+    let existing = if ($s_file | path exists) { open $s_file } else {
+        {
+            env: {}
+        }
+    }
     let updated = $existing | merge {
         env: (try {
             $existing.env | default {} | merge $new_env
@@ -69,19 +73,22 @@ def parse_api_key [api_key: string] {
             $env | get $env_name
         } catch {
             # fallback 到默认环境变量
-            try { $env | get CLAUDE_API_KEY } catch { "" }
+            try {
+                $env | get CLAUDE_API_KEY
+            } catch { "" }
         }
     } else if ($api_key | is-not-empty) {
         $api_key
     } else {
         # 空值 fallback 到默认环境变量
-        try { $env | get CLAUDE_API_KEY } catch { "" }
+        try {
+            $env | get CLAUDE_API_KEY
+        } catch { "" }
     }
 }
-
 # 解析 model, 支持对象格式 { opus, sonnet, haiku } 或字符串
 # 返回 { opus: "", sonnet: "", haiku: "" } 或错误
-def parse_model [model: any, config_name: string] {
+def parse_model [model, config_name: string] {
     if ($model | describe | str starts-with "record") {
         # 对象格式
         let required = ["opus", "sonnet", "haiku"]
@@ -102,12 +109,11 @@ def parse_model [model: any, config_name: string] {
             haiku: ($model | get haiku | into string)
         }
     } else {
-        # 字符串格式，三个变量使用相同值
-        let model_str = $model | default "" | into string
-        { opus: $model_str, sonnet: $model_str, haiku: $model_str }
+        error make {
+            msg: $"模型配置错误: \"($config_name)\" 的 model 字段必须是对象格式 { opus, sonnet, haiku }"
+        }
     }
 }
-
 # 安全获取字符串值, 如果 entry 中没有则 fallback 到环境变量
 def get_or_fallback [entry: record, field: string, env_var: string] {
     let val = try {
@@ -138,6 +144,15 @@ export def --env "use-model" [model_name?: string] {
     # 如果 models.json 不存在或为空, fallback 到环境变量
     if ($models_data | is-empty) {
         let final_env = {
+            ANTHROPIC_BASE_URL: (try {
+                $env | get CLAUDE_API_URL
+            } catch { "" })
+            ANTHROPIC_AUTH_TOKEN: (try {
+                $env | get CLAUDE_API_KEY
+            } catch { "" })
+            ANTHROPIC_MODEL: (try {
+                $env | get CLAUDE_MODEL_NAME
+            } catch { "" })
             ANTHROPIC_DEFAULT_OPUS_MODEL: (try {
                 $env | get CLAUDE_MODEL_NAME
             } catch { "" })
@@ -147,11 +162,8 @@ export def --env "use-model" [model_name?: string] {
             ANTHROPIC_DEFAULT_HAIKU_MODEL: (try {
                 $env | get CLAUDE_MODEL_NAME
             } catch { "" })
-            ANTHROPIC_BASE_URL: (try {
-                $env | get CLAUDE_API_URL
-            } catch { "" })
-            ANTHROPIC_AUTH_TOKEN: (try {
-                $env | get CLAUDE_API_KEY
+            CLAUDE_CODE_SUBAGENT_MODEL: (try {
+                $env | get CLAUDE_MODEL_NAME
             } catch { "" })
         }
         save_settings $final_env "default env"
@@ -183,7 +195,7 @@ export def --env "use-model" [model_name?: string] {
     # 解析 model 字段
     let model_config = try {
         parse_model $norm.model $norm.name
-    } catch { |e|
+    } catch {|e|
         print $"(ansi red)($e.msg)(ansi reset)"
         return
     }
@@ -191,11 +203,13 @@ export def --env "use-model" [model_name?: string] {
     let api_key_val = parse_api_key $norm.api_key
     # 构建最终环境变量
     let final_env = {
+        ANTHROPIC_BASE_URL: (get_or_fallback $norm "api_url" "CLAUDE_API_URL")
+        ANTHROPIC_AUTH_TOKEN: $api_key_val
+        ANTHROPIC_MODEL: $model_config.opus
         ANTHROPIC_DEFAULT_OPUS_MODEL: $model_config.opus
         ANTHROPIC_DEFAULT_SONNET_MODEL: $model_config.sonnet
         ANTHROPIC_DEFAULT_HAIKU_MODEL: $model_config.haiku
-        ANTHROPIC_BASE_URL: (get_or_fallback $norm "api_url" "CLAUDE_API_URL")
-        ANTHROPIC_AUTH_TOKEN: $api_key_val
+        CLAUDE_CODE_SUBAGENT_MODEL: $model_config.haiku
     }
     if ($final_env.ANTHROPIC_DEFAULT_OPUS_MODEL == "" and $final_env.ANTHROPIC_BASE_URL == "") { error make {msg: "无法确定模型配置, 请检查 models.json"} }
     save_settings $final_env $norm.name
@@ -206,8 +220,8 @@ export def --env "use-model" [model_name?: string] {
 def main [...args] {
     if ($args | is-empty) { use-model "" } else if ($args.0 == "init") {
         let rest = $args | skip 1
-        if ($rest | any {|x| $x == "--force"}) { init (
-            $rest | where {|x| $x != "--force"} | first | default ""
-        ) --force } else { init ($rest | first | default "") }
+        if ($rest | any {|x| $x == "--force"}) {
+            init ($rest | where {|x| $x != "--force"} | first | default "") --force
+        } else { init ($rest | first | default "") }
     } else { use-model ($args | first) }
 }

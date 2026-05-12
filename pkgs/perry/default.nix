@@ -28,7 +28,7 @@ let
       or (throw "perry-bin: unsupported platform ${stdenv.hostPlatform.system}");
 in
 stdenv.mkDerivation {
-  pname = "perry-bin";
+  pname = "perry";
   inherit version;
 
   src = fetchurl {

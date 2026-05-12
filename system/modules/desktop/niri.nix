@@ -42,7 +42,7 @@ in
       # bibata-cursors
       loupe
       nautilus-wrapper
-      # celluloid
+      celluloid
       gnome-control-center
       gnome-calendar
       gnome-system-monitor

@@ -6,17 +6,27 @@
 }:
 let
   model_path = "${config.mo.devroot}/wsp/nixos/home/claude/models.json";
+  cclc_path = "${config.mo.devroot}/wsp/nixos/home/claude/cclc.toml";
   ccds = pkgs.writeText "ccds.json" (
     builtins.toJSON {
+      attribution = {
+        "commit" = "";
+        "pr" = "";
+      };
+      enabledPlugins = {
+        "superpowers@claude-plugins-official" = true;
+      };
       env = {
         CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = 1;
         CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK = 1;
         CLAUDE_CODE_EFFORT_LEVEL = "max";
       };
-      enabledPlugins = {
-        "superpowers@claude-plugins-official" = true;
-      };
       language = "Chinese";
+      statusLine = {
+        type = "command";
+        command = "ccline";
+        padding = 0;
+      };
     }
   );
 in
@@ -24,8 +34,12 @@ in
   programs.claude-code = {
     enable = true;
   };
-  home.packages = with pkgs; [ npkgs.scripts.ccs ];
+  home.packages = with pkgs; [
+    npkgs.scripts.ccs
+    npkgs.ccline
+  ];
   home.file.".claude/models.json".source = config.lib.file.mkOutOfStoreSymlink model_path;
+  home.file.".claude/ccline/config.toml".source = config.lib.file.mkOutOfStoreSymlink cclc_path;
   home.file.".claude/settings.nix-default.json".source = ccds;
 
   # 已有 settings.json 里的值优先, 避免覆盖插件写入的内容

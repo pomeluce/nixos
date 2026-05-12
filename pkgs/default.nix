@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   apple-font = pkgs.callPackage ./apple-font { };
+  ccline = pkgs.callPackage ./ccline { };
   cli-proxy-api = pkgs.callPackage ./cli-proxy-api { };
   elegant-theme = pkgs.callPackage ./elegant-theme { };
   perry = pkgs.callPackage ./perry { };

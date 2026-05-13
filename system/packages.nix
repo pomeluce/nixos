@@ -56,7 +56,6 @@
     lua
     maven
     gradle
-    npkgs.perry
   ];
 
   programs.java = {

@@ -1,0 +1,25 @@
+[session]
+projects = [
+  "$DEVROOT/wsp/*",
+  "$DEVROOT/code/projects/*",
+  "$DEVROOT/code/experiments/*",
+  "$DEVROOT/code/archived/*",
+  "$DEVROOT/infra/*",
+]
+ignore_dir = [ "~/downloads", "~/Downloads" ]
+
+[lsp.jdtls.maven]
+globalSettings = "~/.m2/settings.xml"
+
+[[lsp.jdtls.runtimes]]
+name = "JavaSE-1.8"
+path = "/etc/jdk/zulu8"
+
+[[lsp.jdtls.runtimes]]
+name = "JavaSE-21"
+path = "/etc/jdk/zulu21"
+default = true
+
+[[lsp.jdtls.runtimes]]
+name = "JavaSE-25"
+path = "/etc/jdk/zulu25"

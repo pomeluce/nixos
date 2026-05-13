@@ -15,11 +15,11 @@
 
     sops.templates."mihomo.yaml".content = ''
       proxy-providers:
-        fc:
+        tag:
           type: http
           interval: 36000
           url: "${config.sops.placeholder.MIHOMO_PROVIDER}"
-          path: ./proxy_provider/fc.yaml
+          path: ./proxy_provider/tag.yaml
           health-check:
             enable: true
             url: https://cp.cloudflare.com
@@ -152,7 +152,7 @@
         - name: Proxies
           type: select
           use:
-          - fc
+          - tag
           tolerance: 2
         - name: Manual
           type: select
@@ -218,14 +218,14 @@
           - SA
           - netherlands
           use:
-          - fc
+          - tag
           filter: "S1|S2"
         - name: Steam
           type: url-test
           proxies:
           - Proxies
           use:
-          - fc
+          - tag
           filter: "D1"
         - name: Netflix
           type: url-test
@@ -235,7 +235,7 @@
           - japan
           - USA
           use:
-          - fc
+          - tag
         - name: Video
           type: url-test
           proxies:
@@ -246,7 +246,7 @@
           - japan
           - USA
           use:
-          - fc
+          - tag
           filter: "US|TW|SG|JA|HK|D1"
         - name: Universal
           type: select
@@ -287,89 +287,89 @@
         - name: asia
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)亚|asia"
 
         # region
         - name: hongkong
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)港|hk|hongkong|hong kong"
         - name: taiwan
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)台|tw|taiwan"
         - name: japan
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)japan|jp|japan"
         - name: USA
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)美|unitedstates|united states"
         - name: UK
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)英|uk|unitedkingdom|united kingdom"
         - name: korea
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)韩|korea"
         - name: canada
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)加|canada"
         - name: germany
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)德|ge|germany"
         - name: russia
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)俄|russia"
         - name: ireland
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)爱|ireland"
         - name: SA
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)非|sa|south africa"
         - name: netherlands
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)荷|cl|netherlands"
         - name: france
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)法|france"
         - name: singapore
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)(新|sg|singapore)"
         - name: Region
           type: url-test
           use:
-          - fc
+          - tag
           filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|英|uk|unitedkingdom)).*"
         - name: all
           type: url-test
           use:
-          - fc
+          - tag
 
 
       rules:

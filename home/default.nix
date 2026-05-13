@@ -106,8 +106,9 @@ in
     music = "${config.home.homeDirectory}/music";
     publicShare = "${config.home.homeDirectory}/public";
     pictures = "${config.home.homeDirectory}/pictures";
-    templates = "${config.home.homeDirectory}/templates";
+    templates = "${config.home.homeDirectory}/template";
     videos = "${config.home.homeDirectory}/videos";
+    projects = null;
   };
 
   # Let Home Manager install and manage itself.

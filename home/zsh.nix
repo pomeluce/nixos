@@ -10,7 +10,7 @@ let
     fd
     fzf
     eza
-    lsd
+    # lsd
     git
     lua
     jq
@@ -23,6 +23,13 @@ in
     initContent = ''
       source $HOME/.config/akir-zimfw/init.zsh
     '';
+  };
+
+  programs.lsd = {
+    enable = true;
+    settings = {
+      date = "+%Y-%m-%d %H:%M:%S";
+    };
   };
 
   home.file."akir-zimfw" = {

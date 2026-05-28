@@ -24,6 +24,7 @@ in
     ./node.nix
     ./nvim
     ./sops.nix
+    ./uv.nix
     ./zsh.nix
 
     # 桌面环境相关模块

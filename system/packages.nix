@@ -48,7 +48,7 @@
     rustc
     cargo
     python3
-    nodejs_25
+    nodejs_26
     pnpm
     yarn
     typescript
@@ -60,10 +60,10 @@
 
   programs.java = {
     enable = true;
-    package = pkgs.zulu;
+    package = pkgs.zulu21;
   };
 
   environment.etc."jdk/zulu25".source = "${pkgs.zulu25}";
-  environment.etc."jdk/zulu21".source = "${pkgs.zulu}";
+  environment.etc."jdk/zulu21".source = "${pkgs.zulu21}";
   environment.etc."jdk/zulu8".source = "${pkgs.zulu8}";
 }

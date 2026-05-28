@@ -16,7 +16,7 @@ in
 
   imports = [
     ./claude
-    ./cpa
+    # ./cpa
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix

@@ -57,6 +57,7 @@ let
     shfmt
     sqlfluff
     stylua
+    ty
   ];
 
   nvimPath = "${config.mo.devroot}/wsp/nvim";

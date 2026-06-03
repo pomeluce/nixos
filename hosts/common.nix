@@ -4,7 +4,7 @@
     username = "Tso";
     uid = 1000;
     gid = 1000;
-    devroot = "/home/${username}/workspace";
+    devspace = "/home/${username}/devspace";
 
     system = {
       # virtualisation defaults
@@ -38,7 +38,7 @@
       git.email = lib.mkDefault "62343478+pomeluce@users.noreply.github.com";
       git.branch = lib.mkDefault "main";
 
-      docker.data-root = lib.mkDefault "${devroot}/var/docker/";
+      docker.data-root = lib.mkDefault "${devspace}/var/docker/";
       docker.exec-opts = lib.mkDefault [ "native.cgroupdriver=systemd" ];
       docker.insecure-registries = lib.mkDefault [ ];
       docker.registry-mirrors = lib.mkDefault [ ];
@@ -55,4 +55,3 @@
     userPackages = lib.mkDefault [ ];
   };
 }
-

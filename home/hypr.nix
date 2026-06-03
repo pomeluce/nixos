@@ -266,7 +266,7 @@ in
     };
 
     home.activation.hyprConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ln -snf $DEVROOT/wsp/wallpapers ~/.config/wallpapers
+      ln -snf $DEVSPACE/repos/wallpapers ~/.config/wallpapers
     '';
   };
 }

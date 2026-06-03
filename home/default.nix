@@ -87,14 +87,14 @@ in
 
   xdg.configFile."gtk-3.0/bookmarks".text =
     let
-      dev = mo.devroot;
+      dev = mo.devspace;
     in
     ''
       file:/// root
-      file://${dev}/wsp wsp
+      file://${dev}/repos repos
       file://${dev}/code code
-      file://${dev}/env env 
-      file://${dev}/wsp/wallpapers swp
+      file://${dev}/var var
+      file://${dev}/repos/wallpapers swp
     '';
 
   xdg.userDirs = {

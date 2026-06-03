@@ -60,7 +60,7 @@ let
     ty
   ];
 
-  nvimPath = "${config.mo.devroot}/wsp/nvim";
+  nvimPath = "${config.mo.devspace}/repos/nvim";
 in
 {
 
@@ -69,7 +69,7 @@ in
   xdg.configFile."nvim/snippets".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/snippets";
   xdg.configFile."nvim/tmpls".source = config.lib.file.mkOutOfStoreSymlink "${nvimPath}/tmpls";
   xdg.configFile."nvim/settings.toml".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.mo.devroot}/wsp/nixos/home/nvim/settings.toml";
+    config.lib.file.mkOutOfStoreSymlink "${config.mo.devspace}/repos/nixos/home/nvim/settings.toml";
   xdg.configFile."nvim/nvim-pack-lock.json".source =
     config.lib.file.mkOutOfStoreSymlink "${nvimPath}/nvim-pack-lock.json";
 

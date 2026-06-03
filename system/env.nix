@@ -7,17 +7,17 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
 
-    DEVROOT = mo.devroot;
+    DEVSPACE = mo.devspace;
 
-    GRADLE_USER_HOME = "${mo.devroot}/var/gradle";
+    GRADLE_USER_HOME = "${mo.devspace}/var/gradle";
 
-    PNPM_HOME = "${mo.devroot}/var/node/pnpm/bin";
+    PNPM_HOME = "${mo.devspace}/var/node/pnpm/bin";
 
-    CARGO_HOME = "${mo.devroot}/var/rust/cargo";
+    CARGO_HOME = "${mo.devspace}/var/rust/cargo";
 
     PYTHON = "${pkgs.python3}/python3";
 
-    GOPATH = "${mo.devroot}/var/golib";
+    GOPATH = "${mo.devspace}/var/golib";
     GOBIN = "/home/${mo.username}/.cache/go-bin";
 
     SOPS_AGE_KEY_FILE = "/etc/ssh/age/keys.txt";

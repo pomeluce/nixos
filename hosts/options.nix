@@ -23,9 +23,9 @@ in
       type = types.int;
       default = 1000;
     };
-    devroot = mkOption {
+    devspace = mkOption {
       type = types.str;
-      default = "/home/${mo.username}/devroot";
+      default = "/home/${mo.username}/devspace";
     };
 
     # --- system service switch ---

@@ -6,7 +6,7 @@
 }:
 let
   mo = config.mo;
-  ivc_path = "${mo.devroot}/wsp/nixos/home/jetbrains/ideavimrc";
+  ivc_path = "${mo.devspace}/repos/nixos/home/jetbrains/ideavimrc";
 in
 {
 
@@ -20,7 +20,7 @@ in
 
     home.file.".jebrains/idea.vmoptions".text = ''
       ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
-      -javaagent:${mo.devroot}/var/agent/netfilter/ja-netfilter.jar
+      -javaagent:${mo.devspace}/var/agent/netfilter/ja-netfilter.jar
     '';
 
     home.sessionVariables = {

@@ -5,8 +5,8 @@
   ...
 }:
 let
-  model_path = "${config.mo.devroot}/wsp/nixos/home/claude/models.json";
-  cclc_path = "${config.mo.devroot}/wsp/nixos/home/claude/cclc.toml";
+  model_path = "${config.mo.devspace}/repos/nixos/home/claude/models.json";
+  cclc_path = "${config.mo.devspace}/repos/nixos/home/claude/cclc.toml";
   ccds = pkgs.writeText "ccds.json" (
     builtins.toJSON {
       attribution = {

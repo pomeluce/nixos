@@ -9,15 +9,15 @@ in
 
     DEVROOT = mo.devroot;
 
-    GRADLE_USER_HOME = "${mo.devroot}/env/gradle";
+    GRADLE_USER_HOME = "${mo.devroot}/var/gradle";
 
-    PNPM_HOME = "${mo.devroot}/env/node/pnpm/bin";
+    PNPM_HOME = "${mo.devroot}/var/node/pnpm/bin";
 
-    CARGO_HOME = "${mo.devroot}/env/rust/cargo";
+    CARGO_HOME = "${mo.devroot}/var/rust/cargo";
 
     PYTHON = "${pkgs.python3}/python3";
 
-    GOPATH = "${mo.devroot}/env/golib";
+    GOPATH = "${mo.devroot}/var/golib";
     GOBIN = "/home/${mo.username}/.cache/go-bin";
 
     SOPS_AGE_KEY_FILE = "/etc/ssh/age/keys.txt";

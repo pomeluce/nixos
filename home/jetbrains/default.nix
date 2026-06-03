@@ -20,7 +20,7 @@ in
 
     home.file.".jebrains/idea.vmoptions".text = ''
       ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
-      -javaagent:${mo.devroot}/env/agent/netfilter/ja-netfilter.jar
+      -javaagent:${mo.devroot}/var/agent/netfilter/ja-netfilter.jar
     '';
 
     home.sessionVariables = {

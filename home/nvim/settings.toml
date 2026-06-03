@@ -1,10 +1,11 @@
 [session]
 projects = [
-  "$DEVROOT/wsp/*",
   "$DEVROOT/code/projects/*",
   "$DEVROOT/code/experiments/*",
   "$DEVROOT/code/archived/*",
+  "$DEVROOT/images/*",
   "$DEVROOT/infra/*",
+  "$DEVROOT/wsp/*",
 ]
 ignore_dir = [ "~/downloads", "~/Downloads" ]
 

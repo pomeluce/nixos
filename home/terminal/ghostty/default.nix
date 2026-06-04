@@ -61,6 +61,9 @@
 
           # reload
           "ctrl+alt+s=reload_config"
+
+          # unbind default keybinds
+          "ctrl+enter=unbind"
         ];
       };
     };

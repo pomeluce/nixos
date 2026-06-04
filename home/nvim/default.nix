@@ -12,8 +12,9 @@ let
     luajitPackages.luarocks
     luajitPackages.jsregexp
     python314Packages.pynvim
-    translate-shell
-    imagemagick
+    translate-shell # translate.nvim required
+    imagemagick # img-clip.nvim required
+    kulala-core # kulala.nvim required
 
     # lsp
     basedpyright

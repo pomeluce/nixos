@@ -91,11 +91,11 @@
     "azimfw": {
       "flake": false,
       "locked": {
-        "lastModified": 1778740109,
-        "narHash": "sha256-xzEkRMOYgOoBwcdstHGnjxGDKvbnUg0LG07gZHk7pso=",
+        "lastModified": 1780622923,
+        "narHash": "sha256-PMIyaP4rb+G+KgiKyzzLrUwMMLsY3YgL95mmmv0EtUc=",
         "owner": "pomeluce",
         "repo": "akir-zimfw",
-        "rev": "cbca1b423ec2eaa74f1da9fc54d8454d8ff04327",
+        "rev": "a78c69b9e5f85c32ede46b79e42edbf7e426ac7b",
         "type": "github"
       },
       "original": {

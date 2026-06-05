@@ -14,10 +14,9 @@ let
     python314Packages.pynvim
     translate-shell # translate.nvim required
     imagemagick # img-clip.nvim required
-    kulala-core # kulala.nvim required
+    npkgs.kulala-core # kulala.nvim required
 
     # lsp
-    basedpyright
     bash-language-server
     clang-tools
     cmake-language-server
@@ -26,13 +25,14 @@ let
     emmet-language-server
     jdt-language-server
     kotlin-language-server
+    lemminx # xml lsp
     lua-language-server
-    marksman
-    nil
-    nixd
+    marksman # markdown
+    nixd # nix
     rust-analyzer
     tailwindcss-language-server
-    taplo
+    taplo # toml
+    ty # python lsp
     typescript-language-server
     vscode-langservers-extracted
     vue-language-server
@@ -46,19 +46,20 @@ let
     vscode-extensions.firefox-devtools.vscode-firefox-debug
 
     # fmt
-    beautysh
-    cbfmt
+    beautysh # shell: bash zsh
+    cbfmt # markdown
     dockerfmt
+    npkgs.kulala-fmt # http
+    libxml2 # xml
     nixfmt
-    nufmt
+    nufmt # nushell
     prettier
     prettierd
-    ruff
+    ruff # python
     rustfmt
-    shfmt
-    sqlfluff
-    stylua
-    ty
+    shfmt # shell
+    sqlfluff # sql
+    stylua # lua
   ];
 
   nvimPath = "${config.mo.devspace}/repos/nvim";

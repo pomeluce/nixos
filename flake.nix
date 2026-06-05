@@ -25,6 +25,10 @@
 
     # --- external packages/overlay ---
     nur.url = "github:nix-community/NUR";
+    azimfw = {
+      url = "github:pomeluce/akir-zimfw";
+      flake = false;
+    };
     akirds = {
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,10 +40,6 @@
     silent-sddm = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    azimfw = {
-      url = "github:pomeluce/akir-zimfw";
-      flake = false;
     };
   };
 

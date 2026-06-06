@@ -17,6 +17,7 @@ let
     npkgs.kulala-core # kulala.nvim required
 
     # lsp
+    bash-language-server
     clang-tools
     cmake-language-server
     copilot-language-server

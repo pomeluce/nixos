@@ -61,7 +61,6 @@ let
     sqlfluff # sql
     stylua # lua
   ];
-
   nvimPath = "${config.mo.devspace}/repos/nvim";
 in
 {

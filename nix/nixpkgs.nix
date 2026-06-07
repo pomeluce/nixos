@@ -57,7 +57,7 @@ let
     "wpsoffice"
     "wpsoffice-cn"
     "qq"
-    "wechat-universal-bwrap"
+    "wechat"
   ];
 in
 {
@@ -69,4 +69,3 @@ in
     overlays = builtins.attrValues self.overlays;
   };
 }
-

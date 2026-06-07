@@ -24,6 +24,7 @@ in
     ./node.nix
     ./nvim
     ./sops.nix
+    ./ssh.nix
     ./uv.nix
     ./zsh.nix
 

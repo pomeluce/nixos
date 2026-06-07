@@ -5,11 +5,6 @@
   ...
 }:
 let
-  nc = import ../nix/nixpkgs.nix {
-    inherit self;
-    inherit (inputs.nixpkgs) lib;
-  };
-
   mkHost =
     {
       host,
@@ -44,8 +39,15 @@ let
       homeConfigurations."${host}" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
-          config = nc.nixpkgs.config;
-          overlays = nc.nixpkgs.overlays;
+          inherit
+            ((import ../nix/nixpkgs.nix {
+              inherit self;
+              inherit (inputs.nixpkgs) lib;
+            }).nixpkgs
+            )
+            config
+            overlays
+            ;
         };
         extraSpecialArgs = {
           inherit inputs self host;

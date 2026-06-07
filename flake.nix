@@ -56,16 +56,23 @@
       };
 
       perSystem =
-        { pkgs, ... }:
+        { pkgs, lib, ... }:
         {
-          packages = import ./pkgs { inherit pkgs; };
+          packages = import ./pkgs {
+            pkgs = import nixpkgs {
+              inherit (pkgs.stdenv.hostPlatform) system;
+              config =
+                (import ./nix/nixpkgs.nix {
+                  inherit lib self;
+                }).nixpkgs.config;
+            };
+          };
           checks = {
             deadnix = pkgs.runCommand "deadnix-check" { } ''
               ${pkgs.deadnix}/bin/deadnix --fail ${./.}
               touch $out
             '';
           };
-
           formatter = pkgs.nixfmt;
         };
     };

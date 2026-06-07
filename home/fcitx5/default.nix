@@ -24,7 +24,7 @@ in
           fcitx5-gtk
           qt6Packages.fcitx5-chinese-addons
           (fcitx5-rime.override {
-            rimeDataPkgs = [ npkgs.rime-ice ];
+            rimeDataPkgs = [ rime-ice ];
           })
         ];
       };

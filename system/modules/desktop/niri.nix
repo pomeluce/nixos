@@ -53,7 +53,7 @@ in
       xrdb
       fprintd
       # akirds
-      npkgs.scripts.screenshot
+      screenshot
     ];
     environment.pathsToLink = [
       "/share/nautilus-python/extensions"

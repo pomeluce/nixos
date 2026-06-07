@@ -54,20 +54,19 @@ let
     "steam-unwrapped"
     "xone-dongle-firmware"
     "obsidian"
+    "wpsoffice"
     "wpsoffice-cn"
     "qq"
     "wechat-universal-bwrap"
-  ];
-
-  allowed-insecure-packages = [
   ];
 in
 {
   nixpkgs = {
     config = {
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
-      permittedInsecurePackages = allowed-insecure-packages;
+      permittedInsecurePackages = [ ];
     };
     overlays = builtins.attrValues self.overlays;
   };
 }
+

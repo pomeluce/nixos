@@ -25,10 +25,10 @@
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       nerd-fonts.caskaydia-mono
-      npkgs.apple-font.ttf-pingfang
-      npkgs.apple-font.ttf-pingfang-relaxed
-      npkgs.apple-font.ttf-pingfang-ui
-      npkgs.apple-font.ttf-pingfang-emoji
+      apple-font-pingfang
+      apple-font-pingfang-relaxed
+      apple-font-pingfang-ui
+      apple-font-pingfang-emoji
       wqy_zenhei
     ];
 

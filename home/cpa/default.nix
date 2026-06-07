@@ -7,7 +7,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.npkgs.cli-proxy-api}/bin/cli-proxy-api --config %h/.cpa/config.yaml";
+      ExecStart = "${pkgs.cli-proxy-api}/bin/cli-proxy-api --config %h/.cpa/config.yaml";
       Restart = "always";
       RestartSec = 10;
     };
@@ -16,7 +16,7 @@
     };
   };
 
-  home.packages = with pkgs; [ npkgs.cli-proxy-api ];
+  home.packages = with pkgs; [ cli-proxy-api ];
 
   sops.templates."cpa-config.yaml".content =
     builtins.replaceStrings [ "__CPA_API_KEY__" ] [ "${config.sops.placeholder.CPA_API_KEY}" ]

@@ -14,7 +14,7 @@ let
     python314Packages.pynvim
     translate-shell # translate.nvim required
     imagemagick # img-clip.nvim required
-    npkgs.kulala-core # kulala.nvim required
+    kulala-core # kulala.nvim required
 
     # lsp
     bash-language-server
@@ -49,7 +49,7 @@ let
     beautysh # shell: bash zsh
     cbfmt # markdown
     dockerfmt
-    npkgs.kulala-fmt # http
+    kulala-fmt # http
     libxml2 # xml
     nixfmt
     nufmt # nushell

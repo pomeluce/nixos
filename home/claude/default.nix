@@ -35,8 +35,8 @@ in
     enable = true;
   };
   home.packages = with pkgs; [
-    npkgs.scripts.ccs
-    npkgs.ccline
+    ccs
+    ccline
   ];
   home.file.".claude/models.json".source = config.lib.file.mkOutOfStoreSymlink model_path;
   home.file.".claude/ccline/config.toml".source = config.lib.file.mkOutOfStoreSymlink cclc_path;

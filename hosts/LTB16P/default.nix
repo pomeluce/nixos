@@ -100,7 +100,7 @@
       reqable
       # vlc
       qbittorrent-enhanced
-      # npkgs.wpsoffice
+      # wpsoffice
       # wpsoffice-cn
       qq
       # nur.repos.novel2430.wechat-universal-bwrap

@@ -30,6 +30,19 @@ in
         install -m 644 "$GH_PUB" "${sshDir}/id_github.pub"
       fi
 
+      # id_sops — sops 加解密
+      SOPS_KEY="${config.sops.secrets.ID_SOPS.path}"
+      SOPS_PUB="${config.sops.secrets.ID_SOPS_PUB.path}"
+      if [ -f "$SOPS_KEY" ]; then
+        install -m 600 "$SOPS_KEY" "${sshDir}/id_sops"
+        echo "ensureSSH: deployed id_sops"
+      else
+        echo "ensureSSH: SKIP id_sops — secret file not found at $SOPS_KEY" >&2
+      fi
+      if [ -f "$SOPS_PUB" ]; then
+        install -m 644 "$SOPS_PUB" "${sshDir}/id_sops.pub"
+      fi
+
       # id_ssh — SSH 远程连接
       SSH_KEY="${config.sops.secrets.ID_SSH.path}"
       SSH_PUB="${config.sops.secrets.ID_SSH_PUB.path}"

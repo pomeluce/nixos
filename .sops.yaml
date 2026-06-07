@@ -1,4 +1,5 @@
 keys:
+  - &TSO age1lw0fcj2vt44rvxa9wmxqr0k5keea43k7f67tcnhtsqtx5edugqkqp2ugu2
   - &LTB16P age1z7rdc65jec4erm5jq2w9tu7udnym3yrvpwmsdmep6pgcd8qjpeps96ax9x
   - &DLG5 age1ywk7nfxzxz0avqne6wxem982lrac3r5w77ppycggjjjsz63c49uqqmnxf8
   - &WSN age1tc7v396tedhjjqhuhytgh2n3jdv9f8nugkrdp65dlhzzd3cmacuq8lccg2
@@ -6,6 +7,7 @@ creation_rules:
   - path_regex: ^secrets.yaml$
     key_groups:
       - age:
+          - *TSO
           - *LTB16P
           - *DLG5
           - *WSN

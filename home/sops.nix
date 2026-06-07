@@ -12,6 +12,8 @@ in
     };
     secrets.ID_GITHUB = { };
     secrets.ID_GITHUB_PUB = { };
+    secrets.ID_SOPS = { };
+    secrets.ID_SOPS_PUB = { };
     secrets.ID_SSH = { };
     secrets.ID_SSH_PUB = { };
     secrets.CPA_API_KEY = { };

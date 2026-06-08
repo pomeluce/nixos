@@ -16,9 +16,12 @@ in
     secrets.ID_SOPS_PUB = { };
     secrets.ID_SSH = { };
     secrets.ID_SSH_PUB = { };
+
     secrets.CPA_API_KEY = { };
     secrets.DEEPSEEK_API_KEY = { };
     secrets.OPENROUTER_API_KEY = { };
     secrets.ZAI_API_KEY = { };
+
+    secrets.CONECLOUD_SSH_CONFIG = { };
   };
 }

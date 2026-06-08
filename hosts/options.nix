@@ -204,6 +204,28 @@ in
         };
       };
 
+      ssh = {
+        hosts = mkOption {
+          type = types.attrsOf (
+            types.submodule {
+              options = {
+                Hostname = mkOption { type = types.str; };
+                Port = mkOption {
+                  type = types.port;
+                  default = 22;
+                };
+                User = mkOption {
+                  type = types.str;
+                  default = mo.username;
+                };
+                IdentityFile = mkOption { type = types.str; };
+              };
+            }
+          );
+          default = { };
+        };
+      };
+
       docker = {
         data-root = mkOption { type = types.str; };
         exec-opts = mkOption {

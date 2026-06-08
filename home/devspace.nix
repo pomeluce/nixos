@@ -12,7 +12,7 @@ in
 {
   home.activation = {
     # 步骤1: 部署 SSH 密钥到 ~/.ssh/
-    ensureSSH = lib.hm.dag.entryBefore [ "ensureDevspace" ] ''
+    ensureSSH = lib.hm.dag.entryAfter [ "sops-nix" ] ''
       set -euo pipefail
       mkdir -p "${sshDir}"
       chmod 700 "${sshDir}"

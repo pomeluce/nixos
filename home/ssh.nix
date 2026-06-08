@@ -1,20 +1,24 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  publicHosts = config.mo.programs.ssh.hosts;
+  hostBlock = name: cfg: ''
+    Host ${name}
+        Hostname ${cfg.Hostname}
+        Port ${toString cfg.Port}
+        User ${cfg.User}
+        IdentityFile ${cfg.IdentityFile}
+  '';
+  publicPart = lib.concatStringsSep "\n" (lib.mapAttrsToList hostBlock publicHosts);
+in
 {
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    settings = {
-      "ConeCloud" = {
-        Hostname = "182.255.80.201";
-        Port = 2200;
-        User = "marcus";
-        IdentityFile = "~/.ssh/id_ssh";
-      };
-      "github.com" = {
-        Hostname = "ssh.github.com";
-        Port = 443;
-        IdentityFile = "~/.ssh/id_github";
-      };
-    };
-  };
+  sops.templates."ssh-config.conf".content = ''
+    ${publicPart}
+    ${config.sops.placeholder.CONECLOUD_SSH_CONFIG}
+  '';
+
+  home.activation.writeSshConfig = lib.hm.dag.entryAfter [ "sops-nix" ] ''
+    install -m 644 "${
+      config.sops.templates."ssh-config.conf".path
+    }" "${config.home.homeDirectory}/.ssh/config"
+  '';
 }

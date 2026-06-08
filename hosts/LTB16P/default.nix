@@ -92,6 +92,14 @@
       niri.opacity.inactive = "0.95";
 
       swaylock.font-size = 42;
+
+      ssh.hosts = {
+        "github.com" = {
+          Hostname = "ssh.github.com";
+          Port = 443;
+          IdentityFile = "~/.ssh/id_github";
+        };
+      };
     };
 
     userPackages = with pkgs; [

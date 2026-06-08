@@ -5,7 +5,6 @@ let
     fd
     fzf
     ripgrep
-    silver-searcher
     tree-sitter
     unzip
     wl-clipboard

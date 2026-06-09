@@ -3,7 +3,7 @@ let
   publicHosts = config.mo.programs.ssh.hosts;
   hostBlock = name: cfg: ''
     Host ${name}
-        Hostname ${cfg.Hostname}
+        HostName ${cfg.HostName}
         Port ${toString cfg.Port}
         User ${cfg.User}
         IdentityFile ${cfg.IdentityFile}

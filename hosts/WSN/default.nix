@@ -53,9 +53,25 @@
 
       ssh.hosts = {
         "github.com" = {
-          Hostname = "ssh.github.com";
+          HostName = "ssh.github.com";
           Port = 443;
           IdentityFile = "~/.ssh/id_github";
+        };
+        "192.100.30.115" = {
+          HostName = "192.100.30.115";
+          IdentityFile = "~/.ssh/id_gitlab";
+        };
+        "192.100.2.171" = {
+          HostName = "192.100.2.171";
+          IdentityFile = "~/.ssh/id_gitlab";
+        };
+        "dev" = {
+          HostName = "192.100.2.171";
+          IdentityFile = "~/.ssh/id_ssh";
+        };
+        "algorithm" = {
+          HostName = "192.100.6.88";
+          IdentityFile = "~/.ssh/id_ssh";
         };
       };
     };

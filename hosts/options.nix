@@ -209,7 +209,7 @@ in
           type = types.attrsOf (
             types.submodule {
               options = {
-                Hostname = mkOption { type = types.str; };
+                HostName = mkOption { type = types.str; };
                 Port = mkOption {
                   type = types.port;
                   default = 22;

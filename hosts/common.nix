@@ -43,8 +43,8 @@
       docker.insecure-registries = lib.mkDefault [ ];
       docker.registry-mirrors = lib.mkDefault [ ];
 
-      postgres.pkg = lib.mkDefault pkgs.postgresql_17;
-      postgres.upgrade_pkg = lib.mkDefault pkgs.postgresql;
+      postgres.pkg = lib.mkDefault pkgs.postgresql_18;
+      postgres.upgrade_pkg = lib.mkDefault pkgs.postgresql_17;
       postgres.port = lib.mkDefault 5432;
       postgres.jit = lib.mkDefault "off";
       postgres.listen_addresses = lib.mkDefault "*";

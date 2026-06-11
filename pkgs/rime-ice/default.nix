@@ -6,7 +6,7 @@
 }:
 
 let
-  version = "476bb816a0b2289e65a357085e36c501682f17b1";
+  version = "82c0298031254299cf1265dad4ae7dd54013fdb7";
   rime-ice = {
     pname = "rime-ice";
     inherit version;
@@ -14,7 +14,7 @@ let
       url = "https://github.com/iDvel/rime-ice.git";
       rev = "${version}";
       fetchSubmodules = true;
-      sha256 = "sha256-x+YTjwllDy96qmmzhW55XPqvfKev9ruQ/1bfq8xjeqM=";
+      sha256 = "sha256-Bq5/7wQs9OyUKzzCnEpbdja9x9c9FaFZfg/By4KrJxE=";
     };
   };
 in

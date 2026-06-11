@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -75,33 +74,6 @@ in
         border {
           off
         }
-      }
-
-      // env
-      environment {
-        XMODIFIERS "@im=fcitx"
-        QT_IM_MODULE "fcitx"
-        SDL_IM_MODULE "fcitx"
-
-        // 禁用 QT 应用程序上的窗口装饰
-        QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-
-        // 自动缩放 QT 程序
-        QT_AUTO_SCREEN_SCALE_FACTOR "1"
-        QT_ENABLE_HIGHDPI_SCALING "1"
-        // 按照屏幕缩放比例设置 QT 程序的 DPI
-        QT_SCREEN_SCALE_FACTORS "${pkgs.lib.utils.floatToString mo.desktop.scaling.qt}"
-
-        // wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
-        QT_QPA_PLATFORM "wayland;xcb"
-        GDK_BACKEND "wayland,x11,*"
-        // wayland 运行 clutter
-        CLUTTER_BACKEND "wayland"
-
-        // 语言环境
-        LANG "zh_CN.UTF-8"
-        LC_ALL "zh_CN.UTF-8"
-        LANGUAGE "zh_CN.UTF-8"
       }
 
       cursor {

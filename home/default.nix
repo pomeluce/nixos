@@ -56,6 +56,11 @@ in
         BROWSER = "firefox";
         TERMINAL = mo.programs.terminal;
 
+        # locale
+        LANG = "zh_CN.UTF-8";
+        LC_ALL = "zh_CN.UTF-8";
+        LANGUAGE = "zh_CN.UTF-8";
+
         # 使用 sops-nix 解密后的 secrets 路径
         CPA_API_KEY = "$(cat ${config.sops.secrets.CPA_API_KEY.path})";
         DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
@@ -68,10 +73,28 @@ in
         CLAUDE_MODEL_NAME = "deepseek-v4-pro[1m]";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
+        # input method: fcitx
+        XMODIFIERS = "@im=fcitx";
+        QT_IM_MODULE = "fcitx";
+        SDL_IM_MODULE = "fcitx";
+
+        # wayland 运行 QT 和 GTK (wayland 不可用时使用 xcb<x11>)
+        QT_QPA_PLATFORM = "wayland;xcb";
+        GDK_BACKEND = "wayland,x11,*";
+        # wayland 运行 clutter
+        CLUTTER_BACKEND = "wayland";
+        # 禁用 QT 应用程序上的窗口装饰
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+
+        # 自动缩放 QT 程序
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+        QT_ENABLE_HIGHDPI_SCALING = "1";
+        # 按照屏幕缩放比例设置 QT 程序的 DPI
+        QT_SCREEN_SCALE_FACTORS = pkgs.lib.utils.floatToString mo.desktop.scaling.qt;
+
         XDG_DATA_DIRS = lib.concatStringsSep ":" [
           "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
           "$XDG_DATA_DIRS"
-
         ];
       })
       (mo.system.session-variables or { })

@@ -84,7 +84,7 @@ in
 
       // startup
       // spawn-sh-at-startup "akirds"
-      spawn-sh-at-startup "noctalia-shell"
+      spawn-sh-at-startup "noctalia"
       spawn-sh-at-startup "echo 'Xft.dpi: ${
         toString (builtins.floor (96 * mo.desktop.scaling.xwayland))
       }' | xrdb -merge"
@@ -138,11 +138,11 @@ in
         open-floating true
       }
       layer-rule {
-        match namespace="^noctalia-overview*"
+        match namespace="^noctalia-backdrop"
         place-within-backdrop true
       }
       layer-rule {
-        match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+        match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
         background-effect {
           xray false
         }
@@ -151,14 +151,14 @@ in
       binds {
         Mod+B hotkey-overlay-title="Run a Browser: firefox" { spawn "firefox"; }
         Mod+E hotkey-overlay-title="Open a File Manager: nautilus" { spawn-sh "pkill nautilus; nautilus"; }
-        Mod+R hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-        Mod+V hotkey-overlay-title="Open Clipboard History: noctalia" { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
+        Mod+R hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
+        Mod+V hotkey-overlay-title="Open Clipboard History: noctalia" { spawn-sh "noctalia msg panel-toggle clipboard"; }
         // Mod+D hotkey-overlay-title="Open Desktop Dock: akirds" { spawn-sh "akirds -t dock"; }
-        Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: noctalia" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
+        Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: noctalia" { spawn-sh "noctalia msg panel-toggle session"; }
         Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-        Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: noctalia" { spawn-sh "pkill quickshell; noctalia-shell"; }
-        Mod+Alt+S hotkey-overlay-title="Open Noctalia Shell Settings: noctalia" { spawn-sh "noctalia-shell ipc call settings open"; }
-        Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+        Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: noctalia" { spawn-sh "pkill noctalia; noctalia"; }
+        Mod+Alt+S hotkey-overlay-title="Open Noctalia Shell Settings: noctalia" { spawn-sh "noctalia msg settings-toggle"; }
+        Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "noctalia msg session lock"; }
 
         // 截屏和录屏
         Print { spawn "screenshot"; }

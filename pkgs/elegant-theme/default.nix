@@ -10,7 +10,7 @@
   ...
 }:
 let
-  version = "2025-03-25-unstable-2025-09-13";
+  version = "92cdac334cf7bc5c1d68c2fbb266164653b4b502";
 in
 stdenv.mkDerivation {
   pname = "elegant-theme";

@@ -9,7 +9,7 @@
   {
     "name": "z.glm5",
     "api_url": "https://api.z.ai/api/anthropic",
-    "model": { "opus": "glm-5.1", "sonnet": "glm-5.1", "haiku": "glm-5-Turbo" },
+    "model": { "opus": "glm-5.2", "sonnet": "glm-5.2", "haiku": "glm-5.2" },
     "api_key": "env:ZAI_API_KEY"
   },
   {

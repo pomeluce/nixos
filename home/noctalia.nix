@@ -606,6 +606,7 @@ in
             launcher_categories = false;
             open_near_click_control_center = true;
             session_placement = "centered";
+            transparency_mode = "soft";
             wallpaper_placement = "centered";
           };
           screen_corners = {
@@ -765,6 +766,9 @@ in
           up = [ "Ctrl+k" ];
           left = [ "Tab" ];
           right = [ "Shift+Tab" ];
+        };
+        lockscreen = {
+          blurred_desktop = true;
         };
       };
     };

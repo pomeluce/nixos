@@ -104,6 +104,7 @@
 
     userPackages = with pkgs; [
       telegram-desktop
+      splayer
       spotify
       reqable
       # vlc

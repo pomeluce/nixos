@@ -9,6 +9,7 @@ let
   bg = pkgs.fetchurl {
     # url = "https://www.desktophut.com/files/ymkspRzeH0-wallpaper.mp4";
     # hash = "sha256-WG8UI10NA4EAx63SU4Wb8x0r2TX7bOT5qLB1jKaSTKg=";
+    # url = "https://www.desktophut.com/files/1776854426.mp4";
     url = "https://www.desktophut.com/files/IGMGGy5nHoWdmM1_Sasuke%20Uchiha%20-%20Red%20&%20Black%20Live%20Wallpaper.mp4";
     hash = "sha256-zoBifhQ+/U6ouG5/vESAALf5bC/4EnG8hdRMLbYt8kY=";
   };

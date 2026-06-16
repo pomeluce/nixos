@@ -760,12 +760,15 @@ in
           workspaces = {
             display = "none";
           };
+          media = {
+            hide_when_no_media = true;
+          };
         };
         keybinds = {
           down = [ "Ctrl+j" ];
           up = [ "Ctrl+k" ];
-          left = [ "Tab" ];
-          right = [ "Shift+Tab" ];
+          left = [ "Shift+ISO_Left_Tab" ];
+          right = [ "Tab" ];
         };
         lockscreen = {
           blurred_desktop = true;

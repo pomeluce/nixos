@@ -8,6 +8,7 @@ let
     tree-sitter
     unzip
     wl-clipboard
+    lombok # java required
     luajitPackages.luarocks
     luajitPackages.jsregexp
     python314Packages.pynvim
@@ -41,13 +42,15 @@ let
     vscode-extensions.ms-vscode.cpptools
     vscode-extensions.vadimcn.vscode-lldb.adapter
     vscode-extensions.vscjava.vscode-java-debug
+    vscode-extensions.vscjava.vscode-java-test
     vscode-js-debug
     vscode-extensions.firefox-devtools.vscode-firefox-debug
 
     # fmt
     beautysh # shell: bash zsh
-    cbfmt # markdown
+    cbfmt # markdown code block
     dockerfmt
+    google-java-format
     kulala-fmt # http
     libxml2 # xml
     nixfmt
@@ -89,8 +92,10 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    JAVA_LOMBOK = "${pkgs.lombok}/share/java/lombok.jar";
     VSC_CPPTOOLS_DEBUG = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools";
     VSC_JAVA_DEBUG = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug";
+    VSC_JAVA_TEST = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test";
     VSC_FIREFOX_DEBUG = "${pkgs.vscode-extensions.firefox-devtools.vscode-firefox-debug}/share/vscode/extensions/firefox-devtools.vscode-firefox-debug";
   };
 }

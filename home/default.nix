@@ -65,6 +65,7 @@ in
         CPA_API_KEY = "$(cat ${config.sops.secrets.CPA_API_KEY.path})";
         DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
         OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
+        OPUS_API_KEY = "$(cat ${config.sops.secrets.OPUS_API_KEY.path})";
         ZAI_API_KEY = "$(cat ${config.sops.secrets.ZAI_API_KEY.path})";
 
         # provided to claude code

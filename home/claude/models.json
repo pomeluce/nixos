@@ -13,6 +13,12 @@
     "api_key": "env:ZAI_API_KEY"
   },
   {
+    "name": "cc.opus",
+    "api_url": "https://api.favorais.com",
+    "model": { "opus": "claude-opus-4-8[1m]", "sonnet": "claude-opus-4-8[1m]", "haiku": "claude-opus-4-7" },
+    "api_key": "env:OPUS_API_KEY"
+  },
+  {
     "name": "gpt.codex",
     "api_url": "http://127.0.0.1:8317",
     "model": { "opus": "gpt-5.4", "sonnet": "gpt-5.4", "haiku": "gpt-5.3-codex" },

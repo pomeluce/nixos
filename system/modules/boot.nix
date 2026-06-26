@@ -11,11 +11,18 @@
       efiSupport = true;
       useOSProber = true;
       device = "nodev";
-      gfxmodeEfi = "1920x1080";
+      # gfxmodeEfi = "1920x1080";
       theme = "${pkgs.elegant-theme}/grub/themes/Elegant-mojave-blur-left-dark";
       font = "${pkgs.maple-mono.NormalNL-NF-unhinted}/share/fonts/truetype/MapleMonoNormalNL-NF-Bold.ttf";
     };
+    elegant-grub2-theme = {
+      enable = true;
+      theme = "mojave";
+      screen = "1080p";
+      type = "blur";
+      color = "dark";
+      side = "left";
+      logo = "system";
+    };
   };
-
-  environment.systemPackages = [ pkgs.elegant-theme ];
 }

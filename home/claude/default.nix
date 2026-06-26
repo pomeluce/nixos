@@ -17,6 +17,7 @@ let
         "superpowers@claude-plugins-official" = true;
       };
       env = {
+        CLAUDE_CODE_ATTRIBUTION_HEADER = 0;
         CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = 1;
         CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK = 1;
         CLAUDE_CODE_EFFORT_LEVEL = "max";

@@ -32,6 +32,7 @@ let
           ./${host}
           ../system
           inputs.sops-nix.nixosModules.sops
+          inputs.elegant-grub2.nixosModules.default
           # inputs.home-manager.nixosModules.home-manager
         ];
       };

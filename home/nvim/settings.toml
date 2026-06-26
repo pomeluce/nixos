@@ -6,6 +6,7 @@ projects = [
   "$DEVSPACE/images/*",
   "$DEVSPACE/infra/*",
   "$DEVSPACE/repos/*",
+  "$DEVSPACE/work",
 ]
 ignore_dir = [ "~/downloads", "~/Downloads" ]
 

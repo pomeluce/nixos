@@ -24,7 +24,10 @@
     };
 
     # --- external packages/overlay ---
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     azimfw = {
       url = "github:pomeluce/akir-zimfw";
       flake = false;
@@ -39,6 +42,10 @@
     };
     silent-sddm = {
       url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    elegant-grub2 = {
+      url = "github:vinceliuice/elegant-grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

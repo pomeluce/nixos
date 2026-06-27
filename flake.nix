@@ -30,7 +30,7 @@
     };
     azimfw = {
       url = "github:pomeluce/akir-zimfw";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     akirds = {
       url = "github:pomeluce/akir-shell";

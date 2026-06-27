@@ -7,9 +7,9 @@
 }:
 
 let
-  version = "7.2.41";
-  hash = "sha256-gITOSR3GJjWtESl+OS+aLSUx7asqF76ntxzw9agZGQA=";
-  vendorHash = "sha256-AIue9XBsfsKGClRLB1DCME+36crapnOdQrEICFYG1a0=";
+  version = "7.2.42";
+  hash = "sha256-ZaUCRIgKo3NQCXI9tMOwB70zl94n8smOwUXlc1w7EzQ=";
+  vendorHash = "sha256-vQU3hLDga5PMUwH4KSB3T5sZ1uPUgHQHeyQGJTKHIYs=";
 in
 buildGoModule.override { go = go_1_26; } {
   pname = "cli-proxy-api";

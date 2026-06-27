@@ -60,6 +60,7 @@ let
           ../home
           inputs.sops-nix.homeManagerModules.sops
           inputs.noctalia.homeModules.default
+          inputs.azimfw.homeManagerModules.default
         ];
       };
     };

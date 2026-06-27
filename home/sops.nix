@@ -18,8 +18,8 @@ in
     secrets.ID_SSH_PUB = { };
 
     secrets.CPA_API_KEY = { };
-    secrets.OPUS_API_KEY = { };
     secrets.DEEPSEEK_API_KEY = { };
+    secrets.FAVOR_API_KEY = { };
     secrets.OPENROUTER_API_KEY = { };
     secrets.ZAI_API_KEY = { };
 

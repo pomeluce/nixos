@@ -75,7 +75,20 @@
         };
       };
 
-      nvim.settings.lsp.jdtls.maven.userSettings = "~/.m2/settings-siact.xml";
+      nvim.settings = {
+        header = {
+          python = ''
+            """
+            author      : kzuo
+            version     : 1.0
+            date        : {DATE} {TIME}
+            module      : {FILE_NAME}
+            description : (TODO: 描述该模块的功能)
+            """
+          '';
+        };
+        lsp.jdtls.maven.userSettings = "~/.m2/settings-siact.xml";
+      };
     };
   };
 }

@@ -17,7 +17,7 @@ in
     ./git.nix
     ./maven
     ./node.nix
-    ./nvim
+    ./nvim.nix
     ./sops.nix
     ./ssh.nix
     ./uv.nix

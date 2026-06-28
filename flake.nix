@@ -36,6 +36,10 @@
       url = "github:pomeluce/akir-zimfw";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    akirnvim = {
+      url = "github:pomeluce/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     akirds = {
       url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";

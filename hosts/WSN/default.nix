@@ -74,6 +74,8 @@
           IdentityFile = "~/.ssh/id_ssh";
         };
       };
+
+      nvim.settings.lsp.jdtls.maven.userSettings = "~/.m2/settings-siact.xml";
     };
   };
 }

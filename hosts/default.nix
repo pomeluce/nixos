@@ -61,6 +61,7 @@ let
           inputs.sops-nix.homeManagerModules.sops
           inputs.noctalia.homeModules.default
           inputs.azimfw.homeManagerModules.default
+          inputs.akirnvim.homeManagerModules.default
         ];
       };
     };

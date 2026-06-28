@@ -286,6 +286,70 @@ in
         type = types.int;
         default = 42;
       };
+
+      nvim.settings = {
+        mason.enable = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Enable Mason for non-NixOS systems";
+        };
+
+        session = {
+          projects = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Session project directories";
+          };
+          ignore_dir = mkOption {
+            type = types.listOf types.str;
+            default = [ ];
+            description = "Directories to ignore in session";
+          };
+        };
+
+        lsp.jdtls = {
+          maven = {
+            userSettings = mkOption {
+              type = types.str;
+              default = "";
+              description = "Maven user settings.xml path";
+            };
+            globalSettings = mkOption {
+              type = types.str;
+              default = "";
+              description = "Maven global settings.xml path";
+            };
+          };
+          runtimes = mkOption {
+            type = types.listOf (
+              types.submodule {
+                options = {
+                  name = mkOption { type = types.str; };
+                  path = mkOption { type = types.str; };
+                  default = mkOption {
+                    type = types.bool;
+                    default = false;
+                  };
+                };
+              }
+            );
+            default = [ ];
+            description = "JDTLS Java runtimes";
+          };
+        };
+
+        header = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          description = "File header templates by language";
+        };
+
+        file.run_cmd = mkOption {
+          type = types.attrsOf types.str;
+          default = { };
+          description = "Run commands by file extension";
+        };
+      };
     };
 
     # --- machine specific package list ---

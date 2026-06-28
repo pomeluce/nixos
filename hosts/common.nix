@@ -50,6 +50,41 @@
       postgres.listen_addresses = lib.mkDefault "*";
 
       swaylock.font-size = lib.mkDefault 14;
+
+      nvim.settings = lib.mkDefault {
+        session = {
+          projects = [
+            "$DEVSPACE/code/projects/*"
+            "$DEVSPACE/code/experiments/*"
+            "$DEVSPACE/code/archived/*"
+            "$DEVSPACE/images/*"
+            "$DEVSPACE/infra/*"
+            "$DEVSPACE/repos/*"
+            "$DEVSPACE/work"
+          ];
+          ignore_dir = [ "$XDG_DOWNLOAD_DIR" ];
+        };
+        lsp.jdtls = {
+          maven = {
+            globalSettings = "~/.m2/settings.xml";
+          };
+          runtimes = [
+            {
+              name = "JavaSE-1.8";
+              path = "/etc/jdk/zulu8";
+            }
+            {
+              name = "JavaSE-21";
+              path = "/etc/jdk/zulu21";
+              default = true;
+            }
+            {
+              name = "JavaSE-25";
+              path = "/etc/jdk/zulu25";
+            }
+          ];
+        };
+      };
     };
 
     userPackages = lib.mkDefault [ ];

@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 let
   mo = config.mo;
   sshDir = "${config.home.homeDirectory}/.ssh";
@@ -81,36 +76,5 @@ in
       echo "ensureDevspace: directories created under ${devspace}"
     '';
 
-    # 步骤3: 拉取外部仓库
-    ensureRepos = lib.hm.dag.entryAfter [ "ensureDevspace" ] ''
-      set -euo pipefail
-      export PATH="${
-        lib.makeBinPath [
-          pkgs.git
-          pkgs.openssh
-        ]
-      }:$PATH"
-      export GIT_SSH_COMMAND="ssh -i ${sshDir}/id_github -o StrictHostKeyChecking=accept-new -o HostName=ssh.github.com -p 443"
-
-      if [ ! -f "${sshDir}/id_github" ]; then
-        echo "ensureRepos: SKIP — id_github key missing, cannot clone" >&2
-        exit 1
-      fi
-
-      clone_repo() {
-        local repo="$1"
-        local dir="$2"
-        if [ -d "$dir" ]; then
-          echo "ensureRepos: $repo already exists at $dir, skip"
-        else
-          echo "ensureRepos: cloning git@github.com:pomeluce/$repo.git ..."
-          git clone "git@github.com:pomeluce/$repo.git" "$dir"
-          echo "ensureRepos: cloned $repo successfully"
-        fi
-      }
-
-      clone_repo "nixos" "${devspace}/repos/nixos"
-      clone_repo "nvim" "${devspace}/repos/nvim"
-    '';
   };
 }

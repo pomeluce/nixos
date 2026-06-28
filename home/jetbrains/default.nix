@@ -4,13 +4,9 @@
   pkgs,
   ...
 }:
-let
-  mo = config.mo;
-  ivc_path = "${mo.devspace}/repos/nixos/home/jetbrains/ideavimrc";
-in
 {
 
-  config = lib.mkIf mo.desktop.enable {
+  config = lib.mkIf config.mo.desktop.enable {
     home.packages = with pkgs; [
       jetbrains.idea
       # (jetbrains.idea.override {
@@ -20,13 +16,13 @@ in
 
     home.file.".jebrains/idea.vmoptions".text = ''
       ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
-      -javaagent:${mo.devspace}/var/agent/netfilter/ja-netfilter.jar
+      -javaagent:${./netfilter/ja-netfilter.jar}
     '';
 
     home.sessionVariables = {
       IDEA_VM_OPTIONS = "${config.home.homeDirectory}/.jebrains/idea.vmoptions";
     };
 
-    home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink ivc_path;
+    home.file.".ideavimrc".source = ./ideavimrc;
   };
 }

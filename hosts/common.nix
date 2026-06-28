@@ -25,7 +25,7 @@
       cursor.theme = lib.mkDefault "Bibata-Modern-Ice";
       icon.theme = lib.mkDefault "MoreWaita";
 
-      wallpaper.dir = lib.mkDefault "/home/${username}/.config/wallpapers/";
+      wallpaper.dir = lib.mkDefault "${devspace}/repos/wallpapers/";
       wallpaper.interval = lib.mkDefault 300;
       wallpaper.fps = lib.mkDefault 165;
     };

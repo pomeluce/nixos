@@ -342,9 +342,5 @@ in
 
       include "./noctalia.kdl"
     '';
-
-    home.activation.niri = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ln -snf $DEVSPACE/repos/wallpapers ~/.config/wallpapers
-    '';
   };
 }

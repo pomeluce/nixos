@@ -264,9 +264,5 @@ in
         };
       };
     };
-
-    home.activation.hyprConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ln -snf $DEVSPACE/repos/wallpapers ~/.config/wallpapers
-    '';
   };
 }

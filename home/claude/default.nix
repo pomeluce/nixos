@@ -1,12 +1,9 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
-  model_path = "${config.mo.devspace}/repos/nixos/home/claude/models.json";
-  cclc_path = "${config.mo.devspace}/repos/nixos/home/claude/cclc.toml";
   ccds = pkgs.writeText "ccds.json" (
     builtins.toJSON {
       attribution = {
@@ -39,8 +36,8 @@ in
     ccs
     ccline
   ];
-  home.file.".claude/models.json".source = config.lib.file.mkOutOfStoreSymlink model_path;
-  home.file.".claude/ccline/config.toml".source = config.lib.file.mkOutOfStoreSymlink cclc_path;
+  home.file.".claude/models.json".source = ./models.json;
+  home.file.".claude/ccline/config.toml".source = ./cclc.toml;
   home.file.".claude/settings.nix-default.json".source = ccds;
 
   # 已有 settings.json 里的值优先, 避免覆盖插件写入的内容

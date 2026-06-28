@@ -683,7 +683,7 @@ in
         };
         wallpaper = {
           automationEnabled = true;
-          directory = "/home/${mo.username}/.config/wallpapers";
+          directory = "${mo.desktop.wallpaper.dir}";
           edge_smoothness = 0.05;
           enableMultiMonitorDirectories = false;
           enabled = true;

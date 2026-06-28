@@ -28,7 +28,7 @@ in
           pkgs = final;
         });
     }
-    // import ../pkgs { pkgs = final; };
+    // (inputs.apkgs.overlays.default final prev);
 
   nur = inputs.nur.overlays.default;
 }

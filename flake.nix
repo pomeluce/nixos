@@ -28,6 +28,10 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    apkgs = {
+      url = "github:pomeluce/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     azimfw = {
       url = "github:pomeluce/akir-zimfw";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +70,7 @@
       perSystem =
         { pkgs, lib, ... }:
         {
-          packages = import ./pkgs {
+          packages = import "${inputs.apkgs}/pkgs" {
             pkgs = import nixpkgs {
               inherit (pkgs.stdenv.hostPlatform) system;
               config =

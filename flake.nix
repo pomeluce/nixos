@@ -59,6 +59,7 @@
         { _module.args = { inherit inputs self nixpkgs; }; }
       ];
       flake = {
+        templates = import ./templates;
         overlays = import ./overlays { inherit inputs self; };
       };
 

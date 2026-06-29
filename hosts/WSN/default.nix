@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [ ../common.nix ];
 
@@ -65,12 +65,22 @@
           HostName = "192.100.2.171";
           IdentityFile = "~/.ssh/id_gitlab";
         };
-        "dev" = {
+        dev = {
           HostName = "192.100.2.171";
           IdentityFile = "~/.ssh/id_ssh";
         };
-        "algorithm" = {
+        algorithm = {
           HostName = "192.100.6.88";
+          IdentityFile = "~/.ssh/id_ssh";
+        };
+        conevps = {
+          HostName = config.sops.placeholder.VPS_CONE_IP;
+          Port = config.sops.placeholder.VPS_CONE_PORT;
+          IdentityFile = "~/.ssh/id_ssh";
+        };
+        reckvps = {
+          HostName = config.sops.placeholder.VPS_RECK_IP;
+          Port = config.sops.placeholder.VPS_RECK_PORT;
           IdentityFile = "~/.ssh/id_ssh";
         };
       };

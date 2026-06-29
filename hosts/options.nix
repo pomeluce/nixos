@@ -205,18 +205,29 @@ in
       };
 
       ssh = {
+        enableHost = mkOption {
+          type = types.bool;
+          default = true;
+        };
+        ports = mkOption {
+          type = types.listOf types.port;
+          default = [ ];
+        };
         hosts = mkOption {
           type = types.attrsOf (
             types.submodule {
               options = {
                 HostName = mkOption { type = types.str; };
                 Port = mkOption {
-                  type = types.port;
+                  type = types.oneOf [
+                    types.port
+                    types.str
+                  ];
                   default = 22;
                 };
                 User = mkOption {
-                  type = types.str;
-                  default = mo.username;
+                  type = types.nullOr types.str;
+                  default = null;
                 };
                 IdentityFile = mkOption { type = types.str; };
               };

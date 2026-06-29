@@ -7,4 +7,8 @@
     host = "WSN";
     extraOSModules = [ { nixpkgs.hostPlatform = "x86_64-linux"; } ];
   }
+  {
+    host = "RACKVPS";
+    extraOSModules = [ ./RACKVPS/hardware-configuration.nix ];
+  }
 ]

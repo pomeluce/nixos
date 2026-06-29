@@ -5,15 +5,14 @@ let
     Host ${name}
         HostName ${cfg.HostName}
         Port ${toString cfg.Port}
-        User ${cfg.User}
+        ${lib.optionalString (cfg.User != null) "User ${cfg.User}"}
         IdentityFile ${cfg.IdentityFile}
   '';
   publicPart = lib.concatStringsSep "\n" (lib.mapAttrsToList hostBlock publicHosts);
 in
-{
+lib.mkIf config.mo.programs.ssh.enableHost {
   sops.templates."ssh-config.conf".content = ''
     ${publicPart}
-    ${config.sops.placeholder.CONECLOUD_SSH_CONFIG}
   '';
 
   home.activation.writeSshConfig = lib.hm.dag.entryAfter [ "sops-nix" ] ''

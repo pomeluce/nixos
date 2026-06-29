@@ -23,6 +23,9 @@ in
     secrets.OPENROUTER_API_KEY = { };
     secrets.ZAI_API_KEY = { };
 
-    secrets.CONECLOUD_SSH_CONFIG = { };
+    secrets.VPS_CONE_IP = { };
+    secrets.VPS_CONE_PORT = { };
+    secrets.VPS_RECK_IP = { };
+    secrets.VPS_RECK_PORT = { };
   };
 }

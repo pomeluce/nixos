@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   mo = rec {
-    username = "Tso";
+    username = lib.mkDefault "Tso";
     uid = 1000;
     gid = 1000;
     devspace = "/home/${username}/devspace";
@@ -85,6 +85,11 @@
           ];
         };
       };
+
+      ssh.ports = [
+        22
+        2200
+      ];
     };
 
     userPackages = lib.mkDefault [ ];

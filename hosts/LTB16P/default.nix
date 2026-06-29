@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [ ../common.nix ];
 
@@ -93,11 +93,22 @@
 
       swaylock.font-size = 42;
 
+      ssh.enableHost = true;
       ssh.hosts = {
         "github.com" = {
           HostName = "ssh.github.com";
           Port = 443;
           IdentityFile = "~/.ssh/id_github";
+        };
+        conevps = {
+          HostName = config.sops.placeholder.VPS_CONE_IP;
+          Port = config.sops.placeholder.VPS_CONE_PORT;
+          IdentityFile = "~/.ssh/id_ssh";
+        };
+        reckvps = {
+          HostName = config.sops.placeholder.VPS_RECK_IP;
+          Port = config.sops.placeholder.VPS_RECK_PORT;
+          IdentityFile = "~/.ssh/id_ssh";
         };
       };
     };

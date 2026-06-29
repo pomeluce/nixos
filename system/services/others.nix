@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   # Dbus
   services.dbus.enable = true;
@@ -5,6 +6,7 @@
   services.libinput.enable = true;
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.ports = config.mo.programs.ssh.ports;
   # rtkit
   security.rtkit.enable = true;
   # usbmuxd

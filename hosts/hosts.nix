@@ -4,7 +4,7 @@
     extraOSModules = [ ./LTB16P/hardware-configuration.nix ];
   }
   {
-    host = "WSN";
+    host = "LTPT14P";
     extraOSModules = [ { nixpkgs.hostPlatform = "x86_64-linux"; } ];
   }
   {

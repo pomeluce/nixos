@@ -224,6 +224,10 @@ in
           type = types.bool;
           default = true;
         };
+        enableKey = mkOption {
+          type = types.bool;
+          default = true;
+        };
         ports = mkOption {
           type = types.listOf types.port;
           default = [ ];

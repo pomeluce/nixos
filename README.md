@@ -265,23 +265,26 @@ Secrets are split by category under `secrets/`:
 
 ### Add a new machine or age recipient
 
-1. Generate or locate the machine's age public key.
-
-   If the machine uses an age key directly:
+1. On the new machine, generate the age key:
 
    ```sh
-   age-keygen -y /path/to/key.txt
+   sudo mkdir -p /etc/ssh/age
+   sudo age-keygen -o /etc/ssh/age/keys.txt
+   sudo chown root:<username> /etc/ssh/age/keys.txt
+   sudo chmod 640 /etc/ssh/age/keys.txt
    ```
 
-   If the machine uses an SSH host/user key as the age identity, convert the SSH public key with `ssh-to-age`:
+   > Replace `<username>` with the actual user name. This mirrors the `keyFile` path `"/etc/ssh/age/keys.txt"` used in `home/sops.nix` and `system/modules/sops.nix`.
+
+2. Retrieve the public key and add it to `.sops.yaml` on the build machine:
 
    ```sh
-   nix shell nixpkgs#ssh-to-age -c ssh-to-age -i /path/to/id_ed25519.pub
+   # On the new machine
+   age-keygen -y /etc/ssh/age/keys.txt
    ```
-
-2. Add the public key to `.sops.yaml`:
 
    ```yaml
+   # In .sops.yaml
    keys:
      - &NEW_HOST age1...
    ```
@@ -297,7 +300,7 @@ Secrets are split by category under `secrets/`:
              - *NEW_HOST
    ```
 
-4. Rotate/re-encrypt existing secret files so the new recipient can decrypt them:
+4. Re-encrypt existing secret files so the new recipient can decrypt them:
 
    ```sh
    for f in secrets/*.yaml; do
@@ -443,7 +446,7 @@ nix develop
    }
    ```
 
-5. If the host must decrypt secrets, add its age recipient to `.sops.yaml` and rotate keys:
+5. If the host must decrypt secrets, generate its age key and add the recipient to `.sops.yaml` (see [Add a new machine or age recipient](#add-a-new-machine-or-age-recipient) above), then rotate keys:
 
    ```sh
    for f in secrets/*.yaml; do
@@ -514,4 +517,3 @@ When renaming a host, update all of these together:
 - Any documentation references
 
 Remember to stage new or renamed host directories before running flake evaluation.
-

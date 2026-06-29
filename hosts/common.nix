@@ -1,10 +1,19 @@
-{ pkgs, lib, ... }:
 {
-  mo = rec {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  username = config.mo.username;
+  devspace = config.mo.devspace;
+in
+{
+  mo = {
     username = lib.mkDefault "Tso";
     uid = 1000;
     gid = 1000;
-    devspace = "/home/${username}/devspace";
+    devspace = lib.mkDefault "/home/${username}/devspace";
 
     system = {
       # virtualisation defaults

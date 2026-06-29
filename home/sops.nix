@@ -4,28 +4,28 @@ let
 in
 {
   sops = {
-    defaultSopsFile = ../secrets.yaml;
+    defaultSopsFile = ../secrets/home.yaml;
     age = {
       generateKey = true;
       sshKeyPaths = [ "/home/${mo.username}/.ssh/id_sops" ];
       keyFile = "/etc/ssh/age/keys.txt";
     };
-    secrets.ID_GITHUB = { };
-    secrets.ID_GITHUB_PUB = { };
-    secrets.ID_SOPS = { };
-    secrets.ID_SOPS_PUB = { };
-    secrets.ID_SSH = { };
-    secrets.ID_SSH_PUB = { };
+    secrets.ID_GITHUB.sopsFile = ../secrets/ssh.yaml;
+    secrets.ID_GITHUB_PUB.sopsFile = ../secrets/ssh.yaml;
+    secrets.ID_SOPS.sopsFile = ../secrets/ssh.yaml;
+    secrets.ID_SOPS_PUB.sopsFile = ../secrets/ssh.yaml;
+    secrets.ID_SSH.sopsFile = ../secrets/ssh.yaml;
+    secrets.ID_SSH_PUB.sopsFile = ../secrets/ssh.yaml;
 
-    secrets.CPA_API_KEY = { };
-    secrets.DEEPSEEK_API_KEY = { };
-    secrets.FAVOR_API_KEY = { };
-    secrets.OPENROUTER_API_KEY = { };
-    secrets.ZAI_API_KEY = { };
+    secrets.CPA_API_KEY.sopsFile = ../secrets/ai.yaml;
+    secrets.DEEPSEEK_API_KEY.sopsFile = ../secrets/ai.yaml;
+    secrets.FAVOR_API_KEY.sopsFile = ../secrets/ai.yaml;
+    secrets.OPENROUTER_API_KEY.sopsFile = ../secrets/ai.yaml;
+    secrets.ZAI_API_KEY.sopsFile = ../secrets/ai.yaml;
 
-    secrets.VPS_CONE_IP = { };
-    secrets.VPS_CONE_PORT = { };
-    secrets.VPS_RECK_IP = { };
-    secrets.VPS_RECK_PORT = { };
+    secrets.VPS_CONE_IP.sopsFile = ../secrets/vps.yaml;
+    secrets.VPS_CONE_PORT.sopsFile = ../secrets/vps.yaml;
+    secrets.VPS_RECK_IP.sopsFile = ../secrets/vps.yaml;
+    secrets.VPS_RECK_PORT.sopsFile = ../secrets/vps.yaml;
   };
 }

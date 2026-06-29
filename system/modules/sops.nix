@@ -8,7 +8,7 @@ let
 in
 {
   sops = {
-    defaultSopsFile = ../../secrets.yaml;
+    defaultSopsFile = ../../secrets/system.yaml;
     age = {
       generateKey = true;
       sshKeyPaths = [ "/home/${mo.username}/.ssh/id_sops" ];
@@ -20,6 +20,7 @@ in
     };
     secrets.MIHOMO_PROVIDER = { };
     secrets.PG_INITIAL = lib.mkIf (mo.system.postgres == true) {
+      sopsFile = ../../secrets/postgres.yaml;
       mode = "0400";
       owner = config.users.users.postgres.name;
     };

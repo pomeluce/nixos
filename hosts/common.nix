@@ -15,6 +15,10 @@
         "10de:22be" # Audio
       ];
 
+      # boot loader defaults
+      boot.mode = lib.mkDefault "efi";
+      boot.device = lib.mkDefault "nodev";
+
       # user env
       session-variables = lib.mkDefault { };
       session-path = lib.mkDefault [ ];

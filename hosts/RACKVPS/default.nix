@@ -11,6 +11,9 @@
       postgres = true;
       wsl = false;
 
+      boot.mode = "bios";
+      boot.device = "/dev/vda";
+
       # proxy
       proxy.enable = false;
       proxy.http = "";

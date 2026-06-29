@@ -13,7 +13,7 @@ in
     # --- basic user info ---
     username = mkOption {
       type = types.str;
-      default = "Tso";
+      default = "marcus";
     };
     uid = mkOption {
       type = types.int;
@@ -35,6 +35,21 @@ in
       mihomo = mkEnableOption "Mihomo Service";
       postgres = mkEnableOption "PostgreSQL Support";
       wsl = mkEnableOption "WSL Mode";
+
+      # boot loader
+      boot = {
+        mode = mkOption {
+          type = types.enum [
+            "efi"
+            "bios"
+          ];
+          default = "efi";
+        };
+        device = mkOption {
+          type = types.str;
+          default = "nodev";
+        };
+      };
 
       # proxy setting
       proxy = {

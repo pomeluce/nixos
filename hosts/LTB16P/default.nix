@@ -105,9 +105,9 @@
           Port = config.sops.placeholder.VPS_CONE_PORT;
           IdentityFile = "~/.ssh/id_ssh";
         };
-        reckvps = {
-          HostName = config.sops.placeholder.VPS_RECK_IP;
-          Port = config.sops.placeholder.VPS_RECK_PORT;
+        rackvps = {
+          HostName = config.sops.placeholder.VPS_RACK_IP;
+          Port = config.sops.placeholder.VPS_RACK_PORT;
           IdentityFile = "~/.ssh/id_ssh";
         };
       };

@@ -25,7 +25,7 @@ in
 
     secrets.VPS_CONE_IP.sopsFile = ../secrets/vps.yaml;
     secrets.VPS_CONE_PORT.sopsFile = ../secrets/vps.yaml;
-    secrets.VPS_RECK_IP.sopsFile = ../secrets/vps.yaml;
-    secrets.VPS_RECK_PORT.sopsFile = ../secrets/vps.yaml;
+    secrets.VPS_RACK_IP.sopsFile = ../secrets/vps.yaml;
+    secrets.VPS_RACK_PORT.sopsFile = ../secrets/vps.yaml;
   };
 }

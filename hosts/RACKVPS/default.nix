@@ -56,6 +56,7 @@
       niri.opacity.inactive = "";
 
       ssh.enableHost = false;
+      ssh.enableKey = false;
     };
   };
 }

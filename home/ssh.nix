@@ -5,8 +5,7 @@ let
   hostBlock = name: cfg: ''
     Host ${name}
         HostName ${cfg.HostName}
-        Port ${toString cfg.Port}
-        ${lib.optionalString (cfg.User != null) "User ${cfg.User}"}
+        Port ${toString cfg.Port}${lib.optionalString (cfg.User != null) "\n        User ${cfg.User}"}
         IdentityFile ${cfg.IdentityFile}
   '';
   publicPart = lib.concatStringsSep "\n" (lib.mapAttrsToList hostBlock publicHosts);

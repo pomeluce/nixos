@@ -97,7 +97,24 @@
             """
           '';
         };
-        lsp.jdtls.maven.userSettings = "~/.m2/settings-siact.xml";
+        lsp.jdtls = {
+          maven.userSettings = "~/.m2/settings-siact.xml";
+          runtimes = [
+            {
+              name = "JavaSE-1.8";
+              path = "/etc/jdk/zulu8";
+              default = true;
+            }
+            {
+              name = "JavaSE-21";
+              path = "/etc/jdk/zulu21";
+            }
+            {
+              name = "JavaSE-25";
+              path = "/etc/jdk/zulu25";
+            }
+          ];
+        };
       };
     };
   };

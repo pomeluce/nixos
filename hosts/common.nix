@@ -81,7 +81,7 @@ in
           maven = {
             globalSettings = "~/.m2/settings.xml";
           };
-          runtimes = [
+          runtimes = lib.mkDefault [
             {
               name = "JavaSE-1.8";
               path = "/etc/jdk/zulu8";

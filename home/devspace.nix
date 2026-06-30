@@ -10,6 +10,9 @@ in
       set -euo pipefail
       mkdir -p \
         "${devspace}" \
+        "${devspace}/code" \
+        "${devspace}/infra" \
+        "${devspace}/repos" \
         "${devspace}/var" \
         "${devspace}/var/gradle" \
         "${devspace}/var/golib" \
@@ -17,8 +20,7 @@ in
         "${devspace}/var/node" \
         "${devspace}/var/rust" \
         "${devspace}/var/agent" \
-        "${devspace}/repos" \
-        "${devspace}/code"
+        "${devspace}/work"
       echo "ensureDevspace: directories created under ${devspace}"
     '';
   };

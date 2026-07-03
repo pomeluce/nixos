@@ -202,6 +202,8 @@ in
 
       firefox.enable = mkEnableOption "Firefox";
       steam.enable = mkEnableOption "Steam";
+      vscode.enable = mkEnableOption "VSCode Editor";
+      cli-proxy-api.enable = mkEnableOption "CliProxyAPI Service";
       keyd = {
         enable = mkEnableOption "Keyd";
         settings = mkOption {
@@ -312,9 +314,12 @@ in
         };
       };
 
-      swaylock.font-size = mkOption {
-        type = types.int;
-        default = 42;
+      swaylock = {
+        enable = mkEnableOption "Swaylock Lock Screen";
+        font-size = mkOption {
+          type = types.int;
+          default = 42;
+        };
       };
 
       nvim.settings = {

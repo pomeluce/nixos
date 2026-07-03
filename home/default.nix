@@ -11,7 +11,8 @@ in
 
   imports = [
     ./claude
-    # ./cpa
+    ./codex.nix
+    ./cpa
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix
@@ -24,7 +25,6 @@ in
     ./zsh.nix
 
     # 桌面环境相关模块
-    # ./akirds
     ./devspace.nix
     ./fcitx5
     ./firefox.nix
@@ -33,10 +33,10 @@ in
     ./jetbrains
     ./niri.nix
     ./noctalia.nix
-    # ./swaylock.nix
+    ./swaylock.nix
     ./terminal
     ./theme.nix
-    # ./vscode.nix
+    ./vscode.nix
     ./typora
     ./xsettingsd.nix
   ];

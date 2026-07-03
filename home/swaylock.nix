@@ -9,7 +9,7 @@ let
 in
 {
 
-  config = lib.mkIf mo.desktop.enable {
+  config = lib.mkIf (mo.desktop.enable && mo.programs.swaylock.enable) {
     home.file.".config/swaylock/config".text = ''
       screenshots
 

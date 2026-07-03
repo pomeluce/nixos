@@ -2,7 +2,7 @@
 {
   config = lib.mkIf config.mo.desktop.enable {
     programs.vscode = {
-      enable = true;
+      enable = config.mo.programs.vscode.enable;
       profiles.default = {
         userSettings = {
           # editor 配置
@@ -94,8 +94,7 @@
             };
           };
 
-          /* 其他扩展配置 */
-          "npm.packageManager" = "pnpm";
+          /* 其他扩展配置 */ "npm.packageManager" = "pnpm";
           "extensions.autoUpdate" = "onlyEnabledExtensions";
           "liveServer.settings.donotShowInfoMsg" = true;
           "liveServer.settings.donotVerifyTags" = true;

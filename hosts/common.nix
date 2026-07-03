@@ -62,6 +62,11 @@ in
       postgres.jit = lib.mkDefault "off";
       postgres.listen_addresses = lib.mkDefault "*";
 
+      cli-proxy-api.enable = lib.mkDefault false;
+
+      vscode.enable = lib.mkDefault false;
+
+      swaylock.enable = lib.mkDefault false;
       swaylock.font-size = lib.mkDefault 14;
 
       nvim.settings = lib.mkDefault {

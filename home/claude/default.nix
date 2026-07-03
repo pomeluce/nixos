@@ -32,14 +32,54 @@ in
   programs.claude-code = {
     enable = true;
   };
-  home.packages = with pkgs; [
-    ccs
-    ccline
-  ];
-  home.file.".claude/models.json".source = ./models.json;
+
+  programs.ccswitch = {
+    enable = true;
+    defaults = {
+      version = 1;
+      providers = [
+        {
+          id = "deepseek";
+          name = "DeepSeek";
+          api_url = "https://api.deepseek.com/anthropic";
+          api_key = "env:DEEPSEEK_API_KEY";
+          profiles = [
+            {
+              id = "v4";
+              name = "DeepSeek-V4";
+              opus = "deepseek-v4-pro[1m]";
+              sonnet = "deepseek-v4-pro[1m]";
+              haiku = "deepseek-v4-flash";
+              subagent = "deepseek-v4-flash";
+              default = true;
+            }
+          ];
+        }
+        {
+          id = "zai";
+          name = "ZBigModel";
+          api_url = "https://api.z.ai/api/anthropic";
+          api_key = "env:ZAI_API_KEY";
+        }
+        {
+          id = "openrouter";
+          name = "OpenRouter";
+          api_url = "https://openrouter.ai/api";
+          api_key = "env:OPENROUTER_API_KEY";
+        }
+        {
+          id = "cpa";
+          name = "CliProxyAPI";
+          api_url = "http://127.0.0.1:8317";
+          api_key = "env:CPA_API_KEY";
+        }
+      ];
+    };
+  };
+
+  home.packages = with pkgs; [ ccline ];
   home.file.".claude/ccline/config.toml".source = ./cclc.toml;
   home.file.".claude/settings.nix-default.json".source = ccds;
-
   # 已有 settings.json 里的值优先, 避免覆盖插件写入的内容
   home.activation.mergeCCSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     set -euo pipefail

@@ -62,6 +62,7 @@ let
           inputs.noctalia.homeModules.default
           inputs.azimfw.homeManagerModules.default
           inputs.akirnvim.homeManagerModules.default
+          inputs.ccswitch.homeModules.default
         ];
       };
     };

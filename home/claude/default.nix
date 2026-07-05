@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   pkgs,
   ...
 }:
@@ -47,10 +48,8 @@ in
             {
               id = "v4";
               name = "DeepSeek-V4";
-              opus = "deepseek-v4-pro[1m]";
-              sonnet = "deepseek-v4-pro[1m]";
-              haiku = "deepseek-v4-flash";
-              subagent = "deepseek-v4-flash";
+              reasoning_model = "deepseek-v4-pro[1m]";
+              task_model = "deepseek-v4-flash";
               default = true;
             }
           ];
@@ -75,7 +74,16 @@ in
         }
       ];
     };
+    envVars = config.sops.templates."ccswitch-env".path;
   };
+
+  # sops template 会在激活时把占位符替换为实际解密后的值
+  sops.templates."ccswitch-env".content = ''
+    CPA_API_KEY=${config.sops.placeholder.CPA_API_KEY}
+    DEEPSEEK_API_KEY=${config.sops.placeholder.DEEPSEEK_API_KEY}
+    OPENROUTER_API_KEY=${config.sops.placeholder.OPENROUTER_API_KEY}
+    ZAI_API_KEY=${config.sops.placeholder.ZAI_API_KEY}
+  '';
 
   home.packages = with pkgs; [ ccline ];
   home.file.".claude/ccline/config.toml".source = ./cclc.toml;

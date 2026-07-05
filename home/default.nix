@@ -55,17 +55,6 @@ in
         LANG = "zh_CN.UTF-8";
         LC_ALL = "zh_CN.UTF-8";
         LANGUAGE = "zh_CN.UTF-8";
-
-        # 使用 sops-nix 解密后的 secrets 路径
-        CPA_API_KEY = "$(cat ${config.sops.secrets.CPA_API_KEY.path})";
-        DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
-        OPENROUTER_API_KEY = "$(cat ${config.sops.secrets.OPENROUTER_API_KEY.path})";
-        ZAI_API_KEY = "$(cat ${config.sops.secrets.ZAI_API_KEY.path})";
-
-        # provided to claude code
-        CLAUDE_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
-        CLAUDE_API_URL = "https://api.deepseek.com/anthropic";
-        CLAUDE_MODEL_NAME = "deepseek-v4-pro[1m]";
       }
       (lib.mkIf (mo.desktop.enable && (mo.desktop.wm.hyprland || mo.desktop.wm.niri)) {
         # input method: fcitx

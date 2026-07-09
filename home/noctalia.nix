@@ -81,7 +81,7 @@ in
           useSeparateOpacity = false;
           widgetSpacing = 6;
           widgets = {
-            background_opacity = 0.84999998100101948;
+            background_opacity = 0.75;
             center = [ "group:g1" ];
             contact_shadow = true;
             end = [
@@ -95,7 +95,7 @@ in
             margin_edge = 0;
             margin_ends = 0;
             radius = 0;
-            scale = 0.90000000596046448;
+            scale = 0.9;
             start = [ "group:g2" ];
             thickness = 40;
             capsule_group = [
@@ -108,7 +108,7 @@ in
                   "clock"
                   "media"
                 ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
@@ -119,14 +119,14 @@ in
                   "workspaces"
                   "taskbar"
                 ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
                 fill = "outline";
                 id = "g3";
                 members = [ "tray" ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
@@ -136,7 +136,7 @@ in
                   "notifications"
                   "clipboard"
                 ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
@@ -148,7 +148,7 @@ in
                   "volume"
                   "brightness"
                 ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
@@ -158,14 +158,14 @@ in
                   "control-center"
                   "session"
                 ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
               {
                 fill = "outline";
                 id = "g7";
                 members = [ "battery" ];
-                opacity = 0.60000002384185791;
+                opacity = 0.6;
                 padding = 14.0;
               }
             ];
@@ -190,11 +190,11 @@ in
                 fontWeight = "bold";
                 groupedBorderOpacity = 1;
                 hideUnoccupied = false;
-                iconScale = 0.80000000000000004;
+                iconScale = 0.8;
                 id = "Workspace";
                 labelMode = "none";
                 occupiedColor = "secondary";
-                pillSize = 0.59999999999999998;
+                pillSize = 0.6;
                 showApplications = false;
                 showApplicationsHover = false;
                 showBadge = true;
@@ -515,16 +515,16 @@ in
         };
         osd = {
           autoHideMs = 2000;
-          backgroundOpacity = 1;
+          background_opacity = 0.80;
           enabled = true;
           enabledTypes = [
             0
             1
             2
           ];
-          location = "top_right";
           monitors = [ ];
           overlayLayer = true;
+          position = "top_right";
         };
         plugins = {
           autoUpdate = false;
@@ -602,12 +602,19 @@ in
           font_family = "PingFang SC";
           settings_show_advanced = true;
           polkit_agent = true;
+          launcher = {
+            categories = false;
+          };
           panel = {
+            control_center_placement = "floating";
+            control_center_position = "center";
             launcher_categories = false;
             open_near_click_control_center = true;
-            session_placement = "centered";
+            session_placement = "floating";
+            session_position = "center";
             transparency_mode = "soft";
-            wallpaper_placement = "centered";
+            wallpaper_placement = "floating";
+            wallpaper_position = "center";
           };
           screen_corners = {
             enabled = true;
@@ -663,6 +670,7 @@ in
             ];
             community_ids = [
               "pywalfox"
+              "steam"
               "telegram"
             ];
           };
@@ -693,9 +701,9 @@ in
           hideWallpaperFilenames = false;
           linkLightAndDarkWallpapers = true;
           monitorDirectories = [ ];
-          overviewBlur = 0.40000000000000002;
+          overviewBlur = 0.4;
           overviewEnabled = true;
-          overviewTint = 0.59999999999999998;
+          overviewTint = 0.6;
           panelPosition = "follow_bar";
           randomIntervalSec = 300;
           setWallpaperOnAllMonitors = true;
@@ -704,7 +712,7 @@ in
           solidColor = "#1a1a2e";
           sortOrder = "name";
           transitionDuration = 1500;
-          transitionEdgeSmoothness = 0.050000000000000003;
+          transitionEdgeSmoothness = 0.05;
           transitionType = [
             "fade"
             "disc"
@@ -733,6 +741,9 @@ in
             interval_seconds = 300;
             order = "alphabetical";
           };
+        };
+        weather = {
+          enabled = false;
         };
         widget = {
           brightness = {
@@ -772,6 +783,9 @@ in
         };
         lockscreen = {
           blurred_desktop = true;
+        };
+        backdrop = {
+          enabled = true;
         };
       };
     };

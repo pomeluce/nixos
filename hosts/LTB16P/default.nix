@@ -88,8 +88,8 @@
           position x=0 y=0
         }
       '';
-      niri.opacity.active = "0.9";
-      niri.opacity.inactive = "0.95";
+      niri.opacity.active = "0.8";
+      niri.opacity.inactive = "0.85";
 
       swaylock.font-size = 42;
 

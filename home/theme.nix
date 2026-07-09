@@ -18,6 +18,7 @@ in
     ];
 
     home.pointerCursor = {
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
       name = "${mo.desktop.cursor.theme}";
@@ -47,13 +48,5 @@ in
         button-layout = "close,maximize,minimize,appmenu:";
       };
     };
-
-    # xdg.configFile = {
-    #   "Kvantum/kvantum.kvconfig".text = ''
-    #     [General]
-    #     theme=WhiteSurDark
-    #   '';
-    #   "Kvantum/WhiteSur".source = "${pkgs.whitesur-kde}/share/Kvantum/WhiteSur";
-    # };
   };
 }

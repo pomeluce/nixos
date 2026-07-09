@@ -10,9 +10,9 @@ let
 in
 {
   mo = {
-    username = lib.mkDefault "Tso";
-    uid = 1000;
-    gid = 1000;
+    username = lib.mkDefault "marcus";
+    uid = lib.mkDefault 1024;
+    gid = lib.mkDefault 1024;
     devspace = lib.mkDefault "/home/${username}/devspace";
 
     system = {
@@ -47,7 +47,7 @@ in
       # ghostty, wezterm
       terminal = lib.mkDefault "ghostty";
 
-      git.name = lib.mkDefault "Tso";
+      git.name = lib.mkDefault username;
       git.email = lib.mkDefault "62343478+pomeluce@users.noreply.github.com";
       git.branch = lib.mkDefault "main";
 
@@ -86,7 +86,7 @@ in
           maven = {
             globalSettings = "~/.m2/settings.xml";
           };
-          runtimes = lib.mkDefault [
+          runtimes = [
             {
               name = "JavaSE-1.8";
               path = "/etc/jdk/zulu8";

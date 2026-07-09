@@ -19,7 +19,6 @@ in
         "${devspace}/var/maven" \
         "${devspace}/var/node" \
         "${devspace}/var/rust" \
-        "${devspace}/var/agent" \
         "${devspace}/work"
       echo "ensureDevspace: directories created under ${devspace}"
     '';

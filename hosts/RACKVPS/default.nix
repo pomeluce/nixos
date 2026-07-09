@@ -3,7 +3,6 @@
   imports = [ ../common.nix ];
 
   mo = {
-    username = "marcus";
     system = {
       bluetooth = false;
       docker = true;

@@ -69,7 +69,6 @@ in
 
       text-wrong=failed
       text-wrong-color=e64553
-
     '';
 
     home.packages = with pkgs; [

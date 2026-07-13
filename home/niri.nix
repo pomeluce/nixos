@@ -158,7 +158,7 @@ in
         Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
         Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: noctalia" { spawn-sh "pkill noctalia; noctalia"; }
         Mod+Alt+S hotkey-overlay-title="Open Noctalia Shell Settings: noctalia" { spawn-sh "noctalia msg settings-toggle"; }
-        Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "noctalia msg session lock"; }
+        Mod+Alt+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia msg session lock"; }
 
         // 截屏和录屏
         Print { spawn "screenshot"; }

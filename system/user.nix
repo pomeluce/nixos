@@ -15,8 +15,8 @@ in
   users.users.${name} = {
     isNormalUser = true;
     uid = mo.uid;
+    group = name;
     extraGroups = [
-      name
       "networkmanager"
       "wheel"
       "video"

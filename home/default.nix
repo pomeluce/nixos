@@ -30,6 +30,7 @@ in
     ./firefox.nix
     ./fonts.nix
     ./hypr.nix
+    ./lgc.nix
     ./jetbrains
     ./niri.nix
     ./noctalia.nix

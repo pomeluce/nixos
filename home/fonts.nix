@@ -45,6 +45,7 @@
         <edit binding="strong" mode="prepend" name="family">
          <string>Inter</string>
          <string>PingFang SC</string>
+         <string>Noto Sans CJK SC</string>
          <string>Apple Color Emoji</string>
         </edit>
        </match>
@@ -87,8 +88,8 @@
        </match>
 
 
-      # 有一些网站会指定某些本地字体,如 Google 和 GitHub 会指名使用 Liberation 系列字体.
-      # 而我们想让网站都用我们自己定义好的字体.如下的代码可以实现这个目标.
+      # 有一些网站会指定某些本地字体, 如 Google 和 GitHub 会指名使用 Liberation 系列字体.
+      # 而我们想让网站都用我们自己定义好的字体. 如下的代码可以实现这个目标.
 
       <!-- 替换某些 无衬线字体 为你的自定义字体或通用族 -->
        <match target="pattern">
@@ -110,12 +111,6 @@
        <match target="pattern">
          <test qual="any" name="family"><string>Noto Sans Mono</string></test>
          <edit name="family" mode="assign" binding="same"><string>monospace</string></edit>
-       </match>
-
-      <!-- 替换某些 中文字体 为你的自定义字体或通用族 -->
-       <match target="pattern">
-         <test qual="any" name="family"><string>Noto Sans CJK SC</string></test>
-         <edit name="family" mode="assign" binding="same"><string>PingFang SC</string></edit>
        </match>
 
       </fontconfig>

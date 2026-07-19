@@ -35,6 +35,8 @@ in
       // cmd: `niri msg outputs`
       ${mo.programs.niri.output}
 
+      ${mo.programs.niri.debug}
+
       layout {
         // 窗口内部间隙
         gaps 20

@@ -279,6 +279,11 @@ in
           type = types.lines;
           default = "";
         };
+        debug = mkOption {
+          type = types.lines;
+          default = "";
+          description = "Extra niri debug block (KDL), e.g. render-drm-device to pin iGPU for GPU passthrough setups";
+        };
         opacity = {
           active = mkOption {
             type = types.str;

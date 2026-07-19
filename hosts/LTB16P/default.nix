@@ -15,6 +15,13 @@
       proxy.http = "";
       proxy.https = "";
 
+      virt.enable = true;
+      virt.kvm-cpu-type = "intel";
+      virt.kvm-gpu-ids = [
+        "10de:28e0" # Graphics
+        "10de:22be" # Audio
+      ];
+
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
       drive.gpu-type = [ "intel-nvidia" ];
       drive.intel-bus-id = "PCI:0:2:0";
@@ -90,6 +97,15 @@
       '';
       niri.opacity.active = "0.8";
       niri.opacity.inactive = "0.85";
+
+      # GPU 直通场景: 让 niri 忽略 NVIDIA DRM 设备, 只用 Intel 核显,
+      # 这样 VM 启动时可以无缝把 NVIDIA 切换给 vfio-pci (热切换).
+      niri.debug = ''
+        debug {
+          ignore-drm-device "/dev/dri/by-path/pci-0000:01:00.0-card"
+          ignore-drm-device "/dev/dri/by-path/pci-0000:01:00.0-render"
+        }
+      '';
 
       swaylock.font-size = 42;
 

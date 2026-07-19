@@ -21,6 +21,7 @@ in
       "wheel"
       "video"
       "libvirtd"
+      "kvm"
       "docker"
     ]; # Enable 'sudo' for the user.
     shell = pkgs.zsh;

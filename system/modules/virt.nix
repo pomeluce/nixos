@@ -46,10 +46,13 @@ in
     };
     services.spice-vdagentd.enable = true;
 
-    # Looking Glass — 将 VM GPU 渲染帧回传到宿主机显示
-    environment.systemPackages = [ pkgs.looking-glass-client ];
+    # Looking Glass (画面回传) + virtiofsd (VirtIO-FS 文件共享守护进程)
+    environment.systemPackages = [
+      pkgs.looking-glass-client
+      pkgs.virtiofsd
+    ];
 
-    # /dev/shm/looking-glass 由 tmpfiles 创建 (marcus:libvirtd 权限),
+    # /dev/shm/looking-glass 由 tmpfiles 创建 ($USER:libvirtd 权限),
     # VM 启动时 QEMU 会按 shmem 配置的大小使用它.
     systemd.tmpfiles.rules = [
       "f /dev/shm/looking-glass 0660 ${mo.username} libvirtd -"

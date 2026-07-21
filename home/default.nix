@@ -19,6 +19,7 @@ in
     ./maven
     ./node.nix
     ./nvim.nix
+    ./shared.nix
     ./sops.nix
     ./ssh.nix
     ./uv.nix

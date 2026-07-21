@@ -71,31 +71,229 @@ sudo usermod -a -G libvirt $(whoami)
 
 ## 创建 Windows 虚拟机
 
-### 1. 准备镜像
+两种典型场景：
 
-- **Windows ISO**：从 [微软官网](https://www.microsoft.com/zh-cn/software-download/windows11) 或 [HelloWindows](https://hellowindows.cn/) 下载
-- **virtio-win 驱动 ISO**：从 https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/ 下载最新版
+- **方式 A：全新安装**——从 Windows ISO 装到虚拟镜像（或物理磁盘）
+- **方式 B：导入现有系统**——物理硬盘上已经装好的 Windows，直接启动它（双系统共用一块盘，不用重装）
 
-### 2. 在 virt-manager 创建
+### 准备
 
-新建虚拟机 → 导入 ISO → 勾选 **"安装前自定义配置"**。关键设置：
+- **Windows ISO**（仅方式 A 需要）：[微软官网](https://www.microsoft.com/zh-cn/software-download/windows11) 或 [HelloWindows](https://hellowindows.cn/)
+- **virtio-win 驱动 ISO**（两种方式都要，用来装 virtio 驱动）：https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/ 下最新版
 
-| 项目                | 推荐值                                              | 说明                                 |
-| ------------------- | --------------------------------------------------- | ------------------------------------ |
-| **固件 (Firmware)** | `UEFI x86_64: .../edk2-x86_64-code.fd`（非 secure） | Windows 11 必须 UEFI                 |
-| **Chipset**         | Q35                                                 | 现代芯片组                           |
-| **CPU Model**       | `host-passthrough`                                  | 暴露完整 CPU 特性                    |
-| **磁盘总线**        | VirtIO                                              | 性能最好（安装时需加载 virtio 驱动） |
-| **网卡型号**        | virtio                                              | 性能最好                             |
-| **内存/CPU**        | 按需                                                | Windows 11 建议 ≥ 8GB / 4 核         |
+### 关键配置（两种方式通用）
 
-### 3. 安装时加载 virtio 驱动
+创建 VM 时勾选 **"安装前自定义配置"**，在配置界面设好：
 
-Windows 安装器选磁盘时，**看不到 VirtIO 磁盘**是正常的——点"加载驱动程序" → 浏览 virtio-win ISO → 选 `viostro\w11\amd64` 目录 → 加载后磁盘出现。
+| 项目                | 推荐值                                              | 说明                                                    |
+| ------------------- | --------------------------------------------------- | ------------------------------------------------------- |
+| **固件 (Firmware)** | `UEFI x86_64: .../edk2-x86_64-code.fd`（非 secure） | Win11 必须 UEFI；导入现有系统要和原系统一致（GPT→UEFI） |
+| **Chipset**         | Q35                                                 | 现代芯片组                                              |
+| **CPU Model**       | `host-passthrough`                                  | 暴露完整 CPU 特性                                       |
+| **磁盘总线**        | VirtIO（首选）/ SATA                                | VirtIO 性能最好但需先装驱动；没装前用 SATA              |
+| **网卡型号**        | virtio                                              | 性能最好                                                |
+| **内存/CPU**        | 按需                                                | Windows 11 建议 ≥ 8GB / 4 核                            |
 
-### 4. 装好系统后
+### 方式 A：全新安装（从 ISO）
 
-进入 Windows 后，运行 virtio-win ISO 里的 `virtio-win-guest-tools.exe`，一次装齐所有 virtio 驱动（磁盘、网卡、QXL 显示、spice-vdagent 等）。
+全新安装可以**直接用 VirtIO 磁盘**——安装过程中一次性把 virtio 驱动装上，装完就是 VirtIO 模式，无需事后从 SATA 切换。
+
+#### 1. 准备镜像
+
+- **Windows 11 ISO**：[微软官网](https://www.microsoft.com/zh-cn/software-download/windows11) 或 [HelloWindows](https://hellowindows.cn/)
+- **virtio-win 驱动 ISO**：https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/ 下最新稳定版
+
+#### 2. virt-manager 新建向导
+
+1. virt-manager → **文件 → 新建虚拟机**
+2. 选 **"本地安装介质（ISO 镜像或 CDROM）"** → 前进
+3. **浏览**选 Windows ISO（或手动输入路径）→ 确认自动检测出操作系统类型 → 前进
+4. 内存 / CPU：
+   - 内存 **≥ 4096 MB**（建议 8192+）
+   - CPU **≥ 2**（建议 4+）→ 前进
+5. 存储：**创建磁盘镜像**，大小 **≥ 60 GB** → 前进
+6. 命名（如 `Windows11`）
+7. **勾选 "安装前自定义配置"** → 完成 → 进入硬件配置界面（VM 还没启动）
+
+#### 3. 自定义硬件配置
+
+逐项检查/修改（左侧是设备列表，右侧是配置）：
+
+**Overview（总览）**
+
+- **Firmware**：下拉选 `UEFI x86_64: /run/libvirt/nix-ovmf/edk2-x86_64-code.fd`（**不要选带 secure-boot 的**，否则装系统会很折腾）
+- **Chipset**：Q35（默认）
+
+**CPU**
+
+- **Model**：手输 `host-passthrough`（下拉列表里没有就自己打）
+- 展开 **Topology** → 勾选 "Manually set CPU topology" → 按物理核填（如 `sockets=1 cores=6 threads=2`）
+
+**Memory**：确认大小无误
+
+**Disk x（磁盘）**
+
+- **Disk bus**：改为 **VirtIO**
+- 展开 Advanced：`cache=none`、`io=native`（块设备直通才需要；qcow2 镜像保持默认即可）
+
+**CDROM 1（SATA 光驱）**：确认挂的是 Windows ISO
+
+**添加 CDROM 2（装 virtio 驱动用）**：点左下 **"添加硬件"** → Storage → 选 **virtio-win ISO** → 设备类型选 **CDROM** → 完成
+
+**NIC（网卡）**
+
+- **网络源**：default（NAT）
+- **设备型号**：改为 **virtio**
+
+**Input（输入设备）**：确认有 **Tablet**（USB，鼠标绝对定位，SPICE 用）。如果没有，添加：添加硬件 → Input → USB Tablet。Keyboard 默认有。
+
+**Video（显卡）**
+
+- **Model**：`QXL`（安装阶段靠 SPICE 控制台看画面）。后续做 GPU 直通时改 `none`（见 [passthrough.md](./passthrough.md)）
+
+**TPM（Windows 11 必须，否则安装时报错）**
+
+- 添加硬件 → **TPM**
+- **Type**：Emulated
+- **Model**：TIS（或 CRB）
+- **Version**：**2.0**
+- （需要宿主机 `swtpm` 服务，`virt.nix` 已启用）
+
+**USB 控制器**：默认有 qemu-xhci，不动。
+
+**引导顺序**：Overview → 展开引导选项，确保 **SATA CDROM 1（Windows ISO）排在第一位**（首次从 ISO 引导）。
+
+#### 4. 开始安装
+
+点 **Begin Installation**，virt-manager 自动打开 SPICE 图形控制台，Windows 安装器启动。
+
+**4.1 绕过 TPM / Secure Boot 检查（如果提示"这台电脑无法运行 Windows 11"）**
+
+Windows 11 官方要求 TPM 2.0 + Secure Boot + 4GB+ 内存。即使配了 swtpm（TPM 已满足），如果 OVMF 固件是非 secure 版（不支持 Secure Boot），安装器仍会拒绝。**不需要换 secure 固件、也不需要直通物理 TPM**，注册表绕过即可：
+
+1. 安装界面（选语言的界面就行）按 **`Shift+F10`** 打开 CMD
+2. 输 `regedit` 回车
+3. 导航到 `HKEY_LOCAL_MACHINE\SYSTEM\Setup`
+4. 新建**项** `LabConfig`
+5. 在 `LabConfig` 下新建三个 **DWORD (32-bit)** 值，都设为 `1`：
+   - `BypassSecureBootCheck`（绕过安全启动检查）
+   - `BypassTPMCheck`（双保险，虽然 swtpm 已满足）
+   - `BypassRAMCheck`（绕过内存检查）
+6. 关闭 regedit 和 CMD 窗口 → 点安装界面的下一步，不再报错，正常继续
+
+> 为什么不直接用 secure 版固件？secure 版 OVMF 需要额外配置 enrolled keys（Secure Boot 密钥），配错会无法引导；注册表绕过更省事，装完系统后这些检查就不再影响使用了。swtpm 模拟的 TPM 对 Windows 11 完全够用，**不要直通物理 TPM**（物理 TPM 同一时刻只能被一个使用者，且 swtpm 没有任何功能缺失）。
+
+**4.2 跳过联网（避免被强制微软账号）**
+
+Windows 11 安装要求联网 + 微软账号。想建本地账户：
+
+- 选语言 / 时区 → 下一步 → "现在安装"
+- 输入（或跳过）产品密钥 → 选版本 → 接受许可
+- **到了"是否连接到 Internet"界面**：按 **`Shift+F10`** 弹出 CMD → 输入 `oobe\bypassnro` 回车 → 系统自动重启
+- 重新走流程到联网界面，此时会出现 **"我没有 Internet"** 选项 → 点它 → "继续使用有限设置" → 建本地账户
+
+**4.3 加载 virtio 驱动（选磁盘步骤）**
+
+到"你想将 Windows 安装在哪里"，**列表是空的**（磁盘是 VirtIO，Windows 安装器没内置驱动）：
+
+1. 点 **"加载驱动程序"**
+2. 浏览 → 选 **CDROM 2（virtio-win ISO）** → `viostro\amd64\w11` 目录 → 确定
+3. 列出 Red Hat VirtIO SCSI 驱动 → 选中 → 下一步
+4. 如果提示"驱动不兼容 Windows 11"，勾掉左下"**显示兼容硬件**"，从列表里选 `viostor`（w11 amd64）
+
+加载后 VirtIO 磁盘出现在列表。
+
+**4.4 分区**
+
+选中磁盘 → 点"新建" → "应用"（直接给整盘，Windows 自动建 EFI / MSR / Windows / 恢复分区）→ 下一步。
+
+**4.5 安装与重启**
+
+Windows 复制文件、装功能，期间 VM 自动重启几次。
+
+> ⚠️ 如果重启后又从 ISO 启动安装器（而不是从硬盘继续），说明引导还在光驱：关掉 VM → Overview 改引导顺序把硬盘调到第一，或直接移除 Windows ISO 光驱 → 再启动。
+
+**4.6 OOBE（首次设置）**
+
+区域 / 键盘布局 → 联网（建议走 4.2 跳过）→ 账户名密码 → 隐私设置（建议全关）→ 进桌面。
+
+**直接启用内置 Administrator 账户（可选，省去建新用户）**
+
+OOBE 阶段（在联网界面或账户界面，`Shift+F10` 已开的 CMD 窗口里）执行：
+
+```cmd
+net user Administrator /active:yes
+net user Administrator 你的密码
+```
+
+- 第一条启用内置 Administrator
+- 第二条设密码（**Win11 不允许空密码登录**，必须设）
+
+关掉 CMD，继续 OOBE。系统检测到 Administrator 已激活，会**跳过"创建账户"步骤**，直接用 Administrator 进桌面。
+
+> Administrator 是 Windows 内置的最高权限账户，默认禁用。VM 里图省事用它没问题（UAC 弹窗也最少）；但出于安全考虑，物理机/服务器日常不建议用 Administrator（所有程序默认继承最高权限，恶意软件影响面更大）。
+
+#### 5. 装 virtio-win guest tools（一次性装齐所有驱动）
+
+1. VM 里打开"此电脑"，应能看到 virtio-win 光驱
+2. 运行 **`virtio-win-guest-tools.exe`** → 一路下一步
+3. 它会装齐：virtio 磁盘 / 网卡驱动（确认生效）、QXL 显示驱动、spice-vdagent（鼠标/剪贴板/自适应分辨率）、Balloon 等
+4. **重启 VM**
+
+#### 6. 验证
+
+进设备管理器（`Win+X` → 设备管理器），**所有设备无黄色感叹号**：
+
+- 网络适配器 → Red Hat VirtIO Ethernet
+- 存储控制器 → Red Hat VirtIO SCSI controller
+- 显示适配器 → Red Hat QXL Controller（或后续直通的 GPU）
+
+鼠标流畅、分辨率随窗口自适应（spice-vdagent 生效），网络能上（NAT，IP `192.168.122.x`）。
+
+#### 7. 后续优化
+
+- 磁盘 / 网卡都已是 virtio，性能基础已就位
+- 想要 GPU 性能 → 见 [passthrough.md](./passthrough.md) 做 GPU 直通（需移除 QXL、加 GPU hostdev）
+- Hyper-V enlightenments / 巨页 / CPU 绑定等 → 见下方 [性能优化](#性能优化) 章节
+
+### 方式 B：导入物理硬盘上已有的 Windows
+
+适合双系统：硬盘上已装好 Windows，想在 VM 里直接启动它，不重装。
+
+1. 确认目标磁盘的稳定路径（**必须用 by-id**，不要用 /dev/sda）：
+
+   ```bash
+   ls -l /dev/disk/by-id/ | grep nvme
+   # 记下 Windows 所在磁盘，如 /dev/disk/by-id/nvme-XXX
+   ```
+
+2. virt-manager → **新建虚拟机** → **"导入现有磁盘镜像"**
+
+3. "提供现有存储路径"：**不要点 Browse**（那只显示 libvirt 存储池目录，看不到块设备），**直接在输入框手动输入**磁盘路径：
+
+   ```
+   /dev/disk/by-id/nvme-XXX
+   ```
+
+   操作系统类型选 Windows。
+
+4. **勾选"安装前自定义配置"** → 按上面"关键配置"设好
+
+5. 固件必须选 **UEFI**（物理硬盘上的 Windows 是 GPT 分区，必须 UEFI 启动；选错会找不到引导）
+
+6. 点 **Begin Installation** → VM 直接从物理硬盘启动 Windows。
+
+**注意事项**：
+
+- **磁盘总线先用 SATA**：物理 Windows 里没装 virtio 存储驱动，第一次用 VirtIO 会蓝屏（`INACCESSIBLE_BOOT_DEVICE`）。先用 SATA 启动进系统 → 装好 virtio 驱动 → 关机后切 VirtIO。
+- **Windows 可能要重新激活**：CPU、主板 UUID 等硬件变化后，Windows 会认为换了机器，可能需要重新激活。
+- 切 VirtIO 后若蓝屏，切回 SATA 可正常启动（说明驱动没装好，重装）。
+
+### 安装/启动后：装 virtio 驱动
+
+进入 Windows 后，挂载 virtio-win ISO，运行 `virtio-win-guest-tools.exe`，一次装齐所有 virtio 驱动（磁盘、网卡、QXL 显示、spice-vdagent、VirtIO-FS 等）。
+
+装好后可以把磁盘总线从 SATA 切 VirtIO、网卡/显示都用 virtio，性能更好。
 
 ## 磁盘直通（整盘 / 分区）
 
@@ -141,18 +339,25 @@ virtiofsd 需要访问 VM 内存，VM 必须配置共享内存后端：
 ```xml
 <filesystem type="mount" accessmode="passthrough">
   <driver type="virtiofs"/>
-  <source dir="/home/marcus/shared"/>    <!-- 宿主机共享目录（绝对路径） -->
+  <binary path="/run/current-system/sw/bin/virtiofsd"/>   <!-- NixOS 必需，见下方说明 -->
+  <source dir="/home/$USER/shared"/>    <!-- 宿主机共享目录（绝对路径） -->
   <target dir="myshare"/>                <!-- tag 名，guest 据此识别 -->
 </filesystem>
 ```
 
-| 属性         | 说明                                                                            |
-| ------------ | ------------------------------------------------------------------------------- |
-| `source dir` | 宿主机要共享的目录                                                              |
-| `target dir` | **tag**（标识名，不是挂载路径）                                                 |
-| `accessmode` | `passthrough`（性能最好，UID/GID 直接透传）/ `mapped`（映射）/ `squash`（匿名） |
+| 属性          | 说明                                                                            |
+| ------------- | ------------------------------------------------------------------------------- |
+| `source dir`  | 宿主机要共享的目录                                                              |
+| `target dir`  | **tag**（标识名，不是挂载路径）                                                 |
+| `accessmode`  | `passthrough`（性能最好，UID/GID 直接透传）/ `mapped`（映射）/ `squash`（匿名） |
+| `binary path` | virtiofsd 二进制路径（**NixOS 必需显式指定**）                                  |
 
 > VirtIO-FS 不支持 `<filesystem bus>` 这种老式 9p 语法，必须 `<driver type="virtiofs"/>`。
+
+> ⚠️ **NixOS 必需两步**（缺一会报 `Unable to find a satisfying virtiofsd`）：
+>
+> 1. **装 virtiofsd 包**——在 `virt.nix` 加 `environment.systemPackages = [ pkgs.virtiofsd ]`（libvirt 默认不装）
+> 2. **VM XML 显式指定路径**——加 `<binary path="/run/current-system/sw/bin/virtiofsd"/>`。libvirt **不查 PATH**，默认找 `/usr/libexec/virtiofsd`（NixOS 没这个路径），必须显式告诉它。`/run/current-system/sw/bin/virtiofsd` 是稳定 symlink（指向当前 generation），rebuild 后自动更新
 
 #### 3. Windows guest 配置
 
@@ -167,7 +372,7 @@ virtiofsd 需要访问 VM 内存，VM 必须配置共享内存后端：
    HKLM\SOFTWARE\VirtioFS\VirtioFS
    ```
 
-挂载后，宿主机 `/home/marcus/shared` 的内容就出现在 Windows 的对应盘符。
+挂载后，宿主机 `/home/$USER/shared` 的内容就出现在 Windows 的对应盘符。
 
 #### 4. Linux guest 挂载（参考）
 
@@ -180,6 +385,47 @@ mount -t virtiofs myshare /mnt/share
 ```
 myshare  /mnt/share  virtiofs  defaults  0  0
 ```
+
+#### ⚠️ 权限注意（Windows guest + runAsRoot）
+
+VirtIO-FS 的文件操作用 **virtiofsd 的身份**。`virt.nix` 里 `runAsRoot=true`，virtiofsd 以 **root** 运行，加上 **Windows 没有 UID/GID 概念**，导致：
+
+- VM **创建/修改**的文件 → 宿主机看是 **root:root**（644）
+- 普通用户对这些文件**能读不能写**
+
+VM 读宿主机文件没问题（root 能读任何文件），但**双向写**会有权限问题。
+
+**解决**（按推荐度）：
+
+1. **default ACL**（推荐；已在 [`home/shared.nix`](../home/shared.nix) 自动配置）：
+
+   ```bash
+   setfacl -m u:$USER:rwx /home/$USER/shared      # $USER 当前可读写
+   setfacl -d -m u:$USER:rwx /home/$USER/shared   # default ACL：VM(root) 新建文件继承 $USER 的 rwx
+   ```
+
+   优势：`setfacl` 改**自己拥有**的目录不需要 root，整个方案能在 Home Manager（用户态）完成；不用建组、不用 `usermod -aG`、不用重新登录；不改变文件属组。
+
+   > 只对目录本身设 default ACL，新建文件自动继承，无需 `-R`。若目录里已有 VM 早期写入的 root 属主文件，补救一次：`setfacl -R -m u:$USER:rwx /home/$USER/shared`。
+
+2. **setgid 目录 + 共享组**（备选，需 root）：
+
+   ```bash
+   sudo groupadd -f share
+   sudo usermod -aG share $USER        # 需重新登录生效
+   sudo chown -R $USER:share /home/$USER/shared
+   sudo chmod 2775 /home/$USER/shared  # setgid 让 root 新建文件继承 share 组
+   ```
+
+   配合 virtiofsd 的 umask（让组可写），$USER 就能读写 VM 创建的文件。相对 ACL 的劣势：需 root、建组、重登录，且会改变所有新文件的属组。
+
+3. **接受 root**：VM 文件 $USER 只读，要改用 `sudo`。简单但麻烦。
+
+4. **改用 SMB**：SMB 用 `smbpasswd` 设的用户身份，文件归属 samba 用户，权限更可控，但性能不如 VirtIO-FS。
+
+> ⚠️ ACL 和 setgid 最终都受 **VM 创建文件时的 mode** 影响：若 virtiofsd/viofs 把新文件写成组只读（如 644），ACL 的 mask 和 setgid 的组位都会让 $USER 拿不到写权限，需从 virtiofsd 的 umask/fattr 侧放开。配好后用 `getfacl /home/$USER/shared` 核对，并让 VM 实际写一个文件验证 $USER 能改。
+
+> 如果主要是 **VM 读宿主机文件**（单向，如宿主机下载 → VM 用），权限不是问题（root 能读）。只有**双向写**才需要处理上面的权限。
 
 ## 远程桌面 / 画面访问
 

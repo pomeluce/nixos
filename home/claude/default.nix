@@ -12,7 +12,7 @@ let
         "pr" = "";
       };
       enabledPlugins = {
-        "superpowers@claude-plugins-official" = true;
+        # "superpowers@claude-plugins-official" = true;
       };
       env = {
         CLAUDE_CODE_ATTRIBUTION_HEADER = 0;

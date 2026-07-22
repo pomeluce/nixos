@@ -2,6 +2,10 @@
 {
   imports = [ ../common.nix ];
 
+  # 允许所有终端类型的 terminfo(如 xterm-ghostty),
+  # 避免 SSH 登录时 "unknown terminal type" 错误.
+  environment.enableAllTerminfo = true;
+
   mo = {
     system = {
       bluetooth = false;

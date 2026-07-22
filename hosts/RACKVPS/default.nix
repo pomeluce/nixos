@@ -1,20 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   imports = [ ../common.nix ];
-
-  # 允许所有终端类型的 terminfo(如 xterm-ghostty),
-  # 避免 SSH 登录时 "unknown terminal type" 错误.
-  # NixOS (nixos-rebuild): 系统级安装所有 terminfo.
-  # Home Manager (hm switch): 用户级安装 ghostty terminfo 到 ~/.terminfo.
-  environment.enableAllTerminfo = lib.mkIf (config ? environment) true;
-  home.file.".terminfo/x/xterm-ghostty".source = lib.mkIf (
-    config ? home
-  ) "${pkgs.ghostty}/share/terminfo/x/xterm-ghostty";
 
   mo = {
     system = {

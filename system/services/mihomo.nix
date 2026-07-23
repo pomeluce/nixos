@@ -153,16 +153,15 @@
           type: select
           use:
           - flower
-          tolerance: 2
         - name: Manual
           type: select
           proxies:
-          - all
+          - All
           - Proxies
-          - hongkong
-          - taiwan
-          - japan
-          - singapore
+          - HongKong
+          - Taiwan
+          - Japan
+          - Singapore
           - USA
           - Region
           - DIRECT
@@ -171,13 +170,13 @@
           proxies:
           - Proxies
           - Manual
-          - hongkong
-          - taiwan
-          - japan
-          - singapore
+          - HongKong
+          - Taiwan
+          - Japan
+          - Singapore
           - USA
           - Region
-          - all
+          - All
           - DIRECT
         # WARP 配置链式出站
         # - name: WARP前置
@@ -205,18 +204,17 @@
         - name: AI
           type: select
           proxies:
-          - taiwan
-          - singapore
-          - japan
+          - Taiwan
+          - Singapore
+          - Japan
           - USA
-          - france
-          - germany
-          - korea
-          - canada
-          - germany
-          - ireland
+          - France
+          - Germany
+          - Korea
+          - Canada
+          - Ireland
           - SA
-          - netherlands
+          - Netherlands
           use:
           - flower
           filter: "S1|S2"
@@ -230,20 +228,20 @@
         - name: Netflix
           type: url-test
           proxies:
-          - taiwan
-          - singapore
-          - japan
+          - Taiwan
+          - Singapore
+          - Japan
           - USA
           use:
           - flower
         - name: Video
           type: url-test
           proxies:
-          - hongkong
+          - HongKong
           - Netflix
-          - taiwan
-          - singapore
-          - japan
+          - Taiwan
+          - Singapore
+          - Japan
           - USA
           use:
           - flower
@@ -253,59 +251,48 @@
           proxies:
           - Proxies
           - Manual
-          - hongkong
-          - taiwan
-          - japan
-          - singapore
+          - HongKong
+          - Taiwan
+          - Japan
+          - Singapore
           - USA
           - Region
-          - all
+          - All
           - DIRECT
-        - name: local
+        - name: Local
           type: select
           proxies:
           - DIRECT
           - Manual
-          - hongkong
-          - taiwan
-          - japan
-          - singapore
-          - USA
-          - korea
-          - canada
-          - germany
-          - russia
-          - ireland
-          - SA
-          - netherlands
-          - france
-          - Region
-          - all
           - Proxies
-
+          - HongKong
+          - Taiwan
+          - Japan
+          - Singapore
+          - USA
         # continent
-        - name: asia
+        - name: Asia
           type: url-test
           use:
           - flower
           filter: "(?i)亚|asia"
 
         # region
-        - name: hongkong
+        - name: HongKong
           type: url-test
           use:
           - flower
           filter: "(?i)港|hk|hongkong|hong kong"
-        - name: taiwan
+        - name: Taiwan
           type: url-test
           use:
           - flower
           filter: "(?i)台|tw|taiwan"
-        - name: japan
+        - name: Japan
           type: url-test
           use:
           - flower
-          filter: "(?i)japan|jp|japan"
+          filter: "(?i)japan|jp"
         - name: USA
           type: url-test
           use:
@@ -316,27 +303,27 @@
           use:
           - flower
           filter: "(?i)英|uk|unitedkingdom|united kingdom"
-        - name: korea
+        - name: Korea
           type: url-test
           use:
           - flower
           filter: "(?i)韩|korea"
-        - name: canada
+        - name: Canada
           type: url-test
           use:
           - flower
           filter: "(?i)加|canada"
-        - name: germany
+        - name: Germany
           type: url-test
           use:
           - flower
           filter: "(?i)德|ge|germany"
-        - name: russia
+        - name: Russia
           type: url-test
           use:
           - flower
           filter: "(?i)俄|russia"
-        - name: ireland
+        - name: Ireland
           type: url-test
           use:
           - flower
@@ -346,17 +333,17 @@
           use:
           - flower
           filter: "(?i)非|sa|south africa"
-        - name: netherlands
+        - name: Netherlands
           type: url-test
           use:
           - flower
           filter: "(?i)荷|cl|netherlands"
-        - name: france
+        - name: France
           type: url-test
           use:
           - flower
-          filter: "(?i)法|france"
-        - name: singapore
+          filter: "(?i)法|france|france"
+        - name: Singapore
           type: url-test
           use:
           - flower
@@ -366,7 +353,7 @@
           use:
           - flower
           filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates|英|uk|unitedkingdom)).*"
-        - name: all
+        - name: All
           type: url-test
           use:
           - flower
@@ -388,15 +375,15 @@
         - GEOSITE,xai,AI
         - DOMAIN-SUFFIX,claude.ai,AI
         - DOMAIN-SUFFIX,claudeusercontent.com,AI
-        - DOMAIN-SUFFIX,reddit.com,singapore
-        - GEOSITE,apple,Universal
         - GEOSITE,apple-cn,Universal
+        - GEOSITE,apple,Universal
         - GEOSITE,ehentai,Universal
         - GEOSITE,github,Universal
         - GEOSITE,twitter,Universal
         - GEOSITE,youtube,Universal
-        - GEOSITE,google,Universal
         - GEOSITE,google-cn,Universal # Google CN 不走代理会导致hongkong等地区节点 Play Store 异常
+        - GEOSITE,google,Universal
+        - DOMAIN-SUFFIX,reddit.com,Singapore
         - GEOSITE,telegram,Universal
         - GEOSITE,netflix,Netflix
         - GEOSITE,bahamut,Universal
@@ -412,8 +399,8 @@
         - GEOIP,netflix,Netflix
         - GEOIP,telegram,Universal
         - GEOIP,twitter,Universal
-        - GEOSITE,CN,local
-        - GEOIP,CN,local
+        - GEOSITE,CN,Local
+        - GEOIP,CN,Local
         - MATCH,Universal
     '';
   };

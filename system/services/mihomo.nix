@@ -204,8 +204,8 @@
         - name: AI
           type: select
           proxies:
-          - Taiwan
           - Singapore
+          - Taiwan
           - Japan
           - USA
           - France

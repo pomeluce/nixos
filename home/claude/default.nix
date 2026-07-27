@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -11,9 +10,7 @@ let
         "commit" = "";
         "pr" = "";
       };
-      enabledPlugins = {
-        # "superpowers@claude-plugins-official" = true;
-      };
+      enabledPlugins = { };
       env = {
         CLAUDE_CODE_ATTRIBUTION_HEADER = 0;
         CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = 1;
@@ -33,57 +30,6 @@ in
   programs.claude-code = {
     enable = true;
   };
-
-  programs.ccswitch = {
-    enable = true;
-    defaults = {
-      version = 1;
-      providers = [
-        {
-          id = "deepseek";
-          name = "DeepSeek";
-          api_url = "https://api.deepseek.com/anthropic";
-          api_key = "env:DEEPSEEK_API_KEY";
-          profiles = [
-            {
-              id = "v4";
-              name = "DeepSeek-V4";
-              reasoning_model = "deepseek-v4-pro[1m]";
-              task_model = "deepseek-v4-flash";
-              default = true;
-            }
-          ];
-        }
-        {
-          id = "zai";
-          name = "ZBigModel";
-          api_url = "https://api.z.ai/api/anthropic";
-          api_key = "env:ZAI_API_KEY";
-        }
-        {
-          id = "openrouter";
-          name = "OpenRouter";
-          api_url = "https://openrouter.ai/api";
-          api_key = "env:OPENROUTER_API_KEY";
-        }
-        {
-          id = "cpa";
-          name = "CliProxyAPI";
-          api_url = "http://127.0.0.1:8317";
-          api_key = "env:CPA_API_KEY";
-        }
-      ];
-    };
-    envVars = config.sops.templates."ccswitch-env".path;
-  };
-
-  # sops template 会在激活时把占位符替换为实际解密后的值
-  sops.templates."ccswitch-env".content = ''
-    CPA_API_KEY=${config.sops.placeholder.CPA_API_KEY}
-    DEEPSEEK_API_KEY=${config.sops.placeholder.DEEPSEEK_API_KEY}
-    OPENROUTER_API_KEY=${config.sops.placeholder.OPENROUTER_API_KEY}
-    ZAI_API_KEY=${config.sops.placeholder.ZAI_API_KEY}
-  '';
 
   home.packages = with pkgs; [ ccline ];
   home.file.".claude/ccline/config.toml".source = ./cclc.toml;

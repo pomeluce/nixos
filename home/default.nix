@@ -10,6 +10,7 @@ in
 {
 
   imports = [
+    ./ccswitch.nix
     ./claude
     ./codex.nix
     ./cpa

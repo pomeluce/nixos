@@ -56,7 +56,8 @@ in
     };
     security.pam.services.sddm.enableGnomeKeyring = true;
 
-    # Electron 应用启用 Wayland 特性, 由于缩放原因暂时禁用
-    # environment.variables.NIXOS_OZONE_WL = "1";
+    # Electron 应用启用 Wayland 原生特性, 走 text-input-v3 协议对接 fcitx5 输入法
+    # (QQ/微信等 Electron 应用此前以 XWayland 运行, Chromium 在 X11 模式下无法可靠加载 fcitx im module)
+    environment.variables.NIXOS_OZONE_WL = "1";
   };
 }

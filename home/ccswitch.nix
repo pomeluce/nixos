@@ -31,7 +31,7 @@
         {
           id = "nfts";
           name = "NftsCode";
-          api_url = "https://9527code.com";
+          api_url = "https://api.9527.codes";
           api_key = "env:NFTS_API_KEY";
         }
         {
@@ -51,7 +51,7 @@
         {
           id = "nfts";
           name = "NftsCode";
-          api_url = "https://9527code.com";
+          api_url = "https://api.9527.codes";
           api_key = "env:NFTS_API_KEY";
         }
       ];

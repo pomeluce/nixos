@@ -90,34 +90,11 @@
       };
 
       nvim.settings = {
-        header = {
-          python = ''
-            """
-            author      : kzuo
-            version     : 1.0
-            date        : {DATE} {TIME}
-            module      : {FILE_NAME}
-            description : (TODO: 描述该模块的功能)
-            """
-          '';
+        header.env = {
+          USER = "kzuo";
         };
         lsp.jdtls = {
           maven.userSettings = "~/.m2/settings-siact.xml";
-          runtimes = [
-            {
-              name = "JavaSE-1.8";
-              path = "/etc/jdk/zulu8";
-              default = true;
-            }
-            {
-              name = "JavaSE-21";
-              path = "/etc/jdk/zulu21";
-            }
-            {
-              name = "JavaSE-25";
-              path = "/etc/jdk/zulu25";
-            }
-          ];
         };
       };
     };

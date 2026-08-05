@@ -379,9 +379,22 @@ in
         };
 
         header = mkOption {
-          type = types.attrsOf types.str;
+          type = types.submodule {
+            options = {
+              env = mkOption {
+                type = types.attrsOf types.str;
+                default = { };
+                description = "Placeholder variable overrides for header templates (e.g. { USER = \"name\"; }), taking precedence over environment variables.";
+              };
+              tmpl = mkOption {
+                type = types.attrsOf types.str;
+                default = { };
+                description = "Custom header templates keyed by language (e.g. python, lua).";
+              };
+            };
+          };
           default = { };
-          description = "File header templates by language";
+          description = "File header templates (`tmpl`) and placeholder variable overrides (`env`).";
         };
 
         file.run_cmd = mkOption {

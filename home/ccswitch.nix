@@ -54,6 +54,55 @@
           api_url = "https://api.9527.codes";
           api_key = "env:NFTS_API_KEY";
         }
+        {
+          id = "deepseek";
+          name = "DeepSeek";
+          api_url = "https://api.deepseek.com";
+          api_key = "env:DEEPSEEK_API_KEY";
+          codex_catalog = "custom";
+          models = [
+            {
+              slug = "deepseek-v4-pro";
+              display_name = "Deepseek-v4-Pro";
+              description = "Most capable frontier agentic coding model.";
+              context_window = 1048576;
+              max_context_window = 1048576;
+              effective_context_window_percent = 95;
+              default_reasoning_effort = "high";
+              supported_reasoning_efforts = [
+                "low"
+                "high"
+                "max"
+              ];
+              input_modalities = [ "text" ];
+              supports_parallel_tool_calls = true;
+              support_verbosity = true;
+              supports_search_tool = true;
+              default_verbosity = "low";
+              default = true;
+            }
+            {
+              slug = "deepseek-v4-flash";
+              display_name = "Deepseek-v4-Flash";
+              description = "Latest frontier agentic coding model.";
+              context_window = 1048576;
+              max_context_window = 1048576;
+              effective_context_window_percent = 95;
+              default_reasoning_effort = "high";
+              supported_reasoning_efforts = [
+                "low"
+                "high"
+                "max"
+              ];
+              input_modalities = [ "text" ];
+              supports_parallel_tool_calls = true;
+              support_verbosity = true;
+              supports_search_tool = true;
+              default_verbosity = "low";
+              default = false;
+            }
+          ];
+        }
       ];
     };
     envVars = config.sops.templates."ccswitch-env".path;

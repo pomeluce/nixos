@@ -64,9 +64,9 @@ in
         };
       };
 
-      # hardware driver(GPU)
-      drive = {
-        gpu-type = mkOption {
+      # hardware gpu
+      gpu = {
+        kind = mkOption {
           type = types.listOf (
             types.enum [
               "intel"
@@ -301,7 +301,7 @@ in
           type = types.package;
           default = pkgs.postgresql;
         };
-        upgrade_pkg = mkOption {
+        upgrade-pkg = mkOption {
           type = types.package;
           default = pkgs.postgresql;
         };

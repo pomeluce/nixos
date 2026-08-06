@@ -44,13 +44,9 @@ in
     default: description:
     lib.mkOption {
       type = lib.types.bool;
-      default = default;
-      description = description;
+      inherit default description;
     };
 
   # 合并多个 attr set
   mergeAttrs = lib.foldl' (acc: x: acc // x) { };
-
-  # 条件合并
-  optionalAttrs = condition: attrs: if condition then attrs else { };
 }

@@ -1,0 +1,8 @@
+# statix 配置
+# 禁用与项目设计 / NixOS 惯用法冲突、易误报的规则:
+disabled = [
+  "manual_inherit_from", # 刻意用 `mo = config.mo` 作为 config.mo 的短别名(遍布各模块)
+  "empty_pattern",       # NixOS 模块惯用 `{ ... }:` 接受并忽略 extra args
+  "repeated_keys",       # sops-nix secrets 逐条 `secrets.X = ...;` 展开同一 attr
+]
+ignore = [ ".direnv" ]

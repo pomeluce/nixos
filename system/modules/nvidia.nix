@@ -6,7 +6,7 @@
 }:
 let
   mo = config.mo;
-  isNvidia = lib.any (type: lib.hasInfix "nvidia" type) mo.system.drive.gpu-type;
+  isNvidia = lib.any (type: lib.hasInfix "nvidia" type) mo.system.gpu.kind;
 in
 {
   config = lib.mkIf isNvidia {
@@ -51,21 +51,21 @@ in
       package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = lib.mkMerge [
-        (lib.mkIf (builtins.elem "intel-nvidia" mo.system.drive.gpu-type) {
+        (lib.mkIf (builtins.elem "intel-nvidia" mo.system.gpu.kind) {
           offload = {
             enable = true;
             enableOffloadCmd = true;
           };
-          intelBusId = "${mo.system.drive.intel-bus-id}";
-          nvidiaBusId = "${mo.system.drive.nvidia-bus-id}";
+          intelBusId = "${mo.system.gpu.intel-bus-id}";
+          nvidiaBusId = "${mo.system.gpu.nvidia-bus-id}";
         })
-        (lib.mkIf (builtins.elem "amd-nvidia" mo.system.drive.gpu-type) {
+        (lib.mkIf (builtins.elem "amd-nvidia" mo.system.gpu.kind) {
           offload = {
             enable = true;
             enableOffloadCmd = true;
           };
-          amdgpuBusId = "${mo.system.drive.amd-bus-id}";
-          nvidiaBusId = "${mo.system.drive.nvidia-bus-id}";
+          amdgpuBusId = "${mo.system.gpu.amd-bus-id}";
+          nvidiaBusId = "${mo.system.gpu.nvidia-bus-id}";
         })
       ];
     };

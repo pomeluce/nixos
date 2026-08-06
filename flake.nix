@@ -92,6 +92,10 @@
               ${pkgs.deadnix}/bin/deadnix --fail ${./.}
               touch $out
             '';
+            statix = pkgs.runCommand "statix-check" { } ''
+              ${pkgs.statix}/bin/statix check -c ${./statix.toml} ${./.}
+              touch $out
+            '';
           };
           formatter = pkgs.nixfmt;
         };

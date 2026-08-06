@@ -4,7 +4,7 @@ let
 in
 {
   home.file.".m2/settings.xml" = {
-    text = buildSettings { config = config; };
+    text = buildSettings { inherit config; };
   };
 
   home.file.".m2/maven".source = "${pkgs.maven}/maven";

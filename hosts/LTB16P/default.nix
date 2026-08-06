@@ -23,10 +23,10 @@
       ];
 
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
-      drive.gpu-type = [ "intel-nvidia" ];
-      drive.intel-bus-id = "PCI:0:2:0";
-      drive.amd-bus-id = "";
-      drive.nvidia-bus-id = "PCI:1:0:0";
+      gpu.kind = [ "intel-nvidia" ];
+      gpu.intel-bus-id = "PCI:0:2:0";
+      gpu.amd-bus-id = "";
+      gpu.nvidia-bus-id = "PCI:1:0:0";
 
       # user env
       session-variables = {

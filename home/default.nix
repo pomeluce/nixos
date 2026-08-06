@@ -39,7 +39,7 @@ in
     ./swaylock.nix
     ./terminal
     ./theme.nix
-    ./vscode.nix
+    ./vscode
     ./typora
     ./xsettingsd.nix
   ];

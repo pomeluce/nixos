@@ -19,28 +19,13 @@
       proxy.https = "";
 
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
-      drive.gpu-type = [ ];
-      drive.intel-bus-id = "";
-      drive.amd-bus-id = "";
-      drive.nvidia-bus-id = "";
+      gpu.kind = [ ];
+      gpu.intel-bus-id = "";
+      gpu.amd-bus-id = "";
+      gpu.nvidia-bus-id = "";
     };
 
-    desktop = {
-      enable = false;
-      scaling = {
-        gtk = 1;
-        qt = 1;
-        xwayland = 1;
-        sddm = 1;
-      };
-
-      wm.niri = false;
-      wm.hyprland = false;
-      dm.defaultSession = "niri";
-      dm.sddm = false;
-
-      wallpaper.enable = false;
-    };
+    desktop.enable = false;
 
     programs = {
       wezterm.font-size = 14;

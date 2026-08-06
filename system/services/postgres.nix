@@ -38,7 +38,7 @@ in
     environment.systemPackages = [
       (
         let
-          newPostgres = mo.programs.postgres.upgrade_pkg;
+          newPostgres = mo.programs.postgres.upgrade-pkg;
           csp = config.services.postgresql;
         in
         pkgs.writeScriptBin "pg_cluster_upgrade" ''

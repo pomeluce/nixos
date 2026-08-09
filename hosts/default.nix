@@ -60,8 +60,8 @@ let
           ../home
           inputs.sops-nix.homeManagerModules.sops
           inputs.noctalia.homeModules.default
-          inputs.azimfw.homeManagerModules.default
-          inputs.akirnvim.homeManagerModules.default
+          inputs.akiron-zsh.homeManagerModules.default
+          inputs.akironvim.homeManagerModules.default
           inputs.ccswitch.homeModules.default
         ];
       };

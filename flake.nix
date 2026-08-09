@@ -32,11 +32,11 @@
       url = "github:pomeluce/nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    azimfw = {
-      url = "github:pomeluce/akir-zimfw";
+    akiron-zsh = {
+      url = "github:pomeluce/akiron-zsh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    akirnvim = {
+    akironvim = {
       url = "github:pomeluce/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };

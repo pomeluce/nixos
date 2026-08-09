@@ -5,7 +5,7 @@
     autosuggestion.enable = false;
   };
 
-  programs.azimfw = {
+  programs.akiron-zsh = {
     enable = true;
     extraPackages = with pkgs; [
       lsd

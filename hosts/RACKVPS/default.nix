@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   imports = [ ../common.nix ];
 
@@ -18,7 +18,7 @@
           };
           "www.akiron.dev" = {
             forceSSL = true;
-            root = "${config.mo.devspace}/site/akiron.dev";
+            root = "/srv/sites/akiron.dev";
           };
         };
       };

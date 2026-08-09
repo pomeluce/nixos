@@ -19,13 +19,19 @@ in
       owner = config.users.users."${mo.username}".name;
     };
     secrets.MIHOMO_PROVIDER = { };
-    secrets.PG_INITIAL = lib.mkIf (mo.system.postgres == true) {
+    secrets.PG_INITIAL = lib.mkIf mo.system.postgres {
       sopsFile = ../../secrets/postgres.yaml;
       mode = "0400";
       owner = config.users.users.postgres.name;
     };
 
-    secrets.SSL_CF_PEM.sopsFile = ../../secrets/ssl.yaml;
-    secrets.SSL_CF_KEY.sopsFile = ../../secrets/ssl.yaml;
+    secrets.SSL_CF_PEM = lib.mkIf mo.system.nginx.enable {
+      sopsFile = ../../secrets/ssl.yaml;
+      owner = config.users.users.nginx.name;
+    };
+    secrets.SSL_CF_KEY = lib.mkIf mo.system.nginx.enable {
+      sopsFile = ../../secrets/ssl.yaml;
+      owner = config.users.users.nginx.name;
+    };
   };
 }

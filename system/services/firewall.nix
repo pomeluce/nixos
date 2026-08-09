@@ -1,21 +1,18 @@
+{ config, ... }:
+let
+  fw = config.mo.system.firewall;
+in
 {
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
     checkReversePath = "loose";
-    trustedInterfaces = [
-      "tun*"
-      "Meta"
-      "virbr0"
-      "vnet0"
-    ];
-    # allowedUDPPorts = [];
-
-    allowedTCPPorts = [
-      80
-      443
-      7890
-    ];
-    # allowedUDPPortRanges = [];
+    inherit (fw)
+      trustedInterfaces
+      allowedUDPPorts
+      allowedTCPPorts
+      allowedTCPPortRanges
+      allowedUDPPortRanges
+      ;
   };
 }

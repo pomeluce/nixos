@@ -33,6 +33,14 @@ in
       bluetooth = mkEnableOption "Bluetooth Support";
       docker = mkEnableOption "Docker Support";
       mihomo = mkEnableOption "Mihomo Service";
+      nginx = {
+        enable = mkEnableOption "Nginx Service";
+        virtualHosts = mkOption {
+          type = types.attrsOf types.attrs;
+          default = { };
+          description = "Virtual hosts passed through to services.nginx.virtualHosts.";
+        };
+      };
       postgres = mkEnableOption "PostgreSQL Support";
       wsl = mkEnableOption "WSL Mode";
 
@@ -61,6 +69,49 @@ in
         https = mkOption {
           type = types.str;
           default = "";
+        };
+      };
+
+      # firewall
+      firewall = {
+        trustedInterfaces = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = "Trusted network interfaces";
+        };
+        allowedTCPPorts = mkOption {
+          type = types.listOf types.port;
+          default = [ ];
+          description = "Allowed TCP ports";
+        };
+        allowedUDPPorts = mkOption {
+          type = types.listOf types.port;
+          default = [ ];
+          description = "Allowed UDP ports";
+        };
+        allowedTCPPortRanges = mkOption {
+          type = types.listOf (
+            types.submodule {
+              options = {
+                from = mkOption { type = types.port; };
+                to = mkOption { type = types.port; };
+              };
+            }
+          );
+          default = [ ];
+          description = "Allowed TCP port ranges";
+        };
+        allowedUDPPortRanges = mkOption {
+          type = types.listOf (
+            types.submodule {
+              options = {
+                from = mkOption { type = types.port; };
+                to = mkOption { type = types.port; };
+              };
+            }
+          );
+          default = [ ];
+          description = "Allowed UDP port ranges";
         };
       };
 

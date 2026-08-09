@@ -1,14 +1,27 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [ ../common.nix ];
 
   mo = {
     system = {
-      bluetooth = false;
-      docker = true;
-      mihomo = false;
-      postgres = true;
       wsl = false;
+      bluetooth = false;
+      mihomo = false;
+      docker = true;
+      postgres = true;
+      nginx = {
+        enable = true;
+        virtualHosts = {
+          "akiron.dev" = {
+            forceSSL = true;
+            locations."/".return = "301 https://www.akiron.dev$request_uri";
+          };
+          "www.akiron.dev" = {
+            forceSSL = true;
+            root = "${config.mo.devspace}/site/akiron.dev";
+          };
+        };
+      };
 
       boot.mode = "bios";
       boot.device = "/dev/vda";

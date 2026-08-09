@@ -13,6 +13,7 @@ in
       generateKey = true;
       keyFile = "/etc/ssh/age/keys.txt";
     };
+
     secrets.ACCESS_TOKEN = {
       mode = "0400";
       owner = config.users.users."${mo.username}".name;
@@ -23,5 +24,8 @@ in
       mode = "0400";
       owner = config.users.users.postgres.name;
     };
+
+    secrets.SSL_CF_PEM.sopsFile = ../../secrets/ssl.yaml;
+    secrets.SSL_CF_KEY.sopsFile = ../../secrets/ssl.yaml;
   };
 }

@@ -44,6 +44,7 @@ in
     ./services/mihomo.nix
     ./services/wallpaper.nix
     ./services/firewall.nix
+    ./services/nginx.nix
 
     # 外部模块
     "${inputs.nixos-wsl}/modules"
@@ -51,14 +52,6 @@ in
 
   networking.hostName = "${host}";
   networking.networkmanager.enable = true;
-
-  # nix.settings.experimental-features = [
-  #   "nix-command"
-  #   "flakes"
-  # ];
-  # nix.extraOptions = ''
-  #   !include ${config.sops.secrets.ACCESS_TOKEN.path}
-  # '';
 
   programs.dconf.enable = true;
   programs.zsh.enable = true;

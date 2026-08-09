@@ -28,6 +28,21 @@ in
       boot.mode = lib.mkDefault "efi";
       boot.device = lib.mkDefault "nodev";
 
+      # firewall defaults
+      firewall = {
+        trustedInterfaces = lib.mkDefault [
+          "tun*"
+          "Meta"
+          "virbr0"
+          "vnet0"
+        ];
+        allowedTCPPorts = lib.mkDefault [
+          80
+          443
+          7890
+        ];
+      };
+
       # user env
       session-variables = lib.mkDefault { };
       session-path = lib.mkDefault [ ];

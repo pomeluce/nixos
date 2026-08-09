@@ -4,11 +4,11 @@
 
   mo = {
     system = {
-      bluetooth = true;
-      docker = true;
-      mihomo = true;
-      postgres = true;
       wsl = false;
+      bluetooth = true;
+      mihomo = true;
+      docker = true;
+      postgres = true;
 
       # proxy
       proxy.enable = false;

@@ -8,11 +8,11 @@
     gid = 1000;
 
     system = {
-      bluetooth = false;
-      docker = true;
-      mihomo = false;
-      postgres = true;
       wsl = true;
+      bluetooth = false;
+      mihomo = false;
+      docker = true;
+      postgres = true;
 
       # proxy
       proxy.enable = false;

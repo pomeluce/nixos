@@ -19,13 +19,13 @@ in
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
-    # 自定义访问日志格式: nginx 默认用 logs/access.log + combined,
-    # 这里定义 main 格式并切换过去 (路径不变, 只是换了格式).
+    # 自定义访问日志格式: NixOS 默认 access_log 到 /var/log/nginx/access.log (combined),
+    # 这里定义 main 格式并切换过去 (路径保持默认, 只换格式).
     commonHttpConfig = ''
       log_format main '$remote_addr - $remote_user [$time_iso8601] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
-      access_log logs/access.log main;
+      access_log /var/log/nginx/access.log main;
     '';
 
     # 站点配置来自 mo.system.nginx.virtualHosts;

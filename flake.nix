@@ -28,20 +28,16 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    apkgs = {
+    akpkgs = {
       url = "github:pomeluce/nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    akiron-zsh = {
+    akzsh = {
       url = "github:pomeluce/akiron-zsh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    akironvim = {
+    akvim = {
       url = "github:pomeluce/nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    akirds = {
-      url = "github:pomeluce/akir-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ccswitch = {
@@ -78,7 +74,7 @@
       perSystem =
         { pkgs, lib, ... }:
         {
-          packages = import "${inputs.apkgs}/pkgs" {
+          packages = import "${inputs.akpkgs}/pkgs" {
             pkgs = import nixpkgs {
               inherit (pkgs.stdenv.hostPlatform) system;
               config =

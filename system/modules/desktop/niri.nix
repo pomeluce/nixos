@@ -52,7 +52,6 @@ in
       xwayland-satellite
       xrdb
       fprintd
-      # akirds
       screenshot
     ];
     environment.pathsToLink = [

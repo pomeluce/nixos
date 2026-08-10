@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  programs.akironvim = {
+  programs.akvim = {
     enable = true;
     settings = config.mo.programs.nvim.settings;
   };

@@ -18,7 +18,6 @@ in
         system = final.stdenv.hostPlatform.system;
         config = nc.nixpkgs.config;
       };
-      akirds = inputs.akirds.packages.${final.stdenv.hostPlatform.system}.akirds;
       silent = inputs.silent-sddm.packages.${final.stdenv.hostPlatform.system}.default;
       noctalia = inputs.noctalia.packages.${final.stdenv.hostPlatform.system}.default;
       lib =
@@ -28,7 +27,7 @@ in
           pkgs = final;
         });
     }
-    // (inputs.apkgs.overlays.default final prev);
+    // (inputs.akpkgs.overlays.default final prev);
 
   nur = inputs.nur.overlays.default;
 }

@@ -85,7 +85,6 @@ in
 
 
       // startup
-      // spawn-sh-at-startup "akirds"
       spawn-sh-at-startup "noctalia"
       spawn-sh-at-startup "echo 'Xft.dpi: ${
         toString (builtins.floor (96 * mo.desktop.scaling.xwayland))

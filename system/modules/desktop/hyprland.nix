@@ -49,7 +49,6 @@ in
       wl-clipboard
       xrdb
       fprintd
-      akirds
       screenshot
     ];
     environment.pathsToLink = [

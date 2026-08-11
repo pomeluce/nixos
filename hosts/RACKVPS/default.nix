@@ -47,6 +47,7 @@
 
     programs = {
       wezterm.font-size = 14;
+      zsh.promptStyle = "compact";
 
       firefox.enable = false;
       steam.enable = false;

@@ -275,6 +275,13 @@ in
         type = types.int;
         default = 12;
       };
+      zsh.promptStyle = mkOption {
+        type = types.enum [
+          "compact"
+          "segments"
+        ];
+        default = "segments";
+      };
 
       firefox.enable = mkEnableOption "Firefox";
       steam.enable = mkEnableOption "Steam";

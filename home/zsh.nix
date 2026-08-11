@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -11,6 +11,6 @@
       lsd
       jq
     ];
-    promptStyle = "segments";
+    promptStyle = config.mo.programs.zsh.promptStyle;
   };
 }

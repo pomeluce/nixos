@@ -1,5 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  agentic = config.mo.agentic;
   tomlFormat = pkgs.formats.toml { };
 
   fixedSettings = {
@@ -30,7 +36,7 @@ let
 
   pythonWithTomlkit = pkgs.python3.withPackages (p: [ p.tomlkit ]);
 in
-{
+lib.mkIf (agentic.enable && agentic.codex) {
   programs.codex.enable = true;
 
   home.activation.mergeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

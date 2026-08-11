@@ -1,9 +1,11 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 let
+  agentic = config.mo.agentic;
   ccds = pkgs.writeText "ccds.json" (
     builtins.toJSON {
       attribution = {
@@ -26,7 +28,7 @@ let
     }
   );
 in
-{
+lib.mkIf (agentic.enable && agentic.claude) {
   programs.claude-code = {
     enable = true;
   };

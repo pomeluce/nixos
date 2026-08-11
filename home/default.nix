@@ -10,9 +10,7 @@ in
 {
 
   imports = [
-    ./ccswitch.nix
-    ./claude
-    ./codex.nix
+    ./agentic
     ./cpa
     ./direnv.nix
     ./fastfetch.nix

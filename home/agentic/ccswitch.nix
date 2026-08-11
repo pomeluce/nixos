@@ -1,5 +1,8 @@
-{ config, ... }:
-{
+{ config, lib, ... }:
+let
+  agentic = config.mo.agentic;
+in
+lib.mkIf (agentic.enable && agentic.ccswitch) {
   programs.ccswitch = {
     enable = true;
     defaults = {

@@ -15,6 +15,8 @@ in
     gid = lib.mkDefault 1024;
     devspace = lib.mkDefault "/home/${username}/devspace";
 
+    agentic.enable = true;
+
     system = {
       # virtualisation defaults
       virt.enable = lib.mkDefault false;

@@ -3,6 +3,8 @@
   imports = [ ../common.nix ];
 
   mo = {
+    agentic.enable = false;
+
     system = {
       wsl = false;
       bluetooth = false;

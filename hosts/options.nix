@@ -28,6 +28,31 @@ in
       default = "/home/${mo.username}/devspace";
     };
 
+    # --- agentic tools ---
+    agentic = {
+      enable = mkEnableOption "Agentic development tools";
+      ccswitch = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable CCSwitch when agentic tools are enabled";
+      };
+      claude = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Claude Code when agentic tools are enabled";
+      };
+      codex = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Codex when agentic tools are enabled";
+      };
+      pi = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable Pi coding agent when agentic tools are enabled";
+      };
+    };
+
     # --- system service switch ---
     system = {
       bluetooth = mkEnableOption "Bluetooth Support";

@@ -15,6 +15,9 @@
       proxy.http = "";
       proxy.https = "";
 
+      # firewall
+      firewall.trustedInterfaces = [ "loopback0" ]; # 在 WSL 2 的镜像网络模式下, 需放行 "loopback0", 否则主机 localhost 访问会被拦截
+
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
       gpu.kind = [ ];
       gpu.intel-bus-id = "";

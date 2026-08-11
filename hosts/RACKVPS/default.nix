@@ -31,6 +31,9 @@
       proxy.http = "";
       proxy.https = "";
 
+      # firewall
+      firewall.trustedInterfaces = [ ];
+
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
       gpu.kind = [ ];
       gpu.intel-bus-id = "";

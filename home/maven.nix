@@ -1,0 +1,31 @@
+{ config, pkgs, ... }:
+{
+  home.file.".m2/settings.xml".text = ''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+      <localRepository>${config.mo.devspace}/var/maven</localRepository>
+
+      <pluginGroups />
+
+      <proxies />
+
+      <servers />
+
+      <mirrors>
+        <mirror>
+          <id>maven-default-http-blocker</id>
+          <mirrorOf>external:http:*</mirrorOf>
+          <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+          <url>http://0.0.0.0/</url>
+          <blocked>true</blocked>
+        </mirror>
+      </mirrors>
+
+      <profiles />
+    </settings>
+  '';
+
+  home.file.".m2/maven".source = "${pkgs.maven}/maven";
+}

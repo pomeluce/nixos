@@ -15,7 +15,7 @@ in
     ./direnv.nix
     ./fastfetch.nix
     ./git.nix
-    ./maven
+    ./maven.nix
     ./node.nix
     ./nvim.nix
     ./shared.nix

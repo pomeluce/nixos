@@ -37,7 +37,7 @@ Key characteristics:
 │   ├── devspace.nix       # Devspace directory bootstrap
 │   ├── claude/            # Claude Code and related AI tooling config
 │   ├── terminal/          # Terminal emulator modules
-│   ├── maven/             # Maven settings
+│   ├── maven.nix          # Maven settings
 │   ├── jetbrains/         # JetBrains settings and local support files
 │   └── typora/            # Typora config and styles
 ├── system/                # NixOS modules and services
@@ -217,7 +217,7 @@ SSH-related options include:
 | `home/git.nix`    | Git user and behavior configuration.             |
 | `home/node.nix`   | Node.js package manager settings.                |
 | `home/uv.nix`     | uv / Python tooling support.                     |
-| `home/maven/`     | Maven settings.                                  |
+| `home/maven.nix`  | Maven settings.                                  |
 | `home/nvim.nix`   | Neovim configuration bridge through flake input. |
 
 ### Desktop and applications

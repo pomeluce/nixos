@@ -13,7 +13,6 @@ in
     ensureShared = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       set -euo pipefail
       mkdir -p "${config.home.homeDirectory}/shared"
-      echo "ensureShared: ${config.home.homeDirectory}/shared created"
     '';
 
     # 双向写权限: VM 经 virtiofsd(root) 创建的文件默认属主 root、$USER 改不动.

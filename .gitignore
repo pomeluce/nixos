@@ -1,2 +1,6 @@
 docs/superpowers/
 .superpowers
+
+# Ignore generated skill symlinks while keeping authored skill directories trackable.
+home/agentic/.agents/skills/*
+!home/agentic/.agents/skills/*/

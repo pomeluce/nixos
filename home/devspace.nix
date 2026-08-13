@@ -20,7 +20,6 @@ in
         "${devspace}/var/node" \
         "${devspace}/var/rust" \
         "${devspace}/work"
-      echo "ensureDevspace: directories created under ${devspace}"
     '';
   };
 }

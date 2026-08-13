@@ -50,11 +50,14 @@ in
           pkgs.coreutils
           pkgs.findutils
           pkgs.git
+          pkgs.gnugrep
         ]
       }:$PATH"
 
       repo="$HOME/.local/share/agentic/sources/mattpocock-skills"
       sharedSkills="${agentsSource}/skills"
+      desiredSkills="$(mktemp)"
+      trap 'rm -f "$desiredSkills"' EXIT
 
       if [ ! -e "$repo" ]; then
         mkdir -p "$(dirname "$repo")"
@@ -74,10 +77,14 @@ in
         mkdir -p "$dest"
 
         if [ -L "$target" ]; then
-          resolved="$(readlink -f "$target" || true)"
-          case "$resolved" in
+          linkTarget="$(readlink "$target")"
+          case "$linkTarget" in
             "$repo"/skills/*)
-              ln -sfn "$src" "$target"
+              if [ "$linkTarget" != "$src" ]; then
+                replacement="$dest/.$(basename "$src").tmp.$$"
+                ln -s "$src" "$replacement"
+                mv -Tf "$replacement" "$target"
+              fi
               ;;
             *)
               echo "warning: skipping unmanaged symlink $target" >&2
@@ -90,18 +97,9 @@ in
         fi
       }
 
-      # Rebuild managed links to remove stale entries and migrate the old layout.
-      while IFS= read -r -d "" target; do
-        linkTarget="$(readlink "$target")"
-        case "$linkTarget" in
-          "$repo"/skills/*)
-            rm "$target"
-            ;;
-        esac
-      done < <(find "$sharedSkills" -mindepth 1 -maxdepth 1 -type l -print0)
-
       while IFS= read -r -d "" skillFile; do
         skillDir="$(dirname "$skillFile")"
+        basename "$skillDir" >> "$desiredSkills"
         linkSkill "$skillDir" "$sharedSkills"
       done < <(
         find "$repo/skills" \
@@ -110,6 +108,18 @@ in
           -not -path "*/deprecated/*" \
           -print0
       )
+
+      # Remove only managed links that no longer exist in the upstream checkout.
+      while IFS= read -r -d "" target; do
+        linkTarget="$(readlink "$target")"
+        case "$linkTarget" in
+          "$repo"/skills/*)
+            if ! grep -Fxq -- "$(basename "$target")" "$desiredSkills"; then
+              rm "$target"
+            fi
+            ;;
+        esac
+      done < <(find "$sharedSkills" -mindepth 1 -maxdepth 1 -type l -print0)
     '';
   };
 }

@@ -7,7 +7,7 @@ lib.mkIf (agentic.enable && agentic.ccswitch) {
     enable = true;
     defaults = {
       version = 1;
-      providers = [
+      claude_providers = [
         {
           id = "deepseek";
           name = "DeepSeek";

@@ -10,6 +10,7 @@
     wsl.defaultUser = "${config.mo.username}";
     wsl.wslConf.interop.enabled = true;
     wsl.wslConf.interop.appendWindowsPath = false;
+    wsl.wslConf.automount.options = "metadata";
 
     environment.systemPackages = [ pkgs.bubblewrap ];
 

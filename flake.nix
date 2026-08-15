@@ -40,8 +40,8 @@
       url = "github:pomeluce/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ccswitch = {
-      url = "github:pomeluce/ccswitch";
+    akmux = {
+      url = "github:pomeluce/akiron-mux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {

@@ -62,7 +62,7 @@ let
           inputs.noctalia.homeModules.default
           inputs.akzsh.homeManagerModules.default
           inputs.akvim.homeManagerModules.default
-          inputs.ccswitch.homeModules.default
+          inputs.akmux.homeModules.default
         ];
       };
     };

@@ -3,6 +3,8 @@
   imports = [ ../common.nix ];
 
   mo = {
+    agentic.akmux.gui = true;
+
     system = {
       wsl = false;
       bluetooth = true;

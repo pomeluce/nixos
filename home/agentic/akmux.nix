@@ -3,8 +3,9 @@ let
   agentic = config.mo.agentic;
 in
 lib.mkIf (agentic.enable && agentic.ccswitch) {
-  programs.ccswitch = {
+  programs.akmux = {
     enable = true;
+    gui = agentic.akmux.gui;
     defaults = {
       version = 1;
       claude_providers = [

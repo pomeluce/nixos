@@ -13,7 +13,7 @@ let
 in
 {
   imports = [
-    ./ccswitch.nix
+    ./akmux.nix
     ./claude
     ./codex.nix
     ./pi.nix

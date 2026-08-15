@@ -31,6 +31,11 @@ in
     # --- agentic tools ---
     agentic = {
       enable = mkEnableOption "Agentic development tools";
+      akmux.gui = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable the Akmux GUI";
+      };
       ccswitch = mkOption {
         type = types.bool;
         default = true;

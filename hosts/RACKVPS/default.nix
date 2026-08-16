@@ -3,8 +3,6 @@
   imports = [ ../common.nix ];
 
   mo = {
-    agentic.enable = false;
-
     system = {
       wsl = false;
       bluetooth = false;
@@ -22,6 +20,15 @@
             forceSSL = true;
             root = "/srv/sites/akiron.dev";
           };
+          "mux.akiron.dev" = {
+            listen = [
+              {
+                addr = "0.0.0.0";
+                port = 17322;
+              }
+            ];
+            locations."/".proxyPass = "http://127.0.0.1:17322";
+          };
         };
       };
 
@@ -35,6 +42,12 @@
 
       # firewall
       firewall.trustedInterfaces = [ ];
+      firewall.allowedTCPPortRanges = [
+        {
+          from = 17321;
+          to = 17322;
+        }
+      ];
 
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
       gpu.kind = [ ];

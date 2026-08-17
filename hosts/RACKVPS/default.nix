@@ -42,12 +42,7 @@
 
       # firewall
       firewall.trustedInterfaces = [ ];
-      firewall.allowedTCPPortRanges = [
-        {
-          from = 17321;
-          to = 17322;
-        }
-      ];
+      firewall.allowedTCPPorts = [ 17322 ];
 
       # intel, amd, nvidia, intel-nvidia, amd-nvidia
       gpu.kind = [ ];

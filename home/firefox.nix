@@ -20,5 +20,6 @@
       };
     };
     home.packages = with pkgs; [ pywalfox-native ];
+    # TODO: 主题安装: https://github.com/vinceliuice/WhiteSur-firefox-theme
   };
 }

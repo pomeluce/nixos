@@ -56,6 +56,24 @@
       url = "github:vinceliuice/elegant-grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # --- shared agent skills ---
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
+    ppt-master = {
+      url = "github:hugohe3/ppt-master";
+      flake = false;
+    };
+    humanizer = {
+      url = "github:blader/humanizer";
+      flake = false;
+    };
+    humanizer-zh = {
+      url = "github:op7418/Humanizer-zh";
+      flake = false;
+    };
   };
 
   outputs =

@@ -3,8 +3,6 @@
   imports = [ ../common.nix ];
 
   mo = {
-    agentic.akmux.gui = true;
-
     system = {
       wsl = false;
       bluetooth = true;
@@ -133,7 +131,6 @@
 
     userPackages = with pkgs; [
       telegram-desktop
-      splayer
       spotify
       reqable
       # vlc

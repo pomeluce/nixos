@@ -46,7 +46,7 @@
   --item-hover-bg-color: var(--bg-color2);
   --item-hover-text-color: var(--color-1);
   --select-text-bg-color: var(--color-1-0-a);
-  --monospace: 'Maple Mono Normal NL NF CN', 'CaskaydiaMono Nerd Font Mono', 'Source Code Pro', 'Fira Code', Consolas, Inconsolata, Monaco, 'Ubuntu Mono', monospace;
+  --monospace: 'Maple Mono Normal NL NF CN', 'Source Code Pro', 'Fira Code', Consolas, Inconsolata, Monaco, 'Ubuntu Mono', monospace;
 
   /*--mermaid-theme: neutral;*/ /*or base, dark, forest, neutral, night*/
   --mermaid-font-family: 'trebuchet ms', verdana, arial, sans-serif;

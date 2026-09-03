@@ -341,7 +341,7 @@ in
         }
       }
 
-      include "./noctalia.kdl"
+      include optional=true "./noctalia.kdl"
     '';
   };
 }

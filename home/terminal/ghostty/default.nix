@@ -17,9 +17,7 @@
 
         font-family = [
           "Maple Mono Normal NL NF"
-          "CaskaydiaMono Nerd Font Mono"
-          "PingFang SC"
-          "Noto Sans CJK SC"
+          "Maple Mono Normal NL NF CN"
         ];
         font-size = 14;
 

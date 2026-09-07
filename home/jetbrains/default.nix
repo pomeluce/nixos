@@ -9,9 +9,6 @@
   config = lib.mkIf config.mo.desktop.enable {
     home.packages = with pkgs; [
       jetbrains.idea
-      # (jetbrains.idea.override {
-      #   forceWayland = true; # fixed cursor theme
-      # })
     ];
 
     home.file.".jebrains/idea.vmoptions".text = ''

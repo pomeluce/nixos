@@ -31,7 +31,7 @@ in
     ./fonts.nix
     ./hypr.nix
     ./lgc.nix
-    ./jetbrains
+    # ./jetbrains
     ./niri.nix
     ./noctalia.nix
     ./swaylock.nix

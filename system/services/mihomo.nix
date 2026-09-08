@@ -53,7 +53,7 @@
       allow-lan: true
       mixed-port: 7890
       unified-delay: true
-      external-controller: :9090
+      external-controller: 127.0.0.1:9090
       external-ui: ui
 
       geodata-mode: true

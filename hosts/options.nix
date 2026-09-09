@@ -490,6 +490,19 @@ in
           default = { };
           description = "Run commands by file extension";
         };
+
+        database = mkOption {
+          type = types.submodule {
+            options.query_location = mkOption {
+              type = types.nullOr types.str;
+              default = null;
+              example = "~/devspace/code/sql/dadbod-queries";
+              description = "Directory for persistent DBUI query buffers; uses Neovim's data directory when unset.";
+            };
+          };
+          default = { };
+          description = "Database integration settings.";
+        };
       };
     };
 

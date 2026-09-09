@@ -8,16 +8,16 @@
 
   config = lib.mkIf config.mo.desktop.enable {
     home.packages = with pkgs; [
-      jetbrains.idea
+      jetbrains.datagrip
     ];
 
-    home.file.".jebrains/idea.vmoptions".text = ''
-      ${builtins.readFile "${pkgs.jetbrains.idea}/idea/bin/idea64.vmoptions"}
+    home.file.".jebrains/datagrip.vmoptions".text = ''
+      ${builtins.readFile "${pkgs.jetbrains.datagrip}/datagrip/bin/datagrip64.vmoptions"}
       -javaagent:${./netfilter/ja-netfilter.jar}
     '';
 
     home.sessionVariables = {
-      IDEA_VM_OPTIONS = "${config.home.homeDirectory}/.jebrains/idea.vmoptions";
+      DATAGRIP_VM_OPTIONS = "${config.home.homeDirectory}/.jebrains/datagrip.vmoptions";
     };
 
     home.file.".ideavimrc".source = ./ideavimrc;

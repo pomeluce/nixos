@@ -11,6 +11,12 @@ in
       mkdir -p \
         "${devspace}" \
         "${devspace}/code" \
+        "${devspace}/database" \
+        "${devspace}/database/sql" \
+        "${devspace}/database/schemas" \
+        "${devspace}/database/dumps" \
+        "${devspace}/database/diagrams" \
+        "${devspace}/database/clients" \
         "${devspace}/infra" \
         "${devspace}/repos" \
         "${devspace}/var" \

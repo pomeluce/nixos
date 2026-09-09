@@ -122,6 +122,9 @@ in
             }
           ];
         };
+        database = {
+          query_location = "${devspace}/database/sql/queries";
+        };
       };
 
       ssh.ports = [

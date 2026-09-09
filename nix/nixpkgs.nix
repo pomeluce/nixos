@@ -47,6 +47,7 @@ let
 
     "reqable"
     "idea"
+    "datagrip"
     "vscode"
     "typora"
     "spotify"

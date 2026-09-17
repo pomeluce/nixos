@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788955371,
-        "narHash": "sha256-tLiZOL84uYVSzYbyVjxI1q1VAGZgPYfoux/NorcPZYo=",
+        "lastModified": 1789474105,
+        "narHash": "sha256-seBQUHmR9j3lv6FAxLpxNtNrMAkVROcwzMfeVU7TQ9w=",
         "owner": "pomeluce",
         "repo": "nixpkgs",
-        "rev": "ac94348d4bbdf9b8f3abd968a2326f9a6a6808b9",
+        "rev": "ea08293c7f663969e72ebc2823583e026db6e719",
         "type": "github"
       },
       "original": {
@@ -76,11 +76,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788959571,
-        "narHash": "sha256-9wFlcMispmGzKwx9RABhKf6WyPfTIZYhfsxatOsTPuc=",
+        "lastModified": 1789573191,
+        "narHash": "sha256-zSOnanL2JgZ52hiBtcbOUtYq4wMPwm8qvMXI1zVNkKY=",
         "owner": "pomeluce",
         "repo": "nvim",
-        "rev": "11114f8ef0961d267029337a144c4a7502c15b6f",
+        "rev": "79e1ab7667733924e72337ff3b1b05f1814224dd",
         "type": "github"
       },
       "original": {
@@ -97,11 +97,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786536296,
-        "narHash": "sha256-cEDl72TfBUiCOQGQ9BIqIZ4O+ysoMl1oUuhaD/jUMtU=",
+        "lastModified": 1789048500,
+        "narHash": "sha256-67WPgvqjGXk4cIHQ1T37aBKLJ9q+aCblMsa34/n+AMg=",
         "owner": "pomeluce",
         "repo": "akiron-zsh",
-        "rev": "2980854e33eb5647e4f61b0f46e814aac9eda87a",
+        "rev": "023a4eab74a59c9a813e0d58187b59c35a3e8b11",
         "type": "github"
       },
       "original": {
@@ -342,11 +342,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788921139,
-        "narHash": "sha256-2wRuvf9UDw1SYWtBcxNmxLeAtNU1i/hc1c0AKQHdvlM=",
+        "lastModified": 1789618856,
+        "narHash": "sha256-OSqj7eOijvCZfN7owFWRxLWRhej5lZI+Kt82q3INLvc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a2dbe7c2c9333e8234ae8114c7f731784201d108",
+        "rev": "afa6821c70560bb19d1a8c577bff398f7f239869",
         "type": "github"
       },
       "original": {
@@ -390,11 +390,11 @@
     "mattpocock-skills": {
       "flake": false,
       "locked": {
-        "lastModified": 1788511407,
-        "narHash": "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=",
+        "lastModified": 1789643445,
+        "narHash": "sha256-jV54LyJWtC/UJ7xHH0NRNVN/zwUT8vYS6gzH9gpo+yo=",
         "owner": "mattpocock",
         "repo": "skills",
-        "rev": "3cca18b368ae95cdbdebbff572ccafa662551015",
+        "rev": "74ca5fe077456a0b3b2f5310cf9430999fd0b5fd",
         "type": "github"
       },
       "original": {
@@ -411,11 +411,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784642409,
-        "narHash": "sha256-hcbDqFuySAJawljt5r0sKBCJKYnbtGD0T/ZIozH1Dq0=",
+        "lastModified": 1789164534,
+        "narHash": "sha256-DoYGPM6QpnYBLWj9gGw6ZwAzIX+HrAVov1BoT+8Jixo=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "eaeb18da90024448a60eb1ec7132eafa4003404e",
+        "rev": "72c92b11bb8289e6651c7fef29cc0a885fd6a255",
         "type": "github"
       },
       "original": {
@@ -532,11 +532,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1788921488,
-        "narHash": "sha256-8+xWRxEkD6l217cIUdRxfeUGS9lQX0hVtUuNVsBaDzk=",
+        "lastModified": 1789542786,
+        "narHash": "sha256-ajQuqcxnj6RYnwCjA/9FTCnrdR2+BDzstE8UembXf60=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6aefcda9401be8acc2b74244fb3b37520ea1f0a8",
+        "rev": "4c7870105e7f1fdf9c48688c8d7efc21abf0688a",
         "type": "github"
       },
       "original": {
@@ -548,11 +548,11 @@
     },
     "nixpkgs-unsmall": {
       "locked": {
-        "lastModified": 1788933197,
-        "narHash": "sha256-JH6Eo2+jaf137k5435RmDxmacm3jdtI+u2CXa6Fzfys=",
+        "lastModified": 1789625268,
+        "narHash": "sha256-ifID4dreZRXnXVSNeJmrcz4pV4eLgtUFOM4bZwgs6ac=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4170b86f2004994e13c3f643f6c9062ff2481689",
+        "rev": "b825c77421944fc29a38b59fb3f09730a594e7dc",
         "type": "github"
       },
       "original": {
@@ -564,11 +564,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1788881743,
-        "narHash": "sha256-2V9GZGvPfrNzxFozhI9dcqV+c3QdA8YZrvAAzqEB+dI=",
+        "lastModified": 1789546076,
+        "narHash": "sha256-zVxLZiSnmaaPLwnhj7pwmqe3axBg/C6nG5JZsJMh2g4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d6524aaca2ff07876657ae2b323f24be4874944b",
+        "rev": "b1b875982b17dabde9b4a37f3e229e74913e6db3",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788886125,
-        "narHash": "sha256-5rgQFUGr8GXYyyuy8ynrN39WfZzSiO/wqGWjELBOkEY=",
+        "lastModified": 1789611680,
+        "narHash": "sha256-obiNV+juEjUYDDusgYQukjLyoVsJJPmYppmjvIEfkSg=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "d6607b4eafbb92f6d494ebed3e296d4b741c0b58",
+        "rev": "8c52cb71b5bcafbf67bfb8e659f1fc45f882a008",
         "type": "github"
       },
       "original": {
@@ -606,11 +606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788964983,
-        "narHash": "sha256-rV9W63CjRQP7Griqgy0lu0PPqbRS+4GZzUBj8Zsadk0=",
+        "lastModified": 1789647428,
+        "narHash": "sha256-CVzbyqS4y1a/zbXkvH5js39JfQkJof7owd1B6/NHHEc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4f6135308a624a60537b50e93dab8a5547f1fcdd",
+        "rev": "5900a16dfa1f8d353b9eb01f1405d0334098be6e",
         "type": "github"
       },
       "original": {
@@ -622,11 +622,11 @@
     "ppt-master": {
       "flake": false,
       "locked": {
-        "lastModified": 1788934963,
-        "narHash": "sha256-VovQj7pu6ndY6x5np1T7AeLOB24Ygw9BvQzH30lUY5E=",
+        "lastModified": 1789618507,
+        "narHash": "sha256-zJPlqfyvSJSTaWZZY5Jsaqx/2k3fqJKA/AHD7JWdFAk=",
         "owner": "hugohe3",
         "repo": "ppt-master",
-        "rev": "3ad8052e97dd35cc57ae8c30442a5b8b5811e5eb",
+        "rev": "ee0c7d959626e483a1b1f23ddef1182b94ab034c",
         "type": "github"
       },
       "original": {

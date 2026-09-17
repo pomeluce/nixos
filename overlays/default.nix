@@ -30,4 +30,9 @@ in
     // (inputs.akpkgs.overlays.default final prev);
 
   nur = inputs.nur.overlays.default;
+
+  # TIP: Remove once the locked sops-nix no longer requires buildGo125Module.
+  sops-go-compat = _final: prev: {
+    buildGo125Module = prev.buildGoModule;
+  };
 }

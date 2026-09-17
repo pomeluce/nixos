@@ -89,7 +89,7 @@ in
       swaylock.enable = lib.mkDefault false;
       swaylock.font-size = lib.mkDefault 14;
 
-      nvim.settings = lib.mkDefault {
+      nvim.settings = lib.mapAttrsRecursive (_: lib.mkDefault) {
         session = {
           projects = [
             "$DEVSPACE/code/projects/*"
@@ -104,12 +104,14 @@ in
         };
         lsp.jdtls = {
           maven = {
+            userSettings = "";
             globalSettings = "~/.m2/settings.xml";
           };
           runtimes = [
             {
               name = "JavaSE-1.8";
               path = "/etc/jdk/zulu8";
+              default = false;
             }
             {
               name = "JavaSE-21";
@@ -119,12 +121,11 @@ in
             {
               name = "JavaSE-25";
               path = "/etc/jdk/zulu25";
+              default = false;
             }
           ];
         };
-        database = {
-          query_location = "${devspace}/database/sql/queries";
-        };
+        database.query_location = "${devspace}/database/sql/queries";
       };
 
       ssh.ports = [

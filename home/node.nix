@@ -16,7 +16,7 @@ in
 
   home.file.".config/pnpm/rc".text = ''
     cache-dir=${mo.devspace}/var/node/pnpm/node_caches
-    global-bin-dir=${mo.devspace}/var/node/pnpm/bin
+    global-bin-dir=${config.home.sessionVariables.PNPM_HOME}
     global-dir=${mo.devspace}/var/node/pnpm/node_modules
     state-dir=${mo.devspace}/var/node/pnpm/node_states
     store-dir=${mo.devspace}/var/node/pnpm

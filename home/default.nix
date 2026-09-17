@@ -85,13 +85,6 @@ in
       (mo.system.session-variables or { })
     ];
 
-    sessionPath = [
-      "${config.home.homeDirectory}/.local/bin"
-      "$GOBIN"
-      "$PNPM_HOME"
-    ]
-    ++ mo.system.session-path;
-
     enableNixpkgsReleaseCheck = false;
   };
 

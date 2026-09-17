@@ -7,7 +7,7 @@ let
   mo = config.mo;
 in
 {
-  config = lib.mkIf mo.desktop.enable {
+  config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.niri) {
     home.file.".config/niri/config.kdl".text = ''
       input {
         keyboard {

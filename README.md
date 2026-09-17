@@ -160,6 +160,20 @@ SSH-related options include:
 - `mo.programs.ssh.hosts` — declarative SSH host entries.
 - `mo.programs.ssh.ports` — SSH ports used by firewall/service modules.
 
+### Desktop selection
+
+Niri and Hyprland may both be enabled through `mo.desktop.wm.*`, allowing selection at login. Each enabled WM gets its matching NixOS and Home Manager configuration. When `mo.desktop.enable` is false, neither WM configuration is generated. When the desktop is enabled and both WM switches are false, GNOME is the fallback.
+
+`mo.desktop.dm.defaultSession` selects the default login session (`niri`, `hyprland`, or `gnome`). Set it to an enabled session; NixOS evaluation rejects an unavailable default, including `gnome` when a WM is selected. For a GNOME-only desktop, explicitly set the default session to `gnome`.
+
+### Neovim overrides
+
+`hosts/common.nix` owns shared Neovim preferences, and hosts override individual values through `mo.programs.nvim.settings`. This is a single free-form option; the repository does not duplicate the upstream settings schema. `home/nvim.nix` passes the merged settings to `programs.akvim.settings` for upstream validation. Shared defaults use `mkDefault` at each leaf, so a nested host override preserves sibling settings and a host-provided list replaces the corresponding default list.
+
+### Devspace environment
+
+`home/devspace.nix` owns directory creation, `DEVSPACE`, `GRADLE_USER_HOME`, `PNPM_HOME`, `CARGO_HOME`, `GOPATH`, `GOBIN`, and the user executable search paths. These values are part of the Home Manager configuration and can be updated independently of NixOS. Changing `mo.devspace` changes the declared paths; it does not migrate existing files. `EDITOR`, `VISUAL`, `PYTHON`, and `SOPS_AGE_KEY_FILE` remain system settings.
+
 ## System Modules
 
 `system/default.nix` is the system module entry point. It imports modules in several groups.

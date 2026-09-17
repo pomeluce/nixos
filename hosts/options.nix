@@ -229,8 +229,13 @@ in
       };
       dm = {
         defaultSession = mkOption {
-          type = types.str;
+          type = types.enum [
+            "gnome"
+            "hyprland"
+            "niri"
+          ];
           default = "niri";
+          description = "Default desktop session presented by the display manager.";
         };
         sddm = mkEnableOption "SDDM";
       };
@@ -415,94 +420,10 @@ in
         };
       };
 
-      nvim.settings = {
-        mason.enable = mkOption {
-          type = types.bool;
-          default = false;
-          description = "Enable Mason for non-NixOS systems";
-        };
-
-        session = {
-          projects = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Session project directories";
-          };
-          ignore_dir = mkOption {
-            type = types.listOf types.str;
-            default = [ ];
-            description = "Directories to ignore in session";
-          };
-        };
-
-        lsp.jdtls = {
-          maven = {
-            userSettings = mkOption {
-              type = types.str;
-              default = "";
-              description = "Maven user settings.xml path";
-            };
-            globalSettings = mkOption {
-              type = types.str;
-              default = "";
-              description = "Maven global settings.xml path";
-            };
-          };
-          runtimes = mkOption {
-            type = types.listOf (
-              types.submodule {
-                options = {
-                  name = mkOption { type = types.str; };
-                  path = mkOption { type = types.str; };
-                  default = mkOption {
-                    type = types.bool;
-                    default = false;
-                  };
-                };
-              }
-            );
-            default = [ ];
-            description = "JDTLS Java runtimes";
-          };
-        };
-
-        header = mkOption {
-          type = types.submodule {
-            options = {
-              env = mkOption {
-                type = types.attrsOf types.str;
-                default = { };
-                description = "Placeholder variable overrides for header templates (e.g. { USER = \"name\"; }), taking precedence over environment variables.";
-              };
-              tmpl = mkOption {
-                type = types.attrsOf types.str;
-                default = { };
-                description = "Custom header templates keyed by language (e.g. python, lua).";
-              };
-            };
-          };
-          default = { };
-          description = "File header templates (`tmpl`) and placeholder variable overrides (`env`).";
-        };
-
-        file.run_cmd = mkOption {
-          type = types.attrsOf types.str;
-          default = { };
-          description = "Run commands by file extension";
-        };
-
-        database = mkOption {
-          type = types.submodule {
-            options.query_location = mkOption {
-              type = types.nullOr types.str;
-              default = null;
-              example = "~/devspace/code/sql/dadbod-queries";
-              description = "Directory for persistent DBUI query buffers; uses Neovim's data directory when unset.";
-            };
-          };
-          default = { };
-          description = "Database integration settings.";
-        };
+      nvim.settings = mkOption {
+        type = types.attrsOf types.anything;
+        default = { };
+        description = "Shared and host-specific Neovim settings passed to the upstream Home Manager module.";
       };
     };
 

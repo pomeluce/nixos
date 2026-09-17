@@ -1,8 +1,36 @@
-# Agent Resources
+# NixOS Configuration
 
-This context defines the instructions and Skills shared by AI agent tools and distinguishes canonical sources from installed resources.
+This context defines desktop selection and the instructions and Skills shared by AI agent tools, distinguishing canonical sources from installed resources.
 
 ## Language
+
+### Host Configuration
+
+**Shared Host Defaults**:
+User preferences and configuration choices shared across hosts, with individual hosts able to override them.
+_Avoid_: Module implementation defaults
+
+### Desktop Selection
+
+**Desktop Selection**:
+The desktop environments available on a host. Niri and Hyprland may coexist; a desktop-enabled host always has at least one desktop environment.
+_Avoid_: Exclusive desktop choice
+
+**Fallback Desktop**:
+GNOME, the desktop environment available on a desktop-enabled host when neither Niri nor Hyprland is selected.
+_Avoid_: Implicit extra desktop
+
+**Default Desktop Session**:
+The initially selected login session among the desktop environments available on a host; it does not restrict which session the user can choose.
+_Avoid_: Only desktop
+
+### Development Environment
+
+**Devspace**:
+The user's development workspace containing projects, repositories, databases, and tool data.
+_Avoid_: System workspace
+
+### Agent Resources
 
 **Agent Resource**:
 Instructions or Skills shared with one or more agent tools.

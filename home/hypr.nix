@@ -11,7 +11,7 @@ let
 in
 {
 
-  config = lib.mkIf mo.desktop.enable {
+  config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.hyprland) {
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;

@@ -16,12 +16,12 @@ lib.mkIf (agentic.enable && agentic.ccswitch) {
           api_key = "env:DEEPSEEK_API_KEY";
           profiles = [
             {
-              id = "v4";
-              name = "DeepSeek-V4";
-              opus = "deepseek-v4-pro[1m]";
-              sonnet = "deepseek-v4-pro[1m]";
-              haiku = "deepseek-v4-flash";
-              subagent = "deepseek-v4-flash";
+              id = "flash";
+              name = "DeepSeek-Flash";
+              opus = "deepseek-flash[1m]";
+              sonnet = "deepseek-flash[1m]";
+              haiku = "deepseek-flash";
+              subagent = "deepseek-flash";
               default = true;
             }
           ];
@@ -86,9 +86,9 @@ lib.mkIf (agentic.enable && agentic.ccswitch) {
               default = true;
             }
             {
-              slug = "deepseek-v4-flash";
-              display_name = "Deepseek-v4-Flash";
-              description = "Latest frontier agentic coding model.";
+              slug = "deepseek-flash";
+              display_name = "Deepseek-Flash";
+              description = "Latest frontier agentic coding model with image input.";
               context_window = 1048576;
               max_context_window = 1048576;
               effective_context_window_percent = 95;
@@ -98,7 +98,10 @@ lib.mkIf (agentic.enable && agentic.ccswitch) {
                 "high"
                 "max"
               ];
-              input_modalities = [ "text" ];
+              input_modalities = [
+                "text"
+                "image"
+              ];
               supports_parallel_tool_calls = true;
               support_verbosity = true;
               supports_search_tool = true;

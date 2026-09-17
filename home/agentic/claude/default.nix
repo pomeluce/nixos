@@ -18,6 +18,7 @@ let
         CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = 1;
         CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK = 1;
         CLAUDE_CODE_EFFORT_LEVEL = "max";
+        CLAUDE_CODE_AUTO_COMPACT_WINDOW = 786432;
       };
       language = "Chinese";
       statusLine = {

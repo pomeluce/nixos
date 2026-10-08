@@ -9,11 +9,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1788838427,
-        "narHash": "sha256-T9eSnmV8F+eWs3LrHx8HJjd+6ZRwN1Xw6cymaBZgYDU=",
+        "lastModified": 1791428065,
+        "narHash": "sha256-msqcLgBubGD1qneBF9DxmYKSUT1elNuRq+iLoF/dDsk=",
         "owner": "pomeluce",
         "repo": "akiron-mux",
-        "rev": "09eb23f11e862028e1ea2bb933c70b60bd5f1c50",
+        "rev": "c72e57c2625ee36fff64fccbcd574dc42b68fb2a",
         "type": "github"
       },
       "original": {

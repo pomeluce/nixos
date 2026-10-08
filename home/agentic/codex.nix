@@ -10,8 +10,15 @@ let
 
   fixedSettings = {
     model_reasoning_effort = "high";
-    network_access = "enabled";
-    disable_response_storage = true;
+    default_permissions = "workspace-network";
+    permissions = {
+      "workspace-network" = {
+        extends = ":workspace";
+        network = {
+          enabled = true;
+        };
+      };
+    };
   };
 
   codexDefaultToml = tomlFormat.generate "codex-config-default.toml" fixedSettings;

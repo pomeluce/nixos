@@ -1,6 +1,8 @@
 docs/superpowers/
 .superpowers
 
+__pycache__/
+
 # Ignore legacy generated Skill links while keeping authored directories trackable.
 home/agentic/.agents/skills/*
 !home/agentic/.agents/skills/*/

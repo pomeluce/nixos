@@ -35,7 +35,6 @@
       keyd.enable = false;
       keyd.settings = { };
 
-      niri.output = "";
       niri.opacity.active = "";
       niri.opacity.inactive = "";
 

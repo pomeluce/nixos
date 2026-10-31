@@ -7,6 +7,8 @@ let
   mo = config.mo;
 in
 {
+  imports = [ ./displays.nix ];
+
   config = lib.mkIf (mo.desktop.enable && mo.desktop.wm.niri) {
     home.file.".config/niri/config.kdl".text = ''
       input {
@@ -31,9 +33,6 @@ in
         // niri 默认接管电源按钮的功能是 sleep, 禁用
         disable-power-key-handling
       }
-
-      // cmd: `niri msg outputs`
-      ${mo.programs.niri.output}
 
       ${mo.programs.niri.debug}
 
@@ -157,6 +156,7 @@ in
         // Mod+D hotkey-overlay-title="Open Desktop Dock: akirds" { spawn-sh "akirds -t dock"; }
         Mod+F11 hotkey-overlay-title="Open PowerMenu Panel: noctalia" { spawn-sh "noctalia msg panel-toggle session"; }
         Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+        Mod+P hotkey-overlay-title="Display Settings: wdisplays" { spawn "wdisplays"; }
         Mod+Shift+R hotkey-overlay-title="Restart Desktop Shell: noctalia" { spawn-sh "pkill noctalia; noctalia"; }
         Mod+Alt+S hotkey-overlay-title="Open Noctalia Shell Settings: noctalia" { spawn-sh "noctalia msg settings-toggle"; }
         Mod+Alt+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia msg session lock"; }

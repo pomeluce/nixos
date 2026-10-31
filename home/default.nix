@@ -32,7 +32,7 @@ in
     ./hypr.nix
     ./lgc.nix
     ./jetbrains
-    ./niri.nix
+    ./niri
     ./noctalia.nix
     ./swaylock.nix
     ./terminal

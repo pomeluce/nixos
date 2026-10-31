@@ -102,6 +102,13 @@
             };
           };
           checks = {
+            niri-layout-init =
+              pkgs.runCommand "niri-layout-init-check" { nativeBuildInputs = [ pkgs.python3 ]; }
+                ''
+                  export PYTHONDONTWRITEBYTECODE=1
+                  python -m unittest discover -s ${./home/niri} -p 'test_*.py' -v
+                  touch "$out"
+                '';
             deadnix = pkgs.runCommand "deadnix-check" { } ''
               ${pkgs.deadnix}/bin/deadnix --fail ${./.}
               touch $out

@@ -77,6 +77,7 @@ The flake also exposes:
 - `templates` from `templates/default.nix`.
 - `overlays` from `overlays/default.nix`.
 - `checks.deadnix` for dead code detection.
+- `checks.niri-layout-init` for display-layout migration checks.
 - `formatter = pkgs.nixfmt`.
 
 ## Hosts
@@ -166,6 +167,12 @@ Niri and Hyprland may both be enabled through `mo.desktop.wm.*`, allowing select
 
 `mo.desktop.dm.defaultSession` selects the default login session (`niri`, `hyprland`, or `gnome`). Set it to an enabled session; NixOS evaluation rejects an unavailable default, including `gnome` when a WM is selected. For a GNOME-only desktop, explicitly set the default session to `gnome`.
 
+### Niri display layouts
+
+Niri display layouts are managed interactively with **Displays** (`wdisplays`, also available through `Mod+P`). Apply a layout to save it in the writable `~/.config/kanshi/config`; kanshi restores the matching profile on login and monitor hotplug. Rebuilds preserve this file instead of declaring output modes and positions through `mo.programs.niri.output`.
+
+The first Home Manager activation captures the running Niri layout before replacing its configuration. Run that initial activation from the current Niri session to preserve its resolution, refresh rate, scale, and positions. New monitor combinations use Niri's defaults for newly connected displays; existing connected displays keep their current settings until adjusted.
+
 ### Neovim overrides
 
 `hosts/common.nix` owns shared Neovim preferences, and hosts override individual values through `mo.programs.nvim.settings`. This is a single free-form option; the repository does not duplicate the upstream settings schema. `home/nvim.nix` passes the merged settings to `programs.akvim.settings` for upstream validation. Shared defaults use `mkDefault` at each leaf, so a nested host override preserves sibling settings and a host-provided list replaces the corresponding default list.
@@ -242,7 +249,7 @@ Niri and Hyprland may both be enabled through `mo.desktop.wm.*`, allowing select
 | `home/fcitx5/`        | Input method configuration.                 |
 | `home/fonts.nix`      | User font configuration.                    |
 | `home/hypr.nix`       | Hyprland user configuration.                |
-| `home/niri.nix`       | Niri user configuration.                    |
+| `home/niri/`          | Niri user and display-layout configuration. |
 | `home/noctalia.nix`   | Noctalia desktop shell configuration.       |
 | `home/terminal/`      | Terminal emulator configuration.            |
 | `home/typora/`        | Typora settings and CSS.                    |

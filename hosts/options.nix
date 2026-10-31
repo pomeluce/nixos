@@ -368,10 +368,6 @@ in
       };
 
       niri = {
-        output = mkOption {
-          type = types.lines;
-          default = "";
-        };
         debug = mkOption {
           type = types.lines;
           default = "";

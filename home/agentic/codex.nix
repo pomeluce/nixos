@@ -44,7 +44,24 @@ let
   pythonWithTomlkit = pkgs.python3.withPackages (p: [ p.tomlkit ]);
 in
 lib.mkIf (agentic.enable && agentic.codex) {
-  programs.codex.enable = true;
+  programs.codex = {
+    enable = true;
+    package = pkgs.symlinkJoin {
+      name = "codex-with-bubblewrap";
+      paths = [ pkgs.codex ];
+      nativeBuildInputs = [
+        pkgs.makeWrapper
+      ];
+      postBuild = ''
+        wrapProgram $out/bin/codex \
+          --prefix PATH : ${
+            pkgs.lib.makeBinPath [
+              pkgs.bubblewrap
+            ]
+          }
+      '';
+    };
+  };
 
   home.activation.mergeCodexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     set -euo pipefail

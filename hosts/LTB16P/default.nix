@@ -106,12 +106,10 @@
       telegram-desktop
       spotify
       reqable
-      # vlc
       qbittorrent-enhanced
-      # wpsoffice
-      # wpsoffice-cn
       qq
       wechat
+      mossx
     ];
   };
 }

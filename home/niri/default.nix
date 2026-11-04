@@ -27,7 +27,8 @@ in
         }
 
         mouse {
-          accel-speed 0.4
+          accel-speed 0.0
+          accel-profile "adaptive"
         }
 
         // niri 默认接管电源按钮的功能是 sleep, 禁用

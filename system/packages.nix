@@ -92,5 +92,5 @@
 
   environment.etc."jdk/zulu25".source = "${pkgs.zulu25}";
   environment.etc."jdk/zulu21".source = "${pkgs.zulu21}";
-  environment.etc."jdk/zulu8".source = "${pkgs.zulu8}";
+  environment.etc."jdk/zulu8".source = "${pkgs.zulu8.override { gtkSupport = false; }}";
 }

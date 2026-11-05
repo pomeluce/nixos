@@ -14,6 +14,7 @@ in
     ./cpa
     ./direnv.nix
     ./fastfetch.nix
+    ./gc.nix
     ./git.nix
     ./maven.nix
     ./node.nix

@@ -46,6 +46,9 @@ in
     ./services/firewall.nix
     ./services/nginx.nix
 
+    # 工具模块
+    ./tools/hid-access.nix
+
     # 外部模块
     "${inputs.nixos-wsl}/modules"
   ];

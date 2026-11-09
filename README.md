@@ -185,6 +185,24 @@ The first Home Manager activation captures the running Niri layout before replac
 
 `system/default.nix` is the system module entry point. It imports modules in several groups.
 
+### Temporary USB HID access
+
+`hid-access` grants the calling user read/write access to connected USB HID nodes for browser tools such as keyboard configurators. It is packaged with `writeShellApplication` in the self-contained `system/tools/hid-access.nix` module, imported by `system/default.nix`.
+
+```sh
+hid-access --list
+hid-access 3434:0123
+hid-access --revoke 3434:0123
+```
+
+Run as your normal user; the command requests sudo authentication only for ACL changes. IDs must have four hexadecimal digits on each side and are case insensitive. All matching hidraw interfaces are included, including multiple physical devices sharing the same VID:PID. Bluetooth devices are excluded.
+
+The grant applies to the current device nodes, without installing udev rules. Unplugging/replugging or rebooting recreates the nodes; other permission managers may also change their ACLs. There is no timer. `--revoke` removes the user's named ACL entry, including one that existed before this command; it does not restore a prior ACL, override permissions from groups or other rules, or close already-open browser connections. Close the browser connection before revoking or unplug the device.
+
+Granting uses the standard `setfacl` mask recalculation, which can also make previously masked permissions on other ACL entries effective. Revoking preserves the current mask. See the [setfacl manual](https://man7.org/linux/man-pages/man1/setfacl.1.html).
+
+Use a browser with WebHID support, such as Chrome/Chromium, and select the device in the site's permission prompt. ACL access alone does not bypass browser restrictions on protected HID collections or sandbox restrictions. See [Chrome's WebHID documentation](https://developer.chrome.com/docs/capabilities/hid).
+
 ### Base modules
 
 | Module                      | Purpose                                                 |

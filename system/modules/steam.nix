@@ -56,9 +56,9 @@ in
 
     services = {
       # enable scx for game, needs kernel version >= 6.12, see https://github.com/sched-ext/scx/blob/main/scheds/rust/scx_lavd/README.md
-      scx = {
+      scx-loader = {
         enable = true;
-        scheduler = "scx_lavd";
+        config.default_sched = "scx_lavd";
       };
     };
     environment.systemPackages = with pkgs; [

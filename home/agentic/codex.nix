@@ -48,7 +48,7 @@ lib.mkIf (agentic.enable && agentic.codex) {
     enable = true;
     package = pkgs.symlinkJoin {
       name = "codex-with-bubblewrap";
-      paths = [ pkgs.codex ];
+      paths = [ pkgs.unsmall.codex ];
       nativeBuildInputs = [
         pkgs.makeWrapper
       ];

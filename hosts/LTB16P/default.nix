@@ -109,7 +109,6 @@
       qbittorrent-enhanced
       qq
       wechat
-      mossx
     ];
   };
 }

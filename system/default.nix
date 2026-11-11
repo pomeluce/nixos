@@ -25,6 +25,7 @@ in
     ./modules/sops.nix
 
     # 功能模块
+    ./modules/chromium.nix
     ./modules/bluetooth.nix
     ./modules/nvidia.nix
     ./modules/steam.nix

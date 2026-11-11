@@ -203,6 +203,61 @@ Granting uses the standard `setfacl` mask recalculation, which can also make pre
 
 Use a browser with WebHID support, such as Chrome/Chromium, and select the device in the site's permission prompt. ACL access alone does not bypass browser restrictions on protected HID collections or sandbox restrictions. See [Chrome's WebHID documentation](https://developer.chrome.com/docs/capabilities/hid).
 
+### Chromium
+
+`system/modules/chromium.nix` installs Chromium on desktop hosts with Wayland
+input method support and configures its machine policies and initial preferences. It is
+imported by `system/default.nix`; apply the NixOS configuration for your host to
+install the browser and policies together.
+
+After all Chromium windows close normally, Chromium clears browsing/search and
+download history, cookies, site storage, cache, autofill data, site permissions,
+and hosted app data. Websites require login again, and site permissions must be
+granted again. Downloaded files, bookmarks, extensions, and saved passwords are
+retained. Background mode, browser sign-in, sync, remote search suggestions,
+metrics reporting, URL-keyed data collection (the **Make searches and browsing
+better** setting), and address/payment autofill are disabled. Startup opens a new
+tab instead of restoring the previous session.
+
+Password saving and password autofill are disabled on all sites with
+`PasswordManagerEnabled = false` and `PasswordManagerBlocklist = [ "*" ]`.
+Existing passwords are retained; disabling saving alone would still allow them
+to be filled. New profiles also default to disabling automatic sign-in.
+
+Chromium 157's Linux-supported AI features are disabled individually: Google and
+third-party AI Mode entry points, AI suggestions, page/context sharing, Gemini
+auto browse/Spark, AI autofill/password changes, theme generation, DevTools AI,
+writing assistance, AI history search, tab comparison, virtual try-on, and voice
+typing. `GenAILocalFoundationalModelSettings = 1` prevents local model downloads
+and removes an already downloaded model. The `GenAiDefaultSettings` umbrella
+policy is cloud-only, so it is not used for these local policies. `GeminiSettings`
+itself is still marked as future support on Linux in Chromium 157. These policies
+control browser integrations; they do not block AI websites or remove AI answers
+from search result pages.
+
+New profiles use `mo.username` as their local profile name, with automatic sign-in
+disabled, native vertical tabs and **Use system title bar and borders** enabled.
+The **Saved tab groups** and **Tab search** buttons are hidden, and the **Home**,
+**Downloads**, and **Delete browsing data** toolbar buttons are shown by default.
+These appearance defaults only apply when initializing a profile; adjust the
+corresponding controls in **Settings → Appearance** for an existing profile.
+For an existing profile, change its name under **Settings → You and Google →
+Customize your Chromium profile**, set **Settings → Appearance → Tab
+strip position → Side** and enable **Use system title bar and borders** once;
+initial preferences do not overwrite existing profiles. On Wayland, the visible
+title bar also depends on the compositor's decoration support.
+
+Check `chrome://policy` after rebuilding; `ClearBrowsingDataOnExitList` and the
+other configured policies should appear without errors. Visit a page, perform a
+search, and log into a test site, then close every Chromium window. Reopen it and
+check `chrome://history`, the site's login state, and the startup tab.
+
+This uses Chromium's [native exit cleanup policy](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/policy/resources/templates/policy_definitions/Miscellaneous/ClearBrowsingDataOnExitList.yaml).
+Crashes, forced termination, and power loss do not guarantee cleanup. Disabling
+session restoration does not guarantee deletion of every session file or all
+extension-owned data. Local cleanup also does not delete search history already
+stored by a search provider in an online account.
+
 ### Base modules
 
 | Module                      | Purpose                                                 |
@@ -221,6 +276,7 @@ Use a browser with WebHID support, such as Chrome/Chromium, and select the devic
 | Module                         | Purpose                                            |
 | ------------------------------ | -------------------------------------------------- |
 | `system/modules/bluetooth.nix` | Bluetooth support.                                 |
+| `system/modules/chromium.nix`  | Chromium installation, policies, and initial preferences. |
 | `system/modules/nvidia.nix`    | NVIDIA/GPU-related configuration.                  |
 | `system/modules/steam.nix`     | Steam support.                                     |
 | `system/modules/docker.nix`    | Docker configuration.                              |

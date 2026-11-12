@@ -205,8 +205,8 @@ Use a browser with WebHID support, such as Chrome/Chromium, and select the devic
 
 ### Chromium
 
-`system/modules/chromium.nix` installs Chromium on desktop hosts with Wayland
-input method support and configures its machine policies and initial preferences. It is
+`system/modules/chromium/default.nix` installs Chromium on desktop hosts with Wayland
+input method support and configures its machine policies and managed preferences. It is
 imported by `system/default.nix`; apply the NixOS configuration for your host to
 install the browser and policies together.
 
@@ -235,17 +235,21 @@ itself is still marked as future support on Linux in Chromium 157. These policie
 control browser integrations; they do not block AI websites or remove AI answers
 from search result pages.
 
-New profiles use `mo.username` as their local profile name, with automatic sign-in
-disabled, native vertical tabs and **Use system title bar and borders** enabled.
+Managed profiles use `mo.username` as their local profile name, with automatic
+sign-in disabled, native vertical tabs initially collapsed and **Use system title
+bar and borders** enabled. Default-browser checks and product promotions are
+disabled by policy; the New Tab Page's promotional section is also disabled.
 The **Saved tab groups** and **Tab search** buttons are hidden, and the **Home**,
 **Downloads**, and **Delete browsing data** toolbar buttons are shown by default.
-These appearance defaults only apply when initializing a profile; adjust the
-corresponding controls in **Settings → Appearance** for an existing profile.
-For an existing profile, change its name under **Settings → You and Google →
-Customize your Chromium profile**, set **Settings → Appearance → Tab
-strip position → Side** and enable **Use system title bar and borders** once;
-initial preferences do not overwrite existing profiles. On Wayland, the visible
-title bar also depends on the compositor's decoration support.
+Before launching Chromium, the wrapper merges the declared preferences into the
+selected profile and updates its cached display name in `Local State`, preserving
+other keys. It honors `--user-data-dir`, `--profile-directory`, and otherwise uses
+the last-used profile. Existing profiles receive the settings as well. Managed
+values are reapplied each time the browser starts, so changes made interactively
+to those values last only for that browser session. If a `SingletonLock` exists,
+the wrapper leaves the running browser's files alone. After rebuilding, fully
+exit Chromium and launch it again to apply the preferences. On Wayland, the
+visible title bar also depends on the compositor's decoration support.
 
 Check `chrome://policy` after rebuilding; `ClearBrowsingDataOnExitList` and the
 other configured policies should appear without errors. Visit a page, perform a
@@ -276,7 +280,7 @@ stored by a search provider in an online account.
 | Module                         | Purpose                                            |
 | ------------------------------ | -------------------------------------------------- |
 | `system/modules/bluetooth.nix` | Bluetooth support.                                 |
-| `system/modules/chromium.nix`  | Chromium installation, policies, and initial preferences. |
+| `system/modules/chromium/`     | Chromium installation, policies, and managed preferences. |
 | `system/modules/nvidia.nix`    | NVIDIA/GPU-related configuration.                  |
 | `system/modules/steam.nix`     | Steam support.                                     |
 | `system/modules/docker.nix`    | Docker configuration.                              |

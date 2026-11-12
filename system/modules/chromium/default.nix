@@ -4,11 +4,23 @@
   pkgs,
   ...
 }:
+let
+  # The launcher initializes preferences before Chromium's first-run UI can reset them.
+  browser = pkgs.chromium.override { commandLineArgs = "--enable-wayland-ime --no-first-run"; };
+  preferences = builtins.removeAttrs config.programs.chromium.initialPrefs [ "distribution" ];
+  defaults = pkgs.writeText "chromium-profile-defaults.json" (builtins.toJSON preferences);
+in
 {
   config = lib.mkIf config.mo.desktop.enable {
     environment.systemPackages = [
-      (pkgs.chromium.override {
-        commandLineArgs = "--enable-wayland-ime";
+      (pkgs.symlinkJoin {
+        name = "chromium-managed-${browser.version}";
+        paths = [ browser ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram "$out/bin/chromium" \
+            --run ${lib.escapeShellArg "${pkgs.python3}/bin/python3 ${./profile.py} ${defaults} \"$@\""}
+        '';
       })
     ];
 
@@ -28,6 +40,8 @@
         AllowDeletingBrowserHistory = true;
         BackgroundModeEnabled = false;
         RestoreOnStartup = 5; # Open a new tab instead of restoring the last session.
+        DefaultBrowserSettingEnabled = false;
+        PromotionsEnabled = false;
         BrowserSignin = 0;
         SyncDisabled = true;
         SearchSuggestEnabled = false;
@@ -58,7 +72,7 @@
         TryOnYouSettings = 2;
         VoiceTypingSettings = 2;
       };
-      # Chromium only copies these defaults when creating a new profile.
+      # The launcher also merges these preferences into existing, closed profiles.
       initialPrefs = {
         browser = {
           custom_chrome_frame = false;
@@ -66,11 +80,15 @@
         };
         bookmark_bar.show_tab_groups = false;
         tab_search.pinned_to_tabstrip = false;
+        in_product_help.ntp_promos.disabled = true;
         toolbar.pinned_actions = [
           "kActionShowDownloads"
           "kActionClearBrowsingData"
         ];
-        vertical_tabs.enabled = true;
+        vertical_tabs = {
+          enabled = true;
+          collapsed_state = true;
+        };
         profile = {
           name = config.mo.username;
           using_default_name = false;

@@ -102,6 +102,13 @@
             };
           };
           checks = {
+            chromium-profile =
+              pkgs.runCommand "chromium-profile-check" { nativeBuildInputs = [ pkgs.python3 ]; }
+                ''
+                  export PYTHONDONTWRITEBYTECODE=1
+                  python -m unittest discover -s ${./system/modules/chromium} -p 'test_*.py' -v
+                  touch "$out"
+                '';
             niri-layout-init =
               pkgs.runCommand "niri-layout-init-check" { nativeBuildInputs = [ pkgs.python3 ]; }
                 ''

@@ -7,7 +7,7 @@
 let
   # The launcher initializes preferences before Chromium's first-run UI can reset them.
   browser = pkgs.chromium.override { commandLineArgs = "--enable-wayland-ime --no-first-run"; };
-  preferences = builtins.removeAttrs config.programs.chromium.initialPrefs [ "distribution" ];
+  preferences = removeAttrs config.programs.chromium.initialPrefs [ "distribution" ];
   defaults = pkgs.writeText "chromium-profile-defaults.json" (builtins.toJSON preferences);
 in
 {

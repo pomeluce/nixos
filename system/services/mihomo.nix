@@ -17,6 +17,7 @@
       proxy-providers:
         flower:
           type: http
+          proxy: DIRECT
           interval: 36000
           url: "${config.sops.placeholder.MIHOMO_PROVIDER}"
           path: ./proxy_provider/flower.yaml
@@ -109,18 +110,21 @@
           - "+.lan"
           - "+.local"
           - "+.market.xiaomi.com"
+        default-nameserver:
+          - "https://223.5.5.5/dns-query#DIRECT"
+          - "https://223.6.6.6/dns-query#DIRECT"
+          - "https://1.12.12.12/dns-query#DIRECT"
         nameserver:
-          - 114.114.114.114
-          - 8.8.8.8
-          - https://doh.pub/dns-query
-          - https://dns.alidns.com/dns-query
-          - 'tls://114.114.114.114#dns'
-          - 'tls://8.8.4.4#dns'
-          - 'tls://1.0.0.1#dns'
-          - 'tls://[2001:4860:4860::8844]#dns'
-          - 'tls://[2606:4700:4700::1001]#dns'
+          - "https://doh.pub/dns-query#DIRECT"
+          - "https://dns.alidns.com/dns-query#DIRECT"
         proxy-server-nameserver:
-          - https://doh.pub/dns-query
+          - "https://doh.pub/dns-query#DIRECT"
+          - "https://dns.alidns.com/dns-query#DIRECT"
+        # Keep subscription hostname resolution independent of proxy routing.
+        direct-nameserver:
+          - "https://doh.pub/dns-query#DIRECT"
+          - "https://dns.alidns.com/dns-query#DIRECT"
+        direct-nameserver-follow-policy: false
         nameserver-policy:
           "geosite:cn,private":
             - https://doh.pub/dns-query
